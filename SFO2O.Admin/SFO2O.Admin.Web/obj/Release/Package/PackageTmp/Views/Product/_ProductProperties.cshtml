@@ -1,0 +1,121 @@
+﻿@using SFO2O.Admin.Models.Enums
+@{
+    var keyNames = (IList<SFO2O.Admin.Models.DicsModel>)ViewBag.KeyNames;
+    var propertyCount = 0;
+    var proTemp = new Dictionary<string, string>();
+    if (Model.ProductAttrsInfos != null && Model.ProductAttrsInfos.Count > 0)
+    {
+        var pro_T = Model.ProductAttrsInfos[LanguageEnum.TraditionalChinese];
+        var pro_S = Model.ProductAttrsInfos[LanguageEnum.SimplifiedChinese];
+        var pro_E = Model.ProductAttrsInfos[LanguageEnum.English];
+
+        foreach (var key in pro_T.Keys)
+        {
+            var tempValue = pro_T[key];
+            if (!String.IsNullOrWhiteSpace(tempValue))
+            {
+                proTemp.Add(key, tempValue);
+            }
+        }
+
+        propertyCount = proTemp.Where(p => p.Key.Contains("Unit") == false && p.Key != "sku" && p.Key != "LanguageVersion").Count() + 1;
+
+        if (Model.ProductImgs != null && Model.ProductImgs.Count > 0)
+        {
+            propertyCount++;
+        }
+
+        <table class="fff_bor mg_t10">
+            @if (proTemp.Count > 0)
+            {
+                var UnThreeLanguageKeys = new List<string>() { "netweight", "netcontent", "petage", "countryofmanufacture" };
+                int i = 0;
+                foreach (var key in proTemp.Keys)
+                {
+                    if (key.Contains("Unit") || key == "sku" || key == "LanguageVersion")
+                    {
+                        continue;
+                    }
+
+                    var title = String.Empty;
+                    var prop = keyNames.FirstOrDefault(p => p.KeyName == key);
+                    if (prop != null)
+                    {
+                        title = prop.KeyValue;
+                    }
+
+                    var value = proTemp[key];
+                    if (UnThreeLanguageKeys.Contains(key.ToLower())) //不需要显示3语言版本
+                    {
+                        if (value == "0.00")
+                        {
+                            value = "";
+                        }
+                        else if (proTemp.Keys.Contains(key + "Unit"))
+                        {
+                            value += proTemp[key + "Unit"].Replace('$', ',');
+                            propertyCount--;
+                        }
+
+
+
+                        value = "<span class=\"f_l pd_l10\">" + value + "</span>";
+                    }
+                    else
+                    {
+                        value = "<div class=\"f_l\" style=\"width:660px;\"><p class=\"pd_l10\">" + value + "</p><p class=\"pd_l10\">" + pro_S[key] + "</p><p class=\"pd_l10\">" + pro_E[key] + "</p></div>";
+                    }
+
+                    value = value.Replace('$', ',');
+
+                    if (i == 0)
+                    {
+                        <tr>
+                            <th rowspan="@propertyCount" width="140" class="vtop"><span class="f_l pd_l10 mg_t40">商品屬性</span></th>
+                            <td><span class="f_l pd_l10 w105">@title :</span>@Html.Raw(value)</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        if (value != "<span class=\"f_l pd_l10\"></span>")
+                        {
+                            <tr>
+                                <td><span class="f_l pd_l10 w105">@title：</span>@Html.Raw(value)</td>
+                            </tr>
+                        }
+                    }
+
+                    i++;
+                }
+
+            }
+
+            <tr>
+                <td>
+                    <span class="f_l pd_l10 w105">商品描述：</span>
+                    <span class="f_l pd_l10">
+                        <a href="javascript:void(0);" target="_blank" class="col_link" id="desT">點擊查看繁體版</a>
+                        <a href="javascript:void(0);" target="_blank" class="col_link" style="margin-left:10px;" id="desS">點擊查看簡體版</a>
+                        <a href="javascript:void(0);" target="_blank" class="col_link" style="margin-left:10px;" id="desE">點擊查看英文版</a>
+                    </span>
+                </td>
+            </tr>
+            @if (Model.ProductImgs != null && Model.ProductImgs.Count > 0)
+            {
+                <tr>
+                    <td>
+                        <span class="f_l pd_l10 w105 mg_t30">商品圖片：</span>
+                        <div class="img_wrap f_l pd_l10">
+                            <ul class="clearfix">
+                                @foreach (var img in Model.ProductImgs)
+                                {
+                                    <li class="bor f_l mg_t10 mg_b10 mg_r10"><img src="@(SFO2O.Admin.Common.ConfigHelper.ImageServer + img.ImagePath.Replace(" \\"," />/"))"></li>
+                                }
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+}

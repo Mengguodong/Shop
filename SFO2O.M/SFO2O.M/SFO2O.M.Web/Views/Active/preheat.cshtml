@@ -1,0 +1,283 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    this.ViewBag.Title = "爱玖网强势来袭，全场4.5折-爱玖网购物商城";
+}
+
+@section styles {
+    <link href="../../Content/css/base.css?v=201512150001" rel="stylesheet">
+    <!--页面独有样式-->
+    <link href="../../Content/css/active/preheat.css?v=20160412" rel="stylesheet">
+    <!--页面独有样式 END-->
+}
+
+@section scripts {
+    <script src="../../Scripts/jquery/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../../Scripts/common/common.js?v=201512160001"></script>
+    <script type="text/javascript" src="../../Scripts/jquery/iscroll.js"></script>
+    <script type="text/javascript" src="../../Scripts/jquery/jquery.dialog.js?v=201512160001" charset="utf-8"></script>
+    <!--页面独有脚本-->
+    <script type="text/javascript" src="../../Scripts/active/preheat.js?v=20160412"></script>
+    <!--页面独有脚本 END-->
+}
+
+@section pageHeader {
+    <div class="hide"><img src="../../Content/Images/active/key.jpg?v=20160414" /></div>
+    <!-- 页头 -->
+    <header class="pageHeader w100 pr tc">
+        <a class="returnBtn" id="returnBtn"></a>
+        <b class="f36 FontColor1">爱玖网强势来袭</b>
+        <div class="flowerMenu" onclick="FSH.menuDialog()"></div>
+        <link rel="apple-touch-icon-precomposed" href="http://www.wdnzmt9.com/Content/Images/active/key.jpg?v=20160414" />
+    </header>
+    <!-- 页头 end -->
+}
+
+<div class="MContainer bgColor3" id="MContainer">
+
+    <!-- banner -->
+    <div class="banner">
+        <img class="w100" src="../../Content/Images/active/banner.jpg?v=20160414" />
+    </div>
+    <!-- banner end -->
+    <ul class="menu displayBox mb15 tc" id="menu">
+        <li class="boxflex1">
+            <a href="#brandWrap" id="gotoBrand">
+                <span class="f40">品牌特惠</span><br>
+                <span class="f20">Brand preference</span>
+            </a>
+        </li>
+        <li class="boxflex1 active">
+            <a href="#discountWrap" id="gotoDiscount">
+                <span class="f40">折扣商品</span><br>
+                <span class="f20">discount</span>
+            </a>
+        </li>
+    </ul>
+    <div class="extraTime tc mb17" id="countdown" data-time="@ViewBag.Sec">
+        <i class="icon_clock"></i>
+        剩余<span id="day"> </span>天<span id="hour"> </span>时<span id="minite"> </span>分<span id="second"> </span>秒
+    </div>
+    <div class="tehui" id="brandWrap">
+        <div class="title">
+            <img src="../../Content/Images/active/mingpin.jpg?v=20160414">
+        </div>
+        <div class="item w95p">
+            <a href="http://www.wdnzmt9.com/brand/17.html">
+                <div class="imgBox">
+                    <img src="../../Content/Images/active/pp01.jpg?v=20160414" />
+                    <div>全线商品 6折</div>
+                </div>
+                <div class="name">JNC小家电－荣获中华人民共和国大陆地区十大品牌大奖</div>
+            </a>
+        </div>
+        <div class="item w95p">
+            <a href="http://www.wdnzmt9.com/brand/14.html">
+                <div class="imgBox">
+                    <img src="../../Content/Images/active/pp02.jpg?v=20160418" />
+                    <div>全线商品 5折起</div>
+                </div>
+                <div class="name">位元堂－港产百年品牌</div>
+            </a>
+        </div>
+        <div class="item w95p">
+            <a href="http://www.wdnzmt9.com/brand/27.html">
+                <div class="imgBox">
+                    <img src="../../Content/Images/active/pp03.jpg?v=20160414" />
+                    <div>全线商品 6折</div>
+                </div>
+                <div class="name">EGG－荷兰设计及生产的儿童头盔</div>
+            </a>
+        </div>
+        <div class="item w95p">
+            <a href="http://www.wdnzmt9.com/brand/29.html">
+                <div class="imgBox">
+                    <img src="../../Content/Images/active/pp04.jpg?v=20160414" />
+                    <div>全线商品 8折</div>
+                </div>
+                <div class="name">BU－产自法国‧为孕妇而设的健康指甲油</div>
+            </a>
+        </div>
+        <div class="item w95p">
+            <a href="http://www.wdnzmt9.com/brand/31.html">
+                <div class="imgBox">
+                    <img src="../../Content/Images/active/pp05.jpg?v=20160414" />
+                    <div>指定商品 7折</div>
+                </div>
+                <div class="name">Comfi－热销亚洲‧婴孩高质床品</div>
+            </a>
+        </div>
+        <div class="item w95p">
+            <a href="http://www.wdnzmt9.com/brand/16.html">
+                <div class="imgBox">
+                    <img src="../../Content/Images/active/pp06.jpg?v=20160414" />
+                    <div>指定商品 8折</div>
+                </div>
+                <div class="name">Petal Fresh－产自美国加州‧纯天然护理产品</div>
+            </a>
+        </div>
+        <div class="item w95p">
+            <a href="http://www.wdnzmt9.com/brand/22.html">
+                <div class="imgBox">
+                    <img src="../../Content/Images/active/pp07.jpg?v=20160414" />
+                    <div>指定商品 8折</div>
+                </div>
+                <div class="name">AQ Bio－中华人民共和国大陆地区天然草本消毒品牌</div>
+            </a>
+        </div>
+        <div class="item w95p">
+            <a href="http://www.wdnzmt9.com/brand/6.html">
+                <div class="imgBox">
+                    <img src="../../Content/Images/active/pp08.jpg?v=20160414" />
+                    <div>全线商品 7-8折</div>
+                </div>
+                <div class="name">Sega Yoys－品味星空投影仪</div>
+            </a>
+        </div>
+        <div class="item w95p">
+            <a href="http://www.wdnzmt9.com/brand/8.html">
+                <div class="imgBox">
+                    <img src="../../Content/Images/active/pp09.jpg?v=20160414" />
+                    <div>全线商品 7-75折</div>
+                </div>
+                <div class="name">Nanodots－科学潮流磁石玩具</div>
+            </a>
+        </div>
+        <div class="item w95p">
+            <a href="http://www.wdnzmt9.com/brand/23.html">
+                <div class="imgBox">
+                    <img src="../../Content/Images/active/pp10.jpg?v=20160420" />
+                    <div>全线商品 5-6折</div>
+                </div>
+                <div class="name">Footspot.——柔软舒适又不失时尚品味</div>
+            </a>
+        </div>
+    </div>
+    <div class="zhekou" id="discountWrap">
+        <div class="discountTabWrap w100" id="discountTab">
+            <div class="discountTab clearfix w100 displayBox" id="discountTabCon">
+                <div data-href="#discountCon1" class="cur">母婴</div>
+                <div data-href="#discountCon2">保健</div>
+                <div data-href="#discountCon3">化妆</div>
+                <div data-href="#discountCon4">美食</div>
+                <div data-href="#discountCon5">家居</div>
+                <div data-href="#discountCon6">电子</div>
+            </div>
+        </div>
+        <div class="discountCon" id="discountCon1">
+            <div class="title">
+                <img src="../../Content/Images/active/muying.jpg?v=20160414" />
+            </div>
+            <div class="list productList w95p">
+                <div class="w100 clearfix">
+                    @Html.Action("SkuInfo", new { productCode = 10150308886977 })
+                    @Html.Action("SkuInfo", new { productCode = 10150308886978 })
+                    @Html.Action("SkuInfo", new { productCode = 10150308886982 })
+                    @Html.Action("SkuInfo", new { productCode = 10150308886664 })
+                    @*@Html.Action("SkuInfo", new { productCode = 10160324736193 })*@
+
+                    <div class="more muying">
+                        <div class="title"><img src="../../Content/Images/active/title_my.png?v=20160415" /></div>
+                        <div class="detail">中华人民共和国大陆地区正货保证 妈妈安心之选</div>
+                        <a href="/product/Index?c=2&level=0"><span class="moreBtn">查看更多</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="discountCon" id="discountCon2">
+            <div class="title">
+                <img src="../../Content/Images/active/baojian.jpg?v=20160414" />
+            </div>
+            <div class="list productList w95p">
+                <div class="w100 clearfix">
+                    @*@Html.Action("SkuInfo", new { productCode = 10160324736188 })
+                    @Html.Action("SkuInfo", new { productCode = 10160324736183 })
+                    @Html.Action("SkuInfo", new { productCode = 10160324736179 })
+                    @Html.Action("SkuInfo", new { productCode = 10160324736176 })
+                    @Html.Action("SkuInfo", new { productCode = 10160324736190 })*@
+                    <div class="more baojian">
+                        <div class="title"><img src="../../Content/Images/active/title_bj.png?v=20160415" /></div>
+                        <div class="detail">内调外养  信心正货</div>
+                        <a href="/product/Index?c=1&level=0"><span class="moreBtn">查看更多</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="discountCon" id="discountCon3">
+            <div class="title">
+                <img src="../../Content/Images/active/gehu.jpg?v=20160414" />
+            </div>
+            <div class="list productList w95p">
+                <div class="w100 clearfix">
+                    @*@Html.Action("SkuInfo", new { productCode = 10150308886541 })
+                    @Html.Action("SkuInfo", new { productCode = 10150308886542 })
+                    @Html.Action("SkuInfo", new { productCode = 10150308886543 })
+                    @Html.Action("SkuInfo", new { productCode = 10150308886546 })
+                    @Html.Action("SkuInfo", new { productCode = 10150308886551 })*@
+                    <div class="more gehu">
+                        <div class="title" style="width: 90%;"><img src="../../Content/Images/active/title_gh.png?v=20160415" /></div>
+                        <div class="detail">开起秀美之旅  秒变女神</div>
+                        <a href="/product/Index?c=3&level=0"><span class="moreBtn">查看更多</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="discountCon" id="discountCon4">
+            <div class="title">
+                <img src="../../Content/Images/active/meishi.jpg?v=20160414" />
+            </div>
+            <div class="list productList w95p">
+                <div class="w100 clearfix">
+                    @*@Html.Action("SkuInfo", new { productCode = 10150308886877 })
+                    @Html.Action("SkuInfo", new { productCode = 10150308886875 })
+                    @Html.Action("SkuInfo", new { productCode = 10150308886876 })
+                    @Html.Action("SkuInfo", new { productCode = 10150308886874 })
+                    @Html.Action("SkuInfo", new { productCode = 10150308886766 })*@
+                    <div class="more meishi">
+                        <div class="title"><img src="../../Content/Images/active/title_ms.png?v=20160415" /></div>
+                        <div class="detail">天然原料 放心购买</div>
+                        <a href="/product/Index?c=7&level=0"><span class="moreBtn">查看更多</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="discountCon" id="discountCon5">
+            <div class="title">
+                <img src="../../Content/Images/active/jiaju.jpg?v=20160414" />
+            </div>
+            <div class="list productList w95p">
+                <div class="w100 clearfix">
+                    @*@Html.Action("SkuInfo", new { productCode = 10160324736177 })
+                    @Html.Action("SkuInfo", new { productCode = 10160324736203 })
+                    @Html.Action("SkuInfo", new { productCode = 10160324736199 })
+                    @Html.Action("SkuInfo", new { productCode = 10160324736198 })
+                    @Html.Action("SkuInfo", new { productCode = 10160324736194 })*@
+                    <div class="more jiaju">
+                        <div class="title"><img src="../../Content/Images/active/title_jj.png?v=20160415" /></div>
+                        <div class="detail">严选材料 品质至上  </div>
+                        <a href="/product/Index?c=4&level=0"><span class="moreBtn">查看更多</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="discountCon" id="discountCon6">
+            <div class="title">
+                <img src="../../Content/Images/active/dianzi.jpg?v=20160414" />
+            </div>
+            <div class="list productList w95p">
+                <div class="w100 clearfix">
+                    @*@Html.Action("SkuInfo", new { productCode = 10150308886673 })
+                    @Html.Action("SkuInfo", new { productCode = 10150308886672 })
+                    @Html.Action("SkuInfo", new { productCode = 10150308886677 })
+                    @Html.Action("SkuInfo", new { productCode = 10150308886676 })
+                    @Html.Action("SkuInfo", new { productCode = 10150308886675 })*@
+                    <div class="more dianzi">
+                        <div class="title"><img src="../../Content/Images/active/title_dz.png?v=20160415" /></div>
+                        <div class="detail">开启智能生活  </div>
+                        <a href="/product/Index?c=9&level=0"><span class="moreBtn">查看更多</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="shadow"></div>
+</div>

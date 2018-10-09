@@ -1,0 +1,136 @@
+﻿@charset "UTF-8";
+
+.banner,.similarBrandWrap{
+	max-width:640px;
+	width:100%;
+	height:auto;
+	overflow:hidden;
+}
+.banner .focusBoxIn div{ 
+	text-align:center;
+}
+.banner .focusBoxIn div img{
+	max-width:100%;
+	display: block;
+}
+.bannerIndex,.similarBrandIndex{
+	height:8px;
+	position:absolute;
+	bottom:12px; 
+	right:0px;
+	text-align:center;
+	z-index:100;
+	width:100%;
+}
+.bannerIndex li:first-child,.similarBrandIndex li:first-child{ margin-left:0px;
+}
+.bannerIndex li,.similarBrandIndex li{ 
+	display:inline-block;
+	margin-left:8px; 
+	width:8px; 
+	height:8px; 
+	background:#fff; 
+	border-radius: 8px;
+	border:1px solid #000;
+}
+.bannerIndex li.on,.similarBrandIndex li.on{ 
+	background:#494947; 
+	opacity:1;
+}
+/* 轮播 */
+.swipe,.similarBrandItems {
+    overflow: hidden;
+    position: relative;
+}
+.swipe-wrap,.similarBrandItemsWrap {
+    overflow: hidden;
+    position: relative;
+}
+.swipe-wrap > li,.similarBrandItemsWrap > li {
+ 
+}
+.swipe-wrap > li img{
+	width: 100%;
+	display: block;
+}
+.itemFeature{ padding-top:7px; padding-bottom:7px; background:#f7f7f7;}
+.itemFeature li{ float:left; width:33.3333333%; text-align: center;}
+.itemFeature li:first-child{ text-align: left;}
+.itemFeature li:last-child{ text-align: right;}
+.itemCon .productList .item{border-color:#e0e0e0;}
+.itemProName{ line-height:120%;}
+.itemIcon_s,.itemIcon_r,.itemIcon_w,.Icon_kf,.Icon_collection,.brandArea span,.promotionIcon span,.pinIcon{display:inline-block; background:url("../Images/icon.png?v=20160331") no-repeat; background-size:30px auto; -moz-background-size:30px auto; -webkit-background-size:30px auto;vertical-align: -2px; margin-right:5px;}
+.itemIcon_s{ width: 14px; height:14px; background-position:-1px -100px;}
+.itemIcon_r,.itemIcon_w{ width:15px; height: 14px;  }
+.itemIcon_r{background-position: -1px -118px;}
+.itemIcon_w{background-position: -1px -136px;}
+.Icon_kf{ width:18px; height:17px;  background-position:-1px -76px;}
+.Icon_collection{ width:20px; height:19px; background-position:-1px -231px; margin-left:3px; vertical-align: 0px;}
+.Icon_collection.selected{ background-position:-1px -251px;}
+.fixedBottomDivCon a,.SKUBtnArea a{ display:block;  position:relative;}
+.fixedBottomDivCon .headerCart{ display: inline-block;}
+.fixedBottomDivCon a .headerCart span{ top:5px; right:50%; margin-right:-14px;}
+.fixedBottom_collection,.fixedBottom_gwc{padding:8px 0px; width:22.5%;  white-space: nowrap; height:30px; overflow: hidden; text-align:center; }
+.Icon_kf{ vertical-align: 0px;}
+
+.line{ display: block; width:0px; height:30px; margin-top:8px; overflow: hidden; border-right:1px solid #e0e0e0; }
+.nobuyBtn{background:#dedede; color:#fff; line-height: 46px;}
+.addToCarBtn,.buyNowBtn{ color:#fff; line-height: 46px;}
+.addToCarBtn{ background:#ffcf31;}
+.buyNowBtn{ background:#98ca35;}
+
+.brandArea{ line-height: 100%;}
+.brandArea p{ overflow:hidden;margin-right:10px;}
+.brandArea span{  width:12px; height:14px; overflow: hidden;  background-position:-1px -156px; }
+.brandArea span.taxIcon{ width:14px; height:14px; overflow:hidden; background-position:-1px -190px; margin-right:2px;}
+.promotionIcon{ display: inline-block; margin-right: 5px; font-size:9px; padding:2px 4px;border:1px solid #f75e26; border-radius: 2px; -webkit-border-radius: 2px; -moz-border-radius: 2px; vertical-align: 2px}
+.promotionIcon span{ display: inline-block; width:8px; height: 9px; overflow: hidden;background-position:-1px -178px; vertical-align:-1px; margin-right:3px; }
+
+.brandLogo{ width:35px; height:35px; border:1px solid #dedede; margin-right:10px; margin-bottom:15px; display:block; float: left;}
+.brandDiv{ width:100%; height: auto; overflow: hidden;}
+.brandDiv b{font-weight: normal; display: block; margin-bottom:5px;}
+.brandIntro{-webkit-line-clamp:2;display:-webkit-box;-webkit-box-orient: vertical;text-overflow:ellipsis ; overflow: hidden; line-height: 150%;height:3em; word-wrap: break-word; word-break: break-all;}
+.similarBrandWrap h3,.recommendedWrap h3{ font-weight: normal;}
+.similarBrand{padding-bottom:12px;}
+.recommendedWrap .indexHotPro{background:#fff; padding-top:12px; padding-bottom: 12px;box-shadow:1px 1px 5px rgba(7,0,2,.2);-webkit-box-shadow:1px 1px 5px rgba(7,0,2,.2); -moz-box-shadow:1px 1px 5px rgba(7,0,2,.2);}
+.recommendedWrap .indexHotPro .item{ border:1px solid #e0e0e0;}
+.itemProPrice {
+	padding-bottom: 2px;
+}
+/*425 新增 拼生活*/
+.markIcon{ width:60px; height:53px; overflow:hidden; background:url("../Images/item/mark.png?v=20160425") no-repeat; background-size:60px auto;  -moz-background-size:60px auto;  -webkit-background-size:60px auto; position:absolute; top:-30px; right:2.5%; z-index:5;}
+.overdueIcon{ background-position:0px -53px;}
+.itemIcon_jt{ margin-right:0px;}
+.gotoBuy,.gotoPin{ border:1px solid; border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px;width:48.5%;float:left;}
+.gotoBuy{ border-color:#e4b829; margin-right:3%;}
+.gotoPin{ border-color:#83b71b;}
+.gotoBuy a,.gotoPin a{ color:#fff;}
+.price_pin{ padding:9px 0px;}
+.gotoBuy .price_pin{ background:#ffcf31;}
+.gotoPin .price_pin{ background:#98ca35;}
+.gotoBuyFont,.gotoPinFont{ padding:5px 0px;}
+.gotoBuyFont{ color:#e4b829;}
+.gotoPinFont{ color:#83b71b;}
+.overdueStatu .gotoBuy,.overdueStatu  .gotoPin{  border-color:#c6c6c6;}
+.overdueStatu .gotoBuy .price_pin,.overdueStatu .gotoPin .price_pin{ background:#dedede;}
+.overdueStatu .gotoBuyFont,.overdueStatu .gotoPinFont{color:#bcbcbc;}
+.overdueJump a{ display:block; width:100%; color:#fff; padding:13px 0px; background:#98ca35;}
+#taxDialog .title{ padding-top:15px; padding-bottom:15px;}
+#taxDialog p{ padding-top:10px; padding-bottom:10px;}
+.gotoPinItem{ line-height:100%;}
+.pinIcon{ width:20px; height:19px; background-position:-1px -208px; margin-right:2px; vertical-align:-4px;}
+/*拼生活规则*/
+.pinRuleDiv{ line-height:200%;}
+.pinRuleDiv img{ display:block; border:1px solid #d7d7d7; width:97%;}
+.pinRuleDiv .FontColor1{ font-weight: bold; }
+.pinRuleDiv .FontColor1.f28{ font-weight: normal; }
+
+/*20160510 新增内容*/
+.gotoKF{ display:block; position: absolute;width: 35px;height: 35px;right: 3px;top: 5px;background: url(../Images/item/kf.png?v=20160331) no-repeat;background-size: 20px auto;background-position: center;}
+#collectionBtn b{ font-weight: normal;}
+
+.nationImg{ height:12px; border:1px solid #e0e0e0; vertical-align: -2px;}
+/*时令食品单品页*/
+.priceDiv_holiday{ background:#f75e26; color:#fff; padding-top:14px; padding-bottom:14px;}
+.priceDiv_holiday .originalPrice{ color:#ffd0bf;}
+.priceDiv_holiday .numberTip{color:#ffcf31;}

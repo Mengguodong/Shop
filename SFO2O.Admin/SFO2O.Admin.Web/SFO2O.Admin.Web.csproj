@@ -1,0 +1,395 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BAAC3A59-8B10-438A-8798-73C19B978F83}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SFO2O.Admin.Web</RootNamespace>
+    <AssemblyName>SFO2O.Admin.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NPOI">
+      <HintPath>..\Libs\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.DDF, Version=1.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\NPOI.DDF.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.HPSF">
+      <HintPath>..\Libs\NPOI.HPSF.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.0.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.0.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.0.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.POIFS, Version=1.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\NPOI.POIFS.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.Util, Version=1.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\NPOI.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.1\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <Private>True</Private>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\PromotionController.cs" />
+    <Compile Include="Controllers\RefundController.cs" />
+    <Compile Include="Controllers\SettlementController.cs" />
+    <Compile Include="Controllers\SupplierController.cs" />
+    <Compile Include="Controllers\UserManageController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlHelpers\Extensions.cs" />
+    <Compile Include="HtmlHelpers\FPage.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\css\admin.css" />
+    <Content Include="Content\css\common.css" />
+    <Content Include="Content\css\overlay.css" />
+    <Content Include="Content\css\supplier.css" />
+    <Content Include="Content\images\icon20.png" />
+    <Content Include="Content\images\img.jpg" />
+    <Content Include="Content\images\img2.jpg" />
+    <Content Include="Content\images\img_xq.jpg" />
+    <Content Include="Content\images\logo_big.png" />
+    <Content Include="Content\images\logo_small.png" />
+    <Content Include="Content\images\step.png" />
+    <Content Include="Content\images\tab_bg.png" />
+    <Content Include="Content\images\tab_bg2.png" />
+    <Content Include="Content\Js\jquery-1.8.3.js" />
+    <Content Include="Error\404.html" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\Account\Account.js" />
+    <Content Include="Scripts\Account\Login.js" />
+    <Content Include="Scripts\ajaxupload.3.5.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="InputExcel\商品报备信息导入模板.xls" />
+    <None Include="Properties\PublishProfiles\admin.pubxml" />
+    <None Include="Properties\PublishProfiles\publish.pubxml" />
+    <None Include="Properties\PublishProfiles\pulish.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\chosen\chosen-sprite%402x.png" />
+    <Content Include="Scripts\chosen\chosen-sprite.png" />
+    <Content Include="Scripts\chosen\chosen.css" />
+    <Content Include="Scripts\chosen\chosen.jquery.js" />
+    <Content Include="Scripts\common.js" />
+    <Content Include="Scripts\Customer\CustomerList.js" />
+    <Content Include="Scripts\Dialog.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Scripts\jquery.format.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jquerypager\jquery.pager.latest.js" />
+    <Content Include="Scripts\jquerypager\Pager.css" />
+    <Content Include="Scripts\jquerypager\PagerDemo.html" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\my97\calendar.js" />
+    <Content Include="Scripts\my97\lang\en.js" />
+    <Content Include="Scripts\my97\lang\zh-cn.js" />
+    <Content Include="Scripts\my97\lang\zh-tw.js" />
+    <Content Include="Scripts\my97\skin\datePicker.gif" />
+    <Content Include="Scripts\my97\skin\default\datepicker.css" />
+    <Content Include="Scripts\my97\skin\default\img.gif" />
+    <Content Include="Scripts\my97\skin\WdatePicker.css" />
+    <Content Include="Scripts\my97\skin\whyGreen\bg.jpg" />
+    <Content Include="Scripts\my97\skin\whyGreen\datepicker.css" />
+    <Content Include="Scripts\my97\skin\whyGreen\img.gif" />
+    <Content Include="Scripts\my97\skin\YcloudRed\bg.gif" />
+    <Content Include="Scripts\my97\skin\YcloudRed\datepicker.css" />
+    <Content Include="Scripts\my97\skin\YcloudRed\qs.jpg" />
+    <Content Include="Scripts\my97\WdatePicker.js" />
+    <Content Include="Scripts\my97\开发包\lang\en.js" />
+    <Content Include="Scripts\my97\开发包\lang\zh-cn.js" />
+    <Content Include="Scripts\my97\开发包\lang\zh-tw.js" />
+    <Content Include="Scripts\my97\开发包\readme.txt" />
+    <Content Include="Scripts\my97\开发包\skin\datePicker.gif" />
+    <Content Include="Scripts\my97\开发包\skin\default\datepicker.css" />
+    <Content Include="Scripts\my97\开发包\skin\default\img.gif" />
+    <Content Include="Scripts\my97\开发包\skin\WdatePicker.css" />
+    <Content Include="Scripts\my97\开发包\skin\whyGreen\bg.jpg" />
+    <Content Include="Scripts\my97\开发包\skin\whyGreen\datepicker.css" />
+    <Content Include="Scripts\my97\开发包\skin\whyGreen\img.gif" />
+    <Content Include="Scripts\Order\OrderList.js" />
+    <Content Include="Scripts\overlay.js" />
+    <Content Include="Scripts\Product\AuditingProduct.js" />
+    <Content Include="Scripts\Product\ProductAuditingIndex.js" />
+    <Content Include="Scripts\Product\ProductInfoList.js" />
+    <Content Include="Scripts\Promotion\PromotionList.js" />
+    <Content Include="Scripts\Refund\RefundDetail.js" />
+    <Content Include="Scripts\Refund\RefundIndex.js" />
+    <Content Include="Scripts\Refund\RefundList.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Settlement\Settlement.js" />
+    <Content Include="Scripts\Settlement\SettlementList.js" />
+    <Content Include="Scripts\StartEndTimeInit.js" />
+    <Content Include="Scripts\Supplier\EditSupplier.js" />
+    <Content Include="Scripts\Supplier\ShowSupplierDetail.js" />
+    <Content Include="Scripts\Supplier\SupplierQuery.js" />
+    <Content Include="Scripts\UI\validate.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Shared\HeaderPartial.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Shared\Menu.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Product\ProductAuditingIndex.cshtml" />
+    <Content Include="Views\Supplier\SupplierQuery.cshtml" />
+    <Content Include="Views\Supplier\SupplierQueryList.cshtml" />
+    <Content Include="Scripts\jquerypager\README" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Product\ProductAuditingList.cshtml" />
+    <Content Include="Views\Customer\CustomerList.cshtml" />
+    <Content Include="Views\Settlement\SettlementIndex.cshtml" />
+    <Content Include="Views\Settlement\SettlementList.cshtml" />
+    <Content Include="Views\Settlement\SettlementDetail.cshtml" />
+    <Content Include="Views\Shared\_Layout.Detail.cshtml" />
+    <Content Include="Views\Refund\RefundIndex.cshtml" />
+    <Content Include="Views\Refund\RefundList.cshtml" />
+    <Content Include="Views\Product\AuditingProduct.cshtml" />
+    <Content Include="Views\Product\AuditingProductOnline.cshtml" />
+    <Content Include="Views\Product\_ProductBaseInfo.cshtml" />
+    <Content Include="Views\Product\_ProductCustomEditCHINA.cshtml" />
+    <Content Include="Views\Product\_ProductCustomShowCHINA.cshtml" />
+    <Content Include="Views\Product\_ProductCustomShowHK.cshtml" />
+    <Content Include="Views\Product\_ProductPacking.cshtml" />
+    <Content Include="Views\Product\_ProductProperties.cshtml" />
+    <Content Include="Views\Product\_ProductSysProperties.cshtml" />
+    <Content Include="Views\Refund\RefundDetail.cshtml" />
+    <Content Include="Views\Order\OrderDetail.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Product\GetImportError.cshtml" />
+    <Content Include="Views\Supplier\EditSupplier.cshtml" />
+    <Content Include="Views\Supplier\ShowSupplierDetail.cshtml" />
+    <Content Include="Views\Product\ProductInfoDetail.cshtml" />
+    <Content Include="Views\Order\OrderList.cshtml" />
+    <Content Include="Views\Order\GetOrderList.cshtml" />
+    <Content Include="Views\Product\ProductInfoList.cshtml" />
+    <Content Include="Scripts\sfo2o.validate.js" />
+    <Content Include="Views\Order\GetOrderLogistics.cshtml" />
+    <Content Include="Views\UserManage\EditGroup.cshtml" />
+    <Content Include="Views\UserManage\EditUser.cshtml" />
+    <Content Include="Views\UserManage\GroupList.cshtml" />
+    <Content Include="Views\UserManage\UserList.cshtml" />
+    <Content Include="Views\UserManage\ViewGroupUsers.cshtml" />
+    <Content Include="Views\Product\ShowProductDes.cshtml" />
+    <Content Include="Views\Product\_ProductAuditLog.cshtml" />
+    <Content Include="Views\Product\InventoryList.cshtml" />
+    <Content Include="Views\Home\TopSellSupplier.cshtml" />
+    <Content Include="Views\Home\Top50SellProduct.cshtml" />
+    <Content Include="Views\Home\Top50ReturnProduct.cshtml" />
+    <Content Include="Views\Supplier\BrandView.cshtml" />
+    <Content Include="Views\Promotion\PromotionList.cshtml" />
+    <Content Include="Views\Promotion\Audit.cshtml" />
+    <Content Include="Views\Promotion\View.cshtml" />
+    <Content Include="Views\Promotion\GetList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Views\Image\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SFO2O.Admin.Businesses\SFO2O.Admin.Businesses.csproj">
+      <Project>{25cef8f6-5604-402b-b256-d02f5b3f7511}</Project>
+      <Name>SFO2O.Admin.Businesses</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SFO2O.Admin.Common\SFO2O.Admin.Common.csproj">
+      <Project>{77635b3f-f322-4591-90c1-23c7544e280f}</Project>
+      <Name>SFO2O.Admin.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SFO2O.Admin.Models\SFO2O.Admin.Models.csproj">
+      <Project>{8de9952e-802b-4afd-b070-795205543dec}</Project>
+      <Name>SFO2O.Admin.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SFO2O.Admin.ViewModel\SFO2O.Admin.ViewModel.csproj">
+      <Project>{7c3bc410-841c-40f0-ad9c-35b104e55352}</Project>
+      <Name>SFO2O.Admin.ViewModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>21836</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:21836/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://admin.wdnzmt9.net</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

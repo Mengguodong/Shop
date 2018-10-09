@@ -1,0 +1,85 @@
+﻿@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.Controllers;
+@{
+    ViewBag.Title = "我的退款/退货";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = true;
+}
+
+@section scripts{
+    <script src="~/Scripts/jquery/jsrender-v1.0.0-beta.js"></script>
+    @Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJsRefund))
+
+}
+@section styles{
+    <link href="../Content/css/refundList.css?v=201512150001" rel="stylesheet">
+}
+<header class="pageHeader w100 pr tc">
+    <a class="returnBtn" id="returnBtn"></a>
+    <b class="f36 FontColor1">我的退款/退货</b>
+    <a class="flowerMenu" onclick="FSH.menuDialog()"></a>
+</header>
+<!-- 模板 -->
+<script type="text/x-jsrender" id="tmp">
+    <div class="item boxShadow mb8 bgColor3">
+        <div class="title f28 w95p bgColor3">
+            <a class="fr orangeText status">{{:~showStatus(RefundStatus)}}</a>
+            退款单号：{{:RefundCode}}
+        </div>
+        <a href="/refund/refundinfo?code={{:RefundCode}}">
+            <div class="proInfo displayBox w95p">
+                <div class="imgBox mr10">
+                    <img src="{{:ImagePath}}" />
+                </div>
+                <div class="boxflex1 displayBox horizontal">
+                    <div class="boxflex1">
+                        <p class="mb10">{{:Name}}</p>
+                        {{if MainDicValue}}
+                        <p class="FontColor4 f20">
+                            {{:~showSpec(MainDicValue,MainValue,SubDicValue,SubValue)}}
+                            {{if ~showWeightUnit(MainDicValue)}}
+                            {{:NetWeightUnit}}
+                            {{/if}}
+                            {{if ~showContentUnit(MainDicValue)}}
+                            {{:NetWeightUnit}}
+                            {{/if}}
+                        </p>
+
+                        {{/if}}
+
+                    </div>
+                    <div class="tr f24 ml25">
+                        <p class="mb10">￥{{:RMBUnitPrice}}</p>
+                        <p class="FontColor4 f20">x1</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <div class="orderInfo f28 whiteOnLine">
+            <p>
+                <span class="FontColor4">订单编号：</span>{{:OrderCode}}
+            </p>
+            {{if ~returnStatus(RefundStatus)}}
+            <p>
+                <span class="FontColor4">退款金额：</span><span class="orangeText">￥{{:RMBTotalAmount}}</span>
+            </p>
+            {{/if}}
+        </div>
+        <div class="btn-box w95p tr">
+            <a class="btn normalBtn linkToService" href="@SFO2O.Utility.Uitl.DomainHelper.CustomerServicesUrl" target="_blank">联系客服</a>
+            {{if ~showByStatus(RefundStatus)}}
+            <a class="btn cancelBtn" refundcode="{{:RefundCode}}">取消申诉</a>
+            {{/if}}
+        </div>
+        {{if ~showByStatus(RefundStatus)}}
+        <div class="tips f20 FontColor4 w95p whiteOnLine">注：爱玖网会于三个工作日内处理您的申请，请耐心等候。</div>
+        {{/if}}
+    </div>
+</script>
+<!-- 模板end -->
+<div class="refundList mt10" id="refundList">
+
+    <div class="loadMore" id="loadMore"></div>
+</div>

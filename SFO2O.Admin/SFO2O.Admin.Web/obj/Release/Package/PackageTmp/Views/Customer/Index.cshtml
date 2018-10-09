@@ -1,0 +1,80 @@
+﻿@model SFO2O.Admin.ViewModel.Customer.CustomerQueryModel
+
+@{
+    ViewBag.Title = "會員管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="cont_right_crumb">
+    <span class="homepage"></span>&gt; 會員管理 &gt; 會員查詢
+</div>
+<div class="w931">
+    <div class="upload_edit">
+        <div style="border-top:none;" class="wrap_yisc pd_t15">
+            <form id="queryForm">
+                <div style="margin-left:0; margin-right:0;" class="list_yisc bor clearfix">
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">註冊時間：</span>
+                        <div style="width:123px; height:29px;overflow:hidden;" class="bor f_l fff_bor">
+                            <input id="CreateTimeStart" name="StartTime" class="inputdp w70 Wdate" type="text" value="@Model.StartTime.ToString("yyyy-MM-dd")"
+                                   onfocus="WdatePicker({ maxDate: '%y-%M-%d', vel: 'StartTime', isShowClear: true, isShowOK: true, isShowToday: true })" />
+                            <input id="startTime" name="StartTime" value="@Model.StartTime.ToString("yyyy-MM-dd")" type="hidden" />
+                        </div>
+                        <em class="f_l mg_l5 mg_r5 lineH30">至</em>
+                        <div style="width:123px; height:29px;overflow:hidden;" class="bor f_l fff_bor">
+                            <input id="CreateTimeEnd" name="EndTime" class="inputdp w70 Wdate" type="text" value="@Model.EndTime.ToString("yyyy-MM-dd")"
+                                   onfocus="WdatePicker({ maxDate: '%y-%M-%d', vel: 'EndTime', isShowClear: true, isShowOK: true, isShowToday: true })" />
+                            <input id="endTime" name="EndTime" value="@Model.EndTime.ToString("yyyy-MM-dd")" type="hidden" />
+                        </div>
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">電子郵件：</span>
+                        <input type="text" style="width:141px;" class="f_l bor" name="Email" id="Email">
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">手機號碼：</span>
+                        <input type="text" style="width:262px;" class="f_l bor" name="Mobile" id="Mobile">
+                    </div>                   
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">國家地區：</span>
+                        <select name="CountryArea" style="width:155px;" id="CountryArea">
+                            <option value="-1">不限</option>
+                            @{
+                                var countryAreaDic = SFO2O.Admin.Common.EnumUtils.ConvertToDict<SFO2O.Admin.Models.CountryArea>();
+
+                                foreach (var item in countryAreaDic)
+                                {
+
+                                    if (Model.CountryArea == item.Key)
+                                    {
+                                        <option value="@item.Key" selected="selected">@item.Value</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.Key">@item.Value</option>
+                                    }
+                                }
+                            }  
+                        </select>
+                    </div>
+                    <div class="f_l">
+                        <a class="btn_green w160 mg_l20 mg_r20 mg_t10" href="javascript:void(0)" id="search">搜 尋</a> <a class="btn_white w160 mg_r30 mg_t10" href="javascript:void(0)" id="export">導 出</a>
+                    </div>
+                </div>
+            </form>
+            <div class="tongji_title mg_t30"><span class="tongji_title_l">會員列表</span></div>
+            <!-- 待審核商品列表 表格 -->
+            <div id="CustomerList">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/my97/WdatePicker.js"></script>
+<script src="~/Scripts/chosen/chosen.jquery.js"></script>
+<script src="~/Scripts/jquerypager/jquery.pager.latest.js"></script>
+<script src="~/Scripts/StartEndTimeInit.js?@ViewBag.JsAndCssVersion"></script>
+<script src="~/Scripts/Customer/CustomerList.js?@ViewBag.JsAndCssVersion"></script>
+<script src="~/Scripts/common.js?@ViewBag.JsAndCssVersion"></script>
+<link href="~/Scripts/chosen/chosen.css" type="text/css" rel="stylesheet" />

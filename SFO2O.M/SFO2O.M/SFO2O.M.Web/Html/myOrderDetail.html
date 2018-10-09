@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="no">
+<meta name="format-detection" content="telephone=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit">
+<title>爱玖网购物商城-订单详情</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="../Content/css/base.css?v=201512150001" rel="stylesheet">
+<!--页面独有样式-->
+<link href="../Content/css/order.css?v=201512150001" rel="stylesheet">
+<!--页面独有样式 END-->
+</head>
+<body>
+<div class="MContainer" id="MContainer">
+	<!-- 页头 -->
+	<header class="pageHeader w100 pr tc overflowH">
+      <a class="returnBtn" id="returnBtn"></a>
+      <b class="f36 FontColor1">订单详情</b>
+      <div class="flowerMenu"></div>
+  </header>
+  <!-- 页头 end -->
+  <table class="detailTable w100 boxShadow bgColor3 mt8">
+  	<tr class="f28">
+  		<th class="whiteOnLine FontColor4">订单编号：</th>
+  		<td class="whiteOnLine">5454156146146</td>
+  	</tr>
+  	<tr class="f28">
+  		<th class="whiteOnLine FontColor4">订单状态：</th>
+  		<td class="whiteOnLine">
+  			<!--待付款状态-->
+  			<!--<p class="FontColor6 mb5">待付款</p>-->
+  			<!--待付款状态 END-->
+  			<!--待发货状态-->
+  			<!--<p class="FontColor6 mb5">待发货</p>-->
+  			<!--待发货状态 END-->
+				<!--已发货状态-->
+  			<!--<p class="FontColor6 mb5">已发货</p>-->
+  			<!--已发货状态 END-->
+				<!--已送达状态-->
+				<!--
+  			<p class="FontColor6 mb5">已送达</p><p class="f20 FontColor4" id="countdown" data-time="360000000">还有6天23时59分59秒 自动确认收货</p>
+  			-->
+  			<p class="FontColor6 mb5">已送达</p><p class="f20 FontColor1" >该订单发生申诉</p>
+  			<!--已送达状态 END-->
+				<!--已送达退款退货状态状态-->
+  			<!--<p class="FontColor6 mb5">已送达</p><p class="f20">退款/退货处理中</p>-->
+  			<!--已送达退款退货状态状态 END-->
+				<!--交易成功状态-->
+  			<!--<p class="FontColor6 mb5">交易成功</p>-->
+  			<!--交易成功状态 END-->
+				<!--交易关闭状态-->
+  			<!--<p class="FontColor6 mb5">交易关闭</p>-->
+  			<!--交易关闭状态 END-->
+  		</td>
+  	</tr>
+  	<!--已发货 已送达 状态才有 -->
+  	<tr class="f28">
+  		<th class="whiteOnLine FontColor4">物流信息：</th>
+  		<td class="whiteOnLine">
+  			<a href="#" target="_self" class="pr" style="display:block;">
+  			<div  style="width:90%">
+  				<!--物流信息获取失败-->
+  				<!--<p>抱歉，暂时无法获取物流信息，<br>请稍后再试。</p>-->
+					<!--物流信息获取失败 END-->
+					<!--物流信息获取成功-->
+  				<p class="mb5">中转出仓中</p>
+  				<p class="f20 FontColor4 mb5">2016-01-14 14：28:30</p>
+  				<p class="f24 FontColor3">预计送到日期：2016-03-15</p>
+  				<!--物流信息获取成功 END-->
+  			</div>
+  			<i class="itemIcon_jt  itemIcon_jt2" ></i>
+  			</a>
+  		</td>
+  	</tr>
+  	<!--已发货 已送达 状态才有 END-->
+  	<tr class="f28">
+  		<th class="whiteOnLine FontColor4">收 件 人：</th>
+  		<td class="whiteOnLine">
+  				<p class="mb5">郭先生  13126154131</p>
+  				<p class="f24 FontColor3">地址地址地址地址地址地址地址地址地址地址地址地址地址地址地址地址地址地址地址地址地址地址地址地址</p>
+  		</td>
+  	</tr>
+  	<!--提示信息 @0225新增内容-->
+  	<tr class="f28">
+  		<!--<th class="whiteOnLine FontColor4">提　　示：</th>
+  		<td class="whiteOnLine tipTd">
+  				<a href="/help/UPloadIdentity" target="_self">
+  			<div class="" style="width:90%">
+  				<p>您的快件已发货，为保证快件顺利通关，请上传真实有效的证件正反面图片。请到第三方物流快递官网上传。</p>
+  			</div>
+  			<i class="itemIcon_jt"></i>
+  			</a>
+  		</td>-->
+  	</tr>
+  </table>
+	<!--商品信息-->
+	<div class="detailProInf bgColor3 w100 mt8 boxShadow">
+		<p class="orderNum f28">商品信息</p>
+			<ul class="proList">
+				<li class="w100 pr mb">
+				<a href="#" class="proItem displayBox w100">
+	  			<div class="proImgWrap grayOnLine">
+		  			<img src="../Content/Images/index/product1.jpg" class="whiteOnLine">
+	  			</div>
+	  			<div class="boxflex1 cartProInf ">
+						<p class="proName f24">商品名称商品名称商品名称</p>
+						<p class="selectedSku f20 FontColor4" style="margin-top:3px;">味道：樱桃味</p>
+						<p class="f30 proName mt5">￥105.65</p>
+	  			</div>
+	 				<div class="proPrice tr " style="width:60px">
+	 					<p class="f20 proName">×1</p>
+	 				</div>	
+				</a>
+				<!--已送达才有此按钮-->
+				<a class="btn normalBtn smallBtn" href="#" target="_self">申诉</a>
+				<!--已送达才有此按钮 END-->
+				</li>
+				<li class="w100 pr">
+				<a href="#" class="proItem displayBox w100">
+	  			<div class="proImgWrap grayOnLine">
+		  			<img src="../Content/Images/index/product1.jpg" class="whiteOnLine">
+	  			</div>
+	  			<div class="boxflex1 cartProInf ">
+						<p class="proName f24">商品名称商品名称商品名称</p>
+						<p class="selectedSku f20 FontColor4" style="margin-top:3px;">味道：樱桃味</p>
+						<p class="f30 proName mt5">￥105.65</p>
+	  			</div>
+	 				<div class="proPrice tr " style="width:60px">
+	 					<p class="f20 proName">×1</p>
+	 				</div>	
+				</a>
+				<!--已送达才有此按钮-->
+				<a class="btn normalBtn smallBtn" href="#" target="_self">申诉</a>
+				<!--已送达才有此按钮 END-->
+				</li>
+			</ul>
+			<div class="orderNum f28 FontColor4  pt0 pb0 mt10"><b class="">商品总价</b><span class="fr FontColor1">￥671.00</span></div>
+			<div class="orderNum f28 FontColor4  pt0 pb0 mt10"><b class="">运费</b><span class="fr FontColor1">+￥671.00</span></div>
+			<div class="whiteOnLine borderBottom  orderNum f28 FontColor4 pt0 pb10 mt10 "><a href="#" target="_self"><b class="">商品税</b><span class="fr FontColor1">+￥671.00<i class="itemIcon_jt top4"></i></span></a></div>
+			<div class=" whiteOnLine borderBottom  orderNum f28 FontColor4 "><b class="">订单总价（含运费/商品税）</b><span class="fr FontColor6">￥671.00</span></div>
+			<div class="orderNum f28 FontColor4 "><b class="">支付方式</b><span class="fr FontColor1">易票联支付</span></div>
+	</div>
+	<!--商品信息 END-->
+	<div class="bgColor3 w100 mt8 boxShadow orderDateDiv" style="margin-bottom:80px;">
+		<div class="orderNum f28 FontColor4 "><b class="">下单时间</b><span class="fr FontColor1">2016-12-30 14:00：00</span></div>
+		<div class="orderNum f28 FontColor4 "><b class="">付款时间</b><span class="fr FontColor1">2016-12-30 14:00：00</span></div>
+		<div class="orderNum f28 FontColor4 "><b class="">发货时间</b><span class="fr FontColor1">2016-12-30 14:00：00</span></div>
+		<div class="orderNum f28 FontColor4 "><b class="">送达时间</b><span class="fr FontColor1">2016-12-30 14:00：00</span></div>
+		<div class="orderNum f28 FontColor4 "><b class="">收货时间</b><span class="fr FontColor1">2016-12-30 14:00：00</span></div>
+	</div>
+  <div class="fixedBottomDiv w100 overflowH ">
+    <div class="fixedBottomDivCon">
+		    <p class=" orderBtnWrap tr">
+				<!--待付款状态-->
+				<a class="btn normalBtn linkToService" href="#" target="_blank">联系客服</a><a class="btn normalBtn " href="#" target="_self">取消订单</a><a class="btn " href="#" target="_self">支付</a>
+				<!--待付款状态 END-->
+				<!--待发货状态-->
+				<!--<a class="btn normalBtn linkToService" href="#" target="_blank">联系客服</a>-->
+				<!--待发货状态 END-->
+				<!--已发货状态-->
+				<!--<a class="btn normalBtn linkToService" href="#" target="_blank">联系客服</a><a class="btn normalBtn " href="#" target="_self">查看物流</a>-->
+				<!--已发货状态 END-->
+				<!--已送达状态-->
+				<!--<a class="btn normalBtn linkToService" href="#" target="_blank">联系客服</a><a class="btn " href="#" target="_self">确认收货</a>-->
+				<!--已送达状态 END-->
+				<!--交易成功状态  交易关闭状态-->
+				<!--<a class="btn normalBtn linkToService" href="#" target="_blank">联系客服</a>-->
+				<!--交易成功状态  交易关闭状态 END-->
+			</p>
+		</div>
+	</div>
+</div>
+<script src="../Scripts/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../Scripts/common/common.js?v=201512160001"></script>
+<!--页面独有脚本-->
+<script type="text/javascript" src="../Scripts/orderDetail.js?v=201512160001"></script>
+<!--页面独有脚本 END-->
+</body>
+</html>

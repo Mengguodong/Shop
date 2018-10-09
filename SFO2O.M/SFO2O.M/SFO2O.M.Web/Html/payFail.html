@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="no">
+<meta name="format-detection" content="telephone=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit">
+<title>爱玖网购物商城-支付失败</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="../Content/css/base.css?v=201512150001" rel="stylesheet">
+<!--页面独有样式-->
+<link href="../Content/css/payType.css?v=201512150001" rel="stylesheet">
+<!--页面独有样式 END-->
+</head>
+<body>
+<div class="MContainer" id="MContainer">
+	<div class="sf-pop payStatusWrap">
+		<p class="content title"><span class="successIcon"></span>支付失败！</p>
+		<p class="conent tip">支付失败，请稍后再试。</p>
+		<p class="btn-box">
+			<!-- 如果有下一单 -->
+			<a class="closeBtn m-btn" href="" target="_self">查看待支付订单</a>
+			<a class="closeBtn m-btn hover" href="" target="_self">支付下一单</a>
+			<!-- 如果有下一单end -->
+			<!-- 如果没有下一单,引用时去掉hide -->
+			<a class="closeBtn m-btn hide" href="" target="_self">查看待支付订单</a>
+			<!-- 如果没有下一单end -->
+		</p>
+	</div>
+	<!--页脚-->
+	<p class="loginArea f24 FontColor3 mb20 mt20 w95p">
+		<!--未登录状态显示-->
+		<a class="f24 FontColor3 mr10 ml5" href="#" target="_self">登录</a>|
+		<a class="f24 FontColor3 ml10" href="#" target="_self">注册</a>
+		<!--未登录状态显示 END-->
+		<!--已登录状态显示-->
+		<!--<a class="f24 FontColor3">退出</a>-->
+		<!--已登录状态显示 END-->
+		<a href="javascript:FSH.goTop()" class="fr f24 FontColor3 mr5">回到顶部</a>
+	</p>
+	<footer class="w95p pb10 tc grayOnLine">	
+		<p class="links FontColor3 f24 mt20 mb10">
+			<a class="f24 FontColor3 mr10" href="#" target="_self">常见问题</a>|
+			<a class="f24 FontColor3  ml10 mr10" href="#" target="_self">关于我们</a>|
+			<a class="f24 FontColor3 mr10 ml10" href="#" target="_self">配送及售后服务</a>|
+			<a class="f24 FontColor3 ml10" href="#" target="_self">条款</a>
+		</p>
+		<p class="copyright f18 FontColor4">2017© 北京梵禹科技有限公司版权所有</p>
+	</footer>
+	<!--页脚 END-->
+	<!--吸底-->
+	<div class="fixedBottomDiv w100 overflowH ">
+		<div class="fixedBottomDivCon">
+			<div class="w100 displayBox">
+				<a class="fixedBottom_kf FontColor4 f18 linkToService" href="sf-ocs.sf-express.com:8080/live800/chatClient/chatbox.jsp?companyID=8935&configID=48&skillId=43&enterurl=hko2o" target="_blank">
+					<span class="Icon_kf"></span><br>客服
+				</a>
+				<span class="line"></span>
+				<a class="fixedBottom_gwc FontColor4 f18" href="#" target="_self">
+					<div class="headerCart"><span>2</span></div><br>购物车
+				</a>
+				<!--
+				<a class="nobuyBtn  boxflex1 tc f28">已售罄</a>
+				-->
+				<!--购买按钮-->
+				<a class="addToCarBtn tc f28 boxflex1" id="addToCarBtn">加入购物车</a>
+				<a class="buyNowBtn tc f28 boxflex1" id="buyNowBtn">立即购买</a>
+				<!--购买按钮END-->
+			</div>
+		</div>
+	</div>
+	<!--吸底 END-->
+</div>
+<script src="../Scripts/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../Scripts/common/common.js?v=201512160001"></script>
+<!--页面独有脚本-->
+<script src="../Scripts/jquery/TouchSlide.1.1.js?v=201509091111"></script>
+<script type="text/javascript" src="../Scripts/jquery/jsrender-v1.0.0-beta.js"></script>
+<script type="text/javascript" src="../Scripts/selectSKU.js?v=201601040001"></script>
+<script type="text/javascript" src="../Scripts/item.js?v=201509091111"></script>
+<!--页面独有脚本 END-->
+</body>
+</html>

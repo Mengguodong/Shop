@@ -1,0 +1,32 @@
+﻿@using SFO2O.M.Controllers
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="no">
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit">
+    <title>@ViewBag.Title - 爱玖网</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    @*暂时不对css压缩，会有未知问题*@
+    <link href="@BundleConfig.BuildCss("Content/css/base.css")" rel="stylesheet">
+    <!--页面独有样式-->
+    @RenderSection("styles", required: false)@*头部模块*@
+    <!--页面独有样式 END-->
+</head>
+<body>
+    <div class="MContainer" id="MContainer">
+        @RenderBody()
+    </div>
+
+        @Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJquery))
+        @Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJsCommon))
+        <!--页面独有脚本-->
+        @RenderSection("scripts", required: false)
+        <!--页面独有脚本 END-->
+</body>
+</html>

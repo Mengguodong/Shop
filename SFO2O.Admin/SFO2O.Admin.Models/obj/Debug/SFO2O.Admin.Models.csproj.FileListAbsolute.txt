@@ -1,0 +1,12 @@
+D:\LoveWine\SFO2O.Admin\SFO2O.Admin.Models\bin\Debug\SFO2O.Admin.Models.dll
+D:\LoveWine\SFO2O.Admin\SFO2O.Admin.Models\bin\Debug\SFO2O.Admin.Models.pdb
+D:\LoveWine\SFO2O.Admin\SFO2O.Admin.Models\bin\Debug\Common.EntLib.DataExtensions.dll
+D:\LoveWine\SFO2O.Admin\SFO2O.Admin.Models\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\LoveWine\SFO2O.Admin\SFO2O.Admin.Models\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+D:\LoveWine\SFO2O.Admin\SFO2O.Admin.Models\bin\Debug\Microsoft.Practices.Unity.dll
+D:\LoveWine\SFO2O.Admin\SFO2O.Admin.Models\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\LoveWine\SFO2O.Admin\SFO2O.Admin.Models\bin\Debug\Microsoft.Practices.Unity.Interception.dll
+D:\LoveWine\SFO2O.Admin\SFO2O.Admin.Models\bin\Debug\Common.EntLib.DataExtensions.pdb
+D:\LoveWine\SFO2O.Admin\SFO2O.Admin.Models\obj\Debug\SFO2O.Admin.Models.csprojResolveAssemblyReference.cache
+D:\LoveWine\SFO2O.Admin\SFO2O.Admin.Models\obj\Debug\SFO2O.Admin.Models.dll
+D:\LoveWine\SFO2O.Admin\SFO2O.Admin.Models\obj\Debug\SFO2O.Admin.Models.pdb

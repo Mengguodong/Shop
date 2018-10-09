@@ -1,0 +1,60 @@
+﻿@{
+    Layout = null;
+    decimal exchangeRate = ViewBag.ExchangeRate ?? 1M;
+}
+@using SFO2O.BLL.Common
+@using SFO2O.M.Controllers.Common
+@using SFO2O.Utility.Extensions
+@using SFO2O.Utility.Uitl
+@using WebGrease.Css
+@model IEnumerable<SFO2O.Model.Product.ProductInfoModel>
+ 
+
+@if (Model != null && Model.Any())
+{
+
+    <!--20160331 新增内容 同品牌推荐-->
+    <div class="recommendedWrap mt20">
+        <h3 class="f24 FontColor3 w95p mb8">同品牌推荐</h3>
+        <!--以下内容可直接拷贝productTopSale中h2标签以下内容-->
+
+        <div class="indexHotPro w95p mb8 itemRecommendList" id="hotPro" style="-webkit-transform:translate3d(0,0,0);">
+            <div class="itemBox clearfix" id="itemBox">
+                @foreach (var m in Model)
+                {
+                    bool isPromotionPrice = false;
+                    decimal temprice = m.MinPrice;
+                    if (temprice > m.DiscountPrice && m.DiscountPrice > 0)
+                    {
+                        temprice = m.DiscountPrice;
+                        isPromotionPrice = true;
+                    }
+                    string discountStr = string.Empty;
+                    if (m.DiscountPrice > 0)
+                    {
+                        discountStr = m.DiscountRate.As(0M).ToNumberStringFloat() + "折";
+                    }
+                    <div class="item pr">
+                        <a href="@Url.Action("Index", new {productcode = m.SPU})">
+                            <div class="imgBox">
+                                <img src="@m.ImagePath.GetImageSmallUrl(640, ConstClass.DefaultListImageUrl)">
+                                @if (isPromotionPrice)
+                                {<span class="account">@discountStr</span>}
+                                 @if (m.Qty - m.MinForOrder <= 0)
+                                    {
+                                        <div class="saleOut"><span>已售罄</span></div>
+                                    }
+                            </div>
+                            <div class="title">
+                                @m.Name
+                            </div>
+                            <div class="price">￥@((temprice*exchangeRate).ToNumberRound(2))</div>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+<!--20160331 新增内容 同品牌推荐end-->

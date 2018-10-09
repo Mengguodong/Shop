@@ -1,0 +1,121 @@
+﻿@using SFO2O.M.ViewModel.Account;
+@using SFO2O.Utility.Uitl;
+@using SFO2O.M.Controllers;
+@{
+    ViewBag.Title = "修改申诉";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = true;
+    ViewBag.ShowFastShoppingCart = false;
+}
+@model SFO2O.Model.Refund.RefundOrderEntity
+@section scripts{
+@Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJsComplain))
+}
+@section styles{
+    <link href="../Content/css/appeal.css?v=201512150001" rel="stylesheet">
+}
+<div class="appeal">
+<header class="pageHeader w100 pr tc">
+        <a class="returnBtn" id="returnBtn"></a>
+        <b class="f36 FontColor1">修改申诉</b>
+        <a href="@DomainHelper.CustomerServicesUrl" class="icon_listener linkToService" target="_blank"></a>
+    </header>
+<div class="warning w95p f24">  非商品质量问题，只能退商品金额，不退商品税，如有问题，请与客服联系。
+    </div>
+    @*<div class="title">退款类型</div>
+    <div class="refundType w95p bgColor3 boxShadow " id="selectRefundType">
+        <span val="1"><i class="radio checked"></i>退款换货</span>
+        <span val="2"><i class="radio ml40"></i>仅退款<span class="FontColor4">(无需退货)</span></span>
+    </div>*@
+    <div class="title">退款原因</div>
+    <div class="refundReason w95p bgColor3 boxShadow ptb10">
+        <div class="select pr w95p mb10" id="selectReason">
+            <input readonly="" type="text" id="reason" reasonId="@Model.RefundReason" placeholder="请选择申诉原因" />
+            <i class="downJT"></i>
+        </div>
+        <textarea class="w100 mb5" id="detailReason" rows="5" maxlength="2000" placeholder="请填写详细理由">@Model.RefundDescription</textarea>
+        <p class="f24 FontColor4">每次只能提交一件商品申请退款。</p>
+    </div>
+    <div class="title">商品状态</div>
+    <div class=" w95p bgColor3 boxShadow ptb10">
+         <div class="select pr w95p" id="selectStatus">
+            <input readonly="" type="text" id="status" placeholder="请选择商品状态" statusId="@Model.ProductStatus" value="" />
+            <i class="downJT"></i>
+        </div>
+    </div>
+    <div class="title clearfix pr upload">
+        <a class="fr add" id="add">上传图片</a>
+        上传凭证<span class="FontColor4">(至少上传两张问题图片)</span>
+    </div>
+    <div class="photos bgColor3 boxShadow mb17 clearfix pr" id="fileList">
+        @foreach (var i in Model.ImagePath.Split(','))
+        {
+            <div class="item">
+                <i class="close"></i>
+                <div>
+                    <a href="/refund/refundimage?path=@i"><img src="@i.GetImageUrl()" data-path="@i"  /></a>
+                </div>
+            </div>
+        }
+    </div>
+    <a id="submitBtn" class="btn w95m">提交申请</a>
+     <input type="hidden" id="refondType" value="@Model.RefundType" />
+    <input type="hidden" id="sku" value="@ViewBag.Sku" />
+    <input type="hidden" id="orderCode" value="@Model.OrderCode" />
+    <input type="hidden" id="refundCode" value="@Model.RefundCode" />
+    <input type="hidden" id="isUserdGiftCard" value="@ViewBag.isUsedGiftCard" />
+      <!-- 申诉原因 -->
+    <div class="sf-pop reasonBox bottomShow" id="appealReason">
+        <ul class="content">
+            <li class="current" val="1">
+                <i class="radio checked fr"></i>商品颜色与订单不符
+            </li>
+            <li val="2">
+                <i class="radio fr"></i>商品尺寸与订单不符
+            </li>
+            <li val="3">
+                <i class="radio fr"></i>送达的商品与订单商品不符
+            </li>
+            <li val="4">
+                <i class="radio fr"></i>商品已超过使用期限
+            </li>
+            <li val="5">
+                <i class="radio fr"></i>商品不能正常运作
+            </li>
+            <li val="6">
+                <i class="radio fr"></i>商品已破损
+            </li>
+            <li val="7">
+                <i class="radio fr"></i>商品品质问题（请描述）
+            </li>
+            <li val="8">
+                <i class="radio fr"></i>其他原因（请描述）
+            </li>
+        </ul>
+        <div class="btn-box">
+            <a class="cancel">取消</a>
+            <a class="hover m-btn sure">完成</a>
+        </div>
+    </div>
+    <!-- 申诉原因 end -->
+    <!-- 商品状态 -->
+    <div class="sf-pop statusBox bottomShow" id="statusBox">
+        <ul class="content">
+            <li class="current" val="1">
+                <i class="radio checked fr"></i>未开封
+            </li>
+            <li val="2">
+                <i class="radio fr"></i>已开封未使用
+            </li>
+            <li val="3">
+                <i class="radio fr"></i>已开封已使用
+            </li>
+        </ul>
+        <div class="btn-box">
+            <a class="cancel">取消</a>
+            <a class="hover m-btn sure">完成</a>
+        </div>
+    </div>
+    <!-- 商品状态end -->
+</div>

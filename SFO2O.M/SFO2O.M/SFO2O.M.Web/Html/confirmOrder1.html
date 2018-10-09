@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="no">
+<meta name="format-detection" content="telephone=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit">
+<title>爱玖网购物商城-确认订单-购物车</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="../Content/css/base.css?v=201512150001" rel="stylesheet">
+<!--页面独有样式-->
+<link href="../Content/css/shoppingCart.css?v=201512150001" rel="stylesheet"><!--商品列表样式  -->
+<link href="../Content/css/confirmOrder.css?v=201512150001" rel="stylesheet">
+<!--页面独有样式 END-->
+</head>
+<body>
+<div class="MContainer">
+	<!-- 页头 -->
+	<header class="pageHeader w100 pr tc">
+        <a class="returnBtn" id="returnBtn"></a>
+        <b class="f36 FontColor1">确认订单</b>
+    </header>
+    <!-- 页头 end -->
+    <!-- 物流信息 -->
+    <div class="logisticsInfo bgColor3 boxShadow mb8">
+        <div class="bgYellow w95p content">
+            <!-- 还没有收货地址，请添加 -->
+            <!-- <div class="noAdress">
+                <i class="icon"></i>还没有收获地址，请添加
+            </div> -->
+            <!-- 还没有收货地址，请添加end -->
+            <!-- 有收货地址 -->
+            <div class="detail">
+                <div class="personalInfo f28">
+                    <i class="user icon"></i><span class="name">郭先生</span>
+                    <i class="phone icon"></i>13126885561
+                </div>
+                <div class="address">北京市朝阳区二环到三环之间朝阳北路237号复星国际大厦1709室</div>
+            </div>
+            <!-- 有收货地址end -->
+            <i class="rightArrow"></i>
+        </div>
+    </div>
+    <!-- 物流信息end -->
+    <!-- 商品信息 -->
+    <div class="productInfo bgColor3 boxShadow mb8 ">
+        <!-- 如果是拼生活的确认订单页则显示 -->
+        <div class="w95p title">商品&价格信息</div>
+        <!-- 如果是拼生活的确认订单页则显示end -->
+        <ul class="cartProList " id="cartProList1">
+            <li class="  boxSizingB ">
+                <div class="displayBox w95p">
+                    <div class="cartProImgWrap">
+                        <a href="#" target="_self">
+                        <img src="../Content/Images/index/product1.jpg" class="whiteOnLine">
+                        </a>
+                    </div>
+                    <div class="boxflex1 cartProInf pr">
+                        <a href="#" target="_self">
+                            
+                            <p class="cartProName f24 mb5">商品名称商品名称商品名称</p>
+                            <p class="cartSelectedSku f20 FontColor4">味道：樱桃味味道</p>
+                            <p class="cartProPriceP mt5"><b class="proPrice f30 FontColor6">￥45.85</b><b class="fr proNum f24">×1</b></p>    
+                            <span class="cartSelectSkuIco"></span>
+                        </a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="aboutMoney bgColor3 mb8 boxShadow">
+        <p>
+            <span>商品总价</span>
+            <b class="textOrange">￥671.00</b>
+        </p>
+        <p>
+            <span>运费</span>
+            <b>物流免邮</b>
+        </p>
+        <p>
+            <span>商品税</span>
+            <b class="textOrange">+￥102.30<i class="rightArrow"></i></b>
+        </p>
+        <!-- 优惠 新人奖励 -->
+        <p class="discount" id="discount">
+            <b class="w100 pr">
+                <span>优惠</span>
+                <em id="discountInfo" data-cid="11" style=" margin-top:6px;">新人奖励<br>￥<font id="dis">20.00</font></em>
+                <i class="rightArrow"></i>
+            </b>
+        </p>
+        <!-- 优惠 新人奖励 end-->
+    </div>
+    <div class="mb8 boxShadow pt8 pb12 bgColor3 w95p" id="selectValue"> 
+        <i class="radio selected mr5"></i>可用5000酒豆抵￥50.00
+    </div>
+    <!-- 如果是拼生活订单则显示 -->
+    <div class="pinRule w95p boxShadow bgColor3 ">
+        <p class="title w100 f28"><a href="#" target="_self">拼生活规则 <i class="itemIcon_jt"></i></a></p>
+        <ul class="w100 overflowH pinRule f20 FontColor4 displayBox">
+            <li class=" tc">
+                <p class="stepNum mc">1</p>
+                <p class="stepName">选择<br>心仪商品</p>
+            </li>
+            <li class="tc cur">
+                <p class="stepNum mc">2</p>
+                <p class="stepName">支付开团<br>或参团</p>
+            </li>
+            <li class="tc ">
+                <p class="stepNum mc">3</p>
+                <p class="stepName">等待好友<br>参团支付</p>
+            </li>
+            <!-- 如果组团成功的话，则第四个li加上cur -->
+            <li class="tc">
+                <p class="stepNum mc">4</p>
+                <p class="stepName">达到人数<br>团购成功</p>
+            </li>
+        </ul>
+    </div>
+    <!-- 如果是拼生活订单则显示end -->
+    <!-- 商品信息end -->
+    <div class="fixedBottomDiv w100 overflowH">
+        <div class="fixedBottomDivCon">
+            <div class="w100" style="height:45px; line-height:45px;">
+                <a class="shoppingCartBtn f28 tc fr ml5" id="submitBtn">提交订单</a>
+                <p class="tr f28">
+                    共<span id="totalNumber" class="textOrange">1</span>件，总金额<span class="textOrange ml5" data="168.18" id="allMoney">￥168.18</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="selectDiscount FontColor3" id="selectDiscount">                  
+    <a class="closeBtn">                        
+        <img src="../Content/Images/closeBtn.png?v=20160519" />
+    </a>                    
+    <p class="f28 mb16">选择优惠券</p>                    
+    <ul class="discountList" id="discountList">                     
+        <li>                            
+            <table>
+                <tr>
+                    <td width="20%" class="tc" style="border-right:1px solid #e0e0e0; ">
+                        <span class="f34 textOrange discountNum" data-discount="￥20.00" data-huoli="113522" data-Money="1,135.22">￥20</span>
+                    </td>
+                    <td>
+                        <div class="f28 title pl15">新人奖励</div>
+                        <div class="f20 pl15">2016.05.05-2016.12.12</div>
+                    </td>
+                    <td width="15%" class="tc">
+                        <i class="radio selected mr5"></i>
+                    </td>
+                </tr>
+            </table>                            
+        </li>                     
+        <li id="last">                            
+            <table>
+                <tr>
+                    <td width="85%">
+                        <div class="f28 pl15 none">有钱任性，不使用优惠券</div>
+                    </td>
+                    <td width="15%" class="tc">
+                        <i class="radio mr5"></i>
+                    </td>
+                </tr>
+            </table>
+        </li>                  
+    </ul>               
+</div>
+<script src="../Scripts/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../Scripts/common/common.js?v=201512160001"></script>
+<script type="text/javascript" src="../Scripts/jquery/jquery.dialog.js?v=201512160001" charset="utf-8"></script>
+<!--页面独有脚本-->
+<script type="text/javascript" src="../Scripts/confirmOrder.js"></script>
+<script type="text/javascript" src="../Scripts/cartSubmit.js"></script>
+<!--页面独有脚本 END-->
+</body>
+</html>

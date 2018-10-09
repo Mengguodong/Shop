@@ -1,0 +1,54 @@
+﻿@model SFO2O.Admin.Models.PagedList<SFO2O.Admin.Models.Customer.CustomerInfo>
+@{
+    Layout = null;
+}
+
+<div class="shangpsh">
+    <table class="f15 bor bg_fff posRT" style="width:1100px;">
+        <tbody>
+            <tr class="bg_ebebeb">
+                <th width="140">手機號碼</th>
+                <th width="120">國家地區</th>
+                <th width="200">註冊時間</th>
+                <th width="240px">電子郵箱</th>
+                <th width="100">會員積分</th>
+                <th width="150">消費總金額</th>
+                <th width="150">消費次數</th>
+            </tr>
+            @if (Model != null && Model.ContentList != null && Model.ContentList.Count > 0)
+            {
+                var spu = String.Empty;
+
+                foreach (var c in Model.ContentList)
+                {
+                    <tr>
+                        <td><p class="pd_l10 pd_r10 t_c pd_t15">@c.Mobile</p></td>
+                        <td><p class="pd_l10 pd_r10 t_c pd_t15 pd_b10">@( SFO2O.Admin.Common.EnumUtils.GetEnumDescription((SFO2O.Admin.Models.CountryArea)Convert.ToInt32(c.RegionCode)))</p></td>
+                        <td><p class="pd_l10 pd_r10 t_c pd_t15 pd_b10">@c.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")</p></td>
+                        <td><p class="pd_l10 pd_r10 pd_t15 pd_b10">@c.Email</p></td>
+                        <td><p class="pd_l10 pd_r10 t_c pd_t15 pd_b10">@c.MemberPoints</p></td>
+                        <td><p class="pd_l10 pd_r10 pd_t15 t_r pd_b10">$@c.ConsumptionAmount.ToString("f2")</p></td>
+                        <td><p class="pd_l10 pd_r10 t_c pd_t15 pd_b10">@c.ConsumptionTimes</p></td>
+                    </tr>
+
+                }
+
+
+            }
+            else
+            {
+                <tr>
+                    <td class="bor_none_l" colspan="7">
+                        <p class="pd_l30 t_l mg_t20 mg_b20 color_ee7a01 color_green">沒有符合條件的會員信息！</p>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="page pagination" id="pager">
+
+</div>
+<input type="hidden" id="pageIndex" value="@Model.CurrentIndex" />
+<input type="hidden" id="recordCount" value="@Model.RecordCount" />
+

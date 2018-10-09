@@ -1,0 +1,24 @@
+.lh18{line-height: 18px}
+/* 单行文本溢出 */
+.inaline{overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+/* 多行文本溢出 */
+.intwoline{overflow:hidden;text-overflow:ellipsis;display:-webkit-box !important;worder-break:break-all;-webkit-box-orient:vertical;-webkit-line-clamp:2;}
+
+.n_msgOne{padding:8px 12px;}
+.n_imgBox .bg1{background: url("../Images/message/msgtype1.jpg") no-repeat}
+.n_imgBox .bg2{background: url("../Images/message/msgtype2.jpg") no-repeat}
+.n_imgBox .bg3{background: url("../Images/message/msgtype3.jpg") no-repeat}
+.n_imgBox .bg1,.n_imgBox .bg2,.n_imgBox .bg3{width:36px;height:36px;background-size: 100%}
+.n_msgNum{position:absolute;top:-5px;right:-5px;width:16px;height:16px;border-radius: 16px;line-height: 16px;background: #f95c27;color:#fff;display:block;text-align:center;}
+/*无消息页面*/
+.n_noMsg{padding-top:60px}
+.n_noMsgBg{width:70px;height:61px;margin:0 auto;background: url("../Images/message/msgIcon.png") center center no-repeat;background-size: 100%}
+.n_noMsgTxt{text-align: center;margin-top: 14px}
+/*系统消息 活动消息 订单消息*/
+.n_systemMsg a{margin-top: 8px;display:block}
+.n_systemMsg .n_read div{color:#bcbcbc!important;}
+.n_sysMsgTime{text-align: center}
+.n_sysTxtCon{padding:8px 12px; width:100%;  box-sizing: border-box;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;}
+.n_actImg{border:1px solid #e0e0e0;width:100%;margin:6px 0}
+.n_orderImg{width:53px;height:53px;border:1px solid #e0e0e0;margin-right: 8px}
+.n_msgType{ margin-bottom:5px; line-height: 100%;}

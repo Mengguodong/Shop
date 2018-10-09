@@ -1,0 +1,83 @@
+﻿@model SFO2O.Admin.ViewModel.Supplier.SupplierQueryModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.PageName = "SupplierQuery";
+    ViewBag.Title = "管理商家";
+}
+
+<div class="cont_right_crumb">
+    <span class="homepage"></span>&gt; 商家管理 &gt; 管理商家
+</div>
+<div class="w931">
+    <div class="upload_edit">
+        <div style="border-top:none;" class="wrap_yisc pd_t15">
+            <form id="queryForm">
+                <div style="margin-left:0; margin-right:0;" class="list_yisc bor clearfix">
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">入駐時間：</span>
+                        <div style="width:123px; height:29px;overflow:hidden;" class="bor f_l fff_bor">
+                            <input id="CreateTimeStart" name="CreateTimeStart" class="inputdp w70 Wdate" type="text" value="@Model.CreateTimeStart.ToString("yyyy-MM-dd")"
+                                   onfocus="WdatePicker({ maxDate: '%y-%M-%d', vel: 'StartTime', isShowClear: true, isShowOK: true, isShowToday: true })" />
+                            <input id="startTime" name="StartTime" value="@Model.CreateTimeStart.ToString("yyyy-MM-dd")" type="hidden" />
+                        </div>
+                        <em class="f_l mg_l5 mg_r5 lineH30">至</em>
+                        <div style="width:123px; height:29px;overflow:hidden;" class="bor f_l fff_bor">
+                            <input id="CreateTimeEnd" name="CreateTimeEnd" class="inputdp w70 Wdate" type="text" value="@Model.CreateTimeEnd.ToString("yyyy-MM-dd")"
+                                   onfocus="WdatePicker({ maxDate: '%y-%M-%d', vel: 'EndTime', isShowClear: true, isShowOK: true, isShowToday: true })" />
+                            <input id="endTime" name="EndTime" value="@Model.CreateTimeEnd.ToString("yyyy-MM-dd")" type="hidden" />
+                        </div>
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">公司名稱：</span>
+                        <input type="text" style="width:262px;" class="f_l bor f15" name="CompanyName" id="CompanyName" value="@Model.CompanyName">
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">商家賬號：</span>
+                        <input type="text" style="width:262px;" class="f_l bor f15" name="AccountName" id="AccountName" value="@Model.AccountName">
+                    </div>
+                    @{
+                        var selectedValue0 = Model.SupplierStatus == 0 ? "selected=\"selected\"" : String.Empty;
+                        var selectedValue1 = Model.SupplierStatus == 1 ? "selected=\"selected\"" : String.Empty;
+                        var selectedValue2 = Model.SupplierStatus == 2 ? "selected=\"selected\"" : String.Empty;
+                    }
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">商家狀態：</span>
+                        <select name="SupplierStatus" style="width:130px;" id="SupplierStatus">
+                            <option value="0" @selectedValue0>全部</option>
+                            <option value="1" @selectedValue1>正常</option>
+                            <option value="2" @selectedValue2>凍結</option>
+                        </select>
+                    </div>
+                    <div class="f_l">
+                        <a class="btn_green w160 mg_l20 mg_r20 mg_t10" href="javascript:void(0)" id="search">搜 尋</a> <a class="btn_white w160 mg_r30 mg_t10" id="export" onclick="Export();" href="javascript:void(0)">導 出</a>
+                    </div>
+                </div>
+            </form>
+            <div class="tongji_title mg_t30"><span class="tongji_title_l">商家列表</span></div>
+            <div class="t_r wrap_dr_sc" id="addSupplierDiv">
+                <div class="dr_sc"><a class="addpro_btn btn_sc mg_l10"  href="../Supplier/EditSupplier">+ 添加商家</a></div>
+            </div>
+            <div id="suppliers"></div>
+        </div>
+    </div>
+</div>
+<div style="left: 50px; top: 50px; display: none; z-index: 9999; position: absolute" class="win_wrap f16" id="warning">
+    <div class="win_top clearfix"> <span class="f_l mg_l20" id="title">提示</span></div>
+    <div class="win_cont pd_l20 pd_r20">
+        <p class="t_c pd_t40 pd_b30"><span id="message"></span></p>
+    </div>
+    <div class="win_btm f18 t_c pd_b20">
+        <a class="win_btn btn_white w135" href="javascript:void(0);" id="submitAction" onclick="CancleAction()">取 消</a>
+        <a class="win_btn btn_green mg_l40 w135" href="javascript:void(0);" id="cancleAction" onclick="updateSupplierStatus()">確 定</a>
+    </div>
+    <input type="hidden" id="actionId" />
+</div>
+
+<script src="~/Scripts/my97/WdatePicker.js"></script>
+<script src="~/Scripts/chosen/chosen.jquery.js"></script>
+<script src="~/Scripts/jquerypager/jquery.pager.latest.js"></script>
+<script src="~/Scripts/Supplier/SupplierQuery.js?@ViewBag.JsAndCssVersion"></script>
+<script src="~/Scripts/StartEndTimeInit.js?@ViewBag.JsAndCssVersion"></script>
+<script src="~/Scripts/common.js?@ViewBag.JsAndCssVersion"></script>
+<link href="~/Scripts/chosen/chosen.css" type="text/css" rel="stylesheet" />

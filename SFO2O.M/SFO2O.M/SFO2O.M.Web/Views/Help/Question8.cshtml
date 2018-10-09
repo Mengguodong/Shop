@@ -1,0 +1,56 @@
+﻿@using SFO2O.M.Controllers
+@using SFO2O.M.Controllers.Common
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.ViewModel.Product
+@using SFO2O.Utility.Extensions 
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "关于酒豆问题 ";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = false;
+}
+@section styles { 
+}
+@section scripts {
+}
+@section pageHeader {
+   <header class="pageHeader w100 pr tc overflowH">
+    <a class="returnBtn" id="returnBtn"></a>
+    <b class="f36 FontColor1">关于酒豆问题</b>
+</header>
+}<!-- 页头 end -->
+<dl class="problemsWrap w100 mt8 boxShadow bgColor3 f28">
+    <dt>
+        <span class="icon">问</span>什么是「酒豆」？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>是「爱玖网」平台用于向用户返利的一种积分形式。
+    </dd>
+    <dt>
+        <span class="icon">问</span>「酒豆」有什么功用？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>「酒豆」可在「爱玖网」不定期所举办的促销活动中抵扣使用。详情可参阅本网站的《获得及使用「酒豆」条款及细则》
+    </dd>
+    <dt>
+        <span class="icon">问</span>3.消费多少才会获得「酒豆」？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>购买指定商品会获得平台赠送的相应数量的「酒豆」，「酒豆」赠送数量以购买时显示为主。
+    </dd>
+    <dt>
+        <span class="icon">问</span>「酒豆」有没有什么限制？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>会员是否具备参与活动的资格取决于会员在「爱玖网」购物时所获得平台赠送的「酒豆」数量。所获得的「酒豆」暂不支持抵扣或兑换酒类商品。
+    </dd>
+    
+    <dt>
+        <span class="icon">问</span>「酒豆」有有效期吗？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>「酒豆」没有有效期，可永久保留。
+    </dd>
+ 
+</dl>

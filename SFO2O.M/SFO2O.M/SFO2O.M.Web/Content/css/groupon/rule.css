@@ -1,0 +1,21 @@
+﻿.tips{
+	color: #fff;
+	background: #b7da71;
+	padding: 9px 2.5%;
+}
+.problemsWrap{
+	margin-bottom: 8px;
+}
+.problemsWrap dt,.problemsWrap dd{
+	display: -webkit-box;
+	display: box;
+}
+.problemsWrap .icon{
+	
+
+}
+.problemsWrap div{
+	-webkit-box-flex:1;
+	box-flex:1;
+	font-weight: normal;
+}

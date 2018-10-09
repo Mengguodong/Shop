@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="no">
+<meta name="format-detection" content="telephone=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit">
+<title>爱玖网购物商城-品牌页</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="../Content/css/base.css?v=201512150001" rel="stylesheet">
+<!--页面独有样式-->
+<link href="../Content/css/shop.css?v=201512150001" rel="stylesheet">
+<link href="../Content/css/brand.css?v=201512150001" rel="stylesheet">
+<!--页面独有样式 END-->
+</head>
+<body>
+<div class="MContainer" id="MContainer">
+	<!-- 页头 -->
+	<header class="pageHeader w100 pr tc">
+        <a class="returnBtn"></a>
+        <b class="f36 FontColor1">LANEIGE（兰芝）</b>
+		<div class="headerCart cartPos" id="headerCart"><a href=""><span>2</span></a></div>
+    </header>
+    <!-- 页头 end -->
+		<!--店铺关门-->
+		<!-- <div class=" sf-pop payStatusWrap tc ">
+			<img src="../Content/images/shopClose.png?v=201601181111" style="width:50%; min-width:200px;">
+			<p class="content title">店主在打盹，忘记开门了</p>
+			<p class="conent tip" style="color:#bcbcbc">先去其他店逛逛吧</p>
+			<p class="btn-box">
+				<a class="closeBtn m-btn" href="/" target="_self">返回首页</a>
+			</p>
+		</div> -->
+		<!--店铺关门 END-->
+
+    <!-- 店铺头部 -->
+    <div class="shopHeader mb8">
+    	<img class="banner" src="../Content/Images/shop/banner.jpg?v=20151223" alt="" title="" />
+    	<a href="">
+    		<div class="boxShadow">
+    			<div class="shopName" id="shopName">LANEIGE（兰芝）</div>
+		    	<div class="shopInfo">
+		    		<div class="logo" id="logo">
+		    			<img src="../Content/Images/shop/logo.jpg?v=20151223" alt="" title="">
+		    		</div>
+		    		<div class="rightContent f24 FontColor4 mt10">
+		    			在售商品&nbsp;<span class="FontColor6">124</span>&nbsp;款
+		    		</div>
+		    	</div> 
+		    	<div class="w95p bgColor3 f20 FontColor4 shopInfo horizontal">
+		    		<div class="intro boxflex1">兰芝(LANEIGE)是韩国爱茉莉太平洋集团旗下的全球年轻高端化牌，不仅拥有球年轻高端化球年轻高保湿明星新水酷特润精华...</div>
+		    		<div class="rightArrow "></div>
+		    	</div>
+    		</div>
+    	</a>
+    </div>
+    <!-- 店铺头部end -->
+    <!-- 明星商品 -->
+	<div class="module_title f30 mb8">
+		<i class="mr5"></i>明星商品
+	</div>
+	<div class="boxShadow mb8 bgColor3 starProList">
+		<div class="item" data-proCode="10150308886556">
+			<a href="">
+				<div class="imgBox pr">
+					<img src="../Content/Images/tmp.png?v=20160623" />
+					<span class="account">8.5折</span>
+				</div>
+				<div class="w95p">
+					<div class="title f28 ">Greenday 草莓香蕉脆片</div>
+					<div class="detail f24 FontColor3">蕉是一种有益心脏健康的食物，只含有低量中饱和脂肪和胆固醇。不含脂肪，胆固醇和钠。更是钾，膳食纤维，镁和维生素B6及C的良好来源。</div>
+					
+				</div>
+			</a>
+			<div class="price w95p">
+				<div class="fr collect">
+					<i></i>收&nbsp;&nbsp;藏
+				</div>
+				￥75.68
+				<span class="f20 FontColor4 ml5 original">84.09</span>
+			</div>
+		</div>
+		<div class="item" data-proCode="10150308886557">
+			<a href="">
+				<div class="imgBox pr">
+					<img src="../Content/Images/tmp.png?v=20160623" />
+					<div class="saleOut"><span>已售罄</span></div>
+				</div>
+				<div class="w95p">
+					<div class="title f28 ">Greenday 草莓香蕉脆片</div>
+					<div class="detail f24 FontColor3">蕉是一种有益心脏健康的食物，只含有低量中饱和脂肪和胆固醇。不含脂肪，胆固醇和钠。更是钾，膳食纤维，镁和维生素B6及C的良好来源。</div>
+				</div>
+			</a>
+			<div class="price w95p">
+				<div class="fr collect active">
+					<i></i>已收藏
+				</div>
+				￥75.68
+			</div>
+		</div>
+	</div>
+    <!-- 明星商品end -->
+    <!-- 商品列表 -->
+	<div class="products whiteOnLine bgColor3 boxShadow hide">
+		<div class="screen clearfix hide" id="screen">
+			<div class="screenBox" id="sortType">
+				<div class="active" id="new">
+					<a href="javascript:;">上新排序</a>
+				</div>
+				<div class="price" id="price">
+					<a href="javascript:;">价格<i></i></a>
+				</div>
+			</div>
+		</div>
+		<div class="list productList w95p" id="productList">
+			<div class="w100 clearfix">
+			</div>
+		</div>
+	</div>
+	<div id="loadMore" class="loadMore"></div>
+    <!-- 商品列表end -->
+    <!--页脚-->
+	<p class="loginArea f24 FontColor3 mb20 mt20 w95p">
+		<!--未登录状态显示-->
+		<a class="f24 FontColor3 mr10 ml5" href="#" target="_self">登录</a>|
+		<a class="f24 FontColor3 ml10" href="#" target="_self">注册</a>
+		<!--未登录状态显示 END-->
+		<!--已登录状态显示-->
+		<!--<a class="f24 FontColor3">退出</a>-->
+		<!--已登录状态显示 END-->
+		<a href="javascript:FSH.goTop()" class="fr f24 FontColor3 mr5">回到顶部</a>
+	</p>
+	<footer class="w95p pb10 tc grayOnLine">	
+		<p class="links FontColor3 f24 mt20 mb10">
+			<a class="f24 FontColor3 mr10" href="#" target="_self">常见问题</a>|
+			<a class="f24 FontColor3  ml10 mr10" href="#" target="_self">关于我们</a>|
+			<a class="f24 FontColor3 mr10 ml10" href="#" target="_self">配送及售后服务</a>|
+			<a class="f24 FontColor3 ml10" href="#" target="_self">条款</a>
+		</p>
+		<p class="copyright f18 FontColor4">2017© 北京梵禹科技有限公司版权所有</p>
+	</footer>
+	<!--页脚 END-->
+	<!-- <div class="successInfo" id="successInfo">
+		<div class="success"></div>
+		<p>
+			恭喜您，商品已添加<br>至购物车
+		</p>
+	</div> -->
+</div>
+<script src="../Scripts/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../Scripts/common/common.js?v=201512160001"></script>
+<script type="text/javascript" src="../Scripts/jquery/jquery.dialog.js?v=201512160001" charset="utf-8"></script>
+<!--页面独有脚本-->
+<script type="text/javascript" src="../Scripts/jquery/fly/jquery.fly.min.js"></script>
+<script type="text/javascript" src="../Scripts/brand.js?v=201603160001"></script>
+<!--页面独有脚本 END-->
+</body>
+</html>

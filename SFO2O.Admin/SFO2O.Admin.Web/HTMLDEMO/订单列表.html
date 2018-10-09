@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>訂單管理-訂單列表</title>
+<link href="../Content/css/admin.css" rel="stylesheet" />
+</head>
+
+<body class="admin_orange">
+<div class="header_wrap">
+  <div class="header w1200 clearfix"><a href="#" class="header_left f_l"><img src="../Content/images/logo_small.png" class="logo_s f_l" /><span class="header_title f_l">管理后台</span></a>
+    <div class="header_right f_r"><a href="#" class="f_r mg20">[退出]</a><a href="#" class="f_r mg20">[重置密碼]</a><span class="f_r mg_t20">上次登入時間：2015-11-30 12:00:01</span><span class="f_r mg20"><a href="#">admin,</a><em>你好</em></span></div>
+  </div>
+</div>
+<div class="center_cont w1200 clearfix">
+  <div class="center_cont_left">
+    <ul class="user_list">
+      <li class="list_hygl current">
+        <p class="list_title"><a href="#"><i class="prdt_icon f_l"></i><span class="f_l">會員管理</span><i class="prdt_list f_l"></i></a></p>
+        <dl class="list_cont">
+          <dd class="current"><a href="#">管理會員</a></dd>
+          <dd><a href="#">管理庫存</a></dd>
+        </dl>
+      </li>
+      <li class="list_sjgl">
+        <p class="list_title"><a href="#"><i class="prdt_icon f_l"></i><span class="f_l">商家管理</span><i class="prdt_list f_l"></i></a></p>
+      </li>
+      <li class="list_spgl">
+        <p class="list_title"><a href="#"><i class="prdt_icon f_l"></i><span class="f_l">商品管理</span><i class="prdt_list f_l"></i></a></p>
+      </li>
+      <li class="list_ddgl">
+        <p class="list_title"><a href="#"><i class="prdt_icon f_l"></i><span class="f_l">訂單管理</span><i class="prdt_list f_l"></i></a></p>
+      </li>
+      <li class="list_cxgl">
+        <p class="list_title"><a href="#"><i class="prdt_icon f_l"></i><span class="f_l">促銷管理</span><i class="prdt_list f_l"></i></a></p>
+      </li>
+      <li class="list_kfgl">
+        <p class="list_title"><a href="#"><i class="prdt_icon f_l"></i><span class="f_l">客服管理</span><i class="prdt_list f_l"></i></a></p>
+      </li>
+      <li class="list_cwgl">
+        <p class="list_title"><a href="#"><i class="prdt_icon f_l"></i><span class="f_l">財務管理</span><i class="prdt_list f_l"></i></a></p>
+      </li>
+      <li class="list_xxgl">
+        <p class="list_title"><a href="#"><i class="prdt_icon f_l"></i><span class="f_l">消息管理</span><i class="prdt_list f_l"></i></a></p>
+      </li>
+      <li class="list_cmsgl">
+        <p class="list_title"><a href="#"><i class="prdt_icon f_l"></i><span class="f_l">CMS管理</span><i class="prdt_list f_l"></i></a></p>
+      </li>
+      <li class="list_qxgl">
+        <p class="list_title"><a href="#"><i class="prdt_icon f_l"></i><span class="f_l">權限管理</span><i class="prdt_list f_l"></i></a></p>
+      </li>
+    </ul>
+  </div>
+  <div class="center_cont_right">
+    <div class="cont_right_crumb"><span class="homepage"></span>&gt; 訂單管理 &gt; 訂單列表</div>
+    <div class="w931">
+      <div class="wrap_yisc pd_t5">
+        <div class="list_yisc bor clearfix" style="margin-left:0; margin-right:0;">
+          <div class="box_choose f_l"><span class="choose_left f_l">下單時間：</span>
+            <div class="bor f_l fff_bor" style="width:123px; height:29px;">时间控件</div>
+            <em class="f_l mg_l5 mg_r5 lineH30">至</em>
+            <div class="bor f_l fff_bor" style="width:123px; height:29px;">时间控件</div>
+          </div>
+          <div class="box_choose f_l"><span class="choose_left f_l">訂單狀態：</span>
+            <div class="f_l fff_bor h19" style="width:140px;">下拉框</div>
+          </div>
+          <div class="box_choose f_l" style="margin-right:0;"> <span class="choose_left f_l">商品SKU：</span>
+            <input type="tel" class="f_l fff_bor h19" style="width:134px;">
+          </div>
+          <div class="box_choose f_l"><span class="choose_left f_l">賣家賬號：</span>
+            <input type="text" class="f_l bor" style="width:262px;">
+          </div>
+          <div class="box_choose f_l"><span class="choose_left f_l">賣家：</span>
+            <div class="f_l fff_bor h19" style="width:140px;">下拉框</div>
+          </div>
+          <div class="box_choose f_l"><span class="choose_left f_l">訂單編號：</span>
+            <input type="text" class="f_l bor" style="width:262px;">
+          </div>
+          <div class="box_choose f_l"><span class="chbx_wrap active f_l"><em style="margin:7px 10px 0 5px;"></em>排除無效訂單</span>
+          </div>
+          <div class="f_l" style="width:100%;"> <a href="#" class="btn_green w160 mg_l20 mg_r20 mg_t10">搜 尋</a> </div>
+        </div>
+        <table style="width:928px;" class="mg_t20 bor bg_fff f15 t_c table_lineH43">
+          <tr class="bg_ebebeb color_838383">
+            <th width="80"></th>
+            <th width="120">訂單數</th>
+            <th width="120">商品數</th>
+            <th width="150">商品金額</th>
+            <th width="150">關稅金額</th>
+            <th width="150">訂單金額</th>
+            <th width="150">單價均</th>
+          </tr>
+          <tr>
+            <td>合計</td>
+            <td>5</td>
+            <td>6</td>
+            <td>$231.37</td>
+            <td>$231.37</td>
+            <td>$231.37</td>
+            <td>$231.37</td>
+          </tr>
+        </table>
+        <div class="tongji_title mg_t30 clearfix"><span class="tongji_title_l f_l mg_t5">訂單列表</span><a href="#" class="btn_daochu f_l mg_l20 f12 ftfml_sun">導出</a></div>
+        <div class="mg_t5 dingdglist" style="position:relative;">
+          <ul class="check_title clearfix">
+            <li class="current" style="height:auto;"><a href="#" class="clearfix"><span>大陸地區訂單</span><i></i></a></li>
+            <li><a href="#" class="clearfix"><span>香港地區訂單</span><i></i></a></li>
+          </ul>
+          
+          <a class="addpro_btn btn_sc mg_l10 posR" href="#" style="position: absolute;right:5px;top:0;">下载出库列表</a>
+                        
+          <div class="wrap_yisc mg_r10" style="margin-bottom:0; border-bottom:none;">
+            <div>
+              <table style="position:relative; width:1542px;" class="bg_fff bor f15 t_c table_bor vtop">
+                <tbody>
+                  <tr class="t_c bg_f8f8f8 table_lineH43">
+                    <th width="128">訂單號</th>
+                    <th width="112">生成時間</th>
+                    <th width="128">買家賬號</th>
+                    <th width="352">商品名稱</th>
+                    <th width="102">SKU</th>
+                    <th width="102">單價</th>
+                    <th width="82">數量</th>
+                    <th width="112">小計</th>
+                    <th width="100">賣家</th>
+                    <th width="132">商品總金額</th>
+                    <th width="132">關稅金額</th>
+                    <th width="90">狀態</th>
+                    <th width="100">操作</th>
+                  </tr>
+                  <tr class="lineH22">
+                    <td class="bor_none_l" rowspan="4"><p class="pd10">12345654789</p></td>
+                    <td rowspan="4"><p class="pd10">2015-06-30 <em class="col_999">14:00:00</em></p></td>
+                    <td rowspan="4"><p class="pd10">15001323236</p></td>
+                    <td class="t_l bor_none_r"><div class="clearfix"><a href="#"><img src="../Content/Images/img2.jpg" class="f_l mg10" /></a>
+                        <div class="f_l w240">
+                          <p class="pd_t10 mg_b5"><a href="#" class="hover_color">Greenday 粒粒脆士多啤梨多啤梨</a></p>
+                          <p class="f14 col_999">味道：樱桃味</p>
+                          <p class="f14 col_999 mg_b10">规格：50mL</p>
+                        </div>
+                      </div></td>
+                    <td class="bor_none_r bor_none_l"><p class="pd10">123456789</p></td>
+                    <td class="bor_none_r bor_none_l"><p class="pd10">￥123.00</p></td>
+                    <td class="bor_none_r bor_none_l"><p class="pd10">2</p></td>
+                    <td class="bor_none_l"><p class="pd10">￥246.00</p></td>
+                    <td rowspan="3"><p class="pd_l10 pd_r10 pd_t10 t_l">百利行環球有限公司</p>
+                    <td rowspan="3"><p class="pd_l10 pd_r10 pd_t10 color_red">￥984.00</p>
+                      <p class="pd_l10 pd_r10 pd_b10 col_999">($ 1200.00)</p></td>
+                    <td rowspan="3"><p class="pd_l10 pd_r10 pd_t10">￥284.00</p>
+                      <p class="pd_l10 pd_r10 pd_b10 col_999">($ 400.00)</p></td>
+                    <td rowspan="4"><p class="pd10 color_red">待付款</p></td>
+                    <td class="bor_none_r" rowspan="4"><p class="pd10"><a href="#" class="col_link">訂單詳情</a></p></td>
+                  </tr>
+                  <tr class="lineH22">
+                    <td class="t_l bor_none_r"><div class="clearfix"><a href="#"><img src="../Content/Images/img2.jpg" class="f_l mg10" /></a>
+                        <div class="f_l w240">
+                          <p class="pd_t10 mg_b5"><a href="#" class="hover_color">Greenday 粒粒脆士多啤梨多啤梨</a></p>
+                          <p class="f14 col_999">味道：樱桃味</p>
+                          <p class="f14 col_999 mg_b10">规格：50mL</p>
+                        </div>
+                      </div></td>
+                    <td class="bor_none_r bor_none_l"><p class="pd10">123456789</p></td>
+                    <td class="bor_none_r bor_none_l"><p class="pd10">￥123.00</p></td>
+                    <td class="bor_none_r bor_none_l"><p class="pd10">2</p></td>
+                    <td class="bor_none_l"><p class="pd10">￥246.00</p></td>
+                  </tr>
+                  <tr class="lineH22">
+                    <td class="t_l bor_none_r"><div class="clearfix"><a href="#"><img src="../Content/Images/img2.jpg" class="f_l mg10" /></a>
+                        <div class="f_l w240">
+                          <p class="pd_t10 mg_b5"><a href="#" class="hover_color">Greenday 粒粒脆士多啤梨多啤梨</a></p>
+                          <p class="f14 col_999">味道：樱桃味</p>
+                          <p class="f14 col_999 mg_b10">规格：50mL</p>
+                        </div>
+                      </div></td>
+                    <td class="bor_none_r bor_none_l"><p class="pd10">123456789</p></td>
+                    <td class="bor_none_r bor_none_l"><p class="pd10">￥123.00</p></td>
+                    <td class="bor_none_r bor_none_l"><p class="pd10">2</p></td>
+                    <td class="bor_none_l"><p class="pd10">￥246.00</p></td>
+                  </tr>
+                  <tr class="lineH22">
+                    <td class="t_l bor_none_r"><div class="clearfix"><a href="#"><img src="../Content/Images/img2.jpg" class="f_l mg10" /></a>
+                        <div class="f_l w240">
+                          <p class="pd_t10 mg_b5"><a href="#" class="hover_color">Greenday 粒粒脆士多啤梨多啤梨</a></p>
+                          <p class="f14 col_999">味道：樱桃味</p>
+                          <p class="f14 col_999 mg_b10">规格：50mL</p>
+                        </div>
+                      </div></td>
+                    <td class="bor_none_r bor_none_l"><p class="pd10">123456789</p></td>
+                    <td class="bor_none_r bor_none_l"><p class="pd10">￥123.00</p></td>
+                    <td class="bor_none_r bor_none_l"><p class="pd10">2</p></td>
+                    <td class="bor_none_l"><p class="pd10">￥246.00</p></td>
+                    <td rowspan="4"><p class="pd_l10 pd_r10 pd_t10 t_l">米蘭港科技有限公司</p>
+                    <td><p class="pd_l10 pd_r10 pd_t10 color_red">￥246.00</p>
+                      <p class="pd_l10 pd_r10 pd_b10 col_999">($ 400.00)</p></td>
+                    <td><p class="pd_l10 pd_r10 pd_t10">￥246.00</p>
+                      <p class="pd_l10 pd_r10 pd_b10 col_999">($ 400.00)</p></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

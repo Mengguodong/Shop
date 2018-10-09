@@ -1,0 +1,18 @@
+﻿@using SFO2O.M.Controllers
+@{
+    ViewBag.Title = "设置密码";
+    Layout = "~/Views/Shared/_Layout_login.cshtml";
+    ViewData["showEmail"] = ViewBag.Type == 0 ? true : false;
+    ViewData["mobilePhone"] = ViewBag.mobilePhone;
+    ViewData["token"] = ViewBag.token;
+}
+@section styles{
+    <link href="@BundleConfig.BuildCss("Content/css/register.css")" rel="stylesheet">
+    }
+@section scripts{
+    <script type="text/javascript">
+        var source = '@ViewBag.Type';
+	</script>
+    @Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJsRegister))
+    }
+@Html.Partial("~/Views/Account/_reg3.cshtml", this.ViewData)

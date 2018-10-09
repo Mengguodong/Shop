@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>System.Web.Mvc.Extensions.Mvc.4</id>
+    <version>1.0.9</version>
+    <title>System.Web.Mvc.Extensions Mvc 4</title>
+    <authors>王建川</authors>
+    <owners>王建川</owners>
+    <projectUrl>http://www.exfsoft.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>扩展：CheckBox,DropDown,Radio,ResolveUrl,Stylesheet,GetScriptUrl,ScriptInclude,ScriptExtend,Img,LabelEx,Button,SubmitButton,ResetButton,Link,RenderTag,EnumDropDownList</description>
+    <summary>扩展：CheckBox,DropDown,Radio,ResolveUrl,Stylesheet,GetScriptUrl,ScriptInclude,ScriptExtend,Img,LabelEx,Button,SubmitButton,ResetButton,Link,RenderTag,EnumDropDownList</summary>
+    <releaseNotes>Views下Web.Config添加命名空间：
+&lt;add namespace="System.Web.Mvc.Extensions.Html" /&gt;</releaseNotes>
+    <copyright>Copyright 2014 ExfSoft</copyright>
+    <language>zh-CN</language>
+    <tags>exfsoft mvc exf exfsoft wjc</tags>
+    <dependencies>
+      <dependency id="Microsoft.AspNet.Mvc" version="4.0.30506.0" />
+    </dependencies>
+  </metadata>
+</package>

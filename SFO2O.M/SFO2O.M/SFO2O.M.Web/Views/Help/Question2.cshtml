@@ -1,0 +1,39 @@
+﻿@using SFO2O.M.Controllers
+@using SFO2O.M.Controllers.Common
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.ViewModel.Product
+@using SFO2O.Utility.Extensions 
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "个人私隐问题 ";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = false;
+}
+@section styles { 
+}
+@section scripts {
+}
+@section pageHeader {
+  <!-- 页头 -->
+<header class="pageHeader w100 pr tc overflowH">
+    <a class="returnBtn" id="returnBtn"></a>
+    <b class="f36 FontColor1">个人私隐问题</b>
+</header>
+<!-- 页头 end -->
+}<dl class="problemsWrap w100 mt8 boxShadow bgColor3 f28">
+    <dt>
+        <span class="icon">问</span>我的会员资料会保存多久？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>您的个人资料会一直妥善保存，保存时间不会超过将其保存以贯彻该资料被使用于或会被使用于的目的(包括任何直接有关的目的)所需的时间。
+    </dd>
+
+    <dt>
+        <span class="icon">问</span>「爱玖网」会如何使用我的个人资料？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>北京梵禹科技有限公司会遵照中华人民共和国《个人资料（私隐）条例》的规定，收集及/或储存及/或传送及/或使用的 阁下的个人资料，详情可参阅本网站的<a href="/help/terms-2.html" target="_blank">《私隐政策声明》</a>。
+    </dd>
+
+</dl>

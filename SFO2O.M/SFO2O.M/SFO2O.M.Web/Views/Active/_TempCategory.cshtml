@@ -1,0 +1,80 @@
+﻿@using SFO2O.Utility.Uitl
+@using SFO2O.Utility.Extensions
+
+@model SFO2O.M.ViewModel.Activity.ActivityViewModel
+@{
+    string ImgVersion = ConfigHelper.ImgVersion;
+    decimal ExchangeRate = ViewBag.ExchangeRate;
+}
+
+<!-- 类目导航 start -->
+@if (Model.Modules.Count > 0)
+{
+    var moduls = Model.Modules;
+    <div id="inductiveTab">
+        <div class="placeholder mb8" id="placeholder"></div>
+        <div class="navContainer" id="navContainer">
+            <div id="navBox">
+                <div class="nav" id="nav">
+                    <div class="navBox" id="doArea">
+                        <div class="active"><a href="#placeholder0">@moduls[0].ModuleName</a></div>
+                        @for (int i = 1; i < moduls.Count; i++)
+                        {
+                        <div><a href="#placeholder@(i)">@moduls[i].ModuleName</a></div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navContent w95p tmp_category" id="navContent">
+            @for (int i = 0; i < moduls.Count; i++)
+            {
+                <div>
+                    <div class="placeholder" id="placeholder@(i)"></div>
+                    <div class="cat_name clearfix">
+                        <a class="more" href="@moduls[i].ModuleLinkURL.Replace('*','|')">查看更多></a>
+                        <div class="f28"><span></span>@moduls[i].ModuleName</div>
+                    </div>
+                    <div class="list productList">
+                        <div class="w100 clearfix">
+                            @foreach (var item in moduls[i].ProductList)
+                            {
+                                <div class="item">
+                                    <a href="http://www.wdnzmt9.com/item.html?productCode=@item.SPU">
+                                        <div class="imgBox">
+                                            <img class="lazyloadImg" data-original="@item.ImagePath?v=@ImgVersion">
+                                            @if (item.DiscountPrice < item.MinPrice)
+                                            {
+                                                <span class="account">@item.DiscountRate@Html.Raw("折")</span>
+                                            } 
+                                            @if (item.Qty <= 0)
+                                            {
+                                                <div class="saleOut">
+                                                    <span>已售罄</span>
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="title w95p">@item.Name</div>
+                                        <div class="price f20 w95p">
+                                            活动价：
+                                            @if (item.DiscountPrice < item.MinPrice)
+                                            {
+                                                <span class="f28">￥@((item.DiscountPrice * ExchangeRate).ToNumberRoundStringWithPoint())</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="f28">￥@((item.MinPrice * ExchangeRate).ToNumberRoundStringWithPoint())</span>
+                                            }
+                                        </div>
+                                        <div class="goBuyNow">立即购买</div>
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+<!-- 类目导航 end -->

@@ -1,0 +1,50 @@
+﻿@{
+    Layout = null;
+}
+@model SFO2O.References.SFo2oWCF.ExpressInfoEntity
+<tr class="f28">
+    <th class="whiteOnLine FontColor4">物流信息：</th>
+    <td class="whiteOnLine">
+        @if (Model != null)
+        {
+            <a href="@Url.Action("LogisticsInfo", new { orderCode =ViewBag.OrderCode })" target="_self" class="pr" style="display:block;">
+                <div style="width:90%">
+                    @if (!string.IsNullOrEmpty(Model.Remark))
+                    {
+                        <!--物流信息获取成功-->
+
+                        <p class="mb5">@Model.Remark</p>
+                        <p class="f20 FontColor4 mb5">@Model.AcceptTime.ToString("yyyy-MM-dd HH:mm:ss")</p>
+                        <p class="f24 FontColor3">预计送到日期：@ViewBag.TransportTime</p>
+                        <!--物流信息获取成功 END-->
+                    }
+                    else
+                    {
+                        <!--物流信息获取失败-->
+                        @*<a href="@Url.Action("LogisticsInfo", new { orderCode = @ViewBag.OrderCode })" target="_self">*@
+                            <p>
+                                抱歉，暂时无法获取物流信息，<br>
+                                请稍后再试。
+                            </p>@*
+                        </a>*@
+                        <!--物流信息获取失败 END-->
+                    }
+                </div>
+                <i class="itemIcon_jt itemIcon_jt2"></i>
+            </a>
+        }
+        else
+        {<a href="@Url.Action("LogisticsInfo", new { orderCode = @ViewBag.OrderCode })" target="_self">
+            <div class="fl">
+                <!--物流信息获取失败-->
+                <p>
+                    抱歉，暂时无法获取物流信息，<br>
+                    请稍后再试。
+                </p>
+                <!--物流信息获取失败 END-->
+            </div>
+            <i class="itemIcon_jt"></i>
+        </a>
+        }
+    </td>
+</tr>

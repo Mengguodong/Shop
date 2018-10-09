@@ -1,0 +1,89 @@
+﻿@using System.Net.Http.Headers
+@using System.Web.UI.HtmlControls
+@using ServiceStack.Text
+@using SFO2O.BLL.Common
+@using SFO2O.Utility.Extensions
+@using SFO2O.Utility.Uitl
+@using SFO2O.M.ViewModel.Account
+@{
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "我的酒豆流水";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = false;
+    string cssVersion = ConfigHelper.CssVersion;
+    string jsVersion = ConfigHelper.JsVersion;
+}
+@model SFO2O.Model.My.MyOrderInfoDto
+@section styles {
+<link href="../Content/css/base.css?v=@cssVersion" rel="stylesheet">
+<!--页面独有样式-->
+<link href="../Content/css/my.css?v=@cssVersion" rel="stylesheet">
+<!--页面独有样式 END-->
+}
+@section scripts {
+<!--页面独有脚本-->
+<script type="text/javascript" src="../Scripts/integralList.js?v=@jsVersion"></script>
+<!--页面独有脚本 END-->    
+}
+@section pageHeader {
+<header class="pageHeader w100 pr tc overflowH">
+    <a class="returnBtn" id="returnBtn"></a>
+    <b class="f36 FontColor1" id="selectedItem">全部酒豆<i class="itemIcon5"></i></b>
+</header>
+}
+  <ul class="w100 bgColor3 overflowH pa selectUL boxShadow f28 hide" id="selectUL">
+		<li class="whiteOnLine borderBottom cur" data-type="0">
+			<span class="itemIcon1"></span><b>全部酒豆</b><span class="itemIcon4 fr"></span>
+		</li>
+		<li class="whiteOnLine borderBottom" data-type="1">
+			<span class="itemIcon2"></span><b>获得酒豆</b><span class="itemIcon4 fr"></span>
+		</li>
+		<li data-type="2">
+			<span class="itemIcon3"></span><b>消费酒豆</b><span class="itemIcon4 fr"></span>
+		</li>
+	</ul>
+  <!--20160425 新增内容 表头选择 End-->
+	<!--20160425 新增内容 酒豆列表-->
+	<ul class="boxShadow bgColor3 integralList" id="integralList">
+	</ul>
+	<p class="f20 FontColor4 pt10 pb10 tc hide" id="more">上滑加载更多</p>
+	<!--20160425 新增内容 酒豆列表 END-->
+	<!--20160425 新增内容 空提示-->
+	<div class="w100 emptyTip tc hide" id="emptyTip">
+		<img src="../Content/Images/My/empty.png?v=2016042501">
+		<p class="f24 FontColor3 mb5">这里还没有酒豆</p>
+		<p class="f20 FontColor4 mb20">快去看看怎么赚酒豆花酒豆吧</p>
+		<p class="f28 "><a href="../my/rule" target="_self">酒豆规则说明</a></p>
+	</div>
+	<!--20160425 新增内容 空提示 End-->
+	<!--页脚-->
+	<div id="footerWrap">
+		<p class="loginArea f24 FontColor3 mb20 mt20 w95p">
+			<!--未登录状态显示-->
+            @if(user==null)
+            {
+            <!--未登录状态显示 END-->
+			<!--已登录状态显示-->
+            <a class="f24 FontColor3 mr10 ml5" href="#" target="_self">登录</a>                                                                  
+			<a class="f24 FontColor3 ml10" href="#" target="_self">注册</a>
+
+            }else
+            {
+                <a class="f24 FontColor3" href="/account/signout">退出</a>
+			<!--已登录状态显示 END-->
+            }
+			
+
+			
+			<a href="javascript:FSH.goTop()" class="fr f24 FontColor3 mr5">回到顶部</a>
+		</p>
+		<footer class="w95p pb10 tc grayOnLine">	
+			<p class="links FontColor3 f24 mt20 mb10">
+                <a class="f24 FontColor3 mr10" href="/help/questionlist" target="_self">常见问题</a>|
+                <a class="f24 FontColor3  ml10 mr10" href="/help/aboutus" target="_self">关于我们</a>|
+                <a class="f24 FontColor3 mr10 ml10" href="/help/servicelist" target="_self">配送及售后服务</a>|
+                <a class="f24 FontColor3 ml10" href="/help/termslist" target="_self">条款</a>
+			</p>
+			<p class="copyright f18 FontColor4">2017© 北京梵禹科技有限公司版权所有</p>
+		</footer>
+	</div>

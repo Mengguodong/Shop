@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{25CEF8F6-5604-402B-B256-D02F5B3F7511}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SFO2O.Admin.Businesses</RootNamespace>
+    <AssemblyName>SFO2O.Admin.Businesses</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\Libs\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Admin\AdminUserBLL.cs" />
+    <Compile Include="CommonBLL.cs" />
+    <Compile Include="ConfigHelper.cs" />
+    <Compile Include="Customer\CustomerBll.cs" />
+    <Compile Include="DicsBLL.cs" />
+    <Compile Include="HomeBLL.cs" />
+    <Compile Include="Order\OrderBll.cs" />
+    <Compile Include="Product\CategoryBLL.cs" />
+    <Compile Include="Product\ProdcutBLL.cs" />
+    <Compile Include="Promotion\PromotionBLL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Refund\RefundBll.cs" />
+    <Compile Include="Settlement\SettlementBll.cs" />
+    <Compile Include="Supplier\SupplierBLL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SFO2O.Admin.Common\SFO2O.Admin.Common.csproj">
+      <Project>{77635b3f-f322-4591-90c1-23c7544e280f}</Project>
+      <Name>SFO2O.Admin.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SFO2O.Admin.DAO\SFO2O.Admin.DAO.csproj">
+      <Project>{bc1f8e69-53ab-4bac-b09c-02b8a564a7be}</Project>
+      <Name>SFO2O.Admin.DAO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SFO2O.Admin.Models\SFO2O.Admin.Models.csproj">
+      <Project>{8de9952e-802b-4afd-b070-795205543dec}</Project>
+      <Name>SFO2O.Admin.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SFO2O.Admin.Service\SFO2O.Admin.Service.csproj">
+      <Project>{dbb0da13-ea57-4624-bb5c-1f46f74bef48}</Project>
+      <Name>SFO2O.Admin.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SFO2O.Admin.ViewModel\SFO2O.Admin.ViewModel.csproj">
+      <Project>{7c3bc410-841c-40f0-ad9c-35b104e55352}</Project>
+      <Name>SFO2O.Admin.ViewModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,68 @@
+﻿@using SFO2O.Admin.Common;
+@using SFO2O.Admin.Models.Admin;
+@{
+    var userInfo = ViewBag.AdminUserInfo as SFO2O.Admin.Models.Admin.AdminUserInfo;
+    var userMenu = ViewBag.UserMenu;
+    
+}
+
+<ul class="user_list">
+    @if (userMenu != null)
+    {
+        //生成菜单
+        foreach (var item in userMenu)
+        {
+        <li class="@item.root.Icon">
+            <p class="list_title"><a href="javascript:void(0)"><i class="prdt_icon f_l"></i><span class="f_l">@item.root.ModuleName</span><i class="prdt_list f_l"></i></a></p>
+            <dl class="list_cont">
+                @foreach (var child in item.children)
+                {
+                    var dataValue="";
+                    if (!string.IsNullOrEmpty(child.ModuleURL))
+                    {
+                        dataValue = child.ModuleURL.Substring(child.ModuleURL.LastIndexOf('/') + 1);
+                    }   
+                    <dd data-value="@dataValue"><a href="@(child.ModuleURL)">@child.ModuleName</a></dd>
+                }
+            </dl> 
+        </li>
+        }
+    }
+  
+</ul>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var pageName = "@ViewBag.PageName";
+        $(".list_cont dd").each(function () {
+            var datavalue = $(this).attr("data-value");
+            $(this).removeClass();
+            if (pageName == datavalue && datavalue != "") {
+                $(this).parent().show();
+                $(this).removeClass().addClass("current");
+                $(this).parent().parent().addClass("current");
+                return;
+            }
+        });
+        if ($(".center_cont_left").find("li.current").length <= 0)
+        {
+            $(".center_cont_left").find("li:first").addClass("current");
+            $(".center_cont_left").find("li:first").next("dl").show();
+        }
+        var menuTitle = $(".list_title");
+
+        menuTitle.click(function () {
+            menuTitle.parent().removeClass("current");
+            $(this).parent().addClass("current");
+            $(".list_cont").each(function () {
+                $(this).hide();
+            });
+            $(this).next("dl").show();
+
+        })
+        if (pageName.length == 0) {
+            $(".list_title p:first").parent().addClass("current");
+            $(".list_title p:first").next("dl").show();
+        }
+    });
+</script>

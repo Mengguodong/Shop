@@ -1,0 +1,163 @@
+﻿@model SFO2O.Admin.Models.Supplier.SupplierDetailModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.PageName = "SupplierQuery";
+    ViewBag.Title = "商家詳情";
+    var supplier = Model.Supplier;
+    if (supplier == null)
+    {
+        supplier = new SFO2O.Admin.Models.Supplier.SupplierModel();
+    }
+}
+
+<div class="cont_right_crumb">@*<a href="#" class="f_r btn_back t_c">返回</a>*@<span class="homepage"></span>&gt; 商家管理 &gt; 商家詳情</div>
+<div class="w931">
+    <div class="upload_edit mg_t20">
+        <div class="viewCommInfo">
+            <table class="fff_bor">
+                <tr>
+                    <th rowspan="1" width="140" class="vtop"><span class="f_l pd_l10 mg_t5">基本信息</span></th>
+                    <td>
+                        <span class="f_l pd_l10 w135 mg_t5">公司名稱：</span>
+                        <div class="f_l mg_l10 mg_t10 mg_b10" style="padding-left: 0; width: 560px;">
+                            <table class="f15" style="width: 560px;" id="addressTable">
+                                <tbody>
+                                    <tr>
+                                        <td class="vtop t_c bg_eee" width="55">
+                                            <p>繁體 :</p>
+                                        </td>
+                                        <td>
+                                            <div class="div_area" style="width: 500px;">
+                                                <p>@supplier.CompanyName</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="">
+                                        <td class="vtop t_c bg_eee">
+                                            <p>簡體 :</p>
+                                        </td>
+                                        <td>
+                                            <div class="div_area" style="width: 500px;">
+                                                <p>@supplier.CompanyName_Sample</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="vtop t_c bg_eee">
+                                            <p>英文 :</p>
+                                        </td>
+                                        <td>
+                                            <div class="div_area" style="width: 500px;">
+                                                <p>@supplier.CompanyName_English</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <table class="fff_bor mg_t10">
+                <tr>
+                    <th rowspan="4" width="140" class="vtop"><span class="f_l pd_l10 mg_t40">平台信息</span></th>
+                    <td><span class="f_l pd_l10 w135">商家賬號：</span><span class="f_l pd_l10">@supplier.UserName</span></td>
+                </tr>
+                <tr>
+                    <td><span class="f_l pd_l10 w135">入駐時間：</span><span class="f_l pd_l10">@supplier.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")</span></td>
+                </tr>
+                @{
+                    var status = supplier.Status == 1 ? "正常" : "凍結";
+                }
+                <tr>
+                    <td><span class="f_l pd_l10 w135">商家狀態：</span><span class="f_l pd_l10">@status</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="f_l pd_l10 w135">在售SKU商品數量：</span>
+                        <span class="f_l pd_l10">@supplier.SkuNumber</span>
+                    </td>
+                </tr>
+            </table>
+            <table class="fff_bor mg_t10">
+                <tr>
+                    <th rowspan="5" width="140" class="vtop"><span class="f_l pd_l10 mg_t40">聯絡信息</span></th>
+                    <td>
+                        <span class="f_l pd_l10 w135 mg_t10">公司地址：</span>
+                        <div class="f_l mg_l10 mg_t10 mg_b10" style="padding-left: 0; width: 560px;">
+                            <table class="f15" style="width: 560px;" id="addressTable">
+                                <tbody>
+                                    <tr>
+                                        <td class="vtop t_c bg_eee" width="55">
+                                            <p>繁體 :</p>
+                                        </td>
+                                        <td>
+                                            <div class="div_area" style="width: 500px;">
+                                                <p>@supplier.Address</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="">
+                                        <td class="vtop t_c bg_eee">
+                                            <p>簡體 :</p>
+                                        </td>
+                                        <td>
+                                            <div class="div_area" style="width: 500px;">
+                                                <p>@supplier.Address_Sample</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="vtop t_c bg_eee">
+                                            <p>英文 :</p>
+                                        </td>
+                                        <td>
+                                            <div class="div_area" style="width: 500px;">
+                                                <p>@supplier.Address_English</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span class="f_l pd_l10 w135">聯絡人：</span><span class="f_l pd_l10">@supplier.ContactPerson</span></td>
+                </tr>
+                <tr>
+                    <td><span class="f_l pd_l10 w135">公司電話：</span><span class="f_l pd_l10">@supplier.ContactTel</span></td>
+                </tr>
+                <tr>
+                    <td><span class="f_l pd_l10 w135">手提電話：</span><span class="f_l pd_l10">@supplier.ContactPhone</span></td>
+                </tr>
+                <tr>
+                    <td><span class="f_l pd_l10 w135">傳真號碼：</span><span class="f_l pd_l10">@supplier.ContactFax</span></td>
+                </tr>
+            </table>
+            <table class="fff_bor mg_t10">
+                <tr>
+                    <th width="140" class="vtop"><span class="f_l pd_l10 mg_t40 mg_b40">商家介紹</span></th>
+                    <td>
+                        <span class="f_l pd_l10 w135 mg_t10">主營品牌：</span>
+                        <div class="f_l mg_t10 mg_b10" style="width: 560px;">
+                            @if (Model.Brands != null)
+                            {
+                                foreach (var brand in Model.Brands)
+                                {
+                                <p>@brand.NameHK<text>(</text>@brand.NameCN<text>)</text>@brand.NameEN <a href="/Supplier/BrandView?brandId=@brand.Id" style="color:blue">查看详情</a></p>
+
+                                }
+                            }
+                            else
+                            {
+                                <p>暫無添加品牌</p>
+                            }
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/Supplier/ShowSupplierDetail.js?@ViewBag.JsAndCssVersion"></script>

@@ -1,0 +1,268 @@
+﻿.fontWhite{
+	color: #fff;
+}
+
+.mb30{
+	margin-bottom: 30px;
+}
+
+.tips{
+	background-color: #ffcf31;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-size: 1.2rem;
+}
+.tips i{ vertical-align: -1px;}
+.tips.bgGreen{
+	background: #fffaf3;
+}
+.tips .success{
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background: url(../../Images/icon_success.png?v=20160331);
+  background-size: 14px auto;
+  position: relative;
+  top: 2px;
+}
+
+.product{
+	
+}
+.product .imgBox{
+	width: 18%;
+	border: 1px solid #d6d6d6;
+}
+.product .imgBox img{
+	width: 100%;
+}
+.product .title{
+	/*padding-top: 5px;*/
+	/*margin-bottom: 5px;*/
+	margin-bottom:3px;
+	line-height: 125%;
+	height: 30px;
+	-webkit-line-clamp:2; /* 两行显示不开显示... */
+	display:-webkit-box;
+	-webkit-box-orient: vertical;
+	text-overflow:ellipsis ;
+	overflow: hidden; 
+
+}
+.product .info{
+	/*width: 34%;*/
+	display: inline-block;
+	padding: 3px 8px;
+	background: #99cb34;
+	border-radius: 12px;
+	white-space: nowrap;
+}
+.product .info .f24{
+	line-height: 1.5rem;
+}
+.product .status{
+	position: absolute;
+	width: 60px;
+	height: 53px;
+	right: 13px;
+	top: 13px;
+}
+.product .status img{
+	width: 100%;
+}
+
+
+
+.duration{
+	position: relative;
+	border-bottom: 1px solid #cecece;
+	overflow: visible;
+}
+.duration>div{
+	position: relative;
+	top: 16px;
+	display: inline-block;
+	padding-left: 7px;
+	padding-right: 7px;
+	background: #eeeeee;
+}
+.duration .time{
+	display: inline-block;
+	width: 88px;
+	height: 33px;
+	background: url(../../Images/groupon/duration.png?v=20160412) no-repeat;
+	background-size: 88px auto;
+
+}
+.duration .displayBox{
+	height: 33px;
+}
+.duration .displayBox b{
+	display: block;
+	-webkit-box-flex:1;
+	-moz-box-flex:1;
+	box-flex:1;
+	text-align: center;
+	line-height: 33px;
+	font-size: 1.4rem;
+	color: #fff;
+}
+
+.people ul{
+	text-align: center;
+}
+.people li{
+	display: inline-block;
+	margin-right: 8%;
+	margin-bottom: 10px;
+	position: relative;
+}
+.people li:nth-child(5n+0),.people li:last-child{
+	margin-right: 0;
+}
+.people li img{
+	width: 100%;
+}
+.people .head{
+	background: url(../../Images/groupon/head.png?v=20160412) no-repeat;
+	background-size: 30px auto;
+	width: 30px;
+	height: 26px;
+	position: absolute;
+	right: -4px;
+	top: -5px;
+}
+
+.people .partner{
+	border-top: 1px solid #e0e0e0;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	line-height: 20px;
+}
+.people .partner i{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	margin-right: 6px;
+	position: relative;
+	top: 3px;
+	vertical-align: -2px;
+}
+.people .partner img{
+	width: 100%;
+}
+.people .partner .fr{
+	position: relative;
+	top: 4px;
+}
+
+
+.morePro,.share{
+	padding: 5px 0;
+	width: 80px;
+	border-right: 1px solid #e0e0e0;
+}
+.morePro i{
+	display: inline-block;
+	width: 17px;
+	height: 17px;
+	background: url(../../Images/groupon/icon_pin.png?v=20160413);
+	background-size: 17px auto;
+}
+.morePro a,.share a{
+	color: #bcbcbc;
+}
+.share{
+	padding-top: 7px;
+}
+.share i{
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	background: url(../../Images/groupon/share.png?v=20160413);
+	background-size: 15px auto;
+}
+
+footer{
+	margin-bottom: 48px;
+}
+
+
+/* 微信分享的提示 */
+.shadow{
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,.74);
+}
+.shareInWX .guide{
+	position: absolute;
+	top: 0;
+	right: 22px;
+	width: 40%;
+}
+.shareInWX .guide img{
+	width: 100%;
+	display: block;
+}
+.shareInWX .content{
+	margin-top: 60%;
+}
+
+
+/*分享弹窗*/
+.m-shareDia {
+  line-height: 140%;
+  position: relative;
+  padding: 15px 2.5%;
+  width: 95%;
+  height: auto;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0px 0px 10px #333;
+  font-size: 1.4rem;
+  display: none;
+}
+.m-shareDia .closeBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+.m-shareDia .closeBtn img {
+  width: 17px;
+}
+.m-shareDia ul {
+  width: 80%;
+  height: auto;
+  overflow: hidden;
+  margin: 25px 10% 10px;
+}
+.m-shareDia li {
+  width: 50%;
+  float: left;
+  text-align: center;
+}
+.m-shareDia li img {
+  width: 42px;
+  cursor: pointer;
+}
+
+.shareInBrowser div{
+	margin-top: 60%;
+	color: #fff;
+}
+.shareInBrowser.shadow{
+	z-index: 999;
+	top: 48px;
+}
+
+.btn a{
+	color: #fff;
+	display: block;
+}
+.itemIcon_jt {
+  margin-right: 0px;
+}

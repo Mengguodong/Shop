@@ -1,0 +1,133 @@
+﻿@using SFO2O.Utility.Uitl
+@{
+    this.ViewBag.IsSelfTitle = true;
+    this.ViewBag.Description = "岁月无情，愿童心不变，为小朋友、大朋友选“对”礼物最重要。";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    this.ViewBag.Title = "欢度六一 礼伴成长 – 爱玖网购物商城";
+    this.ViewBag.HeaderTitle = "欢度六一 礼伴成长";
+    string ImgVersion = ConfigHelper.ImgVersion;
+    string CssVersion = ConfigHelper.CssVersion;
+    string JSVersion = ConfigHelper.JsVersion;
+}
+
+@section styles {
+    <!--页面独有样式-->
+    <link href="~/Content/css/active/childrenDay.css?v=@CssVersion" rel="stylesheet">
+    <link rel="apple-touch-icon-precomposed" href="~/Content/Images/active/childrenDay/shareImg.jpg?v=@ImgVersion" />
+    <!--页面独有样式 END-->
+}
+
+<!-- 页头 使用公共页头-->
+@section pageHeader {
+    @Html.Partial("~/Views/Shared/_HeaderTop.cshtml")
+}
+<!--专题内容-->
+<div class="hide">
+    <img src="~/Content/Images/active/childrenDay/shareImg.jpg?v=@ImgVersion">
+</div>
+<img src="~/Content/Images/active/childrenDay/banner.jpg?v=@ImgVersion" class="w100 show">
+<div class="con" id="discountWrap">
+    <div class="discountTabWrap w100 " id="discountTab">
+        <div class="discountTab clearfix w100 f30" id="discountTabCon">
+            <a href="#fixed1" class="cur">快乐童年</a>
+            <a href="#fixed2">健康成长</a>
+            <a href="#fixed3">奔跑吧骚年</a>
+        </div>
+    </div>
+    <div class="discountCon pr" id="discountCon1">
+        <div id="fixed1" style="width:100px; height:100px; position:absolute; top:-43px;"></div>
+        <img src="~/Content/Images/active/childrenDay/con1Bg.png?v=@ImgVersion" class="w100 conBg">
+        <img src="~/Content/Images/active/childrenDay/con1Title.png?v=@ImgVersion" class="pr show mc conTitle">
+        <a href="~/brand/38.html" target="_self">
+            <img src="~/Content/Images/active/childrenDay/con1Img.jpg?v=@ImgVersion" class="pr show mc con1Img">
+        </a>
+        <a href="~/product/index?level=2&c=10128" target="_self">
+            <img src="~/Content/Images/active/childrenDay/more1.jpg?v=@ImgVersion" class="pr show mc moreBtn">
+        </a>
+
+    </div>
+    <div class="discountCon pr" id="discountCon2">
+        <div id="fixed2" style="width:100px; height:100px; position:absolute; top:-43px;"></div>
+        <img src="~/Content/Images/active/childrenDay/con2Bg.png?v=@ImgVersion" class="w100 conBg">
+        <img src="~/Content/Images/active/childrenDay/con2Title.png?v=@ImgVersion" class="pr show mc conTitle">
+        <a href="~/brand/53.html" target="_self">
+            <img src="~/Content/Images/active/childrenDay/con2Img1.jpg?v=@ImgVersion" class="pr show mc con2Img">
+        </a>
+        <div class="itemList clearfix w100">
+            <a href="~/item.html?productCode=10160421419394" target="_self">
+                <img src="~/Content/Images/active/childrenDay/defaultImg.png?v=@ImgVersion" data-original="/Content/Images/active/childrenDay/item1.jpg?v=@ImgVersion" class="w100 show itemImg" alt="儿童益生菌冲剂">
+            </a>
+            <a href="~/item.html?productCode=10160421419403" target="_self">
+                <img src="~/Content/Images/active/childrenDay/defaultImg.png?v=@ImgVersion" data-original="/Content/Images/active/childrenDay/item2.jpg?v=@ImgVersion" class="w100 show itemImg" alt="儿童全营养钙C益生片(莓果味)">
+            </a>
+        </div>
+        <div class="line"></div>
+        <a href="~/brand/62.html" target="_self">
+            <img src="~/Content/Images/active/childrenDay/con2Img2.jpg?v=@ImgVersion" class="pr show mc con2Img" style="margin-top:13px;">
+        </a>
+        <div class="itemList clearfix w100">
+            <a href="~/item.html?productCode=10160505322836" target="_self">
+                <img src="~/Content/Images/active/childrenDay/defaultImg.png?v=@ImgVersion" data-original="/Content/Images/active/childrenDay/item3.jpg?v=@ImgVersion" class="w100 show itemImg" alt="儿童奥米加三文鱼油丸 (30粒)">
+            </a>
+            <a href="~/item.html?productCode=10160505322854" target="_self">
+                <img src="~/Content/Images/active/childrenDay/defaultImg.png?v=@ImgVersion" data-original="/Content/Images/active/childrenDay/item4.jpg?v=@ImgVersion" class="w100 show itemImg" alt="便便乐支装麦芽糖">
+            </a>
+        </div>
+        <div class="line"></div>
+        <a href="~/brand/7.html" target="_self">
+            <img src="~/Content/Images/active/childrenDay/con2Img3.jpg?v=@ImgVersion" class="pr show mc con2Img" style="margin-top:13px;">
+        </a>
+        <div class="itemList clearfix w100">
+            <a href="~/item.html?productCode=10150308886666" target="_self">
+                <img src="~/Content/Images/active/childrenDay/defaultImg.png?v=@ImgVersion" data-original="/Content/Images/active/childrenDay/item5.jpg?v=@ImgVersion" class="w100 show itemImg" alt="Rhythm儿童健康手环(老虎造型)">
+            </a>
+            <a href="~/item.html?productCode=10150308886668" target="_self">
+                <img src="~/Content/Images/active/childrenDay/defaultImg.png?v=@ImgVersion" data-original="/Content/Images/active/childrenDay/item6.jpg?v=@ImgVersion" class="w100 show itemImg" alt="Rhythm儿童健康手环(青蛙造型)">
+            </a>
+        </div>
+        <a href="~/product/index?level=2&c=10007" target="_self">
+            <img src="~/Content/Images/active/childrenDay/more2.jpg?v=@ImgVersion" class="pr show mc moreBtn">
+        </a>
+
+    </div>
+    <div class="discountCon pr" id="discountCon3">
+        <div id="fixed3" style="width:100px; height:100px; position:absolute; top:-43px;"></div>
+        <img src="~/Content/Images/active/childrenDay/con3Bg.png?v=@ImgVersion" class="w100 conBg">
+        <img src="~/Content/Images/active/childrenDay/con3Title.png?v=@ImgVersion" class="pr show mc conTitle">
+        <div class="itemList itemList3 clearfix w100">
+            <a href="~/item.html?productCode=10150308886520" target="_self">
+                <img src="~/Content/Images/active/childrenDay/defaultImg.png?v=@ImgVersion" data-original="/Content/Images/active/childrenDay/item7.png?v=@ImgVersion" class="w100 show itemImg" alt="Sega Toys Homestar R2-D2 星空仪">
+            </a>
+            <a href="~/item.html?productCode=10150308886524" target="_self">
+                <img src="~/Content/Images/active/childrenDay/defaultImg.png?v=@ImgVersion" data-original="/Content/Images/active/childrenDay/item8.jpg?v=@ImgVersion" class="w100 show itemImg" alt="Sega Toys Homestar Aqua Planetarium 星空仪">
+            </a>
+            <a href="~/item.html?productCode=10150308886739" target="_self">
+                <img src="~/Content/Images/active/childrenDay/defaultImg.png?v=@ImgVersion" data-original="/Content/Images/active/childrenDay/item9.jpg?v=@ImgVersion" class="w100 show itemImg" alt="健康护眼LED便携阅读灯">
+            </a>
+            <a href="~/item.html?productCode=10150308886746" target="_self">
+                <img src="~/Content/Images/active/childrenDay/defaultImg.png?v=@ImgVersion" data-original="/Content/Images/active/childrenDay/item10.jpg?v=@ImgVersion" class="w100 show itemImg" alt="光感触控无线低音木喇叭(NFC版连遥控)">
+            </a>
+            <a href="~/item.html?productCode=10150308886989" target="_self">
+                <img src="~/Content/Images/active/childrenDay/defaultImg.png?v=@ImgVersion" data-original="/Content/Images/active/childrenDay/item11.jpg?v=@ImgVersion" class="w100 show itemImg" alt="头盔迷彩绿造型套 (中号)">
+            </a>
+            <a href="~/item.html?productCode=10150308886990" target="_self">
+                <img src="~/Content/Images/active/childrenDay/defaultImg.png?v=@ImgVersion" data-original="/Content/Images/active/childrenDay/item12.jpg?v=@ImgVersion" class="w100 show itemImg" alt="头盔粉红点造型套">
+            </a>
+            <a href="~/item.html?productCode=10150308886914" target="_self">
+                <img src="~/Content/Images/active/childrenDay/defaultImg.png?v=@ImgVersion" data-original="/Content/Images/active/childrenDay/item13.jpg?v=@ImgVersion" class="w100 show itemImg" alt="Nanodots 125">
+            </a>
+            <a href="~/category.html" target="_self">
+                <img src="~/Content/Images/active/childrenDay/defaultImg.png?v=@ImgVersion" data-original="/Content/Images/active/childrenDay/item14.jpg?v=@ImgVersion" class="w100 show itemImg">
+            </a>
+        </div>
+
+    </div>
+</div>
+<!--专题内容 END-->
+@section scripts {
+    <!--页面独有脚本-->
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.lazyload.js?v=@JSVersion"></script>
+    <script type="text/javascript" src="~/Scripts/active/childrenDay.js?v=@JSVersion"></script>
+    <!--页面独有脚本 END-->
+}

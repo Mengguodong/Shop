@@ -1,0 +1,64 @@
+﻿.myTop img{ width:100%; display: block;}
+.myTop p{ top:50%; left:0px; margin-top:-8px; line-height: 100%; color:#fff;}
+.myOrderP{border-bottom-width:1px; border-bottom-style: solid; padding:12px; }
+.myIcon1,.myIcon2,.myIcon3,.myIcon4,.myIcon5,.myIcon6,.myIcon7,.myIcon8,.myIcon9{display: inline-block;background: url("../images/my/icon.png?v=20160331") no-repeat; background-size:50px auto; -moz-background-size:50px auto; -webkit-background-size:50px auto; overflow: hidden;}
+.myIcon1,.myIcon6,.myIcon7,.myIcon8,.myIcon9{  width: 18px; height: 18px; vertical-align: -3px;}
+.myIcon1{ background-position:-1px -1px; }
+.myIcon6{ background-position:-1px -19px; }
+.myIcon7{ background-position:-1px -38px; }
+.myIcon8{ background-position:-1px -57px; }
+.myIcon9{ background-position:-1px -75px; }
+.myOrderP a{ display: inline-block; padding-top:3px; line-height:12px;}
+.myOrderP a .itemIcon_jt{ top:1px;}
+.itemIcon_jt{ background:url("../Images/productList/arrowRight.png?v=20160331") no-repeat;background-size:7px auto; -moz-background-size:7px auto; -webkit-background-size:7px auto;display: inline-block;height: 12px; margin: 0px 12px 0px 0px; width: 7px;position: relative;top:3px;left:5px;}
+.myOrderUL li{ padding:6px 0px;}
+.myOrderUL li a{display: block; padding:5px 0px;}/*43 36*/
+.myIcon2,.myIcon3,.myIcon4,.myIcon5{display:block; width:2.2rem; height:2.3rem; margin-bottom: 5px;}
+.myIcon2{ background-position:-25px 0px;  }
+.myIcon3{ background-position:-25px -24px;  }
+.myIcon4{ background-position:-25px -49px;  }
+.myIcon5{ background-position:-25px -74px;  }
+.tipNum{ background: #f95c27;border-radius: 6px;color: #fff;font-size: 0.7rem;height: 12px;line-height: 12px;position: absolute;left: 50%;text-align: center;top: 2px;width: 12px; margin-left:2px;}
+.myCon3 a,.jumpP a{ display: block; padding:16px 12px;}
+/*我的酒豆*/
+.myIntegralCon1{ height:73px; padding:10px 12px 5px 12px; background:url("../Images/my/myIntegralBg.png?v=2016042501") no-repeat right 10px; background-size:101px auto; -moz-background-size:101px auto;  -webkit-background-size:101px auto;}
+.totalIntegralNum{ font-size:36px; color:#6ec817}
+.myIntegralCon2{ padding-top:15px; padding-bottom:15px; overflow: hidden;}
+.myIntegralCon2 div{ float: left; width:47.5%; height:24px; padding-left:12px; line-height: 100%;}
+.myIntegralCon2 div:first-of-type{ border-right:1px solid #e0e0e0;}
+.myIntegralCon2 div span:first-of-type{ display: block; margin-bottom:8px;margin-top:-5px;}
+.selectUL{ top:48px; left:0px; z-index: 1005;}
+.selectUL li,.integralList li{ padding:12px; line-height: 100%;}
+.selectUL li span,.itemIcon5{ display: inline-block; background: url("../Images/my/integralIcon.png?v=2016042501") no-repeat; background-size:18px auto; -webkit-background-size:18px auto; -moz-background-size:18px auto;}
+.itemIcon5{width: 9px; height: 18px; overflow: hidden; background-position: -4px -85px; margin-left:5px; vertical-align: -5px }
+.itemIcon1,.itemIcon2,.itemIcon3,.itemIcon4{ width: 18px; height: 18px; vertical-align: -5px}
+.selectUL li .itemIcon2{ background-position: 0px -23px;}
+.selectUL li .itemIcon3{ background-position: 0px -46px;}
+.selectUL li .itemIcon4{ background-position: 0px -65px; visibility: hidden;}
+.itemIcon1,.itemIcon2,.itemIcon3{ margin-right:5px;}
+.selectUL li.cur .itemIcon4{ visibility: visible;}
+.selectUL li b{ font-weight: normal;}
+.fontcolor{ color:#585c64;}
+.integralList li div p{ margin-top:8px;}
+.integralList li div p:first-child{margin-top:0px;}
+.addColor{color:#6ec817;}
+.integralNum{ top:50%; margin-top:-7px; right:12px;}
+.integralList li:last-of-type{ border:none;}
+#selectUlMask{ background: rgba(0, 0, 0, 0);}
+.emptyTip{ padding:45px 0px;}
+.emptyTip img{width：68px; margin-bottom:10px;}
+.emptyTip a{color:#f95e28; text-decoration: underline;}
+.MContainer{ min-height:300px;}
+/*4.29 新增*/
+.n_bd_r{border-right:1px solid #e0e0e0}
+.n_bd_b{border-bottom:1px solid #e0e0e0}
+.n_myItem{width:33.3%;float:left;padding:14px 0}
+.n_myItem .n_bg1{background: url("../Images/my/n_bg1.jpg") no-repeat}
+.n_myItem .n_bg2{background: url("../Images/my/n_bg2.jpg") no-repeat}
+.n_myItem .n_bg3{background: url("../Images/my/n_bg3.jpg") no-repeat}
+.n_myItem .n_bg4{background: url("../Images/my/n_bg4.jpg") no-repeat}
+.n_myItem .n_bg5{background: url("../Images/my/n_bg5.jpg") no-repeat}
+.n_myItem .n_bg6{background: url("../Images/my/n_bg6.jpg") no-repeat}
+.n_myItem .n_bg7{background: url("../Images/my/n_bg7.jpg") no-repeat}
+.n_myItem .n_myItemIcon{width:29px;height:29px;margin:0 auto 10px; background-size: 100%}
+.n_myItem .n_myItemTxt{text-align: center}

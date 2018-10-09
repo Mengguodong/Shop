@@ -1,0 +1,40 @@
+﻿@using SFO2O.M.Controllers
+@using SFO2O.M.Controllers.Common
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.ViewModel.Product
+@using SFO2O.Utility.Extensions 
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "售后服务问题 ";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = false;
+}
+@section styles { 
+}
+@section scripts {
+}
+@section pageHeader {
+  <!-- 页头 -->
+    <header class="pageHeader w100 pr tc overflowH">
+        <a class="returnBtn" id="returnBtn"></a>
+        <b class="f36 FontColor1">售后服务问题</b>
+    </header>
+}
+<!-- 页头 end -->
+<dl class="problemsWrap w100 mt8 boxShadow bgColor3 f28">
+    <dt>
+        <span class="icon">问</span>是否可以退货或换货？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>客户签收时应当场开箱验货，核对酒品种类、数量、规格、赠品、金额是否与订单一致，确认无误后再签收，若有问题应及时联系客户服务代表沟通解决。在商品无任何质量问题下不予办理退换货服务。
+    </dd>
+
+    <dt>
+        <span class="icon">问</span>如果我收到商品时发现商品已损坏怎办？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>因酒类属特殊商品，相关规定只能陆运，不能空运。同时为保证货品安全，每瓶酒都采用酒类专用安全包装，以确保在运输途中不会因挤压、碰撞等因素造成破损；如签收时发现破损，请与快递人员当面核实，并对破损商品进行拍照（配送当场）取证、拒收，并及时联系客户服务代表，进入补发货流程。（对因破损拒收补发的商品所产生的运费由平台承担，对因破损未拒收的商品退回和补发运费由买家承担）。
+    </dd>
+
+</dl>

@@ -1,0 +1,255 @@
+﻿@model SFO2O.Admin.Models.PagedList<SFO2O.Admin.Models.Settlement.SettlementOrderInfo>
+@{
+    Layout = null;
+}
+
+<div class="shangpsh">
+    <table style="width:100%;" class="f15 bor bg_fff posRT">
+        <tbody>
+            <tr class="bg_ebebeb">
+                <th></th>
+                <th width="12%">結算單數</th>
+                <th width="12%">商品總金額</th>
+                <th width="14%">商品退款金額</th>
+                <th width="14%">商家承擔關稅</th>
+                <th width="14%">平台承擔關稅</th>
+                <th width="14%">商家承擔商品促銷費用</th>
+                <th width="14%">平台承擔商品促銷費用</th>
+                <th width="12%">其他費用</th>
+                <th width="14%">結算金額</th>
+            </tr>
+            @if (Model != null && Model.TotalObject != null)
+            {
+
+                <tr>
+                    <td><p class="pd_l10 pd_r10 pd_t15 pd_b10  t_c">合計</p></td>
+                    <td><p class="pd_l10 pd_r10 pd_t15 pd_b10  t_c">@Model.RecordCount</p></td>
+                    <td><p class="pd_l10 pd_r10 pd_t15 pd_b10 t_c">$@Model.TotalObject.ProductTotalAmount.ToString("f2")</p></td>
+                    <td><p class="pd_l10 pd_r10 pd_t15 pd_b10 t_c">$@Model.TotalObject.ProductRefundAmount.ToString("f2")</p></td>
+                    <td><p class="pd_l10 pd_r10 pd_t15 pd_b10 t_c">$@Model.TotalObject.SupplierBearDutyAmount.ToString("f2")</p></td>
+                    <td><p class="pd_l10 pd_r10 pd_t15 pd_b10 t_c">$@Model.TotalObject.BearDutyAmount.ToString("f2")</p></td>
+                    <td><p class="pd_l10 pd_r10 pd_t15 pd_b10 t_c">$@Model.TotalObject.SupplierPromotionDutyAmount.ToString("f2")</p></td>
+                    <td><p class="pd_l10 pd_r10 pd_t15 pd_b10 t_c">$@Model.TotalObject.PromotionDutyAmount.ToString("f2")</p></td>
+                    <td><p class="pd_l10 pd_r10 t_c pd_t15 pd_b10 t_c">$@Model.TotalObject.OtherAmount.ToString("f2")</p></td>
+                    <td><p class="pd_l10 pd_r10 t_c pd_t15 pd_b10 t_c">$@((Model.TotalObject.SettlementAmount).ToString("f2"))</p></td>
+                </tr>
+
+
+
+            }
+        </tbody>
+    </table>
+</div>
+<div class="tongji_title mg_t30 mg_l10 clearfix">
+    <span class="tongji_title_l f_l mg_t5">結算單列表</span><a id="export" href="javascript:void(0)" class="btn_daochu f_l mg_l20 f12 ftfml_sun">導出</a>
+
+    @if (Convert.ToBoolean(ViewBag.IsFinance) && Convert.ToInt32(ViewBag.SettlementStatus) == 2)
+    {
+        <div class="f_r w200 t_r"><span class="chbx_wrap f_l"><em class="js_checkedAll"></em>全選</span><a href="javascript:void(0)" id="batchPay" class="addpro_btn btn_dr js_Pay" style="padding:0 33px;">批量付款</a></div>
+    }
+</div>
+
+<div class="shangpsh">
+    <table style="width:1556px;" class="f15 bor bg_fff posRT jies_list">
+        <tbody>
+            <tr class="bg_ebebeb">
+                @if (Convert.ToBoolean(ViewBag.IsFinance) && Convert.ToInt32(ViewBag.SettlementStatus) == 2)
+                {
+                    <th width="20px;"></th>
+                }
+                <th width="208px;">結算單號</th>
+                <th width="110px;">生成時間</th>
+                <th width="218px;">訂單號/結算單號</th>
+                <th width="110px;">結算方</th>
+                <th width="110px;">商品總金額</th>
+                <th width="110px;">商品退款金額</th>
+                <th width="110px;">商家承擔關稅</th>
+                <th width="110px;">平台承擔關稅</th>
+                <th width="110px">商家承擔商品促銷費用</th>
+                <th width="110px">平台承擔商品促銷費用</th>
+                <th width="110px;">其他費用</th>
+                <th width="110px;">結算金額</th>
+                <th width="90px;">狀態</th>
+                <th width="90px;">操作</th>
+            </tr>
+            @if (Model != null && Model.ContentList != null && Model.ContentList.Count > 0)
+            {
+
+                foreach (var c in Model.ContentList)
+                {
+                    <tr>
+                        @if (Convert.ToBoolean(ViewBag.IsFinance) && Convert.ToInt32(ViewBag.SettlementStatus) == 2)
+                        {
+                            <td><p class="pd_l10 pd_r10 pd_t15 pd_b10 chbx_wrap"><em id="@c.SettlementCode" supplierid="@c.SupplierId" rmbsettlementamount="@c.RmbSettlementAmount" settlementamount="@(c.SettlementAmount)" settlementstatus="@c.SettlementStatus" name="SCode"></em></p></td>
+                        }
+                        <td><p class="pd_l10 pd_r10 pd_t15 pd_b10">@c.SettlementCode</p></td>
+                        <td><p class="pd_l10 pd_r10 pd_t15 pd_b10">@c.CreateTime.ToString("yyyy-MM-dd")</p></td>
+                        <td><p class="pd_l10 pd_r10 pd_t15 pd_b10">@c.OrderCode</p></td>
+                        <td><p class="pd_l10 pd_r10 pd_t15 pd_b10">@c.CompanyName</p></td>
+                        <td><p class="pd_l10 pd_r10 pd_t15 t_r pd_b10">￥@c.RmbProductTotalAmount.ToString("f2")</p></td>
+                        <td><p class="pd_l10 pd_r10 t_r pd_t15 pd_b10">￥@c.RmbProductRefundAmount.ToString("f2")</p></td>
+                        <td><p class="pd_l10 pd_r10 t_r pd_t15 pd_b10">￥@c.RmbSupplierBearDutyAmount.ToString("f2")</p></td>
+                        <td><p class="pd_l10 pd_r10 t_r pd_t15 pd_b10">￥@c.RmbBearDutyAmount.ToString("f2")</p></td>
+                        <td><p class="pd_l10 pd_r10 t_r pd_t15 pd_b10">$@c.SupplierPromotionDutyAmount.ToString("f2")</p></td>
+                        <td><p class="pd_l10 pd_r10 t_r pd_t15 pd_b10">$@c.PromotionDutyAmount.ToString("f2")</p></td>
+                        <td><p class="pd_l10 pd_r10 t_r pd_t15 pd_b10">$@c.OtherAmount.ToString("f2")</p></td>
+                        <td><p class="pd_l10 pd_r10 t_r pd_t15 pd_b10">$@((c.SettlementAmount).ToString("f2"))<br />(￥@((c.RmbSettlementAmount).ToString("f2")))</p></td>
+                        <td><p class="pd_l10 pd_r10 t_c pd_t15 pd_b10">@(SFO2O.Admin.Common.EnumUtils.GetEnumDescription((SFO2O.Admin.Models.SettlementStatus)c.SettlementStatus))</p></td>
+                        <td>
+                            <p class="pd_l10 pd_r10 t_c pd_t15 pd_b10">
+                                <a href="@Url.Action("SettlementDetail", "Settlement", new { settlementCode = c.SettlementCode })" class="col_link block" target="_blank">查看详情</a>
+                                @if (Convert.ToBoolean(ViewBag.IsFinance))
+                                {
+                                    if (c.SettlementStatus == 3)
+                                    {
+                                        <a href="javascript:void(0);" onclick="showPayInfoDiv('@c.SettlementCode',@c.SettlementAmount,'@c.SettlementTime.ToString("yyyy-MM-dd")','@c.TradeCode');" class="col_link block">查看付款</a>
+                                    }
+                                    if (c.SettlementStatus == 2)
+                                    {
+                                        <a href="javascript:void(0);" class="js_Pay col_link block">付款</a>
+                                    }
+                                }
+                                else
+                                {
+                                    if (c.SettlementStatus == 1)
+                                    {
+                                        <a href="javascript:void(0);" onclick="showSettlementAuditDiv('@c.SettlementCode',@c.RmbProductSettlementAmount,@c.RmbDutyAmount,@c.DutyAmount,@c.ExchangeRate);" class="col_link block">確認</a>
+                                    }
+                                }
+
+                            </p>
+                        </td>
+                    </tr>
+
+                }
+
+
+            }
+            else
+            {
+                <tr>
+                    <td class="bor_none_l" colspan="13">
+                        <p class="pd_l30 t_l mg_t20 mg_b20 color_ee7a01 color_green">沒有符合查詢條件的結算單！</p>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="page pagination" id="pager">
+
+</div>
+<div class="js_win_show win_wrap f16" style="display: none; z-index: 9999; position: absolute;" id="settlementAuditDiv">
+    <div class="win_top clearfix"> <span class="f_l mg_l20">結算單確認</span><a href="javascript:void(0);" title="關閉" class="js_win_cancel win_close f_r"></a> </div>
+    <table class="f15 mg_t20 mg_r30 mg_l30 mg_b20 lineH54">
+        <tr>
+            <td class="t_r pd_r10" width="">商品結算金額：</td>
+            <td>￥<em id="RmbProductSettlementAmount"></em><input type="hidden" id="SettlementCodeL" name="SettlementCodeL" /></td>
+        </tr>
+        <tr>
+            <td class="t_r pd_r10 vtop" width="">關稅金額：</td>
+            <td>
+                <div style="height:77px;">
+                    ￥<input type="text" class="fff_bor h19 f15 col_464646" style="width:206px;padding-top:9px;padding-bottom:10px;" id="RmbSupplierBearDutyAmount" maxlength="11" name="RmbSupplierBearDutyAmount" /><input type="hidden" id="DutyAmount" name="DutyAmount" /><input type="hidden" id="RmbDutyAmount" name="RmbDutyAmount" /><input type="hidden" name="ExchangeRate" id="ExchangeRate" /><p class="wrong_tips color_red t_l mg_l20" id="dutyAmountCodeError"></p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="t_r pd_r10  vtop" width="">其他費用：</td>
+            <td>
+                <div style="height:77px;">
+                    $ <input type="text" class="fff_bor h19 f15 col_464646" style="width:206px;padding-top:9px;padding-bottom:10px;" id="OtherAmount" name="OtherAmount" maxlength="11" placeholder="請輸入" /><p class="wrong_tips color_red t_l mg_l20" id="otherAmountError"></p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="t_r vtop pd_r10" width="128px;">結算金額：</td>
+            <td>
+                $<em id="SettlementAmount"></em>(￥<em id="RmbSettlementAmount"></em>)
+            </td>
+        </tr>
+    </table>
+    <div class="win_btm f18 t_c pd_b20"><a href="javascript:void(0);" class="js_win_cancel win_btn btn_white w135">取 消</a><a href="javascript:void(0);" id="confirmSettlement" class="win_btn btn_green mg_l40 w135">確 定</a></div>
+</div>
+<div class="js_win_show f16" style="display: none; z-index: 9999;width:360px; position: absolute; background:#fff" id="noPayDiv">
+    <div class="win_top clearfix"> <span class="f_l mg_l20">付款信息</span><a href="javascript:void(0);" title="關閉" class=" js_win_cancel win_close f_r"></a> </div>
+    <div class="win_cont pd_l20 pd_r20">
+        <p class="t_c pd_t40 pd_b30"><span>本結算單結算金額為零，無需支付</span></p>
+    </div>
+    <div class="win_btm f18 t_c pd_b20"><a href="javascript:void(0);" class="js_win_cancel win_btn btn_white w135">取 消</a><a href="javascript:void(0);" id="noPaySubmit" class="win_btn btn_green mg_l40 w135">確 定</a></div>
+</div>
+<div class="js_win_show win_wrap f16" style="display: none; z-index: 9999; position: absolute;" id="payDiv">
+    <div class="win_top clearfix"> <span class="f_l mg_l20">付款信息</span><a href="javascript:void(0);" title="關閉" class="js_win_cancel win_close f_r"></a> </div>
+    <table class="f15 mg_t20 mg_r30 mg_l30 mg_b20 lineH54">
+        <tr>
+            <td class="t_r pd_r10" width="">付款金額</td>
+            <td><div class="tc_money t_c">$<em id="SettlementAmounts"></em></div></td>
+        </tr>
+        <tr>
+            <td class="t_r pd_r10" width="">付款時間</td>
+            <td>
+
+                <input id="SettlementTime" name="SettlementTime" class="inputdp w70 Wdate fff_bor  type=" text" style="background-position: 200px center; float: left; font-size: 16px; height: 40px; padding-left: 10px;width: 214px;" value="@DateTime.Now.ToString("yyyy-MM-dd")"
+                       onfocus="WdatePicker({ minDate: '%y-%M-%d', vel: 'SettlementTime', isShowClear: true, isShowOK: true, isShowToday: true })">
+
+            </td>
+        </tr>
+        <tr>
+            <td class="t_r pd_r10" width="">請選擇付款方式</td>
+            <td>
+
+                <select name="PayPlatform" style="width:240px;" id="PayPlatform" disabled="disabled">
+                    <option value="1">易票联</option>
+                </select>
+
+            </td>
+        </tr>
+        <tr>
+            <td class="t_r vtop pd_r10" width="128px;">付款流水編號</td>
+            <td>
+                <div style="height:77px;">
+                    <input type="text" class="fff_bor h19 f15 col_464646" style="width:206px;padding-top:9px;padding-bottom:10px;" id="TradeCode" name="TradeCode" maxlength="20" placeholder="請輸入" /><p class="wrong_tips color_red t_l " id="tradeCodeError"></p>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div class="win_btm f18 t_c pd_b20"><a href="javascript:void(0);" class="js_win_cancel win_btn btn_white w135">取 消</a><a href="javascript:void(0);" id="paySubmit" class="win_btn btn_green mg_l40 w135">確 定</a></div>
+</div>
+<div class="js_win_show win_wrap f16" style="display: none; z-index: 9999; position: absolute;" id="payInfoDiv">
+    <div class="win_top clearfix"> <span class="f_l mg_l20">查看結算單信息</span><a href="javascript:void(0);" title="關閉" class="js_win_cancel_norefesh win_close f_r"></a> </div>
+    <div class="win_cont pd_l20 pd_r20">
+        <table class="f15 mg_t20 mg_r30 mg_l30 mg_b30 lineH36">
+            <tr>
+                <td class="t_r" width="96">結算單號：</td>
+                <td class="pd_l5" id="tdScode"></td>
+            </tr>
+            <tr>
+                <td class="t_r" width="96">結算金額：</td>
+                <td class="pd_l5" id="tdSAmount"></td>
+            </tr>
+            <tr>
+                <td class="t_r" width="96">付款時間：</td>
+                <td class="pd_l5" id="tdStime"></td>
+            </tr>
+            <tr>
+                <td class="t_r" width="96">付款方式：</td>
+                <td class="pd_l5">電匯</td>
+            </tr>
+            <tr>
+                <td class="t_r" width="96">付款流水號：</td>
+                <td class="pd_l5" id="tdTradeCode"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="js_win_show f16" style="display: none; z-index: 9999;width:360px; position: absolute; background:#fff" id="msgTipDiv">
+    <div class="win_top clearfix"> <span class="f_l mg_l20">操作提示</span><a href="javascript:void(0);" title="關閉" class=" js_win_cancel win_close f_r"></a> </div>
+    <div class="win_cont pd_l20 pd_r20">
+        <p class="t_c pd_t40 pd_b30"><span id="msgTips"></span></p>
+    </div>
+    <div class="win_btm f18 t_c pd_b20"><a href="javascript:void(0);" class="js_win_cancel win_btn btn_green w135">確 定</a></div>
+</div>
+<input type="hidden" id="pageIndex" value="@Model.CurrentIndex" />
+<input type="hidden" id="recordCount" value="@Model.RecordCount" />
+<script src="~/Scripts/Settlement/SettlementList.js?@ViewBag.JsAndCssVersion"></script>

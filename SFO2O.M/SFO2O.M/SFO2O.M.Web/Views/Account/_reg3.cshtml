@@ -1,0 +1,57 @@
+﻿@{
+    bool isShowEmail = Convert.ToBoolean(ViewData["showEmail"]);
+    string token = Convert.ToString(ViewData["token"]);
+    string mobilePhone = Convert.ToString(ViewData["mobilePhone"]);
+}
+<!--页头-->
+<header class="pageHeader w100 pr tc overflowH">
+    <a class="returnBtn" id="returnBtn"></a>
+    <b class="f36 FontColor1">设置密码</b>
+    <a href="/" target="_self" class="gotoHomeBtn"></a>
+</header>
+<!--页头 END-->
+<!--表单内容-->
+<div class="regForm w100 boxSizingB">
+    <form>
+        @if (isShowEmail)
+        {
+		<!--填写电子邮箱-->
+            <div class="regWrap regWrapP w100  whiteOnLine f30 FontColor3 mt15 bgColor3 displayBox" style="display:none">
+                <label>电子邮箱</label>
+                <div class="regTxtWrap boxflex1 pr10"><input type="text" name="email" id="email" class="regTxt" placeholder="请输入常用电子邮箱地址" value="12345@163.com"></div>
+            </div>
+                 <!--填写推荐人手机号-->
+            <div class="regWrap regWrapP w100  whiteOnLine f30 FontColor3 mt15 bgColor3 displayBox">
+                <label>推荐人号码</label>
+                <div class="regTxtWrap boxflex1 pr10"><input type="text" name="referrerNumber" id="referrerNumber" class="regTxt" placeholder="无推荐人不赠酒豆" maxlength="32" value="@mobilePhone"></div>
+            </div>
+		<!--填写电子邮箱 END-->
+            <input type="hidden" id="token" value="@token" />
+        }
+
+
+
+        <!--填写登录密码-->
+        <div class="regWrap regWrapP w100  whiteOnLine f30 FontColor3 mt15 bgColor3 displayBox">
+            <label>登录密码</label>
+            <div class="regTxtWrap boxflex1 pr10"><input type="password" name="pwd" id="pwd" class="regTxt" placeholder="请输入登录密码" maxlength="32"></div>
+        </div>
+        <!--填写登录密码 END-->
+        <!--填写确认密码-->
+        <div class="regWrap regWrapP w100  whiteOnLine f30 FontColor3 mt15 bgColor3 displayBox">
+            <label>确认密码</label>
+            <div class="regTxtWrap boxflex1 pr10"><input type="password" name="pwd2" id="pwd2" class="regTxt" placeholder="请再次输入密码" maxlength="32"></div>
+        </div>
+        <!--填写确认密码 END-->
+        <p class="mt5 f24 FontColor3">密码应为6-32位数字、字母、符号两种以上组合</p>
+        <!--按钮-->
+        <a class="btn defaultBtn mt20" id="submitBtn">
+            @if (isShowEmail)
+            {<text>注册</text>}
+            else
+            {<text>确定</text>}
+    </a>
+    <!--按钮 END-->
+</form>
+</div>
+<!--表单内容END-->

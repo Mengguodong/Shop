@@ -1,0 +1,311 @@
+﻿@model SFO2O.Admin.Models.PagedList<SFO2O.Admin.Models.Refund.RefundOrderListInfo>
+@{
+    Layout = null;
+}
+
+<div class="shangpsh">
+    <table style="width:100%;" class="f15 bor bg_fff posRT">
+        <tr class="bg_ebebeb color_838383">
+            <th width="146"></th>
+            <th width="180">退款單數</th>
+            <th width="180">退款商品數</th>
+            <th width="400">退款單金額</th>
+        </tr>
+
+        @if (Model != null && Model.TotalObject != null)
+        {
+            <tr>
+                <td><p class="pd_l10 pd_r10 pd_t15 pd_b10  t_c">合計</p></td>
+                <td><p class="pd_l10 pd_r10 pd_t15 pd_b10 t_c">@Model.TotalObject.TotalCount</p></td>
+                <td><p class="pd_l10 pd_r10 pd_t15 pd_b10  t_c">@Model.TotalObject.ProductQuantity</p></td>
+                <td><p class="pd_l10 pd_r10 pd_t15 pd_b10  t_c">$@Model.TotalObject.RmbTotalAmount</p></td>
+            </tr>
+        }
+
+    </table>
+</div>
+<div class="tongji_title mg_t30 clearfix"><span class="tongji_title_l f_l mg_t5">退款單列表</span><a id="export" href="javascript:void(0)" class="btn_daochu f_l mg_l20 f12 ftfml_sun">導出</a></div>
+<div class="mg_t5">
+    <ul class="check_title clearfix">
+        <li class="current"><a href="javascript:void(0);" class="clearfix" code="1"><span>大陸地區退款單</span><i></i></a></li>
+        <li class=""><a href="javascript:void(0);" class="clearfix" code="2"><span>香港地區退款單</span><i></i></a></li>
+    </ul>
+    <div class="wrap_yisc bor_bg mg_r10" style="margin-bottom:0; border-bottom:none;">
+        <table class="bg_fff f15 t_c table_bor vtop" style="position:relative; width:1700px;">
+            <tbody>
+                <tr class="t_c bg_f8f8f8 table_lineH43">
+                    <th width="158">訂單號</th>
+                    <th width="128">買家</th>
+                    <th width="188">退款單號</th>
+                    <th width="112">生成時間</th>
+                    <th width="100">退款類型</th>
+                    <th width="110">賣家賬號</th>
+                    <th width="150">SKU</th>
+                    <th width="320">商品</th>
+                    <th width="102">商品金額</th>
+                    <th width="102">關稅</th>
+                    <th width="102">退款金額</th>
+                    <th width="90">狀態</th>
+                    <th width="90">操作</th>
+                </tr>
+                @if (Model != null && Model.ContentList != null && Model.ContentList.Count > 0)
+                {
+                    var orderCode = "";
+                    for (int i = 0; i < Model.ContentList.Count; i++)
+                    {
+                        var c = Model.ContentList[i];
+                        if (c.OrderCode != orderCode)
+                        {
+                            var refundCount = Model.ContentList.Skip(i).TakeWhile(l => l.OrderCode == c.OrderCode).Count();
+                            var valign = "";
+                            if (refundCount > 1)
+                            {
+                                valign = " style=vertical-align:middle";
+                            }
+                            <tr class="lineH22">
+                                <td class="bor_none_l" @valign rowspan="@refundCount"><p class="pd10">@c.OrderCode</p></td>
+                                <td class="bor_none_l" @valign rowspan="@refundCount"><p class="pd10">@c.BuyerName</p></td>
+                                <td class="bor_none_r t_l"><p class="pd10">@c.RefundCode</p></td>
+                                <td class="bor_none_r bor_none_l"><p class="pd10">@c.CreateTime.ToString("yyyy-MM-dd") <em class="col_999">@c.CreateTime.ToString("HH:mm:ss")</em></p></td>
+                                <td class="bor_none_r bor_none_l"><p class="pd10">@(SFO2O.Admin.Common.EnumUtils.GetEnumDescription((SFO2O.Admin.Models.RefundType)c.RefundType))</p></td>
+                                <td class="bor_none_r bor_none_l t_l"><p class="pd10">@c.SellerName</p></td>
+                                <td class="bor_none_r bor_none_l"><p class="pd10">@c.Sku</p></td>
+                                <td class="t_l bor_none_r bor_none_l">
+                                    <div class="clearfix">
+                                        <a href="@Url.Action("ProductInfoDetail","Product",new {spu = c.Spu})" target="_blank"><img src="@(SFO2O.Admin.Businesses.ConfigHelper.ImageServer + c.ProductImgPath.Replace(".jpg", "_180.jpg").Replace(".png", "_180.png").Replace(".jpeg", "_180.jpeg"))" style="width:80px;height:80px;" class="f_l mg10" /></a>
+                                        <p class="pd_r10 pd_t10 mg_b5 substr"><a href="@Url.Action("ProductInfoDetail","Product",new {spu = c.Spu})" target="_blank" class="hover_color">@(c.ProductName)</a></p>
+                                        @if (!string.IsNullOrEmpty(c.MainDicValue))
+                                        {
+                                            <p class="f14 col_999">@c.MainDicValue：@c.MainValue</p>
+                                        }
+                                        @if (!string.IsNullOrEmpty(c.SubDicValue))
+                                        {
+                                            <p class="f14 col_999 mg_b10">@c.SubDicValue：@c.SubValue</p>
+                                        }
+                                    </div>
+                                </td>
+                                <td class="bor_none_r bor_none_l t_r"><p class="pd10">￥@c.RmbProductAmount.ToString("f2")</p></td>
+                                <td class="bor_none_r bor_none_l t_r"><p class="pd10">￥@c.RmbDutyAmount.ToString("f2")</p></td>
+                                <td class="bor_none_r bor_none_l t_r"><p class="pd_l10 pd_r10 pd_t10 col_000">￥@c.RmbTotalAmount.ToString("f2")</p></td>
+                                <td class="bor_none_r bor_none_l t_l"><p class="pd10 col_000">@(SFO2O.Admin.Common.EnumUtils.GetEnumDescription((SFO2O.Admin.Models.RefundStatus)c.RefundStatus))</p></td>
+                                <td class="bor_none_r bor_none_l">
+                                    <p class="pd10">
+                                        <a href="@Url.Action("RefundDetail", "Refund", new { refundCode = c.RefundCode })" class="col_link block" target="_blank">查看详情</a>
+                                        @if (Convert.ToBoolean(ViewBag.IsFinance))
+                                        {
+                                            if (c.RefundStatus == 3)
+                                            {
+
+                                                <a href="javascript:void(0);" onclick="showRefundDiv('@c.RefundCode','@c.RmbTotalAmount');" class="col_link block">退款</a>
+                                            }
+                                            if (c.RefundStatus == 4)
+                                            {
+
+                                                <a href="javascript:void(0);" onclick="showRefundInfoDiv('@c.RefundCode');" class="col_link block">查看退款</a>
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            if (c.RefundStatus == 1)
+                                            {
+
+                                                <a href="@Url.Action("AuditRefundDetail", "Refund", new { refundCode = c.RefundCode })" class="col_link block" target="_self">審核</a>
+                                            }
+                                            if (c.RefundStatus == 2)
+                                            {
+
+                                                <a href="javascript:void(0);" onclick="showPickUpDiv('@c.RefundCode');" class="col_link block">上門取件</a>
+                                            }
+                                        }
+
+                                    </p>
+                                </td>
+                            </tr>
+                            foreach (var r in Model.ContentList.Skip(i + 1).TakeWhile(l => l.OrderCode == c.OrderCode && l.RefundCode != c.RefundCode))
+                            {
+                                <tr class="lineH22">
+                                    <td class="bor_none_r t_l"><p class="pd10">@r.RefundCode</p></td>
+                                    <td class="bor_none_r bor_none_l"><p class="pd10">@r.CreateTime.ToString("yyyy-MM-dd") <em class="col_999">@r.CreateTime.ToString("HH:mm:ss")</em></p></td>
+                                    <td class="bor_none_r bor_none_l"><p class="pd10">@(SFO2O.Admin.Common.EnumUtils.GetEnumDescription((SFO2O.Admin.Models.RefundType)r.RefundType))</p></td>
+                                    <td class="bor_none_r bor_none_l t_l"><p class="pd10">@r.SellerName</p></td>
+                                    <td class="bor_none_r bor_none_l"><p class="pd10">@r.Sku</p></td>
+                                    <td class="t_l bor_none_r bor_none_l">
+                                        <div class="clearfix">
+                                            <a href="@Url.Action("ProductInfoDetail","Product",new {spu = r.Spu})" target="_blank"><img src="@(SFO2O.Admin.Businesses.ConfigHelper.ImageServer+r.ProductImgPath.Replace(".jpg","_180.jpg").Replace(".png","_180.png").Replace(".jpeg","_180.jpeg"))" style="width:80px;height:80px;" class="f_l mg10" /></a>
+                                            <p class="pd_r10 pd_t10 mg_b5 substr"><a href="@Url.Action("ProductInfoDetail","Product",new {spu = r.Spu})" target="_blank" class="hover_color">@c.ProductName </a></p>
+                                            @if (!string.IsNullOrEmpty(r.MainDicValue))
+                                            {
+                                                <p class="f14 col_999">@r.MainDicValue：@r.MainValue</p>
+                                            }
+                                            @if (!string.IsNullOrEmpty(r.SubDicValue))
+                                            {
+                                                <p class="f14 col_999 mg_b10">@r.SubDicValue：@r.SubValue</p>
+                                            }
+                                        </div>
+                                    </td>
+                                    <td class="bor_none_r bor_none_l t_r"><p class="pd10">￥@r.RmbProductAmount.ToString("f2")</p></td>
+                                    <td class="bor_none_r bor_none_l t_r"><p class="pd10">￥@r.RmbDutyAmount.ToString("f2")</p></td>
+                                    <td class="bor_none_r bor_none_l t_r"><p class="pd_l10 pd_r10 pd_t10 col_000">￥@r.RmbTotalAmount.ToString("f2")</p></td>
+                                    <td class="bor_none_r bor_none_l  t_l"><p class=" pd10 col_000">@(SFO2O.Admin.Common.EnumUtils.GetEnumDescription((SFO2O.Admin.Models.RefundStatus)r.RefundStatus))</p></td>
+                                    <td class="bor_none_r bor_none_l">
+                                        <p class="pd10">
+                                            <a href="@Url.Action("RefundDetail", "Refund", new { refundCode = r.RefundCode })" class="col_link block" target="_blank">查看详情</a>
+                                            @if (Convert.ToBoolean(ViewBag.IsFinance))
+                                            {
+                                                if (r.RefundStatus == 3)
+                                                {
+
+                                                    <a href="javascript:void(0);" onclick="showRefundDiv('@r.RefundCode','@r.RmbTotalAmount');" class="col_link block">退款</a>
+                                                }
+                                                if (r.RefundStatus == 4)
+                                                {
+
+                                                    <a href="javascript:void(0);" onclick="showRefundInfoDiv('@r.RefundCode');" class="col_link block">查看退款</a>
+                                                }
+
+                                            }
+                                            else
+                                            {
+                                                if (r.RefundStatus == 1)
+                                                {
+
+                                                    <a href="@Url.Action("AuditRefundDetail", "Refund", new { refundCode = r.RefundCode })" class="col_link block">審核</a>
+                                                }
+                                                if (r.RefundStatus == 2)
+                                                {
+
+                                                    <a href="javascript:void(0);" onclick="showPickUpDiv('@r.RefundCode');" class="col_link block">上門取件</a>
+                                                }
+                                            }
+
+                                        </p>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                        orderCode = c.OrderCode;
+
+                    }
+
+
+                }
+                else
+                {
+                    <tr>
+                        <td class="bor_none_l" colspan="13">
+                            <p class="pd_l30 t_l mg_t20 mg_b20 color_ee7a01 color_green">沒有符合查詢條件的退款單！</p>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="page pagination" id="pager">
+
+    </div>
+</div>
+<div class="js_win_show win_wrap f16" style="display: none; z-index: 9999; position: absolute;" id="pickUpDiv">
+    <div class="win_top clearfix"> <span class="f_l mg_l20">物流信息</span><a href="javascript:void(0);" title="關閉" class="js_win_cancel win_close f_r"></a> </div>
+    <table class="f15 mg_t20 mg_r30 mg_l30 mg_b10 lineH54">
+        <tr>
+            <td class="t_c" width="90">物流公司</td>
+            <td>
+                <select name="ExpressCompany" style="width:268px;" id="ExpressCompany">
+                    <option value="1">顺丰快递</option>
+                </select>
+
+            </td>
+        </tr>
+        <tr>
+            <td class="t_c vtop" width="90">物流單號</td>
+            <td><div style="height:77px;margin-top:6px;"><input type="text" class="fff_bor h19" maxlength="20" style="width:250px;padding-top:9px;padding-bottom:10px;" id="ExpressList" name="ExpressList" /><input type="hidden" id="RefundCodeE" name="RefundCodeE" /><p class="wrong_tips color_red t_l " id="expressListError"></p></div></td>
+        </tr>
+    </table>
+    <div class="win_btm f18 t_c pd_b20"><a href="javascript:void(0);" class="js_win_cancel win_btn btn_white w135">取 消</a><a href="javascript:void(0);" class="win_btn btn_green mg_l40 w135" id="pickUpSubmit">確 定</a></div>
+</div>
+<div class="js_win_show win_wrap f16" style="display: none; z-index: 9999; position: absolute;" id="refundDiv">
+    <div class="win_top clearfix"> <span class="f_l mg_l20">退款信息</span><a href="javascript:void(0);" title="關閉" class="js_win_cancel win_close f_r"></a> </div>
+    <table class="f15 mg_t20 mg_r30 mg_l30 mg_b20 lineH54">
+        <tr>
+            <td class="t_r pd_r10" width="">退款金額</td>
+            <td><div class="tc_money t_c">￥<em id="RmbTotalAmount"></em></div><input type="hidden" id="RefundCodeR" name="RefundCodeR" /> </td>
+        </tr>
+        <tr>
+            <td class="t_r pd_r10" width="">退款時間</td>
+            <td>
+
+                <input id="SettlementTime" name="SettlementTime" class="inputdp w70 Wdate fff_bor"  type=" text" value="@DateTime.Now.ToString("yyyy-MM-dd")" style="background-position: 200px center; float: left; font-size: 16px; height: 40px; padding-left: 10px;width: 214px;" onfocus="WdatePicker({ minDate: '%y-%M-%d', vel: 'SettlementTime', isShowClear: true, isShowOK: true, isShowToday: true })">
+
+            </td>
+        </tr>
+        <tr>
+            <td class="t_r pd_r10" width="">請選擇付款方式</td>
+            <td>
+                <select name="PayPlatform" style="width:240px;" id="PayPlatform" disabled="disabled">
+                    <option value="1">易票联</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="t_r vtop pd_r10" width="128px;">付款流水編號</td>
+            <td>
+                <div style="height:77px;">
+                    <input type="text" class="fff_bor h19 f15 col_464646" maxlength="20" style="width:206px;padding-top:9px;padding-bottom:10px;" id="TradeCode" name="TradeCode" placeholder="請輸入" /><input type="hidden" id="RefundCodeER" name="RefundCodeER" /><p class="wrong_tips color_red t_l " id="tradeCodeError"></p>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div class="win_btm f18 t_c pd_b20"><a href="javascript:void(0);" class="js_win_cancel win_btn btn_white w135">取 消</a><a href="javascript:void(0);" id="refundSubmit" class="win_btn btn_green mg_l40 w135">確 定</a></div>
+</div>
+
+<div class="js_win_show win_wrap f16" style="display: none; z-index: 9999; position: absolute;" id="refundInfoDiv">
+    <div class="win_top clearfix"> <span class="f_l mg_l20">退款信息</span><a href="javascript:void(0);" title="關閉" class="js_win_cancel_norefesh win_close f_r"></a> </div>
+    <table class="f15 mg_t20 mg_r30 mg_l30 mg_b20 lineH54">
+        <tr>
+            <td class="t_r pd_r10" width="">退款金額</td>
+            <td><div class="tc_money t_c">￥<em id="rRmbTotalAmount"></em></div></td>
+        </tr>
+        <tr>
+            <td class="t_r pd_r10" width="">退款時間</td>
+            <td>
+
+                <input id="rSettlementTime" name="rSettlementTime" class="inputdp w70 Wdate fff_bor"  type=" text" value="@DateTime.Now.ToString("yyyy-MM-dd")" style="background-position: 200px center; float: left; font-size: 16px; height: 38px; padding-left: 10px;width: 214px;" onfocus="WdatePicker({ minDate: '%y-%M-%d', vel: 'SettlementTime', isShowClear: true, isShowOK: true, isShowToday: true })">
+
+            </td>
+        </tr>
+        <tr>
+            <td class="t_r pd_r10" width="">請選擇付款方式</td>
+            <td>
+
+                <select name="rPayPlatform" style="width:240px;" id="rPayPlatform" disabled="disabled">
+                    <option value="1">易票联</option>
+                </select>
+
+            </td>
+        </tr>
+        <tr>
+            <td class="t_r vtop pd_r10" width="128px;">付款流水編號</td>
+            <td>
+                <div>
+                    <input type="text" class="fff_bor h19 f15 col_464646" style="width:206px;padding-top:9px;padding-bottom:10px;" id="rTradeCode" name="rTradeCode" placeholder="請輸入" />
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div class="win_btm f18 t_c pd_b20"><a href="javascript:void(0);" class="js_win_cancel_norefesh win_btn btn_white w135">取 消</a><a href="javascript:void(0);" class="js_win_cancel_norefesh win_btn btn_green mg_l40 w135">確 定</a></div>
+</div>
+<div class="js_win_show f16" style="display: none; z-index: 9999;width:360px; position: absolute; background:#fff" id="msgTipDiv">
+    <div class="win_top clearfix"> <span class="f_l mg_l20">操作提示</span><a href="javascript:void(0);" title="關閉" class=" js_win_cancel win_close f_r"></a> </div>
+    <div class="win_cont pd_l20 pd_r20">
+        <p class="t_c pd_t40 pd_b30"><span id="msgTips"></span></p>
+    </div>
+    <div class="win_btm f18 t_c pd_b20"><a href="javascript:void(0);" class="js_win_cancel win_btn btn_green w135">確 定</a></div>
+</div>
+<input type="hidden" id="pageIndex" value="@Model.CurrentIndex" />
+<input type="hidden" id="recordCount" value="@Model.RecordCount" />
+<script src="~/Scripts/Refund/RefundList.js?@ViewBag.JsAndCssVersion"></script>

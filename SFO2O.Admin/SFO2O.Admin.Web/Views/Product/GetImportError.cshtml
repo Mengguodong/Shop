@@ -1,0 +1,26 @@
+﻿@model IEnumerable<SFO2O.Admin.Models.Product.ImportErrorModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="cont_right_crumb"><span class="homepage"></span>&gt; 商品管理 &gt; 商品審核</div>
+<div class="w931">
+    <div class="tongji_title mg_t20"><span class="tongji_title_l">報備信息導入失敗詳情</span></div>
+    <table class="shangpsh f16 bor bg_fff posRT">
+        <tr class="lineH36">
+            <th width="80">序號</th>
+            <th width="300">SKU編號</th>
+            <th width="550">失敗原因</th>
+        </tr>
+        @foreach (var error in Model)
+        {
+            <tr class="lineH36 t_c">
+                <td>@error.RowNumber</td>
+                <td>@error.sku</td>
+                <td>@error.message</td>
+            </tr>
+        }
+    </table>
+    <div class="zanc_shangc t_c pd_t20 pd_b20"><a href="/Product/ProductAuditingIndex" class="btn_white btn_w240">返 回</a></div>
+</div>

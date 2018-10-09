@@ -1,0 +1,13 @@
+﻿.overlay {
+    background: #000;
+    filter: alpha(opacity=50); /* IE的透明度 */
+    opacity: 0.5;  /* 透明度 */
+    display: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 6000; /* 此处的图层要大于页面 */
+    display:none;
+}

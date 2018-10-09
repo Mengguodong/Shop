@@ -1,0 +1,91 @@
+﻿@charset "utf-8";
+.indexNav{
+	background: #F2F2F2;
+	padding: 20px 0;
+}
+.indexNav a img{
+	display: inline-block;
+	width: 100%;
+}
+.indexTitle{
+	background: #fff;
+	margin-top: 1%;
+}
+.indexTitle b{
+	position: relative;
+	top: 25px;
+	background: #fff;
+	padding: 5px 10px;
+	z-index: 2;
+	font-size: 26px;
+    font-weight: normal;
+    color: #447EBE;
+}
+.sub1{
+	widows: 100%;height: 20px;background: #fff;
+}
+.bline{
+	display: block;
+	border-bottom: 1px solid #ccc;
+}
+.indexHotPro {
+	/*padding: 20px 0;*/
+ 	border-bottom: 1px solid #ccc;
+    box-shadow: 0px 2px 2px 0 #ccc;
+}
+.indexHotPro2{
+	margin-bottom: 20px;
+}
+.indexHotPro .item .price, .indexHotPro .item .title{
+	font-size: 16px;
+}
+.indexHotPro .item img{
+	/*border: 1px solid #ccc;*/
+}
+.indexHotPro .hotWine{
+	/*margin-left: 20px;*/
+}
+.indexHotPro .hotWine .imgBox{
+	width: 60%;
+}
+.indexHotPro .hotWine .title{
+	text-align: left;
+}
+footer{
+	    border-top-width: 1px;
+    border-top-style: solid;
+}
+.indexFooter{
+	background: #fff;
+	padding: 14px 0;
+	position: fixed;
+	bottom: 0;
+	overflow: hidden;
+	width: 100%;
+	z-index: 20;
+	max-width: 640px;
+}
+.indexFooter a{
+	display: inline-block;
+	width: 24%;
+}
+.indexFooter a span img{
+	display: inline-block;
+	/*width: 30%;*/
+	width: 32px;
+	height: 32px;
+}
+@media screen and (max-width: 768px) {
+   .indexHotPro .item .price, .indexHotPro .item .title{
+	font-size: 12px;
+}
+.indexTitle b{
+	font-size: 20px;
+}
+.indexFooter{
+	padding: 7px 0;
+}
+.indexHotPro2{
+	margin-bottom: 20px;
+}
+}

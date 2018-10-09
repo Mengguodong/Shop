@@ -1,0 +1,6 @@
+D:\LoveWine\SFO2O.M\SFO2O.References\bin\Debug\SFO2O.References.dll.config
+D:\LoveWine\SFO2O.M\SFO2O.References\bin\Debug\SFO2O.References.dll
+D:\LoveWine\SFO2O.M\SFO2O.References\bin\Debug\SFO2O.References.pdb
+D:\LoveWine\SFO2O.M\SFO2O.References\obj\Debug\SFO2O.References.dll
+D:\LoveWine\SFO2O.M\SFO2O.References\obj\Debug\SFO2O.References.pdb
+D:\LoveWine\SFO2O.M\SFO2O.References\obj\Debug\SFO2O.References.csprojResolveAssemblyReference.cache

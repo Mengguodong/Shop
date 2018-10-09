@@ -1,0 +1,44 @@
+﻿@using SFO2O.M.ViewModel.Account
+@using SFO2O.Utility.Extensions
+@model LoginUserModel
+@{
+    Layout = null;
+    bool isShowGoBak = ViewData["isShowGoBak"].As(false);
+}
+<!--页脚-->
+<div id="footerWrap">
+    <p class="loginArea f24 FontColor3 mb20 mt20 w95p">
+
+        @if (System.Web.HttpContext.Current.Session == null
+                || System.Web.HttpContext.Current.Session[SFO2O.BLL.Common.ConstClass.SessionKeyMLoginUser] == null)
+        {
+
+                <!--未登录状态显示-->
+            <a class="f24 FontColor3 mr10 ml5" href="@Url.Action("Login","Account",new { Return_Url = Request.Url.AbsoluteUri })" target="_self">登录</a><text>|</text>
+            <a class="f24 FontColor3 ml10" href="@Url.Action("Register","Account")" target="_self">注册</a>
+                <!--未登录状态显示 END-->
+        }
+        else
+        {
+                <!--已登录状态显示-->
+            <a class="f24 FontColor3" href="@Url.Action("SignOut","Account")">退出</a>
+                <!--已登录状态显示 END-->
+        }
+        @if (isShowGoBak)
+        {
+            <a href="javascript:FSH.goTop()" class="fr f24 FontColor3 mr5">回到顶部</a>
+        }
+    </p>
+    <footer class="w95p pb10 tc grayOnLine">
+        <p class="links FontColor3 f24 mt20" style="margin-bottom:7px;">
+            <a class="f24 FontColor3 mr10" href="@Url.Action("QuestionList","Help")" target="_self">常见问题</a>|
+            <a class="f24 FontColor3  ml10 mr10" href="@Url.Action("AboutUs","Help")" target="_self">关于我们</a>|
+            <a class="f24 FontColor3 mr10 ml10" href="@Url.Action("ServiceList","Help")" target="_self">配送及售后服务</a>|
+            <a class="f24 FontColor3 ml10" href="@Url.Action("TermsList","Help")" target="_self">条款</a>
+        </p>
+        @*<p class="f24 FontColor3" style="margin-bottom:7px;">爱玖网客服电话：<a class="FontColor6" href="tel:400-869-2929">400-869-2929</a></p>*@
+        <p class="copyright f24 FontColor4">@DateTime.Now.Year© 北京梵禹科技有限公司版权所有</p>
+        <p class="copyright f24 FontColor4">京ICP备17011056号-1</p>
+    </footer>
+</div>
+<!--页脚 END-->

@@ -1,0 +1,194 @@
+﻿@using SFO2O.Supplier.Models;
+@using SFO2O.Supplier.Common;
+
+@{
+    ViewBag.Title = "品牌列表";
+    ViewBag.PageName = "BrandList";
+    IList<ProvinceModel> provinceList = ViewBag.ProvinceList;
+    SupplierBrandModel brand = new SupplierBrandModel();
+    if (ViewBag.Brand != null)
+    {
+        brand = ViewBag.Brand;
+    }
+    StoreModel store = new StoreModel();
+    if (ViewBag.Store != null)
+    {
+        store = ViewBag.Store;
+    }
+}
+
+<div class="center_cont_right">
+    <div class="cont_right_crumb"><span class="homepage"></span>&gt; 品牌管理 &gt; 品牌列表 &gt;@brand.NameHK</div>
+    <div class="w931">
+        <div class="mg_t20">
+            <div class="product_right">
+                <input type="hidden" id="Id" value="@store.Id" />
+                <input type="hidden" id="brandId" value="@brand.Id" />
+                <table class="mg_t5">
+                    <tbody>
+                        <tr>
+                            <th class="product_title" rowspan="7">
+                                <p class="pd_t15">门店地址</p>
+                            </th>
+                            <td class="w3"></td>
+                            <td colspan="2" height="18"></td>
+                        </tr>
+                        <tr>
+                            <td class="w3"></td>
+                            <td class="t_r" width="150"><i class="color_red vmiddle bitian">*</i><span class="tdspan">门店所属区域：</span></td>
+                            <td>
+
+                                <div class="select_pinpai f_l w140">
+                                    <select id="areaId">
+                                        <option value="0">请选择</option>
+                                        @foreach (var item in provinceList)
+                                        {
+                                            var province = item.ProvinceName == "香港岛" ? "香港" : item.ProvinceName;
+                                            if (item.ProvinceId == store.AreaId)
+                                            {
+                                                <option value="@item.ProvinceId" selected="selected">@province</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.ProvinceId">@province</option>
+                                            }
+                                        }
+                                    </select>
+                                    <p id="areaErr" class="wrong_tips color_red"></p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="w3"></td>
+                            <td class="t_r vtop pd_t10"><i class="color_red vmiddle bitian">*</i><span class="tdspan">门店地址：</span></td>
+                            <td>
+                                <div class="wrap_window  add_success_wrap mg_t20 mg_b20" style="padding: 0; width: 570px;">
+                                    <table class="f15" style="width: 570px;" id="companyTable">
+                                        <tbody>
+                                            <tr>
+                                                <td class="vtop t_c icon_f bor_none_b" width="33">
+                                                    <p class="left"></p>
+                                                </td>
+                                                <td>
+                                                    <div class="div_area" style="width: 510px;">
+                                                        <textarea id="AddressHK">@store.AddressHK</textarea>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="">
+                                                <td class="vtop t_c icon_j bor_none_b bor_none_t">
+                                                    <p class="left" style="margin-top: 8px;"></p>
+                                                </td>
+                                                <td>
+                                                    <div class="div_area" style="width: 510px;">
+                                                        <textarea id="AddressCN">@store.AddressCN</textarea>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="vtop t_c icon_e bor_none_t">
+                                                    <p class="left"></p>
+                                                </td>
+                                                <td>
+                                                    <div class="div_area" style="width: 510px;">
+                                                        <textarea id="AddressEN">@store.AddressEN</textarea>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <p id="addressErr" class="wrong_tips color_red"></p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="w3"></td>
+                            <td colspan="2" height="18"></td>
+                        </tr>
+                    </tbody>
+
+                </table>
+                <div class="zanc_shangc t_c pd_t20 pd_b20"><a href="javascript:void(0)" onclick="SaveAddress()" class="btn_green btn_w240">完 成</a> </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $("#areaId").chosen({ disable_search: true, width: "140px;" });
+    })
+
+    function SaveAddress() {
+        var json = {};
+        var cusReps = new Array();
+
+        json.Id = $("#Id").val();
+        json.BrandId = $("#brandId").val();
+        json.AreaId = $("#areaId").val();
+        json.AddressCN = $("#AddressCN").val();
+        json.AddressEN = $("#AddressEN").val();
+        json.AddressHK = $("#AddressHK").val();
+
+        if (json.AreaId == 0) {
+            $("#areaErr").html("请选择门店所属区域").show();
+            return false;
+        }
+
+        if (json.AddressCN == "") {
+            $("#addressErr").html("请输入简体中文版门店地址").show();
+            return false;
+        }
+        if (json.AddressCN.length > 500) {
+            $("#addressErr").html("简体中文版门店地址最大不超过500个字符").show();
+            return false;
+        }
+        if (json.AddressHK == "") {
+            $("#addressErr").html("请输入繁体中文版门店地址").show();
+            return false;
+        }
+        if (json.AddressHK.length > 500) {
+            $("#addressErr").html("繁体中文版门店地址最大不超过500个字符").show();
+            return false;
+        }
+        if (json.AddressEN == "") {
+            $("#addressErr").html("请输入英文版门店地址").show();
+            return false;
+        }
+        if (json.AddressEN.length > 500) {
+            $("#addressErr").html("英文版门店地址最大不超过500个字符").show();
+            return false;
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: "/Brand/SaveAddress",
+            data: "address=" + escape(JSON.stringify(json)),
+            async: true,
+            success: function (data) {
+                if (data.result) {
+                    $.dialog({
+                        width: 470,
+                        title: "提示",
+                        content: "门店地址保存成功",
+                        buttons: [
+                            {
+                                text: "确定",
+                                onClick: function () {
+                                    window.location.href = "/Brand/StoreList?brandId=" + $("#brandId").val();
+                                    return true;
+                                }
+                            }]
+                    });
+
+                }
+                else {
+                    $.dialog("门店地址保存失败！");
+                }
+            }
+        });
+    }
+
+
+</script>

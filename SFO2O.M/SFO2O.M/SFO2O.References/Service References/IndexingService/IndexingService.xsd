@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/SFO2O.Service.Model.Indexing" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SFO2O.Service.Model.Indexing" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://wcfdemo.sfo2o.com/IndexingService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="ProductRequestDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseRequestDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CategoryId" nillable="true" type="xs:string" />
+          <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="FilterQuery" nillable="true" type="q1:ArrayOfKeyValueOfstringstring" />
+          <xs:element minOccurs="0" name="LanguageVersion" type="xs:int" />
+          <xs:element minOccurs="0" name="SkuMainValue" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SkuSubValue" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ProductRequestDTO" nillable="true" type="tns:ProductRequestDTO" />
+  <xs:complexType name="BaseRequestDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Descending" type="xs:boolean" />
+      <xs:element minOccurs="0" name="KeyWord" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrderBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Page" type="xs:int" />
+      <xs:element minOccurs="0" name="RowsCount" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BaseRequestDTO" nillable="true" type="tns:BaseRequestDTO" />
+  <xs:complexType name="ProductResultDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="HasError" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ProductList" nillable="true" type="tns:ArrayOfProductDTO" />
+      <xs:element minOccurs="0" name="TotalCount" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductResultDTO" nillable="true" type="tns:ProductResultDTO" />
+  <xs:complexType name="ArrayOfProductDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductDTO" nillable="true" type="tns:ProductDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductDTO" nillable="true" type="tns:ArrayOfProductDTO" />
+  <xs:complexType name="ProductDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CategoryIdSource" type="xs:int" />
+      <xs:element minOccurs="0" name="ImagePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductId" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SupplierID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductDTO" nillable="true" type="tns:ProductDTO" />
+</xs:schema>

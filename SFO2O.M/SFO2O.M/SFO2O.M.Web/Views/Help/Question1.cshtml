@@ -1,0 +1,65 @@
+﻿@using SFO2O.M.Controllers
+@using SFO2O.M.Controllers.Common
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.ViewModel.Product
+@using SFO2O.Utility.Extensions 
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "会员注册问题 ";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = false;
+}
+@section styles { 
+}
+@section scripts {
+}
+@section pageHeader {
+   <header class="pageHeader w100 pr tc overflowH">
+    <a class="returnBtn" id="returnBtn"></a>
+    <b class="f36 FontColor1">会员注册问题</b>
+</header>
+}<!-- 页头 end -->
+<dl class="problemsWrap w100 mt8 boxShadow bgColor3 f28">
+    <dt>
+        <span class="icon">问</span>为什么我要注册成为「爱玖网」的会员？成为「爱玖网」的会员有什么好处？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>只有「爱玖网」的会员才可在本网站订购独家特定商品及参与促销回馈活动。
+    </dd>
+    <dt>
+        <span class="icon">问</span>如果我忘记了登入密码怎么办？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>为保障您的账戶，我们无法看到您的密码。如果您忘记登入密码，请登录本网站「登陆」页面，按「忘记密码」，系统会自动发出《找回密码》手机短信予您，只要按照短信内提供的校验码重新设定密码后，即可重新登入您的账户。
+    </dd>
+    <dt>
+        <span class="icon">问</span>为何需要验证我的手机号码呢？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>为确认您的身份，您须要于注册前认证手机号码。校验码会以短信形式发送给您。
+    </dd>
+
+    <dt>
+        <span class="icon">问</span>如果我收不到验证码怎么办？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>如果您收不到校验码短信，可能因为以下的原因：<br>
+        －您所填写的手机号码不正确或非中华人民共和国大陆地区手机号码；<br>
+        －您所使用的电讯供应商的网路繁忙，或不支援短信功能。<br>
+        －您所填写的手机号码已用作验证其他会员账户。<br>
+    </dd    >
+    <dt>
+        <span class="icon">问</span>验证手机号码的短信需要收费吗？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>验证手机号码的短信不需要收费。
+    </dd>
+
+    <dt>
+        <span class="icon">问</span>同一个手机号码可以注册多个「爱玖网」会员帐号吗？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>每个手机号码只可以注册一个「爱玖网」会员账号。
+    </dd>
+</dl>

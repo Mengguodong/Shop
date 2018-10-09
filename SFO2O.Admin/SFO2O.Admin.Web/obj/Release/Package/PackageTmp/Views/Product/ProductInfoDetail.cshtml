@@ -1,0 +1,110 @@
+﻿@using SFO2O.Admin.Models.Enums;
+
+@model SFO2O.Admin.ViewModel.Product.ProductAuditingViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "商品詳情";
+    ViewBag.PageName = "ProductInfoList";
+    var salesTerritory = 1;
+    var dataSource = 1;
+
+    var queryparas = (SFO2O.Admin.ViewModel.Product.ProductAuditingQuyModel)ViewBag.QueryParas;
+
+    if (Model != null && Model.SpuBaseInfo != null && Model.SpuBaseInfo.Count > 0)
+    {
+        var bInfo_T = Model.SpuBaseInfo[LanguageEnum.TraditionalChinese];
+        salesTerritory = bInfo_T.SalesTerritory;
+        dataSource = bInfo_T.DataSource;
+    }
+}
+<div class="cont_right_crumb">
+    <a href="javascript:void(0)" onclick="goBack();" class="f_r btn_back t_c" id="returnBack">返回</a>
+    <span class="homepage"></span>&gt; 商品管理 &gt; 管理商品
+</div>
+<div class="w931">
+    <div class="upload_edit mg_t20">
+        @{
+            var className = "viewCommInfo";
+            var styles = String.Empty;
+            if (dataSource == 2)
+            {
+                className += " bor_bg";
+                styles = "width: 931px; padding: 10px 5px;";
+            <ul class="check_title clearfix">
+                <li class="current" id="editLi">
+                    <a class="clearfix" href="javascript:void(0);">
+                        <span>待審核商品信息</span>
+                        <i></i>
+                    </a>
+                </li>
+                <li id="onlineLi">
+                    <a class="clearfix" href="javascript:void(0);">
+                        <span>商品原始信息</span>
+                        <i></i>
+                    </a>
+                </li>
+            </ul>
+            }
+        }
+        <div class="@className" style="@styles">
+            <div id="editTab">
+                @Html.Partial("_ProductBaseInfo", Model.SpuBaseInfo)
+                @Html.Partial("_ProductProperties", Model)
+                @Html.Partial("_ProductPacking", Model.PackingInfo)
+                @Html.Partial("_ProductSysProperties", Model.SysInfo)
+                @if (salesTerritory != 2)//包含大陆
+                {
+                    @Html.Partial("_ProductCustomShowCHINA", Model.ProductCustomInfos)
+                }
+                else
+                {
+
+                    @Html.Partial("_ProductCustomShowHK", Model.ProductCustomInfos)
+                }
+                @Html.Partial("_ProductAuditLog", Model)
+            </div>
+            <div id="onlineTab" style="display: none;">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<input type="hidden" value="@ViewBag.SpuId" id="spuID" />
+
+
+<script>
+
+    $(function () {
+        $("#desT").attr("href", "../product/ShowProductDes?spu=" + $("#spuID").val() + "&languageVersion=2&isOnline=true");
+        $("#desS").attr("href", "../product/ShowProductDes?spu=" + $("#spuID").val() + "&languageVersion=1&isOnline=true");
+        $("#desE").attr("href", "../product/ShowProductDes?spu=" + $("#spuID").val() + "&languageVersion=3&isOnline=true");
+    });
+
+    function goBack() {
+        if ((navigator.userAgent.indexOf('MSIE') >= 0) && (navigator.userAgent.indexOf('Opera') < 0)) { // IE  
+            if (history.length > 0) {
+                window.history.go(-1);
+            } else {
+                window.opener = null; window.close();
+            }
+        } else { //非IE浏览器  
+            if (navigator.userAgent.indexOf('Firefox') >= 0 ||
+                navigator.userAgent.indexOf('Opera') >= 0 ||
+                navigator.userAgent.indexOf('Safari') >= 0 ||
+                navigator.userAgent.indexOf('Chrome') >= 0 ||
+                navigator.userAgent.indexOf('WebKit') >= 0) {
+
+                if (window.history.length > 1) {
+                    window.history.go(-1);
+                } else {
+                    window.opener = null; window.close();
+                }
+            } else { //未知的浏览器  
+                window.history.go(-1);
+            }
+        }
+    }
+
+</script>

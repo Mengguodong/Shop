@@ -1,0 +1,295 @@
+﻿@model SFO2O.Admin.ViewModel.Order.OrderListAndCountModel
+@{
+    Layout = null;
+
+    if (null == Model.Total)
+    {
+        Model.Total = new SFO2O.Admin.Models.Order.OrderListTotalModel();
+    }
+
+    if (null == Model.OrderList || Model.OrderList.RowCount == 0)
+    {
+        Model.OrderList = new SFO2O.Admin.ViewModel.PageOf<SFO2O.Admin.Models.Order.OrderListModel>();
+    }
+
+    var total = Model.Total;
+    var orders = Model.OrderList;
+}
+<table style="width:928px;" class="mg_t20 bor bg_fff f15 t_c table_lineH43" id="totalTable">
+    <tr class="bg_ebebeb color_838383">
+        <th width="80"></th>
+        <th width="120">訂單數</th>
+        <th width="120">商品數</th>
+        <th width="150">商品總金額</th>
+        <th width="150">實付金額</th>
+        <th width="150">單均價</th>
+    </tr>
+    <tr>
+        @{
+            if (total.ExchangeRate == 0)
+            {
+                total.ExchangeRate = 1;
+            }
+
+            var perOrderPrice = total.OrderCount == 0 ? Decimal.Zero.ToString("f2") : ((total.PaidAmount + total.CustomsDuties) / total.OrderCount).ToString("f2");
+        }
+        <td>合計</td>
+        <td>@total.OrderCount</td>
+        <td>@total.SkuCount</td>
+        <td>$@((total.PaidAmount).ToString("f2"))</td>
+        <td>$@Math.Round((total.PaidAmount + total.CustomsDuties),2).ToString("f2")</td>
+        <td>$@(perOrderPrice)</td>
+    </tr>
+</table>
+<div class="wrap_yisc mg_r10" style="margin-bottom:0; border-bottom:none;" id="orderList">
+    <div>
+        <input type="hidden" value="@orders.RowCount" id="recordCount" />
+        <input type="hidden" value="@orders.PageIndex" id="pageIndex" />
+        @{
+            if (orders.Items != null && orders.Items.Count > 0)
+            {
+                var groupOrder = orders.Items.GroupBy(p => p.OrderCode);
+
+                <table style="position:relative; width:1542px;" class="bg_fff bor f15 t_c table_bor vtop">
+                    <tbody>
+                        <tr class="t_c bg_f8f8f8 table_lineH43">
+                            <th width="158">訂單號</th>
+                            <th width="112">生成時間</th>
+                            <th width="128">買家賬號</th>
+                            <th width="352">商品名稱</th>
+                            <th width="102">SKU</th>
+                            <th width="102">單價</th>
+                            <th width="82">數量</th>
+                            <th width="112">小計</th>
+                            <th width="100">賣家</th>
+                            <th width="132">商品總金額</th>
+                            <th width="132">實付金額</th>
+                            <th width="90">狀態</th>
+                            <th width="100">操作</th>
+                        </tr>
+                        @foreach (var gd in groupOrder)
+                        {
+                            var rowSpanCount = gd.Count();
+                            var groupSupplier = gd.GroupBy(p => p.CompanyName);
+
+                            var firstGroup = groupSupplier.First();
+                            var first = firstGroup.First();
+
+                            <tr class="lineH22">
+                                <td class="bor_none_l" rowspan="@rowSpanCount">
+                                    <p class="pd10">@first.OrderCode</p>
+                                </td>
+                                <td rowspan="@rowSpanCount">
+                                    <p class="pd10">
+                                        @first.CreateTime.ToString("yyyy-MM-dd")
+                                        <em class="col_999">@first.CreateTime.ToString("HH:mm:ss")</em>
+                                    </p>
+                                </td>
+                                <td rowspan="@rowSpanCount">
+                                    <p class="pd10">@first.UserName</p>
+                                </td>
+                                <td class="t_l bor_none_r">
+                                    <div class="clearfix">
+                                        <a target="_blank" href="../Product/ProductInfoDetail?spu=@first.Spu">
+                                            @{
+                            var imgPath = "";
+                            if (!String.IsNullOrWhiteSpace(first.ImagePath))
+                            {
+                                imgPath = SFO2O.Admin.Common.ConfigHelper.ImageServer + first.ImagePath.Replace(" \\", " />/");
+                            }
+                                            }
+                                            <img src="@imgPath" class="f_l mg10" />
+                                        </a>
+                                        <div class="f_l w240">
+                                            <p class="pd_t10 mg_b5 substr"><a target="_blank" href="../Product/ProductInfoDetail?spu=@first.Spu" class="hover_color">@first.Name</a></p>
+                                            @if (!String.IsNullOrWhiteSpace(first.MainDicValue))
+                                            {
+                                                <p class="f14 col_999">@first.MainDicValue：@first.MainValue</p>
+                                            }
+
+                                            @if (!String.IsNullOrWhiteSpace(first.SubDicValue))
+                                            {
+                                                <p class="f14 col_999 mg_b10">@first.SubDicValue：@first.SubValue</p>
+                                            }
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="bor_none_r bor_none_l"><p class="pd10">@first.Sku</p></td>
+                                <td class="bor_none_r bor_none_l t_r"><p class="pd10">￥@first.PayUnitPrice.ToString("f2")</p></td>
+                                <td class="bor_none_r bor_none_l"><p class="pd10">@first.Quantity</p></td>
+                                <td class="bor_none_l t_r"><p class="pd10">￥@((first.PayUnitPrice * first.Quantity).ToString("f2"))</p></td>
+                                <td rowspan="@firstGroup.Count()">
+                                    <p class="pd_l10 pd_r10 pd_t10 t_l">@first.CompanyName</p>
+                                <td class="t_r" rowspan="@firstGroup.Count()">
+                                    <p class="pd_l10 pd_r10 pd_t10 color_red">￥@firstGroup.Sum(p => p.TotalAmount).ToString("f2")</p>
+                                    <p class="pd_l10 pd_r10 pd_b10 col_999">($ @Math.Round(firstGroup.Sum(p => p.TotalAmount1), 2).ToString("f2"))</p>
+                                </td>
+                                <td class="t_r" rowspan="@rowSpanCount">
+                                    <p class="pd_l10 pd_r10 pd_t10">￥@Math.Round(gd.Sum(p => p.PayUnitPrice * p.Quantity) + first.CustomsDuties, 2).ToString("f2")</p>
+                                    <p class="pd_l10 pd_r10 pd_b10 col_999">($ @Math.Round((gd.Sum(p => p.PayUnitPrice * p.Quantity / first.ExchangeRate) + first.CustomsDuties), 2).ToString("f2"))</p>
+                                </td>
+                                <td rowspan="@rowSpanCount">
+                                    <p class="pd10 color_red">@(SFO2O.Admin.Common.EnumUtils.GetEnumDescriptionByText(typeof(SFO2O.Admin.Models.Enums.OrderStatus), first.OrderStatus.ToString()))</p>
+                                </td>
+                                <td class="bor_none_r" rowspan="@rowSpanCount">
+                                    <p class="pd10">
+                                        <a target="_blank" href="../Order/OrderDetail?ordercode=@first.OrderCode" class="col_link">訂單詳情</a>
+                                    </p>
+                                    @if (first.OrderStatus == 2 || first.OrderStatus == 3)
+                                    {
+                                        <p class="pd10">
+                                            <a href="javascript:void(0)" onclick="ShowLogistics('@first.OrderCode')" class="col_link">查看物流</a>
+                                        </p>
+                                    }
+
+                                    @if (first.RefundQuantity > 0 && (first.OrderStatus == 3 || first.OrderStatus == 4 || first.OrderStatus == 5))
+                                    {
+                                        <p class="pd10">
+                                            <a target="_blank" href="../Refund/RefundIndex?OrderCode=@first.OrderCode" class=" col_link">查看退款單</a>
+                                        </p>
+                                    }
+                                </td>
+                            </tr>
+                            foreach (var gs in firstGroup.Skip(1))
+                            {
+
+                                var imgPath1 = "";
+                                if (!String.IsNullOrWhiteSpace(gs.ImagePath))
+                                {
+                                    imgPath1 = SFO2O.Admin.Common.ConfigHelper.ImageServer + gs.ImagePath.Replace(" \\", " />/");
+                                }
+
+                                <tr class="lineH22">
+                                    <td class="t_l bor_none_r">
+                                        <div class="clearfix">
+                                            <a target="_blank" href="../Product/ProductInfoDetail?spu=@gs.Spu"><img src="@imgPath1" class="f_l mg10" /></a>
+                                            <div class="f_l w240">
+                                                <p class="pd_t10 mg_b5 substr"><a target="_blank" href="../Product/ProductInfoDetail?spu=@gs.Spu" class="hover_color">@gs.Name</a></p>
+
+                                                @if (!String.IsNullOrWhiteSpace(gs.MainDicValue))
+                                                {
+                                                    <p class="f14 col_999">@gs.MainDicValue：@gs.MainValue</p>
+                                                }
+
+                                                @if (!String.IsNullOrWhiteSpace(gs.SubDicValue))
+                                                {
+                                                    <p class="f14 col_999 mg_b10">@gs.SubDicValue：@gs.SubValue</p>
+                                                }
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="bor_none_r bor_none_l"><p class="pd10">@gs.Sku</p></td>
+                                    <td class="bor_none_r bor_none_l t_r"><p class="pd10">￥@gs.PayUnitPrice.ToString("f2")</p></td>
+                                    <td class="bor_none_r bor_none_l "><p class="pd10">@gs.Quantity</p></td>
+                                    <td class="bor_none_l t_r"><p class="pd10">￥@((gs.PayUnitPrice * gs.Quantity).ToString("f2"))</p></td>
+                                </tr>
+                            }
+                            foreach (var gs in groupSupplier.Skip(1))
+                            {
+                                var skuFirst = gs.First();
+
+                                var imgPath1 = "";
+                                if (!String.IsNullOrWhiteSpace(skuFirst.ImagePath))
+                                {
+                                    imgPath1 = SFO2O.Admin.Common.ConfigHelper.ImageServer + skuFirst.ImagePath.Replace(" \\", " />/");
+                                }
+
+                                <tr class="lineH22">
+                                    <td class="t_l bor_none_r">
+                                        <div class="clearfix">
+                                            <a target="_blank" href="../Product/ProductInfoDetail?spu=@skuFirst.Spu"><img src="@imgPath1" class="f_l mg10" /></a>
+                                            <div class="f_l w240">
+                                                <p class="pd_t10 mg_b5 substr"><a target="_blank" href="../Product/ProductInfoDetail?spu=@skuFirst.Spu" class="hover_color">@skuFirst.Name</a></p>
+
+                                                @if (!String.IsNullOrWhiteSpace(skuFirst.MainDicValue))
+                                                {
+                                                    <p class="f14 col_999">@skuFirst.MainDicValue：@skuFirst.MainValue</p>
+                                                }
+                                                @if (!String.IsNullOrWhiteSpace(skuFirst.SubDicValue))
+                                                {
+                                                    <p class="f14 col_999 mg_b10">@skuFirst.SubDicValue：@skuFirst.SubValue</p>
+                                                }
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="bor_none_r bor_none_l"><p class="pd10">@skuFirst.Sku</p></td>
+                                    <td class="bor_none_r bor_none_l t_r"><p class="pd10">￥@skuFirst.PayUnitPrice.ToString("f2")</p></td>
+                                    <td class="bor_none_r bor_none_l"><p class="pd10">@skuFirst.Quantity</p></td>
+                                    <td class="bor_none_l t_r"><p class="pd10">￥@((skuFirst.PayUnitPrice * skuFirst.Quantity).ToString("f2"))</p></td>
+                                    <td rowspan="@gs.Count()">
+                                        <p class="pd_l10 pd_r10 pd_t10 t_l">@skuFirst.CompanyName</p>
+                                    <td class="t_r" rowspan="@gs.Count()">
+                                        <p class="pd_l10 pd_r10 pd_t10 color_red">￥@gs.Sum(p => p.TotalAmount).ToString("f2")</p>
+                                        <p class="pd_l10 pd_r10 pd_b10 col_999">($ @Math.Round(gs.Sum(p => p.TotalAmount1), 2).ToString("f2"))</p>
+                                    </td>
+                                </tr>
+
+                                foreach (var g in gs.Skip(1))
+                                {
+                                    var imgPath2 = "";
+                                    if (!String.IsNullOrWhiteSpace(g.ImagePath))
+                                    {
+                                        imgPath2 = SFO2O.Admin.Common.ConfigHelper.ImageServer + g.ImagePath.Replace(" \\", " />/");
+                                    }
+
+                                    <tr class="lineH22">
+                                        <td class="t_l bor_none_r">
+                                            <div class="clearfix">
+                                                <a target="_blank" href="../Product/ProductInfoDetail?spu=@g.Spu"><img src="@imgPath2" class="f_l mg10" /></a>
+                                                <div class="f_l w240">
+                                                    <p class="pd_t10 mg_b5 substr"><a target="_blank" href="../Product/ProductInfoDetail?spu=@g.Spu" class="hover_color">@g.Name</a></p>
+
+                                                    @if (!String.IsNullOrWhiteSpace(g.MainDicValue))
+                                                    {
+                                                        <p class="f14 col_999">@g.MainDicValue：@g.MainValue</p>
+                                                    }
+
+                                                    @if (!String.IsNullOrWhiteSpace(g.SubDicValue))
+                                                    {
+                                                        <p class="f14 col_999 mg_b10">@g.SubDicValue：@g.SubValue</p>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="bor_none_r bor_none_l"><p class="pd10">@g.Sku</p></td>
+                                        <td class="bor_none_r bor_none_l t_r"><p class="pd10">￥@g.PayUnitPrice.ToString("f2")</p></td>
+                                        <td class="bor_none_r bor_none_l"><p class="pd10">@g.Quantity</p></td>
+                                        <td class="bor_none_l t_r"><p class="pd10">￥@((g.PayUnitPrice * g.Quantity).ToString("f2"))</p></td>
+                                    </tr>
+                                }
+                            }
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <table style="position:relative; width:1542px;" class="bg_fff bor f15 t_c table_bor vtop">
+                    <tbody>
+                        <tr class="t_c bg_f8f8f8 table_lineH43">
+                            <th width="128">訂單號</th>
+                            <th width="112">生成時間</th>
+                            <th width="128">買家賬號</th>
+                            <th width="352">商品名稱</th>
+                            <th width="102">SKU</th>
+                            <th width="102">單價</th>
+                            <th width="82">數量</th>
+                            <th width="112">小計</th>
+                            <th width="100">賣家</th>
+                            <th width="132">商品總金額</th>
+                            <th width="132">關稅金額</th>
+                            <th width="90">狀態</th>
+                            <th width="100">操作</th>
+                        </tr>
+                        <tr class="lineH22">
+                            <td class="bor_none_l" colspan="13">
+                                <p class="pd_l30 t_l mg_t20 mg_b20 color_ee7a01 color_green">沒有符合查詢條件的商品！</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+        }
+
+    </div>
+</div>

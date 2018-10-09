@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AE649653-C83B-4AE0-A415-FF5F2D3A0064}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SFO2O.M.Controllers</RootNamespace>
+    <AssemblyName>SFO2O.M.Controllers</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HttpWebAdapters">
+      <HintPath>..\References\HttpWebAdapters.dll</HintPath>
+    </Reference>
+    <Reference Include="LitJson">
+      <HintPath>..\References\LitJson.dll</HintPath>
+    </Reference>
+    <Reference Include="LowercaseRoutesMVC, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LowercaseRoutesMVC.1.0.3\lib\LowercaseRoutesMVC.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SolrNet">
+      <HintPath>..\References\SolrNet.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.30506.0\lib\net40\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc.Extensions, Version=1.0.9.0, Culture=neutral, PublicKeyToken=17e35335fc9f8fc8, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Web.Mvc.Extensions.Mvc.4.1.0.9\lib\net40\System.Web.Mvc.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountController.cs" />
+    <Compile Include="ActiveController.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="FavoriteController.cs" />
+    <Compile Include="GiftCardController.cs" />
+    <Compile Include="InformationController.cs" />
+    <Compile Include="HolidayController.cs" />
+    <Compile Include="NotifyController.cs" />
+    <Compile Include="ResultNotifyController.cs" />
+    <Compile Include="SearchController.cs" />
+    <Compile Include="SharedController.cs" />
+    <Compile Include="SuperMarketController.cs" />
+    <Compile Include="TeamController.cs" />
+    <Compile Include="SplitController.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BaseControllers\BaseController.cs" />
+    <Compile Include="BaseControllers\ShoppingBaseController.cs" />
+    <Compile Include="Binder\JsonBinder.cs" />
+    <Compile Include="BrandController.cs" />
+    <Compile Include="BuyController.cs" />
+    <Compile Include="CheckOutController.cs" />
+    <Compile Include="Common\Common.cs" />
+    <Compile Include="Common\CookieManager.cs" />
+    <Compile Include="Filters\FirstOrderAuthorizeAttribute.cs" />
+    <Compile Include="Filters\NoCacheAttribute.cs" />
+    <Compile Include="HelpController.cs" />
+    <Compile Include="MyController.cs" />
+    <Compile Include="OrderController.cs" />
+    <Compile Include="PayController.cs" />
+    <Compile Include="RefundController.cs" />
+    <Compile Include="ShoppingCartController.cs" />
+    <Compile Include="CategoryController.cs" />
+    <Compile Include="Common\DomainExtension.cs" />
+    <Compile Include="Common\LoginHelper.cs" />
+    <Compile Include="Common\Message.cs" />
+    <Compile Include="Extensions\EntityExtension.cs" />
+    <Compile Include="Filters\LoginAttribute.cs" />
+    <Compile Include="HomeController.cs" />
+    <Compile Include="DemoController.cs" />
+    <Compile Include="ItemController.cs" />
+    <Compile Include="ProductController.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BaseControllers\Sfo2oBaseController.cs" />
+    <Compile Include="ShoppingCommonController.cs" />
+    <Compile Include="StoreController.cs" />
+    <Compile Include="WeixinShard.cs" />
+    <Compile Include="WeixinShardController.cs" />
+    <Compile Include="WxNotifyController.cs" />
+    <Compile Include="WxPayController.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SFO2O.BLL\SFO2O.BLL.csproj">
+      <Project>{71EA7FB4-14F9-40D4-A3C4-041AB1818EFF}</Project>
+      <Name>SFO2O.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SFO2O.M.ViewModel\SFO2O.M.ViewModel.csproj">
+      <Project>{539E2BBB-84BA-45B1-A0AF-9DDA53B84A1E}</Project>
+      <Name>SFO2O.M.ViewModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SFO2O.Model\SFO2O.Model.csproj">
+      <Project>{4F4F1395-7148-429F-A636-92F2DC353670}</Project>
+      <Name>SFO2O.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SFO2O.Payment.BLL\SFO2O.Payment.BLL.csproj">
+      <Project>{09cfe6cd-eaf6-4ac2-bd1a-cdb6d8499c39}</Project>
+      <Name>SFO2O.Payment.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SFO2O.References\SFO2O.References.csproj">
+      <Project>{504c3a27-363b-486c-939b-2ebff6302432}</Project>
+      <Name>SFO2O.References</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SFO2O.Utility\SFO2O.Utility.csproj">
+      <Project>{68F35E34-4B4B-4B41-9C36-243AE509A4D1}</Project>
+      <Name>SFO2O.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

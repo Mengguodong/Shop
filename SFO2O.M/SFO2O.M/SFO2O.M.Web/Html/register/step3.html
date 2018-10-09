@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="no">
+<meta name="format-detection" content="telephone=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit">
+<title>爱玖网-注册</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="../../Content/css/base.css?v=201512150001" rel="stylesheet">
+<!--页面独有样式-->
+<link href="../../Content/css/register.css?v=201512150001" rel="stylesheet">
+<!--页面独有样式 END-->
+</head>
+<body>
+<div class="MContainer" id="MContainer">
+	<!--页头-->
+  <header class="pageHeader w100 pr tc overflowH">
+      <a class="returnBtn" id="returnBtn"></a>
+      <b class="f36 FontColor1">设置密码</b>
+      <a href="#" target="_self" class="gotoHomeBtn"></a>
+  </header>
+  <!--页头 END-->
+  <!--表单内容-->
+  <div class="regForm w100 boxSizingB">
+		<form>
+		<!--填写电子邮箱-->
+			<!--<div class="regWrap regWrapP w100  whiteOnLine f30 FontColor3 mt15 bgColor3 displayBox">
+					<label>电子邮箱</label>
+					<div class="regTxtWrap boxflex1 pr10"><input type="text" name="email" id="email" class="regTxt" placeholder="请输入常用电子邮箱地址"></div>
+			</div>-->
+		<!--填写电子邮箱 END-->
+		<!--填写登录密码-->
+			<div class="regWrap regWrapP w100  whiteOnLine f30 FontColor3 mt15 bgColor3 displayBox">
+					<label>登录密码</label>
+					<div class="regTxtWrap boxflex1 pr10"><input type="password" name="pwd" id="pwd" class="regTxt" placeholder="请输入登录密码" maxlength="32"></div>
+			</div>
+		<!--填写登录密码 END-->
+		<!--填写确认密码-->
+			<div class="regWrap regWrapP w100  whiteOnLine f30 FontColor3 mt15 bgColor3 displayBox">
+					<label>确认密码</label>
+					<div class="regTxtWrap boxflex1 pr10"><input type="password" name="pwd2" id="pwd2" class="regTxt" placeholder="请再次输入密码" maxlength="32"></div>
+			</div>
+		<!--填写确认密码 END-->
+		<p  class="mt5 f24 FontColor3">密码应为6-32位数字、字母、符号两种以上组合</p>
+		<!--按钮-->
+		<a class="btn defaultBtn mt20" id="submitBtn">注册</a>
+		<!--按钮 END-->
+		</form>
+  </div>
+  <!--表单内容END-->
+</div>
+<script type="text/javascript">
+	var source="0";
+</script>
+<script src="../../Scripts/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../../Scripts/common/common.js?v=201512160001"></script>
+<script type="text/javascript" src="../../Scripts/jquery/jquery.dialog.js?v=201512160001" charset="utf-8"></script>
+<!--页面独有脚本-->
+<script type="text/javascript" src="../../Scripts/account/Register.js?v=201512220001"></script>
+<!--页面独有脚本 END-->
+</body>
+</html>

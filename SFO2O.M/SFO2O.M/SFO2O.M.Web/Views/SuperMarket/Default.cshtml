@@ -1,0 +1,153 @@
+﻿@using SFO2O.M.Controllers;
+@using SFO2O.Utility.Uitl
+@{
+    ViewBag.Title = "爱玖网超市";
+    Layout = "/Views/Shared/_Layout.cshtml";
+    
+}
+@section styles {
+    <link href="@BundleConfig.BuildCss("Content/css/supermarket.css?v=2016072650013")" rel="stylesheet">
+    <link href="~/Content/css/search.css?v=@ConfigHelper.CssVersion" rel="stylesheet" />
+}
+@section scripts {
+<script type="text/javascript" src="/Scripts/jquery/iscroll.js"></script>
+<script type="text/javascript" src="/Scripts/jquery/TouchSlide.1.1.js?v=@ConfigHelper.JsVersion"></script>
+<script type="text/javascript" src="/Scripts/supermarket.js?v=@ConfigHelper.JsVersion"></script>
+<script type="text/javascript" src="/Scripts/jquery/jquery.lazyload.js"></script>
+
+<script type="text/javascript" src="/Scripts/jquery/fly/jquery.fly.min.js"></script>
+<script type="text/javascript" src="/Scripts/jquery/jsrender-v1.0.0-beta.js?v=@ConfigHelper.JsVersion"></script>
+<script type="text/javascript" src="/Scripts/selectSKU.js?v=@ConfigHelper.JsVersion"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.showSearch.js?v=@ConfigHelper.JsVersion"></script>
+}
+
+
+
+
+    <!--页头-->
+<header class="pageHeader w100 pr tc">
+    <a class="returnBtn" id="returnBtn"></a>
+    <b class="f36 FontColor1">爱玖网超市</b>
+    @{
+        string numString = Html.Action("MiniCart", "ShoppingCart").ToHtmlString();
+        string className = "";
+        if (numString == "0")
+        {
+            className = "hide";
+        }
+    }
+    <div class="headerCart cartPos specialPos" id="headerCart"><a href="/shoppingcart" target="_self" class="navItem3"><span id="cartNum" class='@className'>@(numString)</span></a></div>
+
+    <div class="moreMenu menuPos" id="moreMenu">
+        <ul>
+            <li class="goIndex">
+                <a href="@DomainHelper.MUrl">
+                    <i></i>首页
+                </a>
+            </li>
+            @*<li id="showSearch" class="showSearch">
+                    <i></i>搜索
+            </li>
+            <li class="goHelp">
+                <a href="@DomainHelper.CustomerServicesUrl" class="linkToService" target="_blank">
+                    <i></i>客服
+                </a>
+            </li>*@
+        </ul>
+    </div>
+
+</header>
+<!--页头 End-->
+<!--焦点图-->
+@Html.Action("ScrollImage", new { channelId = 2 })
+<!--焦点图 END-->
+
+<!--今日疯抢-->
+@Html.Action("BerserkDay", new { top = 20 })
+<!--今日疯抢 END-->
+<!--热门市场 start-->
+<div class="supermarketTitle tc w100"><img src="/Content/images/supermarket/title2.png?v=201607140001"></div>
+<div class="module_hot displayBox bgColor3">
+    <div>
+        <a href="/product/index?level=2&c=10025|10027|10030|10032|10034|10037"><img data-original="/Content/Images/supermarket/lady.jpg?v=20160629" class="lazyloadImg_rm"/></a>
+    </div>
+    <div>
+        <a href="/product/index?level=1&c=106"><img data-original="/Content/Images/supermarket/baby.jpg?v=20160629" class="lazyloadImg_rm"/></a>
+    </div>
+</div>
+<div class="module_hot displayBox bgColor3">
+    <div>
+        <a href="/product/index?level=1&c=115"><img data-original="/Content/Images/supermarket/man.jpg?v=20160629" class="lazyloadImg_rm"/></a>
+    </div>
+    <div>
+        <a href="/product/index?level=1&c=109"><img data-original="/Content/Images/supermarket/home.jpg?v=20160629" class="lazyloadImg_rm"/></a>
+    </div>
+</div>
+<div class="module_hot module_hot1 displayBox bgColor3 mb8">
+    <div>
+        <a href="/product/index?level=1&c=114"><img data-original="/Content/Images/supermarket/lyzh.jpg?v=20160629" class="lazyloadImg_rm"/></a>
+    </div>
+    <div>
+        <a href="/product/index?level=1&c=116"><img data-original="/Content/Images/supermarket/lidun.jpg?v=20160629" class="lazyloadImg_rm"/></a>
+    </div>
+    <div>
+        <a href="/product/index?level=2&c=10161"><img data-original="/Content/Images/supermarket/xiuxian.jpg?v=20160629" class="lazyloadImg_rm"/></a>
+    </div>
+</div>
+<!--热门市场 end-->
+@Html.Action("SingleBanner", new { channelId = 2 })
+
+<!-- 导航开始 -->
+<div class="navContainer" id="navContainer">
+    <div class=" navBox" id="nav">
+        <div class="nav" id="itemBox">
+            <div class="itemBox">
+                <div data-level="0" data-id="3" data-target="personal" class="active"><span>个人护理</span></div>
+                <div data-level="1" data-id="106" data-target="forBaby"><span>婴儿护理</span></div>
+                <div data-level="1" data-id="109" data-target="home"><span>家居护理</span></div>
+                <div data-level="1" data-id="116" data-target="drinks"><span>酒水饮料</span></div>
+                <div data-level="1" data-id="114" data-target="oil"><span>粮油杂货</span></div>
+                <div data-level="1" data-id="115" data-target="forHappy"><span>休闲食品</span></div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="cartBox">
+        <div class="headerCart cartPos" id="headerCart">
+            <a href=""><span>2</span></a>
+        </div>
+    </div> -->
+</div>
+<div class="navContent bgColor3 " id="navContent">
+    <div class="tags" id="tags">
+        <div id="personal" style="display:block;">
+            <a href="/product/Index?c=10037|10030&level=2">身体护理</a>
+            <a href="/product/Index?c=10034|10027&level=2">头发护理</a>
+            <a href="/product/Index?c=10035|10028&level=2">口腔护理</a>
+            <a href="/product/Index?c=10032|10025&level=2">面部护理</a>
+            <!--<a href="/product/Index?c=10161&level=2">家庭计划</a>
+            <a href="/product/Index?c=10162&level=2">卫生用品</a>-->
+        </div>
+        <div id="forBaby">
+            <a href="/product/Index?c=10021&level=2 ">纸尿裤</a>
+            <a href="/product/Index?c=10020&level=2 ">婴儿清洁用品</a>
+        </div>
+        <div id="home">
+            <a href="/product/Index?c=10038&level=2 ">厨房清洁</a>
+            <a href="/product/Index?c=10043&level=2 ">居家清洁</a>
+            <a href="/product/Index?c=10041&level=2 ">衣服清洁</a>
+        </div>
+        <div id="forHappy">
+            <a href="/product/Index?c=10092&level=2 ">零食小吃</a>
+            <a href="/product/Index?c=10094&level=2 ">肉干坚果</a>
+        </div>
+    </div>
+    <!-- 商品列表 -->
+    <div class="list productList w95p" id="productList">
+        <div class="w100 clearfix">
+        </div>
+
+    </div>
+    <!-- 商品列表end -->
+</div>
+<div id="loadMore" class="loadMore"></div>
+<!-- 导航结束 -->

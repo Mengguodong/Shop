@@ -1,0 +1,38 @@
+﻿@using SFO2O.M.Controllers
+@using SFO2O.M.Controllers.Common
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.ViewModel.Product
+@using SFO2O.Utility.Extensions 
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "其他问题 ";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = false;
+}
+@section styles { 
+}
+@section scripts {
+}
+@section pageHeader {
+   <!-- 页头 -->
+    <header class="pageHeader w100 pr tc overflowH">
+        <a class="returnBtn" id="returnBtn"></a>
+        <b class="f36 FontColor1">其他问题</b>
+    </header>
+}
+<!-- 页头 end -->
+<dl class="problemsWrap w100 mt8 boxShadow bgColor3 f28">
+    <dt>
+        <span class="icon">问</span>为什么我一直收不到由「爱玖网」发送的电邮？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>您登记成为「爱玖网」会员时所提供的电邮地址，是我们与您联络的主要方式。如果您的电子邮箱能够正常接收或发送电邮，但一直收不到由我们发送的电邮，我们建议您尝试以下操作：<br>
+        i. 查看您的电子邮箱设置：如果您的电子邮箱设置了电邮自动转发、拒绝接收或屏蔽等功能，会造成无法正常接收电邮；<br>
+        ii. 查看您的电子邮箱的垃圾箱、杂件箱或促销内容邮件箱：一般情况下，不同电子邮箱的安全设置，会导致您无法在收件箱中查看部分电邮，建议您到垃圾箱、杂件箱或杂件箱查看；<br>
+        iii. 清空您的电子邮箱：您的电子邮箱内电邮过多，也有可能导致您无法收到新邮件；或<br>
+        iv. 把我们的电邮设定为非垃圾邮件：避免类似情况再次发生，您可以把由「爱玖网」发送的电邮设定为非垃圾邮件。
+        <p class="tr pt10 pb10" style="padding-right:12px;">更新日期：2015年11月13日</p>
+    </dd>
+
+</dl>

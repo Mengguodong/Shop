@@ -1,0 +1,126 @@
+﻿@using SFO2O.Supplier.Models;
+@using SFO2O.Supplier.Common;
+
+@{
+    ViewBag.Title = "品牌列表";
+    ViewBag.PageName = "BrandList";
+    PageOf<SFO2O.Supplier.Models.SupplierBrandModel> model = Model;
+}
+
+<div class="cont_right_crumb"><span class="homepage"></span>&gt; 品牌管理 &gt; 品牌列表</div>
+<div class="w931 mg_t30">
+    <div class="tongji_title"><span class="tongji_title_l">品牌列表</span></div>
+    <div class="t_r wrap_dr_sc">
+        <div class="dr_sc"><a href="/Brand/BrandEdit" class="addpro_btn btn_sc mg_l10"><i></i>添加品牌</a></div>
+    </div>
+
+    <div class="product_list bor">
+        <table class="t_c">
+            <tr>
+                <th width="66">品牌ID</th>
+                <th width="300">品牌名称</th>
+                <th width="100">品牌状态</th>
+                <th width="100">在售SKU数量</th>
+                <th width="129">添加时间</th>
+                <th width="299">操作</th>
+            </tr>
+            @if (model != null && model.Items.Count > 0)
+            {
+                int i = 1;
+                foreach (var item in model.Items)
+                {
+                    <tr>
+                        <td class="t_c @(i == model.Items.Count ? "bor_none" : "")">@item.Id</td>
+                        <td class="t_c @(i == model.Items.Count ? "bor_none" : "")">@item.NameCN</td>
+                        <td class="t_c @(i == model.Items.Count ? "bor_none" : "")">@(item.Status == 1 ? "上架" : "已下架")</td>
+                        <td class="t_c @(i == model.Items.Count ? "bor_none" : "")">@item.OnSaleCount</td>
+                        <td class="t_c @(i == model.Items.Count ? "bor_none" : "")">@item.CreateTime.ToString("yyyy-MM-dd")</td>
+                        <td class="@(i == model.Items.Count ? "bor_none" : "")">
+                            <a href="/Brand/BrandView?brandId=@item.Id" class="edit">查看详情</a>
+                            @if (item.Status == 1)
+                            {
+                                @*<a href="/Brand/StoreList?brandId=@item.Id" class="edit">门店地址</a>*@
+                                <a href="/Brand/BrandEdit?brandId=@item.Id" class="edit">编辑</a>
+                                @*<a href="javascript:void(0)" class="dele" onclick="SelfOffTips(@item.Id)">下架</a>*@
+                            }
+                        </td>
+                    </tr>
+
+                            i++;
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6">
+                        <div>
+                            <p>还没有添加任何品牌，请先添加品牌</p>
+                        </div>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+    <div class="page">
+        @if (model != null && model.Items.Count > 0)
+        {
+
+            @Html.ShowFPage(Url.Action("BrandList"
+                        , new
+                        {
+                            PageNo = "{0}",
+                        })
+                        , model.PageIndex
+                        , model.Total)
+
+
+        }
+    </div>
+
+</div>
+
+<div id="selfOffTips" style="display: none">
+    <div class="win_cont pd_l20 pd_r20">
+        <p class="t_c pd_t40 pd_b10">您确定要下架该品牌吗？</p>
+        <p class="t_c pd_b30 f14 color_838383">该品牌下架后，该品牌下的所有商品也将下架</p>
+    </div>
+</div>
+<script>
+    function SelfOffTips(brandId) {
+        $.dialog({
+            width: 470,
+            title: "提示",
+            content: $("#selfOffTips").html(),
+            buttons: [{
+                text: "取消",
+                isWhite: 1
+            },
+                {
+                    text: "确定",
+                    onClick: function () {
+                        ShelfOffBrand(brandId);
+                        return true;
+                    }
+                }]
+        });
+    }
+
+
+    function ShelfOffBrand(brandId) {
+        $.ajax({
+            type: 'POST',
+            url: "/Brand/ShelfOffBrand",
+            data: "brandId=" + brandId,
+            async: true,
+            success: function (data) {
+                if (data.result) {
+                    window.location.href = "/Brand/BrandList";
+                }
+                else {
+                    $.dialog("品牌下架失败！");
+                }
+            }
+        });
+    }
+</script>

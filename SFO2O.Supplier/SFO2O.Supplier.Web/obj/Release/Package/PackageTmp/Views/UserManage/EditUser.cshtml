@@ -1,0 +1,48 @@
+﻿@model SFO2O.Supplier.Models.Account.SupplierUserInfo
+@{
+    Layout = null;
+    var roleIDList = Model.RoleIDList ?? new List<int>();
+    var roleList = ViewBag.RoleList as IList<SFO2O.Supplier.Models.Account.SupplierRoleInfo>;
+}
+<div class="pd_t20">
+    <table class="f16 table_paswd" style="width:407px;">
+        <tr>
+            <td width="120" height="70" class="t_r vtop"><span class="mg_t10 inline"><em class="color_red vmiddle">*</em>账号名称：</span></td>
+            <td class="vtop">
+                @if (Model.ID == 0)
+                {
+                    <input name="username" type="text" class="username fff_bor mg_l10" maxlength="50" />
+                    <p class="wrong_tips mg_l10 color_red show" style="float:none"></p>
+                }
+                else
+                {
+                    <p class="mg_l10" style="line-height:39px;">@Model.UserName</p>
+                }
+            </td>
+        </tr>
+        <tr>
+            <td width="120" height="70" class="t_r vtop"><span class="mg_t10 inline"><em class="color_red vmiddle">*</em>设置密码：</span></td>
+            <td class="vtop">
+                <input name="password" type="password" class="password fff_bor mg_l10" />
+                <p class="wrong_tips mg_l10 color_red show" style="float:none"></p>
+            </td>
+        </tr>
+        <tr>
+            <td width="120" height="70" class="t_r vtop"><span class="mg_t10 inline">使用者姓名：</span></td>
+            <td class="vtop">
+                <input type="text" class="nickname fff_bor mg_l10" value="@Model.NickName" />
+                <p class="wrong_tips mg_l10 color_red show" style="float:none"></p>
+            </td>
+        </tr>
+        <tr>
+            <td width="120" class="t_r"><span class="inline"><em class="color_red vmiddle">*</em>选择用户分组：</span></td>
+            <td class="vtop" width="300">
+                @for (int i = 0; i < roleList.Count; i++)
+                {
+                    var role = roleList[i];
+                    <label data-id="@(role.RoleID)" class="chbx_wrap mg_l10 mg_r10@(roleIDList.Contains(role.RoleID) ? " active" : "")"><em></em><span>@role.RoleName</span></label>
+                }
+            </td>
+        </tr>
+    </table>
+</div>

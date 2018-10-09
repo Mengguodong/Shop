@@ -1,0 +1,56 @@
+﻿.orderList li{ margin-top:8px; background: #fff;}
+.orderNum{ padding:16px 12px;}
+.proList a{ background:#f5f5f5; padding:8px 0px; margin-top:7px;}
+.proList a:first-child{margin-top:0px;}
+.proImgWrap{ width:53px; height:53px; overflow: hidden; border-width:1px; border-style: solid; margin-right:10px; margin-left:12px;}
+.proImgWrap img{ width: 100%;}
+.proPrice{ width:auto; white-space: nowrap; margin-right:12px; margin-left:10px;}
+p.proName,p.selectedSku{ line-height: 125%; height:auto; max-height:2.5em; overflow: hidden;}
+.more{ padding:12px 0px; cursor: pointer;}
+.more span{ display: inline-block; width: 13px; height: 7px; overflow: hidden; background:url("../images/order/down.png?v=20160331") no-repeat; background-size:13px auto;  -moz-background-size:13px auto;  -webkit-background-size:13px auto; margin-left:5px; }
+.more.up span{ background:url("../images/order/up.png?v=20160331") no-repeat; background-size:13px auto;  -moz-background-size:13px auto;  -webkit-background-size:13px auto; margin-left:5px;}
+.orderPrice{ padding:15px 12px;}
+.orderBtnWrap{ padding:8px;}
+.orderBtnWrap .btn{ width:5em; display: inline-block; margin-left:15px; padding-top:8px; padding-bottom:8px; }
+.orderBtnWrap span{ color:#98ca35; display: inline-block; padding:12px 0px;}
+
+/*订单详情*/
+.detailTable th ,.detailTable td{ padding-top:15px; padding-bottom:15px; border-top-width:1px; border-top-style:solid;}
+.detailTable tr:first-child th ,.detailTable tr:first-child td{border:none;}
+.detailTable th{ padding-left:12px; width:5em; white-space: nowrap; text-align: right; font-weight: normal; vertical-align: top;}
+.detailTable td{ padding-right:12px;}
+.itemIcon_jt{top:14px;}
+.itemIcon_jt.top4{ top:4px; margin:0px; margin-left:5px;}
+.FontColor4 a{ color: #bcbcbc;}
+.orderNum.pt0,.orderNum.pb0{ padding-top:0px; padding-bottom:0px;}
+.orderNum.pb10{ padding-bottom:10px;}
+.detailProInf .proName{ height:1.25em;}
+.btn.smallBtn{ width:2em; font-size: 12px; padding:5px 15px; white-space: nowrap; position: absolute; bottom:15px; right:12px; z-index: 5;}
+.detailProInf .proList a{ margin-top:0px;}
+.detailProInf .proList li{ margin-top:7px;}
+.detailProInf .proList li:first-child{margin-top: 0px;}
+.orderDateDiv div{border-top:1px solid #e0e0e0;}
+.orderDateDiv div:first-child{border-top:none;}
+.orderNum  b{ font-weight: normal;}
+
+.logisticsTitle{ padding-left:12px;}
+.logisticsInf{ padding:10px 12px 10px 20px; }
+.p1{ color:#696969; margin-bottom:2px;}
+.p2{ color:#bcbcbc;}
+.logisticsInf li:first-child p{ color:#99cb34;}
+.logisticsInf li{ padding-bottom:20px; position:relative; border-left:1px solid #c7c7c7; padding-left:13px;}
+.logisticsInf li:last-child{ padding-bottom:0px; border-color:#fff;}
+.logisticsInf li:before{ content:""; display: block; width:8px; height: 8px; overflow: hidden; background:#bcbcbc; border-radius: 8px; -moz-border-radius: 8px; -webkit-border-radius: 8px; position:absolute; top:6px;left:-5px;}
+.logisticsInf li:first-child:after{content:""; display: block; width:1px; height:6px; overflow: hidden; background:#fff; position: absolute; top: 0px; left: -1px;z-index: 5;}
+.logisticsInf li:last-child:after{content:""; display: block; width:1px; height:6px; overflow: hidden; background:#c7c7c7; position: absolute; top: 0px; left: -1px;z-index: 5;}
+.logisticsInf li:first-child:before{background:#99cb34;}
+.logisticsInfError{ padding:15px 12px;}
+.logisticsInfError span{ display: inline-block; width:14px; height: 14px; overflow: hidden; background:url("../images/order/tipIcon.png?v=20160331") no-repeat; background-size:14px auto; -moz-background-size:14px auto; -webkit-background-size:14px auto; margin-right:5px;/* position: relative; top:3px;*/ vertical-align:-3px; }
+.tipTd a{position:relative; display:block;}
+.tipTd .itemIcon_jt,.itemIcon_jt2{position:absolute; top:50%; right:12px; float:none;  margin-top:-6px; margin-right:0px;}
+.stepsContent{  padding-top:15px; padding-bottom:15px;line-height: 200%;word-wrap:break-word;word-break:break-all;}
+.stepsContent img{ display: block; margin-bottom:15px;margin-top:15px; width:100%;}
+/*20160425 新增内容*/
+.pinFailIcon{ width:60px; height:auto; display:inline-block; top:8px; right:2.5%; z-index:5;}
+.gotoTdetail{ display:inline-block; padding:8px 20px; border:1px solid #f75e26; border-radius:5px; line-height:100%;}
+.detailTable .pinFailIcon{ top:0px;right:12px;}

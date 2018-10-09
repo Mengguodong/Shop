@@ -1,0 +1,52 @@
+﻿@model SFO2O.Admin.ViewModel.LoginModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="renderer" content="webkit" />
+    <meta charset="utf-8" />
+    <title>登入 - 村村通管理後台</title>
+    <link href="/Content/CSS/common.css" rel="stylesheet" />
+    <link href="/Content/CSS/admin.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/jquery", "~/Scripts/Account/Login.js?v=" + ViewBag.JsAndCssVersion)
+</head>
+<body style="background-color:#ee7a01;">
+    <div class="header_wrap">
+        <div class="header t_c"><a href="#"><img src="/Content/Images/logo_big.png" class="logo" /></a> </div>
+    </div>
+    <div class="login">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "loginForm" }))
+    {
+        <h1>管理後台</h1>
+        <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+        <ul class="login_wrap">
+            <li class="clearfix">
+                <span>賬號</span>
+                <input type="text" name="username" id="username" value="@Model.UserName" maxlength="50" />
+                <p id="login_wrong" class="login_wrong" style="display:block">@Model.ErrorInfoForUserName</p>
+            </li>
+            <li class="clearfix">
+                <span>密碼</span>
+                <input type="password" name="password" id="password" maxlength="32" />
+                <p id="password_wrong" class="login_wrong" style="display:block">@Model.ErrorInfoForPassword</p>
+            </li>
+        </ul>
+        <p class="t_c mg_t20 admin_orange"><button type="submit" class="btn_g">登入</button></p>
+    }
+    </div>
+    <div class="footer t_c">
+        <p>&copy; 2016 村村通電子商貿有限公司 版權所有</p>
+        <p>ICP備案證書號：滬ICP備15028300號-1</p>
+    </div>
+    <script type="text/javascript">
+        var selfUrl = "@(this.Request.Url.AbsolutePath)";
+        if (location.pathname != selfUrl) {
+            location = selfUrl + "?ReturnUrl=" + encodeURI(location.pathname + location.search);
+        }
+    </script>
+</body>
+</html>

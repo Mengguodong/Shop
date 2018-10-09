@@ -1,0 +1,473 @@
+﻿@model SFO2O.Supplier.Models.PageOf<SFO2O.Supplier.Models.Promotion.PromotionSkuListModel>
+@{
+    Layout = null;
+
+}
+<div>
+    <table style="position:relative; width:900px;" class="bg_fff bor f15 t_c table_bor vtop">
+        <tbody>
+            <tr class="t_c bg_f8f8f8 table_lineH43">
+                <th width="280">商品名称</th>
+                <th width="102">属性1</th>
+                <th width="102">属性2</th>
+                <th width="112">价格</th>
+                <th width="112">促销价格</th>
+                <th width="100">促销折扣</th>
+                <th width="100">操作</th>
+            </tr>
+            @if (Model != null && Model.Items != null && Model.Items.Count > 0)
+            {
+                var spus = Model.Items.GroupBy(p => p.spu);
+
+                foreach (var spu in spus)
+                {
+                    var rowSpan = spu.Count();
+                    var skuFirst = spu.First();
+                    var imgUrl = skuFirst.ImagePath.Replace('\\', '/');
+
+                    <tr class="lineH22">
+                        <td class="t_l bor_none_r" rowspan="@rowSpan">
+                            <div class="clearfix">
+                                <a href="#"><img src="@SFO2O.Supplier.Common.ConfigHelper.ImageServer@(imgUrl.Insert(imgUrl.LastIndexOf('.'), "_180"))" class="f_l mg10"></a>
+                                <div class="f_l w200">
+                                    <p class="pd_t10 mg_b5"><a target="_blank" href="/Product/ViewProduct?spu=@skuFirst.spu" class="hover_color">@skuFirst.Name</a></p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="bor_none_r"><p class="pd10">@skuFirst.MainValue</p></td>
+                        <td class="bor_none_r bor_none_l"><p class="pd10">@skuFirst.SubValue</p></td>
+                        <td class="bor_none_r bor_none_l"><p class="pd10" id="sp_@skuFirst.Sku">￥@skuFirst.Price</p></td>
+                        <td class="bor_none_r bor_none_l">
+                            <p class="pd10" id="pp_@skuFirst.Sku">
+                                @if (skuFirst.PromotionPrice != -1 && skuFirst.PromotionPrice > 0)
+                                {
+                                    <text>$</text>@skuFirst.PromotionPrice
+                                }
+                            </p>
+                        </td>
+                        <td class="bor_none_r bor_none_l">
+                            <p class="pd10" id="pr_@skuFirst.Sku">
+                                @if (skuFirst.PromotionRate != -1 && skuFirst.PromotionRate > 0)
+                                {
+                                    @skuFirst.PromotionRate<text>折</text>
+                                }
+                            </p>
+                        </td>
+                        <td class="bor_none_l">
+                            <input type="hidden" value="@skuFirst.spu" id="spu_@skuFirst.Sku" />
+                            @if (skuFirst.skuProStatus == "true" && skuFirst.PromotionPrice == -1)
+                            {
+                                <div class="mg_l10 mg_r10 mg_t10 t_l mg_b10 t_c">
+                                    <span>
+                                        已参加<br />
+                                        其他活动
+                                    </span>
+                                </div>
+                            }
+                            else if ((skuFirst.skuProStatus == "false" && skuFirst.PromotionPrice == -1) || skuFirst.PromotionPrice <= 0)
+                            {
+                                <div class="mg_l10 mg_r10 mg_t10 t_c mg_b10">
+                                    <a id="addPro_@skuFirst.Sku" href="javascript:void(0);" class="btn btn_ok btn_cy" onclick="ShowPromotionDiv(@skuFirst.Sku,1)">参加促销</a>
+                                    <a id="moPro_@skuFirst.Sku" href="javascript:void(0);" class="col_link" onclick="ShowPromotionDiv(@skuFirst.Sku,2)" style="display:none;">编辑</a>
+                                    <a id="caPro_@skuFirst.Sku" href="javascript:void(0);" class="col_link" onclick="RemovePromotion(@skuFirst.Sku,2)" style="display:none;">取消</a>
+                                    <div class="Recommended_text01" style="display:none;z-index:1000;" id="pd_@skuFirst.Sku">
+                                        <span class="sanjiao01_top"></span> <span class="sanjiao02_top"></span>
+                                        <div class="f15 mg_t10 mg_l20 mg_r20">
+                                            <p class="lineH30 t_l">设置促销：</p>
+                                            <div class="clearfix">
+                                                <input id="pd_PP_@skuFirst.Sku" class="fff_bor f_l h19 f15" type="text" placeholder="输入价格" style="width:82px;" value="" onblur="CheckPromotionPrice(@skuFirst.Sku)" onfocus="PromotionPriceOnfouce(@skuFirst.Sku)">
+                                                <em class="f_l mg_l10 mg_r10 lineH30">或</em>
+                                                <div class="posR f_l" style="width:100px;height:31px;">
+                                                    <input id="pd_PR_@skuFirst.Sku" class="fff_bor f_l h19 f15" type="text" placeholder="输入折扣" style="width:82px;" value="" onblur="CheckPromotionRate(@skuFirst.Sku)" onfocus="PromotionRateOnfouce(@skuFirst.Sku)">
+                                                    <em class="posA f15" style="right:10px; top:4px; display:none;">折</em>
+                                                </div>
+                                            </div>
+                                            <p class="wrong_tips color_red t_l" style="display:block;">错误提示</p>
+                                            <div class="t_c pd_t30">
+                                                <a href="javascript:void(0)" class="btn btn_cancel" onclick="HideAddTips(@skuFirst.Sku)">取消</a>
+                                                <a href="javascript:void(0)" class="btn btn_ok mg_l30" onclick="SubmitTips(@skuFirst.Sku)">确定</a>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" id="operationType_@skuFirst.Sku" />
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="mg_l10 mg_r10 mg_t10 t_c mg_b10">
+                                    <a id="addPro_@skuFirst.Sku" href="javascript:void(0);" class="btn btn_ok btn_cy" onclick="ShowPromotionDiv(@skuFirst.Sku,1)" style="display:none;">参加促销</a>
+                                    <a id="moPro_@skuFirst.Sku" href="javascript:void(0);" class="col_link" onclick="ShowPromotionDiv(@skuFirst.Sku,2)">编辑</a>
+                                    <a id="caPro_@skuFirst.Sku" href="javascript:void(0);" class="col_link" onclick="RemovePromotion(@skuFirst.Sku,2)" style="display:none;">取消</a>
+                                    <div class="Recommended_text01" style="display: none; z-index: 10000;" id="pd_@skuFirst.Sku">
+                                        <span class="sanjiao01_top"></span> <span class="sanjiao02_top"></span>
+                                        <div class="f15 mg_t10 mg_l20 mg_r20">
+                                            <p class="lineH30 t_l">设置促销：</p>
+                                            <div class="clearfix">
+                                                <input id="pd_PP_@skuFirst.Sku" class="fff_bor f_l h19 f15" type="text" placeholder="输入价格" style="width:82px;" value="" onblur="CheckPromotionPrice(@skuFirst.Sku)" onfocus="PromotionPriceOnfouce(@skuFirst.Sku)">
+                                                <em class="f_l mg_l10 mg_r10 lineH30">或</em>
+                                                <div class="posR f_l" style="width:100px;height:31px;">
+                                                    <input id="pd_PR_@skuFirst.Sku" class="fff_bor f_l h19 f15" type="text" placeholder="输入折扣" style="width:82px;" value="" onblur="CheckPromotionRate(@skuFirst.Sku)" onfocus="PromotionRateOnfouce(@skuFirst.Sku)">
+                                                    <em class="posA f15" style="right:10px; top:4px; display:none;">折</em>
+                                                </div>
+                                            </div>
+                                            <p class="wrong_tips color_red t_l" style="display:block;">错误提示</p>
+                                            <div class="t_c pd_t30">
+                                                <a href="javascript:void(0)" class="btn btn_cancel" onclick="HideAddTips(@skuFirst.Sku)">取消</a>
+                                                <a href="javascript:void(0)" class="btn btn_ok mg_l30" onclick="SubmitTips(@skuFirst.Sku)">确定</a>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" id="operationType_@skuFirst.Sku" />
+                                    </div>
+                                </div>
+                            }
+                        </td>
+                    </tr>
+
+                    foreach (var sku in spu.Skip(1))
+                    {
+                        <tr class="lineH22">
+                            <td class="bor_none_r"><p class="pd10">@sku.MainValue</p></td>
+                            <td class="bor_none_r bor_none_l"><p class="pd10">@sku.SubValue</p></td>
+                            <td class="bor_none_r bor_none_l"><p class="pd10" id="sp_@sku.Sku">￥@sku.Price</p></td>
+                            <td class="bor_none_r bor_none_l">
+                                <p class="pd10" id="pp_@sku.Sku">
+                                    @if (sku.PromotionPrice != -1 && sku.PromotionPrice > 0)
+                                    {
+                                        <text>$</text>@sku.PromotionPrice
+                                    }
+                                </p>
+                            </td>
+                            <td class="bor_none_r bor_none_l">
+                                <p class="pd10" id="pr_@sku.Sku">
+                                    @if (sku.PromotionRate != -1 && sku.PromotionRate > 0)
+                                    {
+                                        @sku.PromotionRate<text>折</text>
+                                    }
+                                </p>
+                            </td>
+                            <td class="bor_none_l">
+                                <input type="hidden" value="@sku.spu" id="spu_@sku.Sku" />
+                                @if (sku.skuProStatus == "true" && sku.PromotionPrice == -1)
+                                {
+                                    <div class="mg_l10 mg_r10 mg_t10 t_l mg_b10 t_c">
+                                        <span>
+                                            已参加<br />
+                                            其他活动
+                                        </span>
+                                    </div>
+                                }
+                                else if ((sku.skuProStatus == "false" && sku.PromotionPrice == -1) || sku.PromotionPrice <= 0)
+                                {
+                                    <div class="mg_l10 mg_r10 mg_t10 t_c mg_b10">
+                                        <a id="addPro_@sku.Sku" href="javascript:void(0);" class="btn btn_ok btn_cy" onclick="ShowPromotionDiv(@sku.Sku,1)">参加促销</a>
+                                        <a id="moPro_@sku.Sku" href="javascript:void(0);" class="col_link" onclick="ShowPromotionDiv(@sku.Sku,2)" style="display:none;">编辑</a>
+                                        <a id="caPro_@sku.Sku" href="javascript:void(0);" class="col_link" onclick="RemovePromotion(@sku.Sku,2)" style="display:none;">取消</a>
+                                        <div class="Recommended_text01" style="display: none; z-index: 1000;" id="pd_@sku.Sku">
+                                            <span class="sanjiao01_top"></span> <span class="sanjiao02_top"></span>
+                                            <div class="f15 mg_t10 mg_l20 mg_r20">
+                                                <p class="lineH30 t_l">设置促销：</p>
+                                                <div class="clearfix">
+                                                    <input id="pd_PP_@sku.Sku" class="fff_bor f_l h19 f15" type="text" placeholder="输入价格" style="width:82px;" value="" onblur="CheckPromotionPrice(@sku.Sku)" onfocus="PromotionPriceOnfouce(@sku.Sku)">
+                                                    <em class="f_l mg_l10 mg_r10 lineH30">或</em>
+                                                    <div class="posR f_l" style="width:100px;height:31px;">
+                                                        <input id="pd_PR_@sku.Sku" class="fff_bor f_l h19 f15" type="text" placeholder="输入折扣" style="width:82px;" value="" onblur="CheckPromotionRate(@sku.Sku)" onfocus="PromotionRateOnfouce(@sku.Sku)">
+                                                        <em class="posA f15" style="right:10px; top:4px; display:none;">折</em>
+                                                    </div>
+                                                </div>
+                                                <p class="wrong_tips color_red t_l" style="display:block;">错误提示</p>
+                                                <div class="t_c pd_t30">
+                                                    <a href="javascript:void(0)" class="btn btn_cancel" onclick="HideAddTips(@sku.Sku)">取消</a>
+                                                    <a href="javascript:void(0)" class="btn btn_ok mg_l30" onclick="SubmitTips(@sku.Sku)">确定</a>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" id="operationType_@sku.Sku" />
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="mg_l10 mg_r10 mg_t10 t_c mg_b10">
+                                        <a id="addPro_@sku.Sku" href="javascript:void(0);" class="btn btn_ok btn_cy" onclick="ShowPromotionDiv(@sku.Sku,1)" style="display: none;">参加促销</a>
+                                        <a id="moPro_@sku.Sku" href="#" class="col_link" onclick="ShowPromotionDiv(@sku.Sku,2)">编辑</a>
+                                        <a id="caPro_@sku.Sku" href="javascript:void(0);" class="col_link" onclick="RemovePromotion(@sku.Sku,2)" style="display:none;">取消</a>
+                                        <div class="Recommended_text01" style="display: block; z-index: 1000;" id="pd_@sku.Sku">
+                                            <span class="sanjiao01_top"></span> <span class="sanjiao02_top"></span>
+                                            <div class="f15 mg_t10 mg_l20 mg_r20">
+                                                <p class="lineH30 t_l">设置促销：</p>
+                                                <div class="clearfix">
+                                                    <input id="pd_PP_@sku.Sku" class="fff_bor f_l h19 f15" type="text" placeholder="输入价格" style="width:82px;" value="" onblur="CheckPromotionPrice(@sku.Sku)" onfocus="PromotionPriceOnfouce(@sku.Sku)">
+                                                    <em class="f_l mg_l10 mg_r10 lineH30">或</em>
+                                                    <div class="posR f_l" style="width:100px;height:31px;">
+                                                        <input id="pd_PR_@sku.Sku" class="fff_bor f_l h19 f15" type="text" placeholder="输入折扣" style="width:82px;" value="" onblur="CheckPromotionRate(@sku.Sku)" onfocus="PromotionRateOnfouce(@sku.Sku)">
+                                                        <em class="posA f15" style="right:10px; top:4px; display:none;">折</em>
+                                                    </div>
+                                                </div>
+                                                <p class="wrong_tips color_red t_l" style="display:block;">错误提示</p>
+                                                <div class="t_c pd_t30">
+                                                    <a href="javascript:void(0)" class="btn btn_cancel" onclick="HideAddTips(@sku.Sku)">取消</a>
+                                                    <a href="javascript:void(0)" class="btn btn_ok mg_l30" onclick="SubmitTips(@sku.Sku)">确定</a>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" id="operationType_@sku.Sku" />
+                                        </div>
+                                    </div>
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<div class="page" id="pager" style="margin-left:-20px;">
+
+</div>
+@{
+    var rowCount = 0;
+    var pageIndex = 1;
+    if (Model != null && Model.Items != null && Model.Items.Count > 0)
+    {
+        rowCount = Model.RowCount;
+        pageIndex = Model.PageIndex;
+    }
+}
+
+<input type="hidden" id="recordCount" value="@rowCount" />
+<input type="hidden" id="pageIndex" value="@pageIndex" />@model SFO2O.Supplier.Models.PageOf<SFO2O.Supplier.Models.Promotion.PromotionSkuListModel>
+@{
+    Layout = null;
+
+}
+<div>
+    <table style="position:relative; width:900px;" class="bg_fff bor f15 t_c table_bor vtop">
+        <tbody>
+            <tr class="t_c bg_f8f8f8 table_lineH43">
+                <th width="280">商品名称</th>
+                <th width="102">属性1</th>
+                <th width="102">属性2</th>
+                <th width="112">价格</th>
+                <th width="112">促销价格</th>
+                <th width="100">促销折扣</th>
+                <th width="100">操作</th>
+            </tr>
+            @if (Model != null && Model.Items != null && Model.Items.Count > 0)
+            {
+                var spus = Model.Items.GroupBy(p => p.spu);
+
+                foreach (var spu in spus)
+                {
+                    var rowSpan = spu.Count();
+                    var skuFirst = spu.First();
+                    var imgUrl = skuFirst.ImagePath.Replace('\\', '/');
+
+                    <tr class="lineH22">
+                        <td class="t_l bor_none_r" rowspan="@rowSpan">
+                            <div class="clearfix">
+                                <a href="#"><img src="@SFO2O.Supplier.Common.ConfigHelper.ImageServer@(imgUrl.Insert(imgUrl.LastIndexOf('.'), "_180"))" class="f_l mg10"></a>
+                                <div class="f_l w200">
+                                    <p class="pd_t10 mg_b5"><a target="_blank" href="/Product/ViewProduct?spu=@skuFirst.spu" class="hover_color">@skuFirst.Name</a></p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="bor_none_r"><p class="pd10">@skuFirst.MainValue</p></td>
+                        <td class="bor_none_r bor_none_l"><p class="pd10">@skuFirst.SubValue</p></td>
+                        <td class="bor_none_r bor_none_l"><p class="pd10" id="sp_@skuFirst.Sku">￥@skuFirst.Price</p></td>
+                        <td class="bor_none_r bor_none_l">
+                            <p class="pd10" id="pp_@skuFirst.Sku">
+                                @if (skuFirst.PromotionPrice != -1 && skuFirst.PromotionPrice > 0)
+                                {
+                                    <text>$</text>@skuFirst.PromotionPrice
+                                }
+                            </p>
+                        </td>
+                        <td class="bor_none_r bor_none_l">
+                            <p class="pd10" id="pr_@skuFirst.Sku">
+                                @if (skuFirst.PromotionRate != -1 && skuFirst.PromotionRate > 0)
+                                {
+                                    @skuFirst.PromotionRate<text>折</text>
+                                }
+                            </p>
+                        </td>
+                        <td class="bor_none_l">
+                            <input type="hidden" value="@skuFirst.spu" id="spu_@skuFirst.Sku" />
+                            @if (skuFirst.skuProStatus == "true" && skuFirst.PromotionPrice == -1)
+                            {
+                                <div class="mg_l10 mg_r10 mg_t10 t_l mg_b10 t_c">
+                                    <span>
+                                        已参加<br />
+                                        其他活动
+                                    </span>
+                                </div>
+                            }
+                            else if ((skuFirst.skuProStatus == "false" && skuFirst.PromotionPrice == -1) || skuFirst.PromotionPrice <= 0)
+                            {
+                                <div class="mg_l10 mg_r10 mg_t10 t_c mg_b10">
+                                    <a id="addPro_@skuFirst.Sku" href="javascript:void(0);" class="btn btn_ok btn_cy" onclick="ShowPromotionDiv(@skuFirst.Sku,1)">参加促销</a>
+                                    <a id="moPro_@skuFirst.Sku" href="javascript:void(0);" class="col_link" onclick="ShowPromotionDiv(@skuFirst.Sku,2)" style="display:none;">编辑</a>
+                                    <a id="caPro_@skuFirst.Sku" href="javascript:void(0);" class="col_link" onclick="RemovePromotion(@skuFirst.Sku,2)" style="display:none;">取消</a>
+                                    <div class="Recommended_text01" style="display:none;z-index:1000;" id="pd_@skuFirst.Sku">
+                                        <span class="sanjiao01_top"></span> <span class="sanjiao02_top"></span>
+                                        <div class="f15 mg_t10 mg_l20 mg_r20">
+                                            <p class="lineH30 t_l">设置促销：</p>
+                                            <div class="clearfix">
+                                                <input id="pd_PP_@skuFirst.Sku" class="fff_bor f_l h19 f15" type="text" placeholder="输入价格" style="width:82px;" value="" onblur="CheckPromotionPrice(@skuFirst.Sku)" onfocus="PromotionPriceOnfouce(@skuFirst.Sku)">
+                                                <em class="f_l mg_l10 mg_r10 lineH30">或</em>
+                                                <div class="posR f_l" style="width:100px;height:31px;">
+                                                    <input id="pd_PR_@skuFirst.Sku" class="fff_bor f_l h19 f15" type="text" placeholder="输入折扣" style="width:82px;" value="" onblur="CheckPromotionRate(@skuFirst.Sku)" onfocus="PromotionRateOnfouce(@skuFirst.Sku)">
+                                                    <em class="posA f15" style="right:10px; top:4px; display:none;">折</em>
+                                                </div>
+                                            </div>
+                                            <p class="wrong_tips color_red t_l" style="display:block;">错误提示</p>
+                                            <div class="t_c pd_t30">
+                                                <a href="javascript:void(0)" class="btn btn_cancel" onclick="HideAddTips(@skuFirst.Sku)">取消</a>
+                                                <a href="javascript:void(0)" class="btn btn_ok mg_l30" onclick="SubmitTips(@skuFirst.Sku)">确定</a>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" id="operationType_@skuFirst.Sku" />
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="mg_l10 mg_r10 mg_t10 t_c mg_b10">
+                                    <a id="addPro_@skuFirst.Sku" href="javascript:void(0);" class="btn btn_ok btn_cy" onclick="ShowPromotionDiv(@skuFirst.Sku,1)" style="display:none;">参加促销</a>
+                                    <a id="moPro_@skuFirst.Sku" href="javascript:void(0);" class="col_link" onclick="ShowPromotionDiv(@skuFirst.Sku,2)">编辑</a>
+                                    <a id="caPro_@skuFirst.Sku" href="javascript:void(0);" class="col_link" onclick="RemovePromotion(@skuFirst.Sku,2)" style="display:none;">取消</a>
+                                    <div class="Recommended_text01" style="display: none; z-index: 10000;" id="pd_@skuFirst.Sku">
+                                        <span class="sanjiao01_top"></span> <span class="sanjiao02_top"></span>
+                                        <div class="f15 mg_t10 mg_l20 mg_r20">
+                                            <p class="lineH30 t_l">设置促销：</p>
+                                            <div class="clearfix">
+                                                <input id="pd_PP_@skuFirst.Sku" class="fff_bor f_l h19 f15" type="text" placeholder="输入价格" style="width:82px;" value="" onblur="CheckPromotionPrice(@skuFirst.Sku)" onfocus="PromotionPriceOnfouce(@skuFirst.Sku)">
+                                                <em class="f_l mg_l10 mg_r10 lineH30">或</em>
+                                                <div class="posR f_l" style="width:100px;height:31px;">
+                                                    <input id="pd_PR_@skuFirst.Sku" class="fff_bor f_l h19 f15" type="text" placeholder="输入折扣" style="width:82px;" value="" onblur="CheckPromotionRate(@skuFirst.Sku)" onfocus="PromotionRateOnfouce(@skuFirst.Sku)">
+                                                    <em class="posA f15" style="right:10px; top:4px; display:none;">折</em>
+                                                </div>
+                                            </div>
+                                            <p class="wrong_tips color_red t_l" style="display:block;">错误提示</p>
+                                            <div class="t_c pd_t30">
+                                                <a href="javascript:void(0)" class="btn btn_cancel" onclick="HideAddTips(@skuFirst.Sku)">取消</a>
+                                                <a href="javascript:void(0)" class="btn btn_ok mg_l30" onclick="SubmitTips(@skuFirst.Sku)">确定</a>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" id="operationType_@skuFirst.Sku" />
+                                    </div>
+                                </div>
+                            }
+                        </td>
+                    </tr>
+
+                    foreach (var sku in spu.Skip(1))
+                    {
+                        <tr class="lineH22">
+                            <td class="bor_none_r"><p class="pd10">@sku.MainValue</p></td>
+                            <td class="bor_none_r bor_none_l"><p class="pd10">@sku.SubValue</p></td>
+                            <td class="bor_none_r bor_none_l"><p class="pd10" id="sp_@sku.Sku">￥@sku.Price</p></td>
+                            <td class="bor_none_r bor_none_l">
+                                <p class="pd10" id="pp_@sku.Sku">
+                                    @if (sku.PromotionPrice != -1 && sku.PromotionPrice > 0)
+                                    {
+                                        <text>$</text>@sku.PromotionPrice
+                                    }
+                                </p>
+                            </td>
+                            <td class="bor_none_r bor_none_l">
+                                <p class="pd10" id="pr_@sku.Sku">
+                                    @if (sku.PromotionRate != -1 && sku.PromotionRate > 0)
+                                    {
+                                        @sku.PromotionRate<text>折</text>
+                                    }
+                                </p>
+                            </td>
+                            <td class="bor_none_l">
+                                <input type="hidden" value="@sku.spu" id="spu_@sku.Sku" />
+                                @if (sku.skuProStatus == "true" && sku.PromotionPrice == -1)
+                                {
+                                    <div class="mg_l10 mg_r10 mg_t10 t_l mg_b10 t_c">
+                                        <span>
+                                            已参加<br />
+                                            其他活动
+                                        </span>
+                                    </div>
+                                }
+                                else if ((sku.skuProStatus == "false" && sku.PromotionPrice == -1) || sku.PromotionPrice <= 0)
+                                {
+                                    <div class="mg_l10 mg_r10 mg_t10 t_c mg_b10">
+                                        <a id="addPro_@sku.Sku" href="javascript:void(0);" class="btn btn_ok btn_cy" onclick="ShowPromotionDiv(@sku.Sku,1)">参加促销</a>
+                                        <a id="moPro_@sku.Sku" href="javascript:void(0);" class="col_link" onclick="ShowPromotionDiv(@sku.Sku,2)" style="display:none;">编辑</a>
+                                        <a id="caPro_@sku.Sku" href="javascript:void(0);" class="col_link" onclick="RemovePromotion(@sku.Sku,2)" style="display:none;">取消</a>
+                                        <div class="Recommended_text01" style="display: none; z-index: 1000;" id="pd_@sku.Sku">
+                                            <span class="sanjiao01_top"></span> <span class="sanjiao02_top"></span>
+                                            <div class="f15 mg_t10 mg_l20 mg_r20">
+                                                <p class="lineH30 t_l">设置促销：</p>
+                                                <div class="clearfix">
+                                                    <input id="pd_PP_@sku.Sku" class="fff_bor f_l h19 f15" type="text" placeholder="输入价格" style="width:82px;" value="" onblur="CheckPromotionPrice(@sku.Sku)" onfocus="PromotionPriceOnfouce(@sku.Sku)">
+                                                    <em class="f_l mg_l10 mg_r10 lineH30">或</em>
+                                                    <div class="posR f_l" style="width:100px;height:31px;">
+                                                        <input id="pd_PR_@sku.Sku" class="fff_bor f_l h19 f15" type="text" placeholder="输入折扣" style="width:82px;" value="" onblur="CheckPromotionRate(@sku.Sku)" onfocus="PromotionRateOnfouce(@sku.Sku)">
+                                                        <em class="posA f15" style="right:10px; top:4px; display:none;">折</em>
+                                                    </div>
+                                                </div>
+                                                <p class="wrong_tips color_red t_l" style="display:block;">错误提示</p>
+                                                <div class="t_c pd_t30">
+                                                    <a href="javascript:void(0)" class="btn btn_cancel" onclick="HideAddTips(@sku.Sku)">取消</a>
+                                                    <a href="javascript:void(0)" class="btn btn_ok mg_l30" onclick="SubmitTips(@sku.Sku)">确定</a>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" id="operationType_@sku.Sku" />
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="mg_l10 mg_r10 mg_t10 t_c mg_b10">
+                                        <a id="addPro_@sku.Sku" href="javascript:void(0);" class="btn btn_ok btn_cy" onclick="ShowPromotionDiv(@sku.Sku,1)" style="display: none;">参加促销</a>
+                                        <a id="moPro_@sku.Sku" href="#" class="col_link" onclick="ShowPromotionDiv(@sku.Sku,2)">编辑</a>
+                                        <a id="caPro_@sku.Sku" href="javascript:void(0);" class="col_link" onclick="RemovePromotion(@sku.Sku,2)" style="display:none;">取消</a>
+                                        <div class="Recommended_text01" style="display: block; z-index: 1000;" id="pd_@sku.Sku">
+                                            <span class="sanjiao01_top"></span> <span class="sanjiao02_top"></span>
+                                            <div class="f15 mg_t10 mg_l20 mg_r20">
+                                                <p class="lineH30 t_l">设置促销：</p>
+                                                <div class="clearfix">
+                                                    <input id="pd_PP_@sku.Sku" class="fff_bor f_l h19 f15" type="text" placeholder="输入价格" style="width:82px;" value="" onblur="CheckPromotionPrice(@sku.Sku)" onfocus="PromotionPriceOnfouce(@sku.Sku)">
+                                                    <em class="f_l mg_l10 mg_r10 lineH30">或</em>
+                                                    <div class="posR f_l" style="width:100px;height:31px;">
+                                                        <input id="pd_PR_@sku.Sku" class="fff_bor f_l h19 f15" type="text" placeholder="输入折扣" style="width:82px;" value="" onblur="CheckPromotionRate(@sku.Sku)" onfocus="PromotionRateOnfouce(@sku.Sku)">
+                                                        <em class="posA f15" style="right:10px; top:4px; display:none;">折</em>
+                                                    </div>
+                                                </div>
+                                                <p class="wrong_tips color_red t_l" style="display:block;">错误提示</p>
+                                                <div class="t_c pd_t30">
+                                                    <a href="javascript:void(0)" class="btn btn_cancel" onclick="HideAddTips(@sku.Sku)">取消</a>
+                                                    <a href="javascript:void(0)" class="btn btn_ok mg_l30" onclick="SubmitTips(@sku.Sku)">确定</a>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" id="operationType_@sku.Sku" />
+                                        </div>
+                                    </div>
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<div class="page" id="pager" style="margin-left:-20px;">
+
+</div>
+@{
+    var rowCount = 0;
+    var pageIndex = 1;
+    if (Model != null && Model.Items != null && Model.Items.Count > 0)
+    {
+        rowCount = Model.RowCount;
+        pageIndex = Model.PageIndex;
+    }
+}
+
+<input type="hidden" id="recordCount" value="@rowCount" />
+<input type="hidden" id="pageIndex" value="@pageIndex" />

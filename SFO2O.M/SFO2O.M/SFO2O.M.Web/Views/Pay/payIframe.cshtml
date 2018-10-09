@@ -1,0 +1,24 @@
+﻿@using SFO2O.Utility.Uitl
+@using SFO2O.Utility.Extensions
+@using SFO2O.M.ViewModel.Order
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.Controllers;
+@{
+    string orderId = ViewBag.orderId;
+    ViewBag.ShowFooter = false;
+    ViewBag.Title = "支付页";
+}
+@model SFO2O.M.ViewModel.Order.PayOrderModel
+
+@section scripts{
+    @Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJsPayType))
+    <!--页面独有脚本-->
+    <script type="text/javascript" src="../Scripts/payIframe.js?v=2015121600021"></script>
+<!--页面独有脚本 END-->
+}
+@section styles{
+    <link href="@BundleConfig.BuildCss("Content/css/payType.css")" type="text/css" rel="stylesheet" />
+}
+    <!--20160510 新增内容-->
+    <iframe id="payIframe" width="100%" src="" style="border:none;"></iframe>
+    <!--20160510 新增内容 END-->

@@ -1,0 +1,31 @@
+﻿@{
+    var userInfo = ViewBag.SupplierUser;
+}
+<div class="header w1200 clearfix">
+    <a href="/Home/Index" class="header_left f_l">
+        @*<img src="/Content/Images/logo_small.png" class="logo_s f_l" />*@<span class="header_title f_l">商家中心</span>
+    </a>
+    <div class="header_right f_r"><a href="/Home/LoginOut" class="f_r mg20">[退出]</a><a href="javascript:void(0)" onclick="ChangePassword()" class="f_r mg20">[重置密码]</a><span class="f_r mg20"><a href="#">@userInfo.UserName</a><em>你好</em></span></div>
+    <div id="changePassword" class="none">
+        <div class="mg_t20">
+            <ul class="login_wrap" style="padding-left:0px;">
+                <li class="clearfix" style="height:76px;">
+                    <span style="width:90px;text-align:right;">旧密码</span>
+                    <input type="password" value="" class="mg_l10 oldpass" />
+                    <p class="login_wrong ftfml_sun" style="display: block;padding:0;margin-left:116px;"></p>
+                </li>
+                <li class="clearfix" style="height:76px;">
+                    <span style="width:90px;text-align:right;">新密码</span>
+                    <input type="password" value="" class="mg_l10 newpass1" />
+                    <p class="login_wrong ftfml_sun" style="display: block;padding:0;margin-left:116px;"></p>
+                </li>
+                <li class="clearfix" style="height:76px;">
+                    <span style="width:90px;text-align:right;">确认新密码</span>
+                    <input type="password" value="" class="mg_l10 newpass2">
+                    <p class="login_wrong ftfml_sun" style="display: block;padding:0;margin-left:116px;"></p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="~/Scripts/Account/Account.js"></script>
+</div>

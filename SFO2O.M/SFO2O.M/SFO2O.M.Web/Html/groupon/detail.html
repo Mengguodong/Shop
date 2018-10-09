@@ -1,0 +1,260 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="no">
+<meta name="format-detection" content="telephone=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit">
+<title>爱玖网购物商城-团详情页</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="../../Content/css/base.css?v=201512150001" rel="stylesheet">
+<!--页面独有样式-->
+<link href="../../Content/css/groupon/detail.css?v=20160412" rel="stylesheet">
+<!--页面独有样式 END-->
+</head>
+<body>
+<div class="MContainer" id="MContainer">
+	<!-- 页头 -->
+	<header class="pageHeader w100 pr tc">
+        <a class="returnBtn" id="returnBtn"></a>
+        <b class="f36 FontColor1">拼生活</b>
+    </header>
+    <!-- 页头提示 -->
+    <!-- 如果是团长 -->
+    <!-- <div class="tips fontWhite w95p">
+        <i class="success mr5"></i>开团成功！快去邀请好友加入吧。
+    </div> -->
+    <!-- 如果是团长end -->
+    <!--未参团或未登录-->
+    <!-- <div class="tips w95p tc f24 FontColor3 bgGreen">
+        <span class="FontColor5 f28">快来入团吧</span><br><br>
+        就差你了
+    </div> -->
+    <!--未参团或未登录end-->
+    <!-- 如果是团员 -->
+    <div class="tips fontWhite w95p">
+        <i class="success mr5"></i>入团成功！快去邀请好友加入吧
+    </div>
+    <!-- 如果是团员end -->
+    <!-- 页头提示end -->
+    <!-- 商品详情 -->
+    <div class="displayBox bgColor3 boxShadow product w95p pt10 pb10 mb5 pr" id="product">
+        <div class="imgBox mr7">
+            <img src="../../Content/Images/groupon/tmp.jpg?v=20160412" />
+        </div>
+        <div class="boxflex1">
+            <div class="f24 FontColor1 title">十亿沫品 正宗南澳海山野生 紫菜无沙免洗海鲜干货海苔 100g ×1</div>
+            <div class=" fontWhite info" id="info">
+                <span class="f18" style="margin-left: 5%;">10人团</span>
+                <span class="f30" style="float:right; margin-right: 5%;">￥45.8</span>
+            </div>
+        </div>
+        
+        <div class="status">
+            <!-- 组团成功 -->
+            <!--<img src="../../Content/Images/groupon/success.png?v=20160413" />-->
+            <!-- 组团成功end -->
+            <!-- 组团失败 -->
+            <img src="../../Content/Images/groupon/fail.png?v=20160413" />
+            <!-- 组团失败end -->
+        </div>
+    </div>
+    <!-- 商品详情 end -->
+    <!-- 剩余时间 如果成功或已失败则不显示-->
+    <div class="duration w95m f24 FontColor3 tc mb30" id="duration">
+        <div class="">
+            <span>剩余</span>
+            <span class="time">
+                <span class="displayBox">
+                    <b>23</b>
+                    <b>19</b>
+                    <b>07</b>
+                </span>
+            </span>
+            <span>结束</span>
+        </div>
+    </div>
+    <!-- 剩余时间 end -->
+    <!-- 剩余人数 -->
+    <div class=" mb8 people boxShadow bgColor3 pt17" id="people">
+        <ul class="w95m">
+            <li>
+                <img src="../../Content/Images/groupon/avastar.png?v=20160412" />
+                <span class="head"></span>
+            </li>
+            <li>
+                <img src="../../Content/Images/groupon/avastar.png?v=20160412" />
+            </li>
+            <li><img src="../../Content/Images/groupon/avastar_default.png?v=20160412" /></li>
+            <li>
+                <img src="../../Content/Images/groupon/avastar_default.png?v=20160412" />
+            </li>
+            
+            <li>
+                <img src="../../Content/Images/groupon/avastar_default.png?v=20160412" />
+            </li>
+            <li>
+                <img src="../../Content/Images/groupon/avastar_default.png?v=20160412" />
+            </li>
+            <li>
+                <img src="../../Content/Images/groupon/avastar_default.png?v=20160412" />
+            </li>
+            <li>
+                <img src="../../Content/Images/groupon/avastar_default.png?v=20160412" />
+            </li>
+            <li>
+                <img src="../../Content/Images/groupon/avastar_default.png?v=20160412" />
+            </li>
+            <li>
+                <img src="../../Content/Images/groupon/avastar_default.png?v=20160412" />
+            </li>
+            
+        </ul>
+        <!-- 团长或团员 -->
+        <p class="f30 tc mb17">还差<span class="FontColor6">8</span>人，赶快邀请小伙伴们来组团吧</p>
+        <!-- 团长或团员end -->
+        <!-- 未参团或未登录 -->
+        <p class="f30 tc mb17">还差<span class="FontColor6">8</span>人，赶快加入吧</p>
+        <!-- 未参团或未登录end -->
+        <div class="partner f20 FontColor3 w95p">
+            <span class="fr FontColor4 ">2016-03-11 11:11:11开团</span>
+            <i>
+                <img src="../../Content/Images/groupon/avastar.png?v=20160412" />
+            </i>18*******28
+        </div>
+        <div class="partner f20 FontColor3 w95p">
+            <span class="fr FontColor4 ">2016-03-11 11:11:11参团</span>
+            <i>
+                <img src="../../Content/Images/groupon/avastar.png?v=20160412" />
+            </i>18*******28
+        </div>
+    </div>
+    <!-- 剩余人数 end -->
+    <!--20160425 修改内容-->
+    <div class="pinRule w95p boxShadow bgColor3 ">
+        <a href="#" target="_self">
+            <p class="title w100 f28">拼生活规则 <i class="itemIcon_jt"></i></p>
+            <ul class="w100 overflowH pinRule f20 FontColor4 displayBox">
+                <li class=" tc">
+                    <p class="stepNum mc">1</p>
+                    <p class="stepName">选择<br>心仪商品</p>
+                </li>
+                <li class="tc">
+                    <p class="stepNum mc">2</p>
+                    <p class="stepName">支付开团<br>或参团</p>
+                </li>
+                <li class="tc cur">
+                    <p class="stepNum mc">3</p>
+                    <p class="stepName">等待好友<br>参团支付</p>
+                </li>
+                <!-- 如果组团成功的话，则第四个li加上cur -->
+                <li class="tc">
+                    <p class="stepNum mc">4</p>
+                    <p class="stepName">达到人数<br>团购成功</p>
+                </li>
+            </ul>
+        </a>
+    </div>
+    <!--20160425 修改内容 END-->
+    <!--页脚-->
+    <p class="loginArea f24 FontColor3 mb20 mt20 w95p">
+        <!--未登录状态显示-->
+        <a class="f24 FontColor3 mr10 ml5" href="#" target="_self">登录</a>|
+        <a class="f24 FontColor3 ml10" href="#" target="_self">注册</a>
+        <!--未登录状态显示 END-->
+        <!--已登录状态显示-->
+        <!--<a class="f24 FontColor3">退出</a>-->
+        <!--已登录状态显示 END-->
+    </p>
+    <footer class="w95p pb10 tc grayOnLine">    
+        <p class="links FontColor3 f24 mt20 mb10">
+            <a class="f24 FontColor3 mr10" href="#" target="_self">常见问题</a>|
+            <a class="f24 FontColor3  ml10 mr10" href="#" target="_self">关于我们</a>|
+            <a class="f24 FontColor3 mr10 ml10" href="#" target="_self">配送及售后服务</a>|
+            <a class="f24 FontColor3 ml10" href="#" target="_self">条款</a>
+        </p>
+        <p class="copyright f18 FontColor4">2017© 北京梵禹科技有限公司版权所有</p>
+    </footer>
+    <!--页脚 END-->
+    <!--吸底-->
+    <!-- 如果是团长或团员 -->
+    <!-- <div class="fixedBottomDiv w100 overflowH ">
+        <div class="fixedBottomDivCon">
+            <div class="w100 displayBox">
+                <div class="morePro tc f18 FontColor4">
+                    <a href="">
+                        <i></i><br>
+                        更多商品
+                    </a>
+                </div>
+                <div class="btn f28 boxflex1" id="share">
+                    还差8人组团成功，邀请小伙伴
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- 如果是团长或团员end -->
+    <!-- 未参团或未登录 -->
+    <div class="fixedBottomDiv w100 overflowH ">
+        <div class="fixedBottomDivCon">
+            <div class="w100 displayBox">
+                <div class="morePro tc f18 FontColor4">
+                    <a href="">
+                        <i></i><br>
+                        更多商品
+                    </a>
+                </div>
+                <div class="share tc f18 FontColor4" id="share">
+                    <i></i><br>
+                    分享
+                </div>
+                <div class="btn f28 boxflex1">
+                    我也要参团
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 未参团或未登录end -->
+    <!-- 如果已经组团成功或失败end -->
+    <!-- <div class="fixedBottomDiv w100 overflowH ">
+        <div class="fixedBottomDivCon">
+            <div class="w100">
+                <a href=""><div class="btn">我也要开团，点此回到商品列表</div></a>
+            </div>
+        </div>
+    </div> -->
+    <!-- 如果已经组团成功或失败end -->
+    <!--吸底 END-->
+</div>
+<!-- 如果是微信内部点击“分享” -->
+<!-- <div class="shadow shareInWX">
+    <div class="guide">
+        <img src="../../Content/Images/groupon/shareInWX.png?v=20160414" />
+    </div>
+    <div class="content f30 fontWhite tc">
+        还差 1 人就组团成功啦~<br>赶快呼唤小伙伴们参加吧！
+    </div>
+</div> -->
+<!-- 如果是微信内部点击“分享” end -->
+<!-- 如果是浏览器里面点击“分享” -->
+<!-- <div class="shadow shareInBrowser">
+    <div class="f30 tc ">
+        请使用浏览器自带的分享功能<br><br>
+        分享给微信好友<br><br>
+        或直接复制链接发送给好友
+    </div>
+</div> -->
+<!-- 如果是浏览器里面点击“分享” end -->
+<script src="../../Scripts/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../../Scripts/common/common.js?v=201512160001"></script>
+<script type="text/javascript" src="../../Scripts/jquery/jquery.dialog.js?v=20160418"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<!--页面独有脚本-->
+<script type="text/javascript" src="../../Scripts/groupon/detail.js?v=20160412"></script>
+<!--页面独有脚本 END-->
+</body>
+</html>

@@ -1,0 +1,18 @@
+﻿@using SFO2O.Utility.Uitl
+@using SFO2O.Model.Product
+@using SFO2O.Utility.Extensions
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    this.ViewBag.Title = "活动结束页";
+}
+@model SFO2O.Model.Product.ProductInfoModel
+@section styles {
+<!--页面独有样式-->
+<link href="../../Content/css/active/activeEnd.css?v=20160412" rel="stylesheet">
+<!--页面独有样式 END-->
+}
+        <div class="con w100 tc">
+            <img src="../../Content/Images/active/activeEnd/bg.png?v=201604251">
+            <p class="f24 FontColor3 mt20 mb20">该活动已结束，下次记得早点来哦~</p>
+            <a href="http://www.wdnzmt9.com/" target="_self" class="btn mc">查看更多活动</a>
+        </div>

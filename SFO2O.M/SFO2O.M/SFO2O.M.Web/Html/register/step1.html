@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="no">
+<meta name="format-detection" content="telephone=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit">
+<title>爱玖网-注册</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="../../Content/css/base.css?v=201512150001" rel="stylesheet">
+<!--页面独有样式-->
+<link href="../../Content/css/register.css?v=201512150001" rel="stylesheet">
+<!--页面独有样式 END-->
+</head>
+<body>
+<div class="MContainer" id="MContainer">
+	<!--页头-->
+  <header class="pageHeader w100 pr tc overflowH">
+      <a class="returnBtn" id="returnBtn"></a>
+      <b class="f36 FontColor1">注册</b>
+      <a href="#" target="_self" class="gotoHomeBtn"></a>
+  </header>
+  <!--页头 END-->
+  <!--表单内容-->
+  <div class="regForm w100 boxSizingB">
+		<form>
+		<!--选择国家地区-->
+			<div class="regWrap w100   f30 mt15 bgColor3 pr selectArea" id="selectArea" style=" border:none">
+				<p id="selectedP" class="pr">
+					<label>国家地区</label><span class="selectItem selectedArea">中国大陆 +86</span><span class="downJT"></span>
+				</p>
+				<div class="selectItems w100 hide whiteOnLine" id="selectItems">
+					<p _selectedId="86" class="whiteOnLine bgColor3 w100 selected">
+						<label></label><span class="selectItem">中国大陆 +86</span>
+					</p>
+				<!--	<p _selectedId="852" class="whiteOnLine bgColor3">
+						<label></label><span class="selectItem">中华人民共和国大陆地区 +852</span>
+					</p>-->
+				</div>
+			</div>
+		<!--选择国家地区 END-->
+		<!--填写手机号-->
+			<div class="regWrap regWrapP w100  whiteOnLine f30 FontColor3 mt15 bgColor3 displayBox">
+					<label>手机号码</label>
+					<div class="regTxtWrap boxflex1 pr10"><input type="tel" name="tel" id="tel" class="regTxt" maxlength="11"></div>
+			</div>
+		<!--填写手机号 END-->
+		<!--按钮-->
+		<a class="btn defaultBtn mt15" id="getCode">获取校验码</a>
+		<!--按钮 END-->
+		<!--同意协议-->
+		<p class="f24 FontColor3 mt10">
+			<span class="checkbox checked mr10 ml35" id="checkbox"></span>我已阅读并接受<a href="#" target="_self" class="FontColor5">《爱玖网用户服务协议》</a>
+		</p>
+		<!--同意协议 END-->
+		</form>
+  </div>
+  <!--表单内容END-->
+</div>
+
+<script type="text/javascript">
+	var source="0";
+</script>
+<script src="../../Scripts/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../../Scripts/common/common.js?v=201512160001"></script>
+<script type="text/javascript" src="../../Scripts/jquery/jquery.dialog.js?v=201512160001" charset="utf-8"></script>
+<!--页面独有脚本-->
+<script type="text/javascript" src="../../Scripts/account/Register.js?v=201512160001"></script>
+<!--页面独有脚本 END-->
+</body>
+</html>

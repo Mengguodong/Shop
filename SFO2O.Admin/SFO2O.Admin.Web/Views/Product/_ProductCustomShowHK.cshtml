@@ -1,0 +1,111 @@
+﻿@model List<SFO2O.Admin.Models.Product.ProductSkuCustomInfoModel>
+
+@if (Model != null && Model.Count > 0)
+{
+    var pcInfo = Model[0];
+    var tableStatus = 0;
+
+    <table class="color_table fff_bor mg_t10">
+        <tbody>
+            <tr class="">
+                @if (!String.IsNullOrWhiteSpace(pcInfo.MainDicValue) && !String.IsNullOrWhiteSpace(pcInfo.SubDicValue))
+                {
+                    tableStatus = 1;
+                    <th width="126">@pcInfo.MainDicValue</th>
+                    <th width="160">@pcInfo.SubDicValue</th>
+                    <th width="160">條形碼</th>
+                    <th width="160">SKU</th>
+                    <th width="160">價格</th>
+                    <th width="160">庫存預警</th>
+                }
+                else if (!String.IsNullOrWhiteSpace(pcInfo.MainDicValue) && String.IsNullOrWhiteSpace(pcInfo.SubDicValue))
+                {
+                    tableStatus = 2;
+                    <th width="186">@pcInfo.MainDicValue</th>
+                    <th width="210">條形碼</th>
+                    <th width="210">SKU</th>
+                    <th width="160">價格</th>
+                    <th width="160">庫存預警</th>
+                }
+                else if (String.IsNullOrWhiteSpace(pcInfo.MainDicValue) && String.IsNullOrWhiteSpace(pcInfo.SubDicValue))
+                {
+                    tableStatus = 3;
+                    <th width="213">條形碼</th>
+                    <th width="213">SKU</th>
+                    <th width="240">價格</th>
+                    <th width="240">庫存預警</th>
+                }
+            </tr>
+            @if (tableStatus == 1)
+            {
+                var groupSkus = Model.GroupBy(x => x.MainValue);
+
+                foreach (var gSkus in groupSkus)
+                {
+                    var first = gSkus.First();
+
+                    <tr>
+                        <td rowspan=@gSkus.Count() class="bor_none_l bor_none_b">@first.MainValue</td>
+                        <td colspan="5">
+                            <div class="f_l">
+                                <span class="f_l w160">@first.SubValue</span>
+                                <span class="f_l w160">@first.BarCode</span>
+                                <span class="f_l w160">@first.Sku</span>
+                                <span class="f_l w160">$@first.Price</span>
+                                <span class="f_l w160">@first.AlarmStockQty</span>
+                            </div>
+                        </td>
+                    </tr>
+
+                    foreach (var sku in gSkus.Skip(1))
+                    {
+                        <tr>
+                            <td colspan="5">
+                                <div class="f_l">
+                                    <span class="f_l w160">@sku.SubValue</span>
+                                    <span class="f_l w160">@sku.BarCode</span>
+                                    <span class="f_l w160">@sku.Sku</span>
+                                    <span class="f_l w160">$@sku.Price</span>
+                                    <span class="f_l w160">@sku.AlarmStockQty</span>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+            else if (tableStatus == 2)
+            {
+                foreach (var sku in Model)
+                {
+                    <tr>
+                        <td colspan="5">
+                            <div class="f_l">
+                                <span class="f_l w160" style="width:186px;">@sku.MainValue</span>
+                                <span class="f_l w160" style="width:210px;">@sku.BarCode</span>
+                                <span class="f_l w160" style="width:210px;">@sku.Sku</span>
+                                <span class="f_l w160">$@sku.Price</span>
+                                <span class="f_l w160">@sku.AlarmStockQty</span>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                foreach (var sku in Model)
+                {
+                    <tr>
+                        <td colspan="4">
+                            <div class="f_l">
+                                <span class="f_l w160" style="width:213px;">@sku.BarCode</span>
+                                <span class="f_l w160" style="width:213px;">@sku.Sku</span>
+                                <span class="f_l w160" style="width:240px;">$@sku.Price</span>
+                                <span class="f_l w160" style="width:240px;">@sku.AlarmStockQty</span>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+}

@@ -1,0 +1,49 @@
+﻿@using SFO2O.Utility.Uitl
+@{
+    ViewBag.Title = "我的优惠券";
+    ViewBag.HeaderTitle = "优惠券";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string CssVersion = ConfigHelper.CssVersion;
+    string JSVersion = ConfigHelper.JsVersion;
+    ViewBag.ShowFooter = true;
+}
+@section styles {
+    <!--页面独有样式-->
+    <link href="~/Content/css/myCoupons.css?v=@CssVersion" rel="stylesheet">
+    <!--页面独有样式 END-->
+}
+@section pageHeader {
+    @Html.Partial("~/Views/Shared/_HeaderTop.cshtml")
+}
+<!--20160610 新增内容-->
+<div class="con w100 overflowH">
+    <div class="tabs w100 overflowH  bgColor3 borderBottom whiteOnLine" id="tabs">
+        <a class="f24 cur" _index="0">
+            <b>未使用</b>
+            <span class="mc"></span>
+        </a>
+        <a class="f24" _index="1">
+            <b>已过期</b>
+            <span class="mc"></span>
+        </a>
+        <a class="f24" _index="2">
+            <b>已使用</b>
+            <span class="mc"></span>
+        </a>
+    </div>
+    <!-- 空提示-->
+    <div class="w100 empty tc  hide" id="emptyTip">
+        <img src="../Content/Images/myCoupons/empty.png?v=2016042501">
+        <p class="f24 FontColor3">暂时没有爱玖网优惠券哦~</p>
+    </div>
+    <!-- 空提示 End-->
+    <ul class="couponsList mc" id="couponsList">
+    </ul>
+    <p class="f20 FontColor4 pt10 pb10 tc hide" id="more">上滑加载更多</p>
+</div>
+<!--20160610 新增内容 END-->
+@section scripts {
+    <!--页面独有脚本-->
+    <script type="text/javascript" src="~/Scripts/myCoupons.js?v=@JSVersion"></script>
+    <!--页面独有脚本 END-->
+}

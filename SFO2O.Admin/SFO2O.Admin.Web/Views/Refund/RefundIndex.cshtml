@@ -1,0 +1,129 @@
+﻿@model SFO2O.Admin.ViewModel.Refund.RefundQueryModel
+@{
+    ViewBag.Title = "退款單管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var navigationTitle = "訂單管理";
+    if (Convert.ToBoolean(Model.IsFinance))
+    {
+        navigationTitle = "財務管理";
+    }
+
+    var sNames = (Dictionary<int, string>)ViewBag.SallerNames;
+}
+<div class="cont_right_crumb">
+    <span class="homepage"></span>&gt;@navigationTitle &gt; 退款單管理
+</div>
+<div class="w931">
+    <div class="upload_edit">
+        <div class="wrap_yisc pd_t15">
+            <form id="queryForm">
+                <input id="IsFinance" name="IsFinance" value="@Model.IsFinance" type="hidden" />
+                <input id="RegionCode" name="RegionCode" value="@Model.RegionCode" type="hidden" />
+                <div style="margin-left:0; margin-right:0;" class="list_yisc bor clearfix">
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">生成時間：</span>
+                        <div style="width:123px; height:29px;overflow:hidden" class="bor f_l fff_bor">
+                            <input id="CreateTimeStart" name="CreateTimeStart" class="inputdp w70 Wdate" type="text" value="@Model.StartTime.ToString("yyyy-MM-dd")"
+                                   onfocus="WdatePicker({ maxDate: '%y-%M-%d', vel: 'StartTime', isShowClear: true, isShowOK: true, isShowToday: true })" />
+                            <input id="StartTime" name="StartTime" value="@Model.StartTime.ToString("yyyy-MM-dd")" type="hidden" />
+                        </div>
+                        <em class="f_l mg_l5 mg_r5 lineH30">至</em>
+                        <div style="width:123px; height:29px;overflow:hidden" class="bor f_l fff_bor">
+                            <input id="CreateTimeEnd" name="CreateTimeEnd" class="inputdp w70 Wdate" type="text" value="@Model.EndTime.ToString("yyyy-MM-dd")"
+                                   onfocus="WdatePicker({ maxDate: '%y-%M-%d', vel: 'EndTime', isShowClear: true, isShowOK: true, isShowToday: true })" />
+                            <input id="EndTime" name="EndTime" value="@Model.EndTime.ToString("yyyy-MM-dd")" type="hidden" />
+                        </div>
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l" style="width:90px">退款單狀態：</span>
+                        <select name="RefundStatus" style="width:130px;" id="RefundStatus">
+                            <option value="-1">請選擇</option>
+                            @{
+                                var refundStatusDic = Model.IsFinance == 1 ? SFO2O.Admin.Common.EnumUtils.ConvertToDict<SFO2O.Admin.Models.RefundStatus>().Where(r => r.Key == 3 || r.Key == 4) : SFO2O.Admin.Common.EnumUtils.ConvertToDict<SFO2O.Admin.Models.RefundStatus>();
+
+                                foreach (var item in refundStatusDic)
+                                {
+
+                                    if (Model.RefundStatus == item.Key)
+                                    {
+                                        <option value="@item.Key" selected="selected">@item.Value</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.Key">@item.Value</option>
+                                    }
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l" style="width:90px">退款類型：</span>
+                        <select name="RefundType" style="width:130px;" id="RefundType">
+                            <option value="-1">請選擇</option>
+                            @{
+                                var refundTypeDic = SFO2O.Admin.Common.EnumUtils.ConvertToDict<SFO2O.Admin.Models.RefundType>();
+
+                                foreach (var item in refundTypeDic)
+                                {
+
+                                    if (Model.RefundType == item.Key)
+                                    {
+                                        <option value="@item.Key" selected="selected">@item.Value</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.Key">@item.Value</option>
+                                    }
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">買家賬號：</span>
+                        <input type="text" style="width:262px;" class="f_l bor" name="BuyerName" id="BuyerName" value="@Model.BuyerName">
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l" style="width:90px">賣家賬號：</span>
+                        <select name="SellerName" style="width:130px;" id="SellerName">
+                            <option value="0">全部</option>
+                            @foreach (var name in sNames.Keys)
+                                {
+                                    var select = String.Empty;
+                                    <option value="@name" @select>@sNames[name]</option>
+                                }
+                        </select>
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l" style="width:90px">Sku：</span>
+                        <input type="text" style="width:116px;" class="f_l bor" name="Sku" id="Sku" value="@Model.Sku">
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">訂單號：</span>
+                        <input type="text" style="width:262px;" class="f_l bor" name="OrderCode" id="OrderCode" value="@Model.OrderCode">
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l" style="width:90px">退款單號：</span>
+                        <input type="text" style="width:262px;" class="f_l bor" name="RefundCode" id="RefundCode" value="@Model.RefundCode">
+                    </div>
+                    <div class="f_l" style="width:100%;">
+                        <a class="btn_green w160 mg_l20 mg_r20 mg_t10" href="javascript:void(0)" id="search">搜 尋</a>
+                    </div>
+                </div>
+            </form>
+            <div id="list">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/my97/WdatePicker.js"></script>
+<script src="~/Scripts/chosen/chosen.jquery.js"></script>
+<script src="~/Scripts/jquerypager/jquery.pager.latest.js"></script>
+<script src="~/Scripts/StartEndTimeInit.js?@ViewBag.JsAndCssVersion"></script>
+
+<script src="~/Scripts/Refund/RefundIndex.js?@ViewBag.JsAndCssVersion"></script>
+<script src="~/Scripts/common.js?@ViewBag.JsAndCssVersion"></script>
+<link href="~/Scripts/chosen/chosen.css" type="text/css" rel="stylesheet" />
+

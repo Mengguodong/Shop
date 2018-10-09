@@ -1,0 +1,166 @@
+﻿@using SFO2O.Admin.Common;
+@using SFO2O.Admin.Businesses;
+@using SFO2O.Admin.Models;
+@using SFO2O.Admin.ViewModel;
+@using SFO2O.Admin.Models.Promotion;
+@model SFO2O.Admin.ViewModel.Promotion.PromotionDetail
+@{
+    ViewBag.Title = "促銷價管理";
+    ViewBag.PageName = "PromotionList";
+    var Promotion = Model.PromotionInfo;
+    var SkuList = Model.SkuList;
+}
+
+<div class="cont_right_crumb"><span class="homepage"></span>&gt; 市場營銷 &gt; 促銷價管理</div>
+<div class="w931">
+    <div class="mg_t20 fff_bor">
+        <div class="action_basic">
+            <div class="bg_f8f8f8 f18 color_green table_lineH43 pd_l20 bor_b">活動基本信息</div>
+            <table class="f15 mg_t20 mg_b10">
+                <tbody>
+                    <tr>
+                        <th class="pd_l40 pd_r20 vtop lineH36 t_r">活動名稱：</th>
+                        <td class="error"><p class="lineH36 mg_b10">@Promotion.PromotionName</p></td>
+                    </tr>
+                    <tr>
+                        <th class="pd_l40 pd_r20 vtop lineH36 t_r">活動時間：</th>
+                        <td class="error"><p class="lineH36 mg_b10"><span class="f_l">@Promotion.StartTime.ToDateTimeString()</span><em class="f_l mg_l20 mg_r20 lineH36">至</em><span class="f_l">@Promotion.EndTime.ToDateTimeString()</span></p></td>
+                    </tr>
+                    <tr>
+                        <th class="pd_l40 pd_r20 vtop lineH36 t_r">活動標籤：</th>
+                        <td class="error"><p class="lineH36 mg_b10">@Promotion.PromotionLable</p></td>
+                    </tr>
+                    <tr>
+                        <th class="pd_l40 pd_r20 vtop lineH36 t_r">活動費用：</th>
+                        <td class="error"><p class="lineH36 mg_b10">@Promotion.PromotionCost%</p></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="action_set">
+            <div class="bg_f8f8f8 f18 color_green table_lineH43 pd_l20 bor_b bor_t">商品促銷設置</div>
+            <div class="mg_t20 dingdglist mg_l10 mg_r10 mg_b20" style="position:relative;">
+                <div class="wrap_yisc mg_r10" style="margin-bottom:0; border-bottom:none;">
+                    <div>
+                        <table style="position:relative; width:900px;" class="bg_fff bor f15 t_c table_bor vtop">
+                            <tbody>
+                                <tr class="t_c bg_f8f8f8 table_lineH43">
+                                    <th width="280">商品名稱</th>
+                                    <th width="102">屬性1</th>
+                                    <th width="102">屬性2</th>
+                                    <th width="112">價格</th>
+                                    <th width="112">促銷價格</th>
+                                    <th width="100">促銷折扣</th>
+                                </tr>
+                                @if (SkuList != null && SkuList.Count > 0)
+                                {
+                                    var spus = SkuList.GroupBy(p => p.spu);
+
+                                    foreach (var spu in spus)
+                                    {
+                                        var rowSpan = spu.Count();
+                                        var skuFirst = spu.First();
+                                        var imgUrl = !string.IsNullOrEmpty(skuFirst.ImagePath) ? skuFirst.ImagePath.Replace('\\', '/') : "";
+
+                                        <tr class="lineH22">
+                                            <td class="t_l bor_none_r" rowspan="@rowSpan">
+                                                <div class="clearfix">
+                                                @if (!string.IsNullOrEmpty(imgUrl))
+                                                {
+                                                    <a target="_blank" href="/Product/ProductInfoDetail?spu=@skuFirst.spu"><img src="@SFO2O.Admin.Common.ConfigHelper.ImageServer@(imgUrl.Insert(imgUrl.LastIndexOf('.'), "_180"))" class="f_l mg10"></a>
+                                                }
+                                                    <div class="f_l w200">
+                                                        <p class="pd_t10 mg_b5"><a target="_blank" href="/Product/ProductInfoDetail?spu=@skuFirst.spu" class="hover_color">@skuFirst.Name</a></p>
+                                                        <input type="hidden" value="@skuFirst.spu" id="spu_@skuFirst.Sku" />
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="bor_none_r"><p class="pd10">@skuFirst.MainValue</p></td>
+                                            <td class="bor_none_r bor_none_l"><p class="pd10">@skuFirst.SubValue</p></td>
+                                            <td class="bor_none_r bor_none_l"><p class="pd10" id="sp_@skuFirst.Sku">$@skuFirst.Price</p></td>
+                                            <td class="bor_none_r bor_none_l">
+                                                <p class="pd10" id="pp_@skuFirst.Sku">
+                                                    @if (skuFirst.PromotionPrice != -1)
+                                                    {
+                                                        <text>$</text>@skuFirst.PromotionPrice
+                                                    }
+                                                </p>
+                                            </td>
+                                            <td class="bor_none_r bor_none_l">
+                                                <p class="pd10" id="pr_@skuFirst.Sku">
+                                                    @if (skuFirst.PromotionRate != -1)
+                                                    {
+                                                        @skuFirst.PromotionRate<text>折</text>
+                                                    }
+                                                </p>
+                                            </td>
+                                        </tr>
+
+                                        foreach (var sku in spu.Skip(1))
+                                        {
+                                            <tr class="lineH22">
+                                                <td class="bor_none_r"><p class="pd10">@sku.MainValue</p></td>
+                                                <td class="bor_none_r bor_none_l"><p class="pd10">@sku.SubValue</p></td>
+                                                <td class="bor_none_r bor_none_l"><p class="pd10" id="sp_@sku.Sku">$@sku.Price</p></td>
+                                                <td class="bor_none_r bor_none_l">
+                                                    <p class="pd10" id="pp_@sku.Sku">
+                                                        @if (sku.PromotionPrice != -1)
+                                                        {
+                                                            <text>$</text>@sku.PromotionPrice
+
+                                                        }
+                                                    </p>
+                                                </td>
+                                                <td class="bor_none_r bor_none_l">
+                                                    <p class="pd10" id="pr_@sku.Sku">
+                                                        @if (sku.PromotionRate != -1)
+                                                        {
+                                                            @sku.PromotionRate<text>折</text>
+                                                        }
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    <tr class="lineH22">
+                                        <td colspan="6" class="t_l bor">暫無數據</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="zanc_shangc t_c pd_t20 pd_b20">
+        <a href="javascript:void(0)" class="btn_white btn_w240" onclick="Audit(@Promotion.Id,4)">駁 回</a>
+        <a href="javascript:void(0)" class="btn_green btn_w240 mg_l20" onclick="Audit(@Promotion.Id,1)">審核通過</a>
+    </div>
+</div>
+<script type="text/javascript">
+    function Audit(id, status) {
+        $.ajax({
+            type: 'POST',
+            url: "/Promotion/Audit",
+            data: { pid: id, status: status },
+            async: true,
+            success: function (data) {
+                if (data.Error) {
+                    $.dialog((status == 1 ? "審核" : "駁回") + "失敗！");
+                }
+                else{
+                    $.dialog({
+                            content:(status == 1 ? "審核" : "駁回") + "成功！",
+                            onConfirm: function(){
+                                window.location = "/Promotion/PromotionList"
+                            }
+                        });
+                }
+            }
+        });
+    }
+</script>

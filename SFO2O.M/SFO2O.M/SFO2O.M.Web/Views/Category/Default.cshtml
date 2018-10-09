@@ -1,0 +1,380 @@
+﻿@using SFO2O.M.Controllers
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.Utility.Uitl
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    this.ViewBag.Title = "商品分类";
+    ViewBag.ShowFastShoppingCart = false;
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    string ImgVersion = ConfigHelper.ImgVersion;
+    string CssVersion = ConfigHelper.CssVersion;
+    string JsVersion = ConfigHelper.JsVersion;
+}
+@section styles {
+    <link href="@BundleConfig.BuildCss("Content/css/categoryList_n.css")" rel="stylesheet">
+    <link href="~/Content/css/search.css?v=@CssVersion" rel="stylesheet" />
+}
+@section scripts {
+
+<script type="text/javascript">
+
+    @*var str ='@ViewBag.CategoryList',
+    		json=str.replace(/&quot;/g,"\"");
+    		json=eval('(' + json + ')');*@
+  
+    var json={
+    "Type": "1",
+    "Data": [
+        {
+            "CategoryName": "保健品",
+            "CategoryId": "1",
+            "ImgUrl": "/LIB/Category/categoryList1.png",
+            "Items": [
+                {
+                    "CategoryName": "美体塑身",
+                    "CategoryId": "10001",
+                    "ImgUrl": ""
+                },
+                {
+                    "CategoryName": "保健养生",
+                    "CategoryId": "10003",
+                    "ImgUrl": ""
+                },
+                {
+                    "CategoryName": "营养补充",
+                    "CategoryId": "10004",
+                    "ImgUrl": ""
+                },
+                {
+                    "CategoryName": "天然食品",
+                    "CategoryId": "10005",
+                    "ImgUrl": ""
+                },
+                {
+                    "CategoryName": "头发保健",
+                    "CategoryId": "10006",
+                    "ImgUrl": ""
+                },
+                {
+                    "CategoryName": "儿童专科保健",
+                    "CategoryId": "10007",
+                    "ImgUrl": ""
+                },
+                {
+                    "CategoryName": "男士专科保健",
+                    "CategoryId": "10008",
+                    "ImgUrl": ""
+                },
+                {
+                    "CategoryName": "女士专科保健",
+                    "CategoryId": "10009",
+                    "ImgUrl": ""
+                },
+                {
+                    "CategoryName": "老年专科保健",
+                    "CategoryId": "10010",
+                    "ImgUrl": ""
+                }
+            ]
+        },
+        {
+            "CategoryName": "母婴产品",
+            "CategoryId": "2",
+            "ImgUrl": "/LIB/Category/categoryList2.png",
+            "Items": [
+                {
+                    "CategoryName": "喂哺用品",
+                    "CategoryId": "10015",
+                    "ImgUrl": ""
+                },
+                {
+                    "CategoryName": "喂食用品",
+                    "CategoryId": "10018",
+                    "ImgUrl": ""
+                },
+                {
+                    "CategoryName": "护理及清洁用品",
+                    "CategoryId": "10020",
+                    "ImgUrl": ""
+                },
+                {
+                    "CategoryName": "婴儿常用用品",
+                    "CategoryId": "10021",
+                    "ImgUrl": ""
+                },
+                {
+                    "CategoryName": "益智玩具",
+                    "CategoryId": "10023",
+                    "ImgUrl": ""
+                }
+            ]
+        },
+        {
+            "CategoryName": "个人护理及化妆",
+            "CategoryId": "3",
+            "ImgUrl": "/LIB/Category/categoryList3.png",
+            "Items": [
+                {
+                    "CategoryName": "香水彩妆",
+                    "CategoryId": "10031",
+                    "ImgUrl": ""
+                },
+                {
+                    "CategoryName": "面部护理",
+                    "CategoryId": "10032",
+                    "ImgUrl": ""
+                },
+                {
+                    "CategoryName": "眼部护理",
+                    "CategoryId": "10033",
+                    "ImgUrl": ""
+                },
+                {
+                    "CategoryName": "头发护理",
+                    "CategoryId": "10034",
+                    "ImgUrl": ""
+                },
+                {
+                    "CategoryName": "身体护理",
+                    "CategoryId": "10037",
+                    "ImgUrl": ""
+                },
+                {
+                    "CategoryName": "口腔护理",
+                    "CategoryId": "10035",
+                    "ImgUrl": ""
+                },
+                {
+                    "CategoryName": "男士洗护发",
+                    "CategoryId": "10027",
+                    "ImgUrl": ""
+                },
+                {
+                    "CategoryName": "男士身体洗护",
+                    "CategoryId": "10030",
+                    "ImgUrl": ""
+                },
+                {
+                    "CategoryName": "男士洁面",
+                    "CategoryId": "10025",
+                    "ImgUrl": ""
+                },
+                {
+                    "CategoryName": "男士脚部护理",
+                    "CategoryId": "10029",
+                    "ImgUrl": ""
+                },
+                {
+                    "CategoryName": "家庭计划",
+                    "CategoryId": "10161",
+                    "ImgUrl": ""
+                },
+                {
+                    "CategoryName": "卫生用品",
+                    "CategoryId": "10162",
+                    "ImgUrl": ""
+                }
+
+            ]
+        },
+        {
+            "CategoryName": "家居护理",
+            "CategoryId": "4",
+            "ImgUrl": "/LIB/Category/categoryList5.png",
+            "Items": [
+                {
+                    "CategoryName": "厨房清洁",
+                    "CategoryId": "10038",
+                    "ImgUrl": ""
+                },
+                {
+                    "CategoryName": "家具清洁",
+                    "CategoryId": "10039",
+                    "ImgUrl": ""
+                },
+                {
+                    "CategoryName": "洁厕清洁",
+                    "CategoryId": "10040",
+                    "ImgUrl": ""
+                },
+                {
+                    "CategoryName": "衣物清洁",
+                    "CategoryId": "10041",
+                    "ImgUrl": ""
+                },
+                {
+                    "CategoryName": "居家清洁",
+                    "CategoryId": "10043",
+                    "ImgUrl": ""
+                }
+            ]
+        },
+        {
+            "CategoryName": "美食超市",
+            "CategoryId": "7",
+            "ImgUrl": "/LIB/Category/categoryList6.png",
+            "Items": [
+                {
+                    "CategoryName": "粮油杂货",
+                    "CategoryId": "10091",
+                    "ImgUrl": ""
+                },
+                {
+                    "CategoryName": "零食小吃",
+                    "CategoryId": "10092",
+                    "ImgUrl": ""
+                },
+                {
+                    "CategoryName": "肉干坚果",
+                    "CategoryId": "10094",
+                    "ImgUrl": ""
+                },
+                {
+                    "CategoryName": "饮品饮料",
+                    "CategoryId": "10095",
+                    "ImgUrl": ""
+                },
+                {
+                    "CategoryName": "茶/咖啡/冲粉",
+                    "CategoryId": "10096",
+                    "ImgUrl": ""
+                }
+            ]
+        },
+        {
+            " CategoryId": " 0",
+            "CategoryName": "其他分类",
+            "Items": [
+                {
+                    "CategoryId": "10067",
+                    "CategoryName": "女士鞋靴",
+                    "ImgUrl": "LIB/Category/10067.png"
+                },
+                {
+                    "CategoryId": "10080",
+                    "CategoryName": " 家居饰品",
+                    "ImgUrl": "LIB/Category/10080.png"
+                },
+                {
+                    "CategoryId": "10104",
+                    "CategoryName": " 宠物清洁用品",
+                    "ImgUrl": "LIB/Category/10104.png"
+                },
+                {
+                    "CategoryId": "10109",
+                    "CategoryName": " 手机配件",
+                    "ImgUrl": "LIB/Category/10109.png"
+                },
+                {
+                    "CategoryId": "10110",
+                    "CategoryName": " 穿戴式智能设备",
+                    "ImgUrl": "LIB/Category/10110.png"
+                },
+                {
+                    "CategoryId": "10114",
+                    "CategoryName": "计算机配件",
+                    "ImgUrl": "LIB/Category/10114.png"
+                },
+                {
+                    "CategoryId": "10118",
+                    "CategoryName": "厨房电器",
+                    "ImgUrl": "LIB/Category/10118.png"
+                },
+                {
+                    "CategoryId": "10119",
+                    "CategoryName": "生活电器",
+                    "ImgUrl": "LIB/Category/10119.png"
+                },
+                {
+                    "CategoryId": "10120",
+                    "CategoryName": "个人护理电器",
+                    "ImgUrl": "LIB/Category/10120.png"
+                },
+                {
+                    "CategoryId": "10121",
+                    "CategoryName": "影音产品",
+                    "ImgUrl": "LIB/Category/10121.png"
+                },
+                {
+                    "CategoryId": "10122",
+                    "CategoryName": "音响设备",
+                    "ImgUrl": "LIB/Category/10122.png"
+                },
+                {
+                    "CategoryId": "10128",
+                    "CategoryName": "游戏玩具",
+                    "ImgUrl": "LIB/Category/10128.png"
+                },
+                {
+                    "CategoryId": "10134",
+                    "CategoryName": "户外装备",
+                    "ImgUrl": "LIB/Category/10134.png"
+                }
+            ],
+            "ImgUrl": ""
+        }
+    ],
+    "Content": "",
+    "LinkUrl": "",
+    "Title": ""
+};
+</script>
+    <script type="text/javascript"  src="@Url.Content("/Scripts/jquery/jsrender-v1.0.0-beta.js")"></script>
+    <script type="text/javascript"  src="@Url.Content("Scripts/jquery/jquery.lazyload.js")"></script>
+    <script type="text/javascript" src="@Url.Content("Scripts/jquery/jquery.showSearch.js")"></script>
+    @Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJsCategoryNew))
+} 
+
+    <!--页头-->
+    <header class="pageHeader w100 pr tc overflowH">
+        <a class="returnBtn" id="returnBtn"></a>
+        <b class="f36 FontColor1">商品分类</b>
+        <!--20160726 新增搜索入口-->
+        <a class="gotoSearch" id="gotoSearch" href="so.html" target="_self"></a>
+        <!--20160726 新增搜索入口 end -->
+    </header>
+    <!--页头 END-->
+    <!--分类-->
+    <div class="categoryListWrap w100" id="categoryListWrap">
+    <script type="text/x-jsrender" id="categoryListTemp">
+        {{if CategoryId}}
+        <div class="boxShadow mb8 bgColor3 w100">
+            <h2>
+                <a href="{{:~setUrl(CategoryId,0)}}" target="_self">
+                    <img src="{{:~setImg(ImgUrl)}}" alt="{{:CategoryName}}">
+                </a>
+            </h2>
+            <ul class="categoryListItem clearfix w95p">
+                {{for Items}}
+                <li class=" fl boxSizingB">
+                    <a class="FontColor3 f24" href="{{:~setUrl(CategoryId,2)}}" target="_self">
+                        {{:CategoryName}}
+                    </a>
+                </li>
+                {{/for}}
+            </ul>
+        </div>
+        {{else}}
+        <div class="otherList boxShadow mb8 bgColor3 w100">
+            <h2>
+                <a>
+                    <img src="Content/Images/categoryList/categoryList4.png?v=@ImgVersion" alt="其他分类">
+                </a>
+            </h2>
+            <ul class="categoryListItem clearfix w100">
+                {{for Items}}
+                <li class=" fl tc">
+                    <a class="FontColor3 f24 boxSizingB" href="{{:~setUrl(CategoryId,2)}}" target="_self">
+                        <img class="mc lazyloadImg" src="Content/Images/categoryList/defaultCategory.png" data-original="{{:~setImg(ImgUrl)}}" alt="{{:CategoryName}}">
+                        {{:CategoryName}}
+                    </a>
+                </li>
+                {{/for}}
+            </ul>
+        </div>
+        {{/if}}
+    </script>
+    </div>
+    <!--分类-->
+
+

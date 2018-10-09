@@ -1,0 +1,31 @@
+﻿@using SFO2O.M.Controllers
+@using SFO2O.M.Controllers.Common
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.ViewModel.Product
+@using SFO2O.Utility.Extensions
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "售后服务 ";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = false;
+}
+@section styles {
+}
+@section scripts {
+}
+@section pageHeader {
+    <!-- 页头 -->
+    <header class="pageHeader w100 pr tc overflowH">
+        <a class="returnBtn" id="returnBtn"></a>
+        <b class="f36 FontColor1">售后服务</b>
+    </header>
+    <!-- 页头 end -->
+}
+<div class="articleWrap  mt8 boxShadow bgColor3 f28 FontColor3">
+    <span class="serviceIcon10"></span><b>正货保证：</b><br>为了确保送到您手上是正品正货，无误购假货劣货之忧，「爱玖网」对所有售卖商品一律进行严格監管，所有上架商品必须经过严格审核程序，100%保证您享有优质正货。<br>
+
+    <span class="serviceIcon11"></span><b>换货保证：</b><br>为了保护您的消费者权益，在收到商品后如发现有任何质量问题，我们将无条件给予换货。换货详情可参阅本网站的《售后服务问题》。<br>
+
+    <span class="serviceIcon2"></span><b>及时应答：</b><br>为了给您更好的购物体验，在我们的工作时间内（早9点~晚20点）我们为您开通了快送应答客户服务通道。凡在购物中如遇到任何关于商品、活动等问题，您只需关注「爱玖网」的官方微信公众平台(wdnzmt9)，即可获得帮助和解答。
+</div>

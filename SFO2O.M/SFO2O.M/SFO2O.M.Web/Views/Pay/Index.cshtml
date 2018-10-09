@@ -1,0 +1,87 @@
+﻿@using SFO2O.Utility.Uitl
+@using SFO2O.Utility.Extensions
+@using SFO2O.M.ViewModel.Order
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.Controllers;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "选择支付方式";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = false;
+    string isOnline = System.Web.Configuration.WebConfigurationManager.AppSettings["isOnline"].ToString();
+    bool isonline = PayController.testEnvir();
+}
+
+@model SFO2O.M.ViewModel.Order.PayOrderModel
+
+@section scripts{
+    @*@Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJsPayType))*@
+    <script type="text/javascript" src="../../Scripts/jquery/jquery.dialog.js?v=@ConfigHelper.JsVersion"></script>
+    <script type="text/javascript" src="../../Scripts/payType.js?v=@ConfigHelper.JsVersion"></script>
+}
+@section styles{
+    <link href="@BundleConfig.BuildCss("Content/css/payType.css")" type="text/css" rel="stylesheet" />
+}
+
+<!-- 页头 -->
+<header class="pageHeader w100 pr tc overflowH">
+    <a class="returnBtn" id="returnRefundList"></a>
+    <b class="f36 FontColor1">选择支付方式</b>
+</header>
+<!-- 页头 end -->
+<div class="boxShadow payMoney bgColor3 w95p">
+    <span class="FontColor6 fr">￥@Model.Totalfee.ToString("f2")</span>
+    @Model.Package 订单金额
+</div>
+
+<div id="div_img" style="margin: 0 auto; width: 300px; height: 800px;display:none;text-align: center"><img id="payImg" /><br><p style="font-size:25px">请扫一扫识别图中二维码支付</p></div>
+
+<div id="div_form">
+    <div class="mb8 w95p f24 FontColor3">选择支付方式</div>
+
+    <div class="boxShadow mb8 payMentListWrap">
+        <div class='payMentList bgColor3 w95p selected' id="yeePay">
+            <div>
+                <img src="../../Content/Images/payType/yeebao.png" title="" alt="" />易宝支付(一键支付)
+            </div>
+            <i class=""></i>
+        </div>
+        <div class="payMentList bgColor3 w95p selected" id="zfbBtn">
+            <div>
+                <img src="../../Content/Images/payType/zfb.png" title="" alt="">支付宝支付
+            </div>
+            <i class="radioRight"></i>
+        </div>
+
+        <div class='payMentList bgColor3 w95p @(Model.isAliPay?"hide":"")' id="wxBtn">
+            <div>
+                <img src="../../Content/Images/payType/weixin.png" title="" alt="" />微信支付
+            </div>
+            <i class=""></i>
+        </div>
+
+        @if (isonline)
+        {
+            <div class='payMentList bgColor3 w95p @(Model.isAliPay?"hide":"")' id="testPay">
+                <div>
+                    <img src="../../Content/Images/payType/weixin.png" title="" alt="" />微信支付(测试专用)
+                </div>
+                <i class=""></i>
+            </div>
+        }
+
+
+        @if (Model.isAliPay)
+        {
+            <div class="tc f24 FontColor4 pr bgColor3 pt17 pb17" id="more">更多支付方式<span class="more ml5"></span></div>
+        }
+    </div>
+    <div class="tc mt20">
+        <a class="submitBtn" id="submitBtn">确认支付</a>
+    </div>
+    <input type="hidden" id="orderId" value="@Model.OrderId" />
+</div>
+
+
+

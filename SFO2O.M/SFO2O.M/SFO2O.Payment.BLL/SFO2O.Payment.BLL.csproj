@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{09CFE6CD-EAF6-4AC2-BD1A-CDB6D8499C39}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SFO2O.Payment.BLL</RootNamespace>
+    <AssemblyName>SFO2O.Payment.BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="LitJson">
+      <HintPath>..\References\LitJson.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json.Net20">
+      <HintPath>..\References\Newtonsoft.Json.Net20.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="EPayDollar.cs" />
+    <Compile Include="EPayLinks\EpayCore.cs" />
+    <Compile Include="EPayLinks\EpayEncrypt.cs" />
+    <Compile Include="EPayLinks\EpayNotify.cs" />
+    <Compile Include="EPayLinks\EpaySubmit.cs" />
+    <Compile Include="IPay.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WeixinPay\Config.cs" />
+    <Compile Include="WeixinPay\Data.cs" />
+    <Compile Include="WeixinPay\Exception.cs" />
+    <Compile Include="WeixinPay\HttpService.cs" />
+    <Compile Include="WeixinPay\JsApiPay.cs" />
+    <Compile Include="WeixinPay\Log.cs" />
+    <Compile Include="WeixinPay\WxPayApi.cs" />
+    <Compile Include="YeePay\Config\CustomerConfig.cs" />
+    <Compile Include="YeePay\Config\URLConfig.cs" />
+    <Compile Include="YeePay\Utils\AES.cs" />
+    <Compile Include="YeePay\Utils\DateUtil.cs" />
+    <Compile Include="YeePay\Utils\EncryptUtil.cs" />
+    <Compile Include="YeePay\Utils\HttpRequest.cs" />
+    <Compile Include="YeePay\Utils\HttpUtil.cs" />
+    <Compile Include="YeePay\Utils\RespondJson.cs" />
+    <Compile Include="YeePay\Utils\RSA.cs" />
+    <Compile Include="YeePay\Utils\SoftLog.cs" />
+    <Compile Include="YeePay\YeePayParamModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SFO2O.M.ViewModel\SFO2O.M.ViewModel.csproj">
+      <Project>{539e2bbb-84ba-45b1-a0af-9dda53b84a1e}</Project>
+      <Name>SFO2O.M.ViewModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SFO2O.Model\SFO2O.Model.csproj">
+      <Project>{4f4f1395-7148-429f-a636-92f2dc353670}</Project>
+      <Name>SFO2O.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SFO2O.Utility\SFO2O.Utility.csproj">
+      <Project>{68f35e34-4b4b-4b41-9c36-243ae509a4d1}</Project>
+      <Name>SFO2O.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

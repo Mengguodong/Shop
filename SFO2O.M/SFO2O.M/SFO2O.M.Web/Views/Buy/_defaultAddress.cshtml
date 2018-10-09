@@ -1,0 +1,29 @@
+﻿@model SFO2O.Model.Shopping.AddressModel
+
+
+<div class="logisticsInfo bgColor3 boxShadow mb8" id="logisticsInfo">
+    @if (Model == null || Model.Id <= 0)
+     {
+         <a id="jump" href="/buy/addaddress?return_url=http://www.wdnzmt9.com/buy/buynow">
+             <div class="bgYellow w95p content">
+                 <div class="noAdress">
+                    <i class="icon"></i>还没有收货地址，请添加
+                </div>
+                <i class="rightArrow"></i>
+            </div>
+        </a>
+    }else{
+        <div class="bgYellow w95p content">
+            <div class="detail" addressid="@Model.Id">
+                <a class="goSelect">
+                    <div class="personalInfo f28">
+                        <i class="user icon"></i><span class="name">@Model.Receiver</span>
+                        <i class="phone icon"></i>@Model.Phone
+                    </div>
+                    <div class="address">@Model.ProvinceName@Model.CityName@Model.AreaName@Model.Address</div>
+                </a>
+            </div>
+            <a class="rightArrow goSelect"></a>
+        </div>
+    }
+</div>

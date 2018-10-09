@@ -1,0 +1,56 @@
+﻿@using SFO2O.Utility.Uitl
+@using SFO2O.Utility.Extensions
+@using SFO2O.M.ViewModel.Order
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.Controllers;
+@{
+    ViewBag.ShowFooter = false;
+    string WeiXinData = ViewBag.WeiXinData;
+}
+@section scripts{
+    <script src="../../Scripts/jquery/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../../Scripts/jquery/jquery.dialog.js?v=20160418"></script>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="../../Scripts/common/common.js"></script>
+}
+@section styles{
+    <link href="@BundleConfig.BuildCss("Content/css/payType.css")" type="text/css" rel="stylesheet" />
+}
+<body>
+
+</body>
+<script type="text/javascript">
+    //调用微信JS api 支付
+    function jsApiCall() {
+        WeixinJSBridge.invoke('getBrandWCPayRequest',
+          @Html.Raw(ViewBag.WeiXinData),
+          //josn串
+    function (res) {
+        if (res.err_msg == "get_brand_wcpay_request:ok") {
+            window.location.href = "http://www.wdnzmt9.com/ZFBReturnPage.html";
+            //支付成功后的跳转页面
+        }
+        else {
+            WeixinJSBridge.call('closeWindow');
+        }
+    });
+    }
+
+    function callpay() {
+        if (typeof WeixinJSBridge == "undefined") {
+            if (document.addEventListener) {
+                document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+            } else if (document.attachEvent) {
+                document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+
+                document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+            }
+        }
+        else {
+            jsApiCall();
+        }
+    }
+    document.ready=function(){
+        callpay();
+    };
+</script>

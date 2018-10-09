@@ -1,0 +1,128 @@
+﻿body{
+	background: url(../Images/login/bg.jpg?v=20160331) no-repeat;
+	background-size: cover;
+}
+.logo{
+	margin-top: 23%;
+	text-align: center;
+}
+.logo img{
+	width: 70%;
+}
+.loginBox{
+	margin: 60px 0 40px 0;
+}
+.loginBox p{
+	/*width: 68%;*/
+	/*width: 259px;*/
+	width: 80%;
+	margin: 0 auto;
+	position: relative;
+}
+.loginBox input{
+	display: block;
+	/*width: 100%;*/
+	/*width: 180px;*/
+	width: 75%;
+	height: 40px;
+	margin: 0 auto 20px;
+	border: 1px solid #adafaa;
+	border-radius:20px;
+	font-size: 1.5rem;
+	text-align: left;
+	/*font-family: 'microsoft yahei';*/
+	/*padding-left: 77px;*/
+	padding-left: 25%;
+}
+.btnBox .btn{
+	display: block;
+	/*width: 68%;*/
+	/*width: 259px;*/
+	width: 80%;
+	margin: 0 auto;
+	background: #99cb34;
+	border: 1px solid #90c427;
+	border-radius: 20px;
+	text-align: center;
+	font-size: 1.5rem;
+	color: #d4fa87;
+	margin-bottom: 15px;
+}
+.btnBox .btn.active{
+	color: #fff;
+}
+.btnBox .links{
+	color: #6c6c6b
+}
+.btnBox .links a{
+	color: #6c6c6b;
+	font-size: 1.2rem;
+}
+.btnBox .links span{
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+.selectAreaCode{
+	background: #fff;
+	display: none;
+}
+.selectAreaCode .title{
+	height: 50px;
+	line-height: 50px;
+	background: #f2f2f2;
+	border-bottom: 1px solid #d5dcdd;
+}
+.selectAreaCode .title a{
+	color: #bcbcbc;
+	font-size: 1.6rem;
+}
+.selectAreaCode .title a.sure{
+	float: right;
+	color: #98ca35;
+}
+.selectAreaCode .content{
+
+}
+.selectAreaCode .content li{
+	width: 95%;
+	padding: 15px 2.5%;
+	color: #333;
+	text-align: left;
+	font-size: 1.4rem;
+	border-bottom: 1px solid #e6ebec;
+}
+.selectAreaCode .content li.current{
+	color: #000;
+	font-size: 1.4rem;
+}
+.sf-pop.selectAreaCode{
+	padding-left: 0;
+	padding-right: 0;
+	padding-top: 0;
+}
+
+.select{
+	position: absolute;
+	height: 40px;
+	line-height: 40px;
+	/*left: 20px;*/
+	text-align: right;
+	width: 25%;
+}
+.select img{
+	width: 12px;
+	position: relative;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.select span{
+	font-size:1.4rem;
+	display: inline-block;
+	width: 31px;
+	text-align: right;
+}
+.MContainer{ position: relative;}
+.linkWrap{/* width:259px;*/ width: 80%; height:auto; overflow: hidden; top:5%; left:50%; margin-left:-40%;}
+.loginReturnBtn,.gotoHome{width:52px; height:19px; display: inline-block; width:px; height: px; overflow: hidden; background:url(../images/login/icon.png?v=20160331) no-repeat; background-size:26px auto; -moz-background-size:26px auto; -webkit-background-size:26px auto;  }
+.gotoHome{ background-position:right -30px;}

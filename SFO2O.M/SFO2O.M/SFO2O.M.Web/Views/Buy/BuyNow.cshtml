@@ -1,0 +1,259 @@
+﻿@using SFO2O.Utility.Uitl
+@using SFO2O.Utility.Extensions
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.Controllers;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    this.ViewBag.Title = "立即购买确认订单";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = false;
+    ViewBag.ShowFastShoppingCart = false;
+
+}
+
+@model SFO2O.Model.Product.ProductSkuEntity
+
+@section scripts{
+    @Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJsConfirmOrder))
+    <script type="text/javascript" src="../../Scripts/buynow.js"></script>
+
+}
+@section styles{
+    <link href="../Content/css/shoppingCart.css?v=201512150001" rel="stylesheet">
+    <link href="../Content/css/confirmOrder.css?v=201512150001" rel="stylesheet">
+}
+
+<header class="pageHeader w100 pr tc">
+    <a class="returnBtn" id="pageReturnBtn"></a>
+    <b class="f36 FontColor1">确认订单</b>
+</header>
+@if (Model == null)
+{
+      <!--商品下架-->
+    <div class=" sf-pop payStatusWrap tc ">
+        <img src="@Url.Content("~/Content/images/proError.png")" style="width:50%; min-width:133px;">
+        <p class="content title">商品卖的太火爆，被外星人抢空了</p>
+        <p class="conent tip" style="color:#bcbcbc">去看看其他商品吧</p>
+        <p class="btn-box">
+            <a class="closeBtn m-btn" href="@DomainHelper.MUrl" target="_self">返回首页</a>
+        </p>
+    </div>
+  <!--商品下架 END-->
+}
+else
+{
+    decimal productPrice = Convert.ToDecimal(Model.ProductPrice.ToNumberRoundStringWithPoint()) * ViewBag.BuyQty;
+
+    decimal taxPrice = productPrice * Model.TaxRate;
+
+    int realTax = SFO2O.Utility.Uitl.TotalTaxHelper.GetRealTaxType(Model.ReportStatus, Model.IsCrossBorderEBTax, productPrice);
+    decimal customsDuti =
+        Convert.ToDecimal((TotalTaxHelper.GetTotalTaxAmount
+          (realTax, Model.ProductPrice, Model.CBEBTaxRate / 100,
+          Model.ConsumerTaxRate / 100, Model.VATTaxRate / 100, Model.PPATaxRate / 100).ToNumberRoundStringWithPoint())) * ViewBag.BuyQty;
+
+    if (Model.IsDutyOnSeller == 1 || (customsDuti <= 50 && realTax == 2))
+    {
+        customsDuti = 0;
+    }
+    <!--如果有二号仓（行邮税）订单，提示用户上传身份证照片-->
+    
+    <p class="warning w95p f24">请您再次确认商品信息和数量，商品购买后无质量问题不予退货</p>
+    
+    <!--收货地址-->
+    Html.RenderAction("GetDefaultAddress", "Buy", new { chooseId = ViewBag.ChooseAddressId });
+    <!-- 商品信息 -->
+    <div class="productInfo bgColor3 boxShadow mb8 ">
+        <div class="w95p title">商品&价格信息</div>
+        <ul class="cartProList " id="cartProList1">
+            <li class="  boxSizingB ">
+                <div class="displayBox w95p">
+                    <div class="cartProImgWrap">
+                        <a href="/item.html?productCode=@Model.Spu" target="_self">
+                            <img src="@Model.ImagePath.GetImageSmallUrl()" class="whiteOnLine">
+                        </a>
+                    </div>
+                    <div class="boxflex1 cartProInf pr">
+                        <a href="/item.html?productCode=@Model.Spu" target="_self">
+
+                            <p class="cartProName f24 mb5">@Model.Name</p>
+                            <p class="cartSelectedSku f20 FontColor4">
+                                @if (!string.IsNullOrEmpty(Model.MainDicValue))
+                                {
+                                    <text>@Model.MainDicValue：@Model.MainValue </text>
+                                    if (!string.IsNullOrEmpty(Model.SubDicValue))
+                                    {
+                                        <text>，@Model.SubDicValue：@Model.SubValue </text>
+                                    }
+                                    if (Model.MainDicValue.Equals("净重") || Model.MainDicValue.Equals("淨重"))
+                                    {
+                                        <text>@Model.NetWeightUnit</text>
+                                    }
+
+                                    if (Model.MainDicValue.Equals("净含量") || Model.MainDicValue.Equals("淨含量"))
+                                    {
+                                        <text>@Model.NetContentUnit</text>
+                                    }
+                                }
+
+                            </p>
+
+                            <p class="cartProPriceP mt5"><b class="proPrice f30 FontColor6">￥<b id="unitPrice">@Model.ProductPrice.ToNumberRoundStringWithPoint()</b></b> <b class="fr proNum f24">×<b id="number">@ViewBag.BuyQty</b></b></p>
+                            <span class="cartSelectSkuIco"></span>
+                        </a>
+                    </div>
+                </div>
+                @{if (ViewBag.Pid == 0 && string.IsNullOrEmpty(ViewBag.TeamCode))
+                {
+                    <div class="doNumber w95p whiteOnLine">
+                        <span>购买数量：</span>
+                        <div class=" skuNum whiteOnLine displayBox">
+                            @if (ViewBag.BuyQty == 1)
+                            {
+                                <b class="reduceBtn boxSizingB whiteOnLine disable">—</b>
+                            }
+                            else
+                            {
+                                <b class="reduceBtn boxSizingB whiteOnLine">—</b>
+                            }
+                            <input class="numTxt boxSizingB tc f28 boxflex1" type="number" taxrate="@Model.TaxRate" id="numberInput" value="@ViewBag.BuyQty" name="num">
+                            
+                            @if (ViewBag.HolidayMaxNum == 1M)
+                            {
+                                <b class="addBtn boxSizingB whiteOnLine disable">+</b>
+                            }
+                            else
+                            {
+                                <b class="addBtn boxSizingB whiteOnLine">+</b>
+                            }
+                        </div>
+                    </div>
+                }
+                }
+            </li>
+        </ul>
+    </div>
+    <div class="aboutMoney bgColor3  mb8 boxShadow">
+        <p>
+            <span>商品总价</span>
+            <b id="totalPrice" data="@productPrice" class="textOrange">￥@productPrice.ToNumberRoundStringWithPoint()</b>
+        </p>
+        <p>
+            <span>运费</span>
+            <b>￥0.00</b>
+        </p>
+
+
+        @if (ViewBag.GiftCardList.Count > 0)
+        {
+            var item = ViewBag.GiftCardList[0];
+            decimal cardSum = Convert.ToDecimal(item.CardSum);
+            <p class="discount" id="discount">
+                <b class="w100 pr">
+                    <span>优惠</span>
+                    <em id="discountInfo" data-cid="@item.Id" style=" margin-top:6px;">@item.Name<br>立减￥<font id="dis">@cardSum.ToNumberRoundStringWithPoint()</font></em>
+                    <i class="rightArrow"></i>
+                </b>
+            </p>
+        }
+    </div>
+    if (ViewBag.Pid != 0 || !string.IsNullOrEmpty(ViewBag.TeamCode))
+    {
+        <div class="pinRule w95p boxShadow bgColor3 ">
+            <a href="../product/pinRule" target="_self">
+                <p class="title w100 f28">拼生活规则 <i class="itemIcon_jt"></i></p>
+                <ul class="w100 overflowH pinRule f20 FontColor4 displayBox">
+                    <li class=" tc">
+                        <p class="stepNum mc">1</p>
+                        <p class="stepName">选择<br>心仪商品</p>
+                    </li>
+                    <li class="tc cur">
+                        <p class="stepNum mc">2</p>
+                        <p class="stepName">支付开团<br>或参团</p>
+                    </li>
+                    <li class="tc ">
+                        <p class="stepNum mc">3</p>
+                        <p class="stepName">等待好友<br>参团支付</p>
+                    </li>
+                    <!-- 如果组团成功的话，则第四个li加上cur -->
+                    <li class="tc">
+                        <p class="stepNum mc">4</p>
+                        <p class="stepName">达到人数<br>团购成功</p>
+                    </li>
+                </ul>
+            </a>
+        </div>
+    }
+    <!-- 商品信息end -->
+    
+    <!--月饼 非拼生活的确认订单页显示提示信息-->
+    if (Convert.ToString(Model.CategoryId).Equals(System.Web.Configuration.WebConfigurationManager.AppSettings["MoonCakeKey"].ToString())
+        && (ViewBag.Pid == 0 && string.IsNullOrEmpty(ViewBag.TeamCode)))
+    {
+        <!-- 如果是月饼的订单则显示 -->
+        <div class="f24 boxShadow mb8 w95p holidayGoodsTips">
+            根据中国物流贸易规范指引，月饼净重1kg或以上﹕每次限购1盒；月饼净重1kg或以下﹕每次限购2盒。爱玖网支持您多次购买，但每天只能安排配送一张订单， 您需在不同日子分开收货。
+        </div>
+        <!-- 如果是月饼的订单则显示end -->
+    }
+    
+    <div class="fixedBottomDiv w100 overflowH">
+        <div class="fixedBottomDivCon">
+            <div class="w100" style="height:45px; line-height:45px;">
+                <a class="shoppingCartBtn f28 tc fr ml5" id="submitBtn">提交订单</a>
+                <p class="tr f28">
+                    共<span id="totalNumber" class="textOrange">@ViewBag.BuyQty</span>件，总金额<span class="textOrange ml5" data="@((productPrice + customsDuti).ToNumberRoundStringWithPoint())" id="allMoney">￥@((productPrice + customsDuti).ToNumberRoundStringWithPoint())</span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="sku" value="@Model.Sku" />
+    <input type="hidden" id="qty" value="@ViewBag.BuyQty" />
+    <input type="hidden" id="pid" value="@ViewBag.Pid " />
+    <input type="hidden" id="teamcode" value="@ViewBag.TeamCode " />
+}
+<!--优惠券列表Start-->
+<div class="selectDiscount FontColor3" id="selectDiscount">
+    <a class="closeBtn">
+        <img src="../Content/Images/closeBtn.png?v=20160519" />
+    </a>
+    <p class="f28 mb16">选择优惠券</p>
+    <ul class="discountList" id="discountList">
+        @if (ViewBag.GiftCardList.Count > 0)
+        {
+            var firstDefaultCard = ViewBag.GiftCardList[0];
+            foreach (var item in ViewBag.GiftCardList)
+            {
+                <li>
+                    <table>
+                        <tr>
+                            <td width="20%" class="tc" style="border-right:1px solid #e0e0e0; ">
+                                <span class="f34 textOrange discountNum" data-cid="@item.Id" data-discount="@item.CardSum" data-huoli="@item.Huoli" data-money="@item.Money">￥@item.CardSum</span>
+                            </td>
+                            <td>
+                                <div class="f28 title pl15">@item.Name</div>
+                                <div class="f20 pl15">@item.BeginTime-@item.EndTime</div>
+                            </td>
+                            <td width="15%" class="tc">
+                                <i class='radio @(item.Id == @firstDefaultCard.Id?"selected":"") mr5'></i>
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+            }
+            <li id="last">
+                <table>
+                    <tr>
+                        <td width="85%">
+                            <div class="f28 pl15 none discountNum" data-cid="0" data-huoli="@ViewBag.HuoliNoUseGiftCard" data-money="@ViewBag.HuoliMoneyNoUseGiftCard">有钱任性，不使用优惠券</div>
+                        </td>
+                        <td width="15%" class="tc">
+                            <i class="radio mr5"></i>
+                        </td>
+                    </tr>
+                </table>
+            </li>
+        }
+    </ul>
+</div>
+<!--优惠券列表End-->

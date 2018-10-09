@@ -1,0 +1,210 @@
+﻿@using System.Web.UI.HtmlControls
+@using SFO2O.BLL.Common
+@using SFO2O.M.Controllers
+@using SFO2O.M.Controllers.Common
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.ViewModel.Product
+@using SFO2O.Model.Enum
+@using SFO2O.Utility.Extensions
+@using SFO2O.Utility.Uitl
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "我的";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = true;
+    int nonPaymentAmount = 0;
+    int unDeliveredAmount = 0;
+    int shippedAmount = 0;
+    int countNonPayment = 0;
+
+}
+@model IEnumerable<SFO2O.Model.My.MyOrderInfoEntity>
+@section styles {
+    <link href="@BundleConfig.BuildCss("Content/css/my.css")" rel="stylesheet">
+}
+@section scripts {
+    @*<script type="text/javascript" language="javascript" src="@BundleConfig.BuildCss("Scripts/jquery/jsrender-v1.0.0-beta.js")"></script>*@
+
+    @*@Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJsShopping))*@
+}
+
+@section pageHeader {
+    <!-- 页头 -->
+    <header class="pageHeader w100 pr tc overflowH">
+        <a class="returnBtn" id="returnBtn"></a>
+        <b class="f36 FontColor1">我的</b>
+        <div class="flowerMenu" id="flowerMenu"></div>
+    </header>
+    <!-- 页头 end -->
+}
+
+@if (Model.Any())
+{
+
+    nonPaymentAmount = Model.Count(n => n.OrderStatus == OrderStatusEnum.NonPayment.As(0));
+    unDeliveredAmount = Model.Count(n => n.OrderStatus == OrderStatusEnum.UnDelivered.As(0));
+    shippedAmount = Model.Count(n => n.OrderStatus == OrderStatusEnum.Shipped.As(0));
+    countNonPayment = Model.Count(n => n.OrderStatus == OrderStatusEnum.Complete.As(0));
+
+
+}
+<div class="myTop w100  pr">
+    <img src="@Url.Content("~/Content/images/my/topBg.jpg")">
+    @if (user != null)
+    {
+        <p class="w100 pa tc f30">您好，@user.UserName</p>
+    }
+</div>
+<div class="boxShadow mb8 bgColor3">
+    <p class="myOrderP whiteOnLine f28"><span class="myIcon1 mr5"></span>我的订单 <a href="@Url.Action("List", new { status = OrderStatusEnum.Default.ToInt() })" target="_self" class="f24 FontColor3 fr">查看全部订单<i class="itemIcon_jt"></i></a></p>
+    <ul class="displayBox myOrderUL w100">
+        <li class="boxflex1 tc">
+            <a href="@Url.Action("List",new{status=OrderStatusEnum.NonPayment.ToInt()})" target="_self" class="f24 FontColor3 pr mc">
+                @if (nonPaymentAmount > 0)
+                {
+                    <span class="tipNum">@(nonPaymentAmount.As9Plus())</span>
+                }
+
+                <span class="myIcon2 mc"></span>
+                待付款
+            </a>
+        </li>
+        <li class="boxflex1 tc">
+            <a href="@Url.Action("List",new{status=OrderStatusEnum.UnDelivered.ToInt()})" target="_self" class="f24 FontColor3 pr mc">
+                @if (unDeliveredAmount > 0)
+                {
+                    <span class="tipNum">@(unDeliveredAmount.As9Plus())</span>
+                }
+                <span class="myIcon3 mc"></span>
+                待发货
+            </a>
+        </li>
+        <li class="boxflex1 tc">
+            <a href="@Url.Action("List",new{status=OrderStatusEnum.Shipped.ToInt()})" target="_self" class="f24 FontColor3 pr mc">
+                @if (shippedAmount > 0)
+                {
+                    <span class="tipNum">@(shippedAmount.As9Plus())</span>
+                }
+                <span class="myIcon4 mc"></span>
+                已发货
+            </a>
+        </li>
+        <li class="boxflex1 tc">
+            <a href="@Url.Action("List", new { status = OrderStatusEnum.Complete.ToInt() })" target="_self" class="f24 FontColor3 pr mc">
+                @if (countNonPayment > 0)
+                {
+                    <span class="tipNum">@(countNonPayment.As9Plus())</span>
+                }
+                <span class="myIcon5 mc"></span>
+                已完成
+            </a>
+        </li>
+    </ul>
+</div>
+<!--20160425 新增内容-->
+<!--
+<p class="boxShadow bgColor3 jumpP mb8">
+    <a href="/my/myHL" target="_self" class="f28">
+        <span class="myIcon9 mr5"></span>我的酒豆<i class="itemIcon_jt fr"></i>
+    </a>
+</p>
+-->
+<!--20160425 新增内容 end-->
+<!--
+<div class="boxShadow bgColor3 myCon3">
+    <p class="whiteOnLine borderBottom">
+        <a href="@Url.Action("Refund", "Refund")" target="_self" class="f28">
+            <span class="myIcon6 mr5"></span>我的退款/退货<i class="itemIcon_jt fr"></i>
+        </a>
+    </p>
+    <p class="whiteOnLine borderBottom">
+        <a href="/buy/AddressList" target="_self" class="f28">
+            <span class="myIcon7 mr5"></span>我的收货地址<i class="itemIcon_jt fr"></i>
+        </a>
+    </p>
+    <p>
+        <a href="../my/set" target="_self" class="f28">
+            <span class="myIcon8 mr5"></span>设置<i class="itemIcon_jt fr"></i>
+        </a>
+    </p>
+</div>
+-->
+
+<!--20160510 修改内容-->
+<div class="boxShadow mb8 bgColor3 clearfix w100">
+    @*<a href="@Url.Action("index", "favorite")" target="_self" class="n_bd_r n_bd_b n_myItem boxSizingB">
+        <div class="n_myItemIcon n_bg1"></div>
+        <div class="n_myItemTxt f24 FontColor3">商品收藏</div>
+    </a>*@
+@if(user.SourceType==10)
+    {
+    @*<a href="/my/myHL" target="_self" class="n_bd_r n_bd_b n_myItem boxSizingB">
+        <div class="n_myItemIcon n_bg2"></div>
+        <div class="n_myItemTxt f24 FontColor3">酒豆</div>
+    </a>*@
+    }
+ @*   <a href="/GiftCard/Index" target="_self" class="n_myItem n_bd_b  boxSizingB">
+        <div class="n_myItemIcon n_bg7"></div>
+        <div class="n_myItemTxt f24 FontColor3">优惠券</div>
+    </a>*@
+@*    <a href="@Url.Action("ToInformationCenter", "Information")" target="_self" class="n_bd_r n_bd_b n_myItem boxSizingB">
+        <div class="n_myItemIcon n_bg4"></div>
+        <div class="n_myItemTxt f24 FontColor3">消息</div>
+    </a>*@
+    <a href="/buy/AddressList" target="_self" class="n_bd_r n_bd_b n_myItem boxSizingB">
+        <div class="n_myItemIcon n_bg5"></div>
+        <div class="n_myItemTxt f24 FontColor3">收货地址</div>
+    </a>
+    @if (user.SourceType == 10)
+{
+    <a href="http://www.dssfxt.com" target="_self" class="n_bd_r n_bd_b n_myItem boxSizingB">
+        <div class="n_myItemIcon n_bg7"></div>
+        <div class="n_myItemTxt f24 FontColor3">我的酿造</div>
+    </a>
+}
+ 
+        <div style="">
+           我的推广链接： <input type="text" value="" id="mylink" style="width:100%" />
+
+        </div>
+      
+  @*  <a href="@Url.Action("Refund", "Refund")" target="_self" class="n_bd_b n_myItem boxSizingB">
+        <div class="n_myItemIcon n_bg3"></div>
+        <div class="n_myItemTxt f24 FontColor3">退款/退货</div>
+    </a>*@
+  @*  <a href="/my/set" target="_self" class="n_myItem n_bd_r boxSizingB">
+        <div class="n_myItemIcon n_bg6"></div>
+        <div class="n_myItemTxt f24 FontColor3">设置</div>
+    </a>
+   *@
+    @*<a href="javascript:void(0)" target="_self" class="n_myItem n_bd_r boxSizingB">
+        <div class="n_myItemIcon "></div>
+        <div class="n_myItemTxt f24 FontColor3">&nbsp;</div>
+    </a>
+    <a href="javascript:void(0)" target="_self" class="n_myItem boxSizingB">
+        <div class="n_myItemIcon "></div>
+        <div class="n_myItemTxt f24 FontColor3">&nbsp;</div>
+    </a>*@
+</div>
+<!--20160510 修改内容 End-->
+<script src="~/Scripts/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $.post("/my/CreateMyLink", function (data) {
+
+            if (data)
+            {
+
+                if (data.result == true) {
+                    $("#mylink").val(data.msg);
+                }
+                else {
+                
+                }
+            }
+           
+        })
+    });
+
+</script>

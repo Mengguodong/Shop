@@ -1,0 +1,136 @@
+﻿@model SFO2O.Admin.ViewModel.Product.ProductAuditingViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "商品審核";
+    ViewBag.PageName = "ProductAuditingIndex";
+}
+@using SFO2O.Admin.Models.Enums;
+@{
+    var salesTerritory = 1;
+    var dataSource = 1;
+
+    var queryparas = (SFO2O.Admin.ViewModel.Product.ProductAuditingQuyModel)ViewBag.QueryParas;
+
+    if (Model != null && Model.SpuBaseInfo != null && Model.SpuBaseInfo.Count > 0)
+    {
+        var bInfo_T = Model.SpuBaseInfo[LanguageEnum.TraditionalChinese];
+        salesTerritory = bInfo_T.SalesTerritory;
+        dataSource = bInfo_T.DataSource;
+    }
+}
+<div class="cont_right_crumb">
+    <a href="javascript:void(0);" class="f_r btn_back t_c" id="returnBack">返回</a>
+    <span class="homepage"></span>&gt; 商品管理 &gt; 商品審核
+</div>
+<div class="w931">
+    <div class="upload_edit mg_t20">
+        @{
+            var className = "viewCommInfo";
+            var styles = String.Empty;
+            if (dataSource == 2)
+            {
+                className += " bor_bg";
+                styles = "width: 931px; padding: 10px 5px;";
+                <ul class="check_title clearfix">
+                    <li class="current" id="editLi">
+                        <a class="clearfix" href="javascript:void(0);">
+                            <span>待審核商品信息</span>
+                            <i></i>
+                        </a>
+                    </li>
+                    <li id="onlineLi">
+                        <a class="clearfix" href="javascript:void(0);">
+                            <span>商品原始信息</span>
+                            <i></i>
+                        </a>
+                    </li>
+                </ul>
+            }
+        }
+        <div class="@className" style="@styles">
+            <div id="editTab">
+                @Html.Partial("_ProductBaseInfo", Model.SpuBaseInfo)
+                @Html.Partial("_ProductProperties", Model)
+                @Html.Partial("_ProductPacking", Model.PackingInfo)
+                @Html.Partial("_ProductSysProperties", Model.SysInfo)
+                @if (salesTerritory != 2)//包含大陆
+                {
+                    @Html.Partial("_ProductCustomEditCHINA", Model.ProductCustomInfos)
+                }
+                else
+                {
+
+                    @Html.Partial("_ProductCustomShowHK", Model.ProductCustomInfos)
+                }
+            </div>
+            <div id="onlineTab" style="display:none;">
+            </div>
+        </div>
+        <div class="zanc_shangc t_c pd_t20 pd_b20">
+            <a href="javascript:void(0);" class="btn_white btn_w240" id="rejecting">駁 回</a>
+            <a href="javascript:void(0);" class="btn_green btn_w240 mg_l20" id="passing">審核通過</a>
+            @if (salesTerritory != 2)
+            {
+                <a href="javascript:void(0);" class="color_green add_btn mg_l20 f18 udline vbtm color_ee7a01 lineH22" id="tempStorage">暫存報備信息</a>
+            }
+        </div>
+    </div>
+</div>
+<div style="left: 50px; top: 50px; display: none; z-index: 9999; position: absolute" class="win_wrap f16" id="rejectingSuccess">
+    <div class="win_top clearfix"> <span class="f_l mg_l20">駁回成功</span><a class="win_close f_r" title="關閉" href="javascript:void(0);"></a> </div>
+    <div class="win_cont pd_l20 pd_r20">
+        <p class="t_c pd_t40 pd_b30"><span id="rejName"></span></p>
+    </div>
+    <div class="win_btm f18 t_c pd_b20"><a class="win_btn btn_green w135" href="javascript:void(0);" id="rejBtn">確 定</a></div>
+</div>
+<div style="left: 50px; top: 400px; display: none; z-index: 9999; position: absolute; " class="win_wrap f16" id="passingSuccess">
+    <div class="win_top clearfix"> <span class="f_l mg_l20">審核通過</span><a class="win_close f_r" title="關閉" href="javascript:void(0);"></a> </div>
+    <div class="win_cont pd_l20 pd_r20">
+        <p class="t_c pd_t40 pd_b30"><span id="passName"></span></p>
+    </div>
+    <div class="win_btm f18 t_c pd_b20"><a class="win_btn btn_green w135" href="javascript:void(0);" id="passBtn">確 定</a></div>
+</div>
+<div style="left: 560px; top: 50px; display: none; z-index: 9999; position: absolute" class="win_wrap f16" id="rejRea">
+    <div class="win_top clearfix"> <span class="f_l mg_l20">駁回原因</span><a class="win_close f_r" title="關閉" href="javascript:void(0);"></a> </div>
+    <div class="win_cont pd_l20 pd_r20">
+        <p class="pd_t20 pd_b5 t_c" id="rejReasonName">商品名稱（SPU編號）將被駁回，請說明駁回原因。</p>
+        <div class="clearfix t_c mg_t10 mg_b10">
+            <span class="f_l w100 t_r">駁回原因：</span>
+            <div style="height:130px;" class="f_l w300">
+                <textarea id="rejReason" style="padding:8px 9px;" class="f_l f15 fff_bor w250 h90"></textarea>
+                <p style="display:none;" class="wrong_tips color_red t_l" id="rejReasonError"></p>
+            </div>
+        </div>
+    </div>
+    <div class="win_btm f18 t_c pd_b20">
+        <a class="win_btn btn_white w135" href="javascript:void(0);" id="rejReasonCancle">取 消</a>
+        <a class="win_btn btn_green mg_l40 w135" href="javascript:void(0);" id="rejReasonBtn">確 定</a>
+    </div>
+</div>
+<div style="left: 50px; top: 50px; display: none; z-index: 9999; position: absolute" class="win_wrap f16" id="temSuccess">
+    <div class="win_top clearfix"> <span class="f_l mg_l20">提示</span></div>
+    <div class="win_cont pd_l20 pd_r20">
+        <p class="t_c pd_t40 pd_b30"><span>報備信息保存成功</span></p>
+    </div>
+    <div class="win_btm f18 t_c pd_b20"><a class="win_btn btn_green w135" href="javascript:void(0);" id="temBtn">確 定</a></div>
+</div>
+
+<input type="hidden" value="@ViewBag.SpuId" id="spuID" />
+<input type="hidden" value="@salesTerritory" id="salesTerritory" />
+<form id="returnForm">
+    <input type="hidden" value="@queryparas.EditType" id="editType" name="EditType" />
+    <input type="hidden" value="@queryparas.ProductName" id="productName" name="ProductName" />
+    <input type="hidden" value="@queryparas.CreateTimeEnd" id="createTimeEnd" name="EndTime" />
+    <input type="hidden" value="@queryparas.CreateTimeStart" id="createTimeStart" name="StartTime" />
+
+    <input type="hidden" value="@queryparas.ReportStatus" id="reportStatus" name="RepoSalesTerritoryrtStatus" />
+    <input type="hidden" value="@queryparas.SalesTerritory" id="salesTerritory" name="" />
+    <input type="hidden" value="@queryparas.Sku" id="sku" name="Sku" />
+    <input type="hidden" value="@queryparas.Spu" id="spu" name="Spu" />
+    <input type="hidden" value="@queryparas.SupplierId" id="supplierId" name="SupplierId" />
+</form>
+
+<input type="hidden" value="@ViewBag.PageNo" id="PageNo" />
+<input type="hidden" value="@ViewBag.PageSize" id="PageSize" />
+
+<script src="~/Scripts/Product/AuditingProduct.js?@ViewBag.JsAndCssVersion"></script>

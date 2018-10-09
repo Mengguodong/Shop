@@ -1,0 +1,66 @@
+﻿@using SFO2O.Utility.Uitl
+@{    
+    this.ViewBag.IsSelfTitle = true;
+    this.ViewBag.Description = "母亲节之际，爱玖网平台为天下的妈妈们准备了一份精美礼物，快来选择一份送给自己的妈妈吧。";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    this.ViewBag.Title = "母亲节特别活动 – 爱玖网购物商城";
+    this.ViewBag.HeaderTitle = "母亲节特别活动";
+    string ImgVersion = ConfigHelper.ImgVersion;
+}
+
+@section styles {
+    <!--页面独有样式-->
+    <link href="~/Content/css/active/0508.css?v=@ConfigHelper.CssVersion" rel="stylesheet">
+    <link rel="apple-touch-icon-precomposed" href="~/Content/Images/active/0508/shareImg.jpg?v=@ImgVersion" />
+    <!--页面独有样式 END-->
+}
+
+<div class="MContainer bgColor3" id="MContainer">
+    @section pageHeader {
+        @Html.Partial("~/Views/Shared/_HeaderTop.cshtml")
+    }
+    <!--专题内容-->
+    <div class="hide">
+        <img src="~/Content/Images/active/0508/shareImg.jpg?v=@ImgVersion">
+    </div>
+    <div class="con">
+        <img src="~/Content/images/active/0508/img1.jpg?v=@ImgVersion" class="w100 show">
+        <a href="~/item.html?productCode=10160425837234" target="_self"><img src="~/Content/images/active/0508/img2.jpg?v=@ImgVersion" class="w100 show" alt="一品栈冰糖燕窝"></a>
+        <a href="~/item.html?productCode=10160425837231" target="_self"><img src="~/Content/images/active/0508/img3.jpg?v=@ImgVersion" class="w100 show" alt="极品冰糖清甜官燕"></a>
+        <div class="w100 overflowH">
+            <a href="~/item.html?productCode=10160425837238" target="_self" class="w50 show fl"><img src="~/Content/images/active/0508/img4.jpg?v=@ImgVersion" class="w100 show" alt="美生荟虫草菌体胶囊"></a>
+            <a href="~/item.html?productCode=10160425837230" target="_self" class="w50 show fl"><img src="~/Content/images/active/0508/img5.jpg?v=@ImgVersion" class="w100 show" alt="极品冰糖官燕"></a>
+        </div>
+        <img src="~/Content/images/active/0508/img6.jpg?v=@ImgVersion" class="w100 show">
+        <a href="~/item.html?productCode=10160420692097" target="_self"><img src="~/Content/images/active/0508/img7.jpg?v=@ImgVersion" class="w100 show" alt="扶正气山东阿胶"></a>
+        <div class="w100 overflowH">
+            <a href="~/item.html?productCode=10160420692099" target="_self" class="w50 show fl"><img src="~/Content/images/active/0508/img8.jpg?v=@ImgVersion" class="w100 show" alt="日邦瞓得好"></a>
+            <a href="~/item.html?productCode=10160422590741" target="_self" class="w50 show fl"><img src="~/Content/images/active/0508/img9.jpg?v=@ImgVersion" class="w100 show" alt="扶正气强肝樟芝"></a>
+        </div>
+        <a href="~/item.html?productCode=10160413364999" target="_self"><img src="~/Content/images/active/0508/img10.jpg?v=@ImgVersion" class="w100 show" alt="家恩素高钙低脂营养奶粉"></a>
+        <img src="~/Content/images/active/0508/img11.jpg?v=@ImgVersion" class="w100 show">
+        <a href="~/item.html?productCode=10160324736205" target="_self"><img src="~/Content/images/active/0508/img12.jpg?v=@ImgVersion" class="w100 show" alt="灵芝专方"></a>
+        <div class="w100 overflowH">
+            <a href="~/item.html?productCode=10160324736190" target="_self" class="w32 show fl"><img src="~/Content/images/active/0508/img13.jpg?v=@ImgVersion" class="w100 show" alt="纯虫草菌丝体"></a>
+            <a href="~/item.html?productCode=10160324736183" target="_self" class="w34 show fl"><img src="~/Content/images/active/0508/img14.jpg?v=@ImgVersion" class="w100 show" alt="蓝莓杞子护眼专方"></a>
+            <a href="~/item.html?productCode=10160324736176" target="_self" class="w34 show fl"><img src="~/Content/images/active/0508/img15.jpg?v=@ImgVersion" class="w100 show" alt="健骨活络专方"></a>
+        </div>
+        <img src="~/Content/images/active/0508/img16.jpg?v=@ImgVersion" class="w100 show">
+        <a href="~/item.html?productCode=10150308886882" target="_self"><img src="~/Content/images/active/0508/img17.jpg?v=@ImgVersion" class="w100 show" alt="健骨钙镁锌"></a>
+        <div class="w100 overflowH">
+            <a href="~/item.html?productCode=10150308886884 " target="_self" class="w32 show fl"><img src="~/Content/images/active/0508/img18.jpg?v=@ImgVersion" class="w100 show" alt="至宝护道小红莓"></a>
+            <a href="~/item.html?productCode=10150308886893" target="_self" class="w34 show fl"><img src="~/Content/images/active/0508/img19.jpg?v=@ImgVersion" class="w100 show" alt="大豆异黄酮"></a>
+            <a href="~/item.html?productCode=10150308886883" target="_self" class="w34 show fl"><img src="~/Content/images/active/0508/img20.jpg?v=@ImgVersion" class="w100 show" alt="抗氧活肤CoQ10"></a>
+        </div>
+        <a href="~/item.html?productCode=10150308886814" target="_self"><img src="~/Content/images/active/0508/img21.jpg?v=@ImgVersion" class="w100 show" alt="位元堂虫草胶囊"></a>
+        <a href="~/category.html" target="_self"><img src="~/Content/images/active/0508/img22.jpg?v=@ImgVersion" class="w100 show"></a>
+    </div>
+</div>
+<!--专题内容 END-->
+
+@section scripts {
+    <!--页面独有脚本-->
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="~/Scripts/active/0508.js?v=@ConfigHelper.JsVersion"></script>
+    <!--页面独有脚本 END-->
+}

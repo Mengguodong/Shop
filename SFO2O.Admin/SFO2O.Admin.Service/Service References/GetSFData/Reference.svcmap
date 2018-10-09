@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8c33de1c-c710-4c75-93d8-98b6ad613022" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://wcfdemo.sfo2o.com/GetSFData.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="GetSFData.xsd" MetadataType="Schema" ID="8128f769-0f65-403c-bc17-cc7a92553762" SourceId="1" SourceUrl="http://wcfdemo.sfo2o.com/GetSFData.svc?xsd=xsd1" />
+    <MetadataFile FileName="GetSFData.wsdl" MetadataType="Wsdl" ID="d56cb68d-447f-4d6e-b7ab-f283b3f0a1dc" SourceId="1" SourceUrl="http://wcfdemo.sfo2o.com/GetSFData.svc?wsdl" />
+    <MetadataFile FileName="GetSFData1.xsd" MetadataType="Schema" ID="d0867962-c1e3-4ff9-b980-0e3feaaf5deb" SourceId="1" SourceUrl="http://wcfdemo.sfo2o.com/GetSFData.svc?xsd=xsd0" />
+    <MetadataFile FileName="GetSFData2.xsd" MetadataType="Schema" ID="9e4290a8-2aac-4d45-b196-0bbc587a48ea" SourceId="1" SourceUrl="http://wcfdemo.sfo2o.com/GetSFData.svc?xsd=xsd2" />
+    <MetadataFile FileName="GetSFData.disco" MetadataType="Disco" ID="f0e6f482-0064-4e59-9a8a-ad0573c45f82" SourceId="1" SourceUrl="http://wcfdemo.sfo2o.com/GetSFData.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

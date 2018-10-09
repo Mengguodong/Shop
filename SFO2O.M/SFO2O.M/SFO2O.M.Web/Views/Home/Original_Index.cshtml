@@ -1,0 +1,76 @@
+﻿@using SFO2O.M.Controllers
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.Utility.Uitl
+
+@model List<SFO2O.Model.SupplierEntity>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    this.ViewBag.Title = "爱玖网";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.isShowGoBak = false;
+    ViewBag.ShowFastShoppingCart = false;
+    string startTime = System.Web.Configuration.WebConfigurationManager.AppSettings["PinStartTime"].ToString();
+    string endTime = System.Web.Configuration.WebConfigurationManager.AppSettings["PinEndTime"].ToString();
+    string ImgVersion = ConfigHelper.ImgVersion;
+    string CssVersion = ConfigHelper.CssVersion;
+    string JsVersion = ConfigHelper.JsVersion;
+}
+@section styles {
+    <link href="@BundleConfig.BuildCss("Content/css/index.css")" rel="stylesheet" />
+    <link href="~/Content/css/search.css?v=@CssVersion" rel="stylesheet" />
+}
+@section scripts {
+    <!--页面独有脚本-->
+    @Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJsIndex))
+    <!--页面独有脚本 END-->
+}
+@section pageHeader {
+    @Html.Partial("~/Views/Shared/_Header.cshtml")
+
+}
+<!--焦点图-->
+@Html.Action("ScrollImage")
+<!--焦点图 END-->
+<!--20160726 修改内容-->
+<nav class="indexNav w100 bgColor3 clearfix mb8">
+    <a href="/brand/BrandStreetIndex" target="_self" class="tc"><span class="indexNavItem1 mc"></span><b>品牌街</b></a>
+    <a href="/category.html" target="_self" class="tc"><span class="indexNavItem2 mc"></span><b>类目</b></a>
+    <a href="/shoppingcart" target="_self" class="tc"><span class="indexNavItem3 mc"></span><b>购物车</b></a>
+    <a href="@Url.Action("Index","My")" target="_self" class="tc"><span class="indexNavItem4 mc"></span><b>我的</b></a>
+</nav>
+<!--20160726 修改内容 End-->
+<!-- 20160726 修改内容 超市频道-->
+<div class=" w100 mb8 bgColor3 overflowH clearfix">
+    <a href="supermarket.html" target="_self" class="show mb8 fl">
+        <img src="../Content/Images/index/gotoMarket.jpg?v=20160412" class="w100 show banner_n" />
+    </a>
+
+    <div class="fl indexCategoryList w100 clearfix ">
+        <!--类目展示区-->
+        @Html.Action("CategoryModule1", new { top = 3 })
+        @Html.Action("CategoryModule2", new { top = 2 })
+        <!--类目展示区 END-->
+    </div>
+</div>
+
+<!--20160425 新增内容 拼生活入口-->
+
+@if (DateTime.Now >= Convert.ToDateTime(startTime) && DateTime.Now <= Convert.ToDateTime(endTime))
+{
+    <div class="w100 mb8">
+        <a href="../product/FightIndex" target="_self" class="show mb8 lazyloadImgWrap">
+            <img class="w100 show lazyloadImg banner_n" data-original="/Content/Images/index/pinAdv.jpg?v=@ImgVersion" />
+        </a>
+    </div>
+}
+<!--20160425 新增内容 拼生活入口 End-->
+<!--新品推荐-->
+@*@Html.Action("NewProductRecommend", new { top = 16 })*@
+<!--新品推荐 END-->
+<!--自定义模块-->
+@*@Html.Action("CMSCustomProduct")*@
+<!--自定义模块 END-->
+<!--V2.0热门商品（大/搜/罗）Start-->
+@Html.Action("CMSHotProduct", new { top = 20 })
+<!--V2.0热门商品（大/搜/罗）End-->

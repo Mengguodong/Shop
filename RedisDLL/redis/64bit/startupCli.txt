@@ -1,0 +1,2 @@
+F:
+cd F:\随变科技\模拟公司环境\redis\64bit\redis-server.exe

@@ -1,0 +1,74 @@
+﻿@using SFO2O.M.Controllers.Common
+@using SFO2O.Utility.Uitl
+@model SFO2O.M.ViewModel.Product.ProductListModel
+@{
+    ViewBag.Title = "ProductList";
+}
+
+<!-- 商品列表 start -->
+<div class="navContent w95p tmp_category mooncakeList" id="navContent">
+    <div class="list productList">
+        <div class="w100 clearfix">
+            @foreach (var item in Model.Products)
+            {
+
+
+                <div class="item">
+                    <a href="/item.html?productCode=@item.SPU">
+                        <div class="imgBox">
+                            <img class="lazyloadProductImg" data-original="@item.ImagePath">
+                            @if (item.DiscountPrice < item.MinPrice)
+                            {
+                                <span class="account">@item.DiscountRate@Html.Raw("折")</span>
+                            }
+                        </div>
+                        <div class="title w95p">@item.Name</div>
+                        @if (item.DiscountPrice < item.MinPrice)
+                        {
+                        <!--有促销价-->
+                            <div class="price f20 w95p">
+                                ￥<span class="f28">@item.DiscountPrice</span> <span class="original">@item.MinPrice</span>
+                            </div>
+                        <!--end-->
+                        }
+                        else
+                        {
+                        <!--无促销价格-->
+                            <div class="price f20 w95p">
+                                ￥<span class="f28">@item.DiscountPrice</span>
+                            </div>
+                        <!---->
+                        }
+                    </a>
+                    @if (item.Qty < 1)
+                    {
+                        <a href="/item.html?productCode=@item.SPU"><div class="saleOut_n">已售罄</div></a>
+                    }
+                    else
+                    {
+                        <a href="/buy/buynow?sku=@item.Sku&qty=1"><div class="goBuyNow">立即购买</div></a>
+                    }
+                </div>
+
+            }
+
+            <!-- 如果是奇数个商品 start -->
+            @if (Model.TotalRecord % 2 != 0)
+            {
+                <div class="more">
+                    <div></div>
+                </div>
+            }
+            <!-- 如果是奇数个商品 end -->
+        </div>
+    </div>
+    <!-- 如果有偶数个商品 start -->
+    @if (Model.TotalRecord % 2 == 0)
+    {
+        <div class="moreB">
+                <img src="/Content/Images/active/moonCake/moreB.jpg?v=20160727" />
+        </div>
+    }
+    <!-- 如果有偶数个商品 end -->
+</div>
+<!-- 商品列表 end -->

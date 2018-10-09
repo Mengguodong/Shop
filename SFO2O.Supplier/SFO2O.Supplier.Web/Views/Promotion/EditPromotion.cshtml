@@ -1,0 +1,112 @@
+﻿@model SFO2O.Supplier.Models.Promotion.PromotionMainInfoModel
+@{
+    ViewBag.Title = "编辑促销价";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.PageName = "PromotionList";
+
+    var dateTime = DateTime.Now.AddDays(3);
+}
+
+<div class="cont_right_crumb"><span class="homepage"></span>&gt; 市场营销 &gt; 促销价</div>
+<div class="w931">
+    <div class="mg_t20 bor">
+        <div class="action_basic">
+            <div class="bg_f8f8f8 f18 color_green table_lineH43 pd_l20 bor_b">活动基本信息</div>
+            <table class="f15 mg_t20 mg_b10">
+                <tbody>
+                    <tr>
+                        <th class="pd_l40 pd_r20 vtop lineH36 t_r"><i class="color_red vmiddle bitian">*</i>活动名称：</th>
+                        <td>
+                            <div class="mg_b20 clearfix">
+                                <input disabled="disabled" id="promotionName" class="fff_bor f_l h19 mg_r10 f15" type="text" value="@Model.PromotionName" style="width: 440px; height: 24px;" maxlength="10" placeholder="活动名称" />
+                                <p class="wrong_tips color_red" style="display:none;">请输入活动名称</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="pd_l40 pd_r20 vtop lineH36 t_r"><i class="color_red vmiddle bitian">*</i>活动时间：</th>
+                        <td class="">
+                            <div class="mg_b20 clearfix">
+                                <div class="bor f_l fff_bor f15" style="width:200px; height:36px; overflow: hidden;">
+                                    <input disabled="disabled" type="text" style="width: 175px; background-position: 171px 9px;" id="StartTime" class="Wdate" name="StartTime"
+                                           onclick="WdatePicker({ isShowClear: true, isShowOK: true, isShowToday: true, dateFmt: 'yyyy-MM-dd HH:00:00', maxDate: '#F{$dp.$D(\'EndTime\')}' })"
+                                           value="@Model.StartTime.ToString("yyyy-MM-dd HH:00:00")" />
+                                </div>
+                                <em class="f_l mg_l20 mg_r20 lineH36">至</em>
+                                <div class="bor f_l fff_bor f15" style="width: 200px; height:36px; overflow: hidden;">
+                                    <input disabled="disabled" type="text" style="width: 175px; background-position: 171px 9px;" id="EndTime" class="Wdate" name="EndTime"
+                                           onclick="WdatePicker({ isShowClear: true, isShowOK: true, isShowToday: true, dateFmt: 'yyyy-MM-dd HH:00:00', minDate: '#F{$dp.$D(\'StartTime\')}' })"
+                                           value="@Model.EndTime.ToString("yyyy-MM-dd HH:00:00")" />
+                                </div>
+                                <p class="wrong_tips color_red" style="display:none;">错误提示</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="pd_l40 pd_r20 vtop lineH36 t_r">活动标籤：</th>
+                        <td class="">
+                            <div class="mg_b20 clearfix">
+                                <input disabled="disabled" id="lable" class="fff_bor f_l h19 mg_r10 f15" type="text" value="@Model.PromotionLable" style="width:182px;height:24px;" placeholder="促销价" maxlength="5" />
+                                <div class="f_l" style="font-size:13px;width:100%;">
+                                    <span class="f_l">活动期间展示与商品详情的价格旁边，2-5个字。</span>
+                                </div>
+                            </div>
+                            <p class="wrong_tips color_red" style="display:none;"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="pd_l40 pd_r20 vtop lineH36 t_r"><i class="color_red vmiddle bitian">*</i>活动费用：</th>
+                        <td class="">
+                            <div class="mg_b20 clearfix">
+                                <div class="posR" style="width:200px;height:36px;">
+                                    <input disabled="disabled" id="promotionPercent" class="fff_bor mg_r10 f_l h19 f15" type="text" value="@Model.PromotionCost" style="width:182px;height:24px;" placeholder="请填入费用承担比例" />
+                                    <em class="posA f15" style="right:10px; top:6px;">%</em>
+                                </div>
+                                <p class="wrong_tips color_red" style="display:none;">错误提示</p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <input type="hidden" id="redisNo" value="@ViewBag.RedisNo" />
+        <input type="hidden" id="proSkuCount" />
+        <input type="hidden" id="promotionId" value="@ViewBag.PromotionId" />
+        <div class=" action_set">
+            <div class="bg_f8f8f8 f18 color_green table_lineH43 pd_l20 bor_b bor_t">
+                <div class="f_r clearfix mg_r10 check_search bor" style="width:310px; background-color:#fff; height:33px; margin-top:4px;">
+                    <input class="h19 f_l f15" value="" style="width:254px;height:23px;" id="querySkuName" />
+                    <a href="javascript:void(0);" class="icon_search" style="float:right; margin:9px 20px 0 0;" id="search"></a>
+                </div>
+                商品促销设置
+            </div>
+            <div class="mg_t20 dingdglist mg_l10 mg_r10 mg_b20" style="position:relative;">
+                <ul class="check_title clearfix">
+                    <li class="current" style="height:auto;" id="firstLi">
+                        <a href="javascript:void(0);" class="clearfix">
+                            <span style="padding:0 20px 0 30px;">选择商品</span>
+                            <i>
+                            </i>
+                        </a>
+                    </li>
+                    <li id="secondLi">
+                        <a href="javascript:void(0);" class="clearfix">
+                            <span>已选商品（<em id="emSkuCount">0</em>）</span>
+                            <i>
+                            </i>
+                        </a>
+                    </li>
+                </ul>
+                <a id="submitPromotion" class="addpro_btn btn_sc mg_l10 posA btn_shenhe btn_shenhe_off" href="#">提交审核</a>
+                <div class="wrap_yisc mg_r10" style="margin-bottom:0; border-bottom:none;" id="skuList">
+                </div>
+                <div id="chosenSkuList" style="margin-bottom:0; border-bottom:none; display:none;" class="wrap_yisc mg_r10">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Script("~/Scripts/Promotion/CreatePromotion.js")
+@Html.Script("~/Scripts/jquerypager/jquery.pager.latest.js")
+@Html.Script("~/Scripts/PageCommon.js")

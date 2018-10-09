@@ -1,0 +1,48 @@
+﻿@model SFO2O.Supplier.Models.DropDownList
+@{
+    Dictionary<string, string> selectList = Model.SelectList;
+
+    var customer = selectList.Where(p => p.Value == Model.SelectedValue);
+    var isOther = (customer.Count() <= 0 && !string.IsNullOrEmpty(Model.SelectedValue));
+
+}
+
+
+<select id="@Model.Id" name="@Model.Id" style="display: none;">
+    @if (Model.KeyName == "Size" || Model.KeyName == "Materials" || Model.KeyName == "Color" || Model.KeyName == "CountryOfManufacture" || Model.KeyName == "brand")
+    {
+        <option value="0">请选择</option>
+    }
+    @foreach (var item in selectList)
+    {
+        if (Model.Type == 1)
+        {
+            if (Model.SelectedValue == item.Value)
+            {
+                <option value="@item.Key" selected="selected">@item.Value</option>
+            }
+            else
+            {
+                if ((item.Value.Contains("其他") || item.Value.Contains("其它")) && isOther)
+                {
+                    <option value="@item.Key" selected="selected">@item.Value</option>
+                }
+                else
+                {
+                    <option value="@item.Key">@item.Value</option>
+                }
+            }
+        }
+        else
+        {
+            if (Model.SelectedValue == item.Key)
+            {
+                <option value="@item.Key" selected="selected">@item.Value</option>
+            }
+            else
+            {
+                <option value="@item.Key">@item.Value</option>
+            }
+        }
+    }
+</select>

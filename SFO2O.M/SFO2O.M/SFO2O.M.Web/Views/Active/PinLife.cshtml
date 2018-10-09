@@ -1,0 +1,44 @@
+﻿@using SFO2O.Utility.Uitl
+@{
+    this.ViewBag.IsSelfTitle = true;
+    this.ViewBag.Title = "拼生活，好闺蜜、好基友一起拼！– 爱玖网购物商城";
+    this.ViewBag.Description = "拼生活，是基于好友关系的组团买卖，获取团购优惠。「拼生活」频道最新上线！港货正品，全场包邮，由物流从中华人民共和国大陆地区直送全国各地。";
+    this.ViewBag.HeaderTitle = "大家一起拼";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string ImgVersion = ConfigHelper.ImgVersion; 
+}
+
+@section styles {
+    <!--页面独有样式-->
+    <link href="~/Content/css/active/pinIntroduce.css?v=@ConfigHelper.CssVersion" rel="stylesheet">
+    <link rel="apple-touch-icon-precomposed" href="~/Content/Images/active/pinIntroduce/shareImg.jpg?v=@ImgVersion" />
+    <!--页面独有样式 END-->
+}
+
+<div class="MContainer" id="MContainer">
+    @section pageHeader {
+        @Html.Partial("~/Views/Shared/_HeaderTop.cshtml")
+    }
+    <div class="hide">
+        <img src="~/Content/Images/active/pinIntroduce/shareImg.jpg?v=@ImgVersion">
+    </div>
+    <div class="w100 overflowH pr con">
+        <img src="~/Content/Images/active/pinIntroduce/bg1.jpg?v=@ImgVersion" class="show bg">
+        <a href="~/product/FightIndex" class="gotoPinBtn1" target="_self"><img src="~/Content/Images/active/pinIntroduce/btn1.jpg?v=@ImgVersion"></a>
+    </div>
+    <img src="~/Content/Images/active/pinIntroduce/bg2.jpg?v=@ImgVersion" class="show w100">
+    <img src="~/Content/Images/active/pinIntroduce/bg3.jpg?v=@ImgVersion" class="show w100">
+    <img src="~/Content/Images/active/pinIntroduce/bg4.jpg?v=@ImgVersion" class="show w100">
+    <img src="~/Content/Images/active/pinIntroduce/bg5.jpg?v=@ImgVersion" class="show w100">
+    <div class="w100 overflowH pr con">
+        <img src="~/Content/Images/active/pinIntroduce/bg6.jpg?v=@ImgVersion" class="show bg">
+        <a href="~/product/FightIndex" class="gotoPinBtn2" target="_self"><img src="~/Content/Images/active/pinIntroduce/btn2.jpg?v=@ImgVersion"></a>
+    </div>
+</div>
+
+@section scripts {
+    <!--页面独有脚本-->
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="~/Scripts/active/pinIntroduce.js?v=@ConfigHelper.JsVersion"></script>
+    <!--页面独有脚本 END-->
+}

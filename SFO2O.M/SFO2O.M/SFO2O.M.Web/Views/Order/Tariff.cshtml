@@ -1,0 +1,154 @@
+﻿@using SFO2O.Utility.Uitl
+@using SFO2O.Utility.Extensions
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.Controllers;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "确认订单";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = false;
+    
+}
+
+@model SFO2O.M.ViewModel.Order.OrderSubmitProductModel
+
+@section scripts{
+    @Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJsConfirmOrder))
+}
+@section styles{
+    <link href="../Content/css/importTariff.css?v=201512150001" rel="stylesheet">
+}
+
+<!-- 页头 -->
+<header class="pageHeader w100 pr tc">
+    <a class="returnBtn" id="returnBtn"></a>
+    <b class="f36 FontColor1">进口商品税</b>
+    <a class="introLink" href="/buy/taxDescription">商品税说明</a>
+</header>
+<!-- 页头 end -->
+<!-- 商品税列表 -->
+<ul class="fshList tariffList boxShadow mb8">
+    @{
+        decimal sumSellerTaxValue = 0.00M;
+        decimal sumTaxValue = 0.00M;
+        int realTaxTypeValue = 0;
+    }
+    @foreach (var item in Model.Items)
+    {
+        var cartTariff = Model.OrderStatus > 0 ? @item.TaxAmountExchanged : @item.TaxAmountExchanged * @item.CartQuantity;
+        
+        <li>
+            <div class="info">
+                <img src="@item.ImagePath.GetImageSmallUrl()" />
+                <div>
+                    <p class="mb20">单价：<span>￥@item.SalePriceExchanged.ToNumberRoundStringWithPoint()</span></p>
+                    <p class="mb8">
+                        @{
+                            var salePriceExcanged = item.SalePriceExchanged;
+                            
+                            int realTaxType = TotalTaxHelper.GetRealTaxType(item.ReportStatus,
+                                        item.IsCrossBorderEBTax, salePriceExcanged * @item.CartQuantity);
+
+                            realTaxTypeValue = realTaxType;
+
+                            decimal taxValue = Convert.ToDecimal((TotalTaxHelper.GetTotalTaxAmount(realTaxType, salePriceExcanged, item.CBEBTaxRate,
+                                                            item.ConsumerTaxRate, item.VATTaxRate, item.PPATaxRate).ToNumberRoundStringWithPoint())) * item.CartQuantity;
+                            
+                            
+                            /// 卖家承担商品税
+                            if (item.IsDutyOnSeller == 1)
+                            {
+                                /// 卖家承担商品税求和
+                                sumSellerTaxValue = sumSellerTaxValue + taxValue;
+                            }
+
+                            /// 商品税求和
+                            sumTaxValue = sumTaxValue + taxValue;
+                              
+                        }
+                        
+                        
+                    </p>
+                    数量：<span>×@item.CartQuantity</span>
+                </div>
+            </div>
+            <div class="price">
+                <p>￥@taxValue.ToNumberRoundStringWithPoint()</p>
+                @if (@item.IsDutyOnSeller == 1)
+
+                {
+                    <span>（商家承担）</span>
+                }
+            </div>
+           
+            
+            
+        </li>
+    }
+</ul>
+<!-- 商品税列表end -->
+<!-- 商品税总计 -->
+<div class="total boxShadow mb8">
+    <div class="detail w95p whiteOnLine">
+        <div>
+            <span>商品税总计</span>
+            ￥@sumTaxValue.ToNumberRoundStringWithPoint()
+        </div>
+        @{
+            decimal needToPayTax = 0.00M;
+
+            if (realTaxTypeValue == 2)
+            {
+                if (sumTaxValue <= 50)
+                {
+                   <!-- 不用交商品税 -->
+                    <p class="tip">
+                        商品税总计不超过50元免征，故无需支付商品税
+                    </p> 
+                }
+                else if (sumSellerTaxValue > 0)
+                {
+                    needToPayTax = sumTaxValue - sumSellerTaxValue;
+                    <div>
+                        <span>商家承担商品税</span>
+                        - ￥@sumSellerTaxValue.ToNumberRoundStringWithPoint()
+                    </div>
+                }
+                else
+                {
+                    needToPayTax = sumTaxValue;
+                    <div>
+                        <span>商家承担商品税</span>
+                        - ￥0.00
+                    </div>
+                }
+            }
+            else
+            {
+                if (sumSellerTaxValue > 0)
+                {
+                    needToPayTax = sumTaxValue - sumSellerTaxValue;
+                    <div>
+                        <span>商家承担商品税</span>
+                        - ￥@sumSellerTaxValue.ToNumberRoundStringWithPoint()
+                    </div>
+                }
+                else
+                {
+                    needToPayTax = sumTaxValue;
+                    <div>
+                        <span>商家承担商品税</span>
+                        - ￥0.00
+                    </div>
+                }
+            }
+            
+        }
+
+    </div>
+    <div class="info w95p">
+        共<span>@Model.TotaCount</span>件，需要支付商品税<span>￥@needToPayTax.ToNumberRoundStringWithPoint()</span>
+    </div>
+</div>
+<!-- 商品税总计end -->

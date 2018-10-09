@@ -1,0 +1,419 @@
+﻿@using SFO2O.Admin.Common;
+@using SFO2O.Admin.Businesses;
+@using SFO2O.Admin.Models;
+@using SFO2O.Admin.Models.Product;
+@using SFO2O.Admin.ViewModel.Product;
+@model SFO2O.Admin.ViewModel.PageOf<SFO2O.Admin.Models.Product.ProductAuditingListModel>
+@{
+    ViewBag.Title = "管理商品";
+    ProductAuditingQuyModel queryInfo = ViewBag.QueryInfo;
+    var suppliers = CommonBLL.GetSuppliers();
+    List<CategoryModel> firCategory = ViewBag.FirCategoryId;
+
+    List<CategoryModel> sndCategory = ViewBag.SndCategoryId;
+
+    List<CategoryModel> trdCategory = ViewBag.TrdCategoryId;
+
+    var productStatus = EnumUtils.ConvertToDict<SFO2O.Admin.Models.Enums.ProductStatus>();
+
+    var inventoryStatus = EnumUtils.ConvertToDict<SFO2O.Admin.Models.Enums.InventoryStatus>();
+
+    var salesTerritory = new Dictionary<int, string>
+    {
+        {0,"不限"},
+        {1,"僅中國大陸"},
+        {2,"僅香港地區"},
+        {3,"含中國大陸"},
+        {4,"含香港地區"},
+        {5,"中國大陸及香港地區"}
+    };
+
+    var isOnSales = new Dictionary<int, string>
+    {
+        {-1,"全部"},
+        {1,"是"},
+        {0,"否"}
+    };
+
+}
+<div class="cont_right_crumb"><span class="homepage"></span>&gt; 商品管理 &gt; 管理商品</div>
+<div class="w931">
+    <div class="upload_edit">
+        <div class="wrap_yisc pd_t15" style="border-top: none;">
+
+            <div class="list_yisc bor clearfix" style="margin-left: 0; margin-right: 0;">
+                @using (Html.BeginForm(null, null, FormMethod.Get))
+                {
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">發佈時間：</span>
+                        <div class="bor f_l fff_bor" style="width: 123px; height: 29px; overflow: hidden;">
+                            <input type="text" id="StartTime" class="Wdate" name="StartTime"
+                                   onclick="WdatePicker({ maxDate: '%y-%M-%d', vel: 'StartTime', isShowClear: true, isShowOK: true, isShowToday: true })"
+                                   value="@queryInfo.CreateTimeStart.ToString("yyyy-MM-dd")" />
+                        </div>
+                        <em class="f_l mg_l5 mg_r5 lineH30">至</em>
+                        <div class="bor f_l fff_bor" style="width: 123px; height: 29px; overflow: hidden;">
+                            <input type="text" id="EndTime" class="Wdate" name="EndTime"
+                                   onclick="WdatePicker({ maxDate: '%y-%M-%d', vel: 'EndTime', isShowClear: true, isShowOK: true, isShowToday: true })"
+                                   value="@queryInfo.CreateTimeEnd.ToString("yyyy-MM-dd")" />
+                        </div>
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">SPU編號：</span>
+                        <input type="text" style="width:141px;" class="f_l bor f15" name="Spu" id="Spu" value="@queryInfo.Spu">
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">SKU編號：</span>
+                        <input type="text" style="width:141px;" class="f_l bor f15" name="Sku" id="skuNo" value="@queryInfo.Sku">
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">商品名稱：</span>
+                        <input type="text" style="width:262px;" class="f_l bor f15" name="ProductName" id="ProductName" value="@queryInfo.ProductName">
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">商品狀態：</span>
+                        <div class="f_l" style="width: 153px;">
+                            @Html.DropDownList("ProductStatus", new SelectList(productStatus, "Key", "Value", queryInfo.ProductStatus), "全部")
+                        </div>
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">庫存狀態：</span>
+                        <div class="f_l" style="width: 137px;">
+                            @Html.DropDownList("InventoryStatus", new SelectList(inventoryStatus, "Key", "Value", queryInfo.InventoryStatus), "全部")
+                        </div>
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">商家名稱：</span>
+                        <div class="f_l" style="width: 275px;">
+                            @Html.DropDownList("SupplierId", new SelectList(suppliers, "Key", "Value", queryInfo.SupplierId), "全部")
+                        </div>
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">銷售區域：</span>
+                        <div class="f_l" style="width: 153px;">
+                            @Html.DropDownList("SalesTerritory", new SelectList(salesTerritory, "Key", "Value", queryInfo.SalesTerritory))
+                        </div>
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">是否在售：</span>
+                        <div class="f_l" style="width: 137px;">
+                            @Html.DropDownList("IsOnSales", new SelectList(isOnSales, "Key", "Value", queryInfo.IsOnSales))
+                        </div>
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">商品分類：</span>
+                        <div class="f_l" style="width: 137px;">
+                            <select name="fstCagegoryId" id="fstCagegoryId">
+                                <option value="0">全部</option>
+                                @foreach (var fir in firCategory)
+                                {
+                                    if (fir.CategoryId == queryInfo.FstCagegoryId)
+                                    {
+                                    <option value="@fir.CategoryId" selected="selected">@fir.CategoryName</option>
+                                    }
+                                    else
+                                    {
+                                    <option value="@fir.CategoryId">@fir.CategoryName</option>
+                                    }
+                                }
+                            </select>
+
+                        </div>
+                        <div class="f_l" style="width: 137px;">
+                            <select name="sndCagegoryId" id="sndCagegoryId">
+                                <option value="0">全部</option>
+                                @foreach (var snd in sndCategory)
+                                {
+                                    if (snd.CategoryId == queryInfo.SndCagegoryId)
+                                    {
+                                    <option value="@snd.CategoryId" selected="selected">@snd.CategoryName</option>
+                                    }
+                                    else
+                                    {
+                                    <option value="@snd.CategoryId">@snd.CategoryName</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="f_l" style="width: 137px;">
+                            <select name="trdCagegoryId" id="trdCagegoryId">
+                                <option value="0">全部</option>
+                                @foreach (var trd in trdCategory)
+                                {
+                                    if (trd.CategoryId == queryInfo.TrdCagegoryId)
+                                    {
+                                    <option value="@trd.CategoryId" selected="selected">@trd.CategoryName</option>
+                                    }
+                                    else
+                                    {
+                                    <option value="@trd.CategoryId">@trd.CategoryName</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+
+
+                    </div>
+                    <div class="f_l">
+                        <a href="javascript:void(0)" class="btn_green w160 mg_l20 mg_r20 mg_t10" id="search">搜 尋</a>
+                        @Html.ActionLink("導 出", "ExportProductInfoList",
+                        new
+                        {
+                            startTime = queryInfo.CreateTimeStart,
+                            endTime = queryInfo.CreateTimeEnd,
+                            Spu = queryInfo.Spu,
+                            Sku = queryInfo.Sku,
+                            ProductName = queryInfo.ProductName,
+                            ProductStatus = queryInfo.ProductStatus,
+                            InventoryStatus = queryInfo.InventoryStatus,
+                            SupplierId = queryInfo.SupplierId,
+                            SalesTerritory = queryInfo.SalesTerritory,
+                            IsOnSales = queryInfo.IsOnSales,
+                            FstCagegoryId = queryInfo.FstCagegoryId,
+                            SndCagegoryId = queryInfo.SndCagegoryId,
+                            TrdCagegoryId = queryInfo.TrdCagegoryId
+                        }, new { @class = "btn_white w160 mg_r30 mg_t10" })
+
+                    </div>
+                }
+            </div>
+            <div class="tongji_title mg_t30"><span class="tongji_title_l">商品列表</span></div>
+            <!-- 商品列表 表格 -->
+            <div class="shangpsh">
+                <table class="f15 bor bg_fff posRT" style="width: 1342px;">
+                    <tr class="bg_ebebeb">
+                        <th width="155">商品SPU編號</th>
+                        <th width="180">商品名稱</th>
+                        <th width="172">商品分類</th>
+                        <th width="132">商家名稱</th>
+                        <th width="109">提交時間</th>
+                        <th width="84">銷售區域</th>
+                        <th width="155">商品SKU編號</th>
+                        <th width="85">商品狀態</th>
+                        <th width="75">庫存狀態</th>
+                        <th width="75">已售數量</th>
+                        <th width="75">是否在售</th>
+                        <th width="85">操作</th>
+                    </tr>
+                    @if (Model != null && Model.Items != null && Model.Items.Count > 0)
+                    {
+                        var spu = String.Empty;
+
+                        foreach (var sku in Model.Items)
+                        {
+                            if (spu != sku.Spu)
+                            {
+                                int i = 0;
+                                var skus = Model.Items.Where(p => p.Spu == sku.Spu);
+                                var skuCount = skus.Count();
+
+                        <tr>
+                            <td>
+                                <p class="pd_l10 pd_r10 t_c pd_t20">@sku.Spu</p>
+                            </td>
+                            <td>
+                                <p class="pd_l10 pd_r10 pd_t15 pd_b10">@sku.ProductName</p>
+                            </td>
+                            <td>
+                                <p class="pd_l10 pd_r10 pd_t15 pd_b10">@sku.CategoryName</p>
+                            </td>
+                            <td>
+                                <p class="pd_l10 pd_r10 pd_t15 pd_b10">@sku.SupplierName</p>
+                            </td>
+                            <td>
+                                <p class="pd_l10 pd_r10 pd_t15 pd_b10">@sku.Createtime.ToString("yyyy-MM-dd HH:mm:ss")</p>
+                            </td>
+                            <td class="bor_r">
+                                <p class="pd_l10 pd_r10 t_c pd_t15 pd_b10">@sku.SalesTerritory</p>
+                            </td>
+                            <td>
+                                @foreach (var skuDetail in Model.Items)
+                                {
+                                    var bor_b = "bor_b";
+
+                                    if (skuDetail.Spu != sku.Spu)
+                                    {
+                                        continue;
+                                    }
+                                    if (i == skuCount - 1)
+                                    {
+                                        bor_b = String.Empty;
+                                    }
+                                    <p class="pd_l10 pd_r10 t_c lineH54 @bor_b">@skuDetail.Sku</p>
+                                    i++;
+                                }
+                                @{
+
+                                i = 0;
+                                }
+                            </td>
+                            <td>
+                                @foreach (var skuDetail in Model.Items)
+                                {
+                                    var bor_b = "bor_b";
+
+                                    if (skuDetail.Spu != sku.Spu)
+                                    {
+                                        continue;
+                                    }
+                                    if (i == skuCount - 1)
+                                    {
+                                        bor_b = String.Empty;
+                                    }
+                                    <p class="pd_l10 pd_r10 t_c lineH54 @bor_b">@ConvertHelper.GetDictionaryValueByKey(productStatus, skuDetail.Status)</p>
+                                    i++;
+                                }
+                                @{
+
+                                i = 0;
+                                }
+                            </td>
+                            <td>
+                                @foreach (var skuDetail in Model.Items)
+                                {
+                                    var bor_b = "bor_b";
+
+                                    if (skuDetail.Spu != sku.Spu)
+                                    {
+                                        continue;
+                                    }
+                                    if (i == skuCount - 1)
+                                    {
+                                        bor_b = String.Empty;
+                                    }
+                                    <p class="pd_l10 pd_r10 t_c lineH54 @bor_b">@ConvertHelper.GetDictionaryValueByKey(inventoryStatus, skuDetail.InventoryStatus)</p>
+                                    i++;
+                                }
+                                @{
+
+                                i = 0;
+                                }
+                            </td>
+                            <td class="bor_r">
+                                @foreach (var skuDetail in Model.Items)
+                                {
+                                    var bor_b = "bor_b";
+
+                                    if (skuDetail.Spu != sku.Spu)
+                                    {
+                                        continue;
+                                    }
+                                    if (i == skuCount - 1)
+                                    {
+                                        bor_b = String.Empty;
+                                    }
+                                    <p class="pd_l10 pd_r10 t_c lineH54 @bor_b">@skuDetail.SkuOrderQuantity</p>
+                                    i++;
+                                }
+                                @{
+
+                                i = 0;
+                                }
+                            </td>
+                            <td class="bor_r">
+                                <p class="pd_l10 pd_r10 t_c pd_t15 pd_b10">
+
+                                    @{
+                                var unShelveCount = skus.Where(p => p.Status != 3).Count();
+                                var unStorageCount = skus.Where(p => p.QTY == 0).Count();
+                                var isMinForOrder = skus.Sum(p => p.QTY) > sku.MinForOrder;
+                                    }
+
+                                    @if (unShelveCount == 0 && unStorageCount == 0 && isMinForOrder == true)
+                                    {
+                                        <span>是</span>
+                                    }
+                                    else
+                                    {
+                                        <span>否</span>
+                                    }
+
+                                </p>
+                            </td>
+                            <td>
+                                <p class="pd_l10 pd_r10 t_c pd_t15"><a href="/Product/ProductInfoDetail?spu=@sku.Spu" class="col_link">查看詳情</a></p>
+                                @if (sku.Status == 1 || sku.Status == 3)
+                                {
+                                    <p class="pd_l10 pd_r10 t_c pd_b10"><a href="javascript:void(0)" onclick="SystemOffShelf('@sku.Spu','@sku.ProductName.Trim()')" class="col_link">下架</a></p>
+                                }
+                                @if (sku.Status == 5)
+                                {
+                                    <p class="pd_l10 pd_r10 t_c pd_b10"><a href="javascript:void(0)" onclick="AllowShelf('@sku.Spu','@sku.ProductName.Trim()')" class="col_link">允许上架</a></p>
+                                }
+                            </td>
+                        </tr>
+                            }
+                            else
+                            {
+                                continue;
+                            }
+                            spu = sku.Spu;
+                        }
+
+                    }
+                    else
+                    {
+                        <tr>
+                            <td class="vtop" colspan="12">
+                                <p class="color_green pd_l20 t_l mg_t20 mg_b20">没有符合條件的产品信息！</p>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+            <div class="page" id="userpage">
+                @if (Model != null && Model.Items.Count > 0)
+                {
+                    @Html.ShowFPage(Url.Action("ProductInfoList"
+                        , new
+                        {
+                            PageNo = "{0}",
+                            startTime = queryInfo.CreateTimeStart,
+                            endTime = queryInfo.CreateTimeEnd,
+                            Spu = queryInfo.Spu,
+                            Sku = queryInfo.Sku,
+                            ProductName = queryInfo.ProductName,
+                            ProductStatus = queryInfo.ProductStatus,
+                            InventoryStatus = queryInfo.InventoryStatus,
+                            SupplierId = queryInfo.SupplierId,
+                            SalesTerritory = queryInfo.SalesTerritory,
+                            IsOnSales = queryInfo.IsOnSales,
+                            FstCagegoryId = queryInfo.FstCagegoryId,
+                            SndCagegoryId = queryInfo.SndCagegoryId,
+                            TrdCagegoryId = queryInfo.TrdCagegoryId
+                        })
+                        , Model.PageIndex
+                        , Model.PageSize
+                        , Model.Total)
+                    <p class="f14 mg_l20 mg_b5 inline">
+                        共<em class="color_green pd_l10 pd_r10"> @(Model.RowCount) </em>條數據
+                    </p>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div style="display: none; z-index: 9999; position: absolute;" class="win_wrap f16" id="offShelf">
+    <div style="width: 447px;">
+        <p class="pd_t20 pd_b5 t_l" id="rejReasonName"><span id="productName"></span>&nbsp;  将被强行下架，下架后商家不能自行对该商品进行上架。请说明下架原因。</p>
+        <div class="clearfix t_c mg_t10 mg_b10">
+            <span class="f_l w100 t_r">下架原因：</span>
+            <div style="height: 130px;" class="f_l w300">
+                <textarea id="shelfReson" style="padding: 8px 9px;" class="f_l f15 fff_bor w300 h90"></textarea>
+                <p style="display: none;" class="wrong_tips color_red t_l" id="error"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="display: none; z-index: 9999; position: absolute;" class="win_wrap f16" id="allowShelf">
+    <div style="width: 447px;">
+        <p class="pd_t20 pd_b5 t_l">您确认允许商家对&nbsp;<span id="pname"></span>&nbsp;可以进行重新上架操作吗？</p>
+    </div>
+</div>
+
+<script src="~/Scripts/Product/ProductInfoList.js"></script>
+<script src="~/Scripts/Dialog.js"></script>

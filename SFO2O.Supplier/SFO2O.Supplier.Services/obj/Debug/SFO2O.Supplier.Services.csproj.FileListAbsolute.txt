@@ -1,0 +1,5 @@
+D:\LoveWine\SFO2O.Supplier\SFO2O.Supplier.Services\bin\Debug\SFO2O.Supplier.Services.dll
+D:\LoveWine\SFO2O.Supplier\SFO2O.Supplier.Services\bin\Debug\SFO2O.Supplier.Services.pdb
+D:\LoveWine\SFO2O.Supplier\SFO2O.Supplier.Services\obj\Debug\SFO2O.Supplier.Services.dll
+D:\LoveWine\SFO2O.Supplier\SFO2O.Supplier.Services\obj\Debug\SFO2O.Supplier.Services.pdb
+D:\LoveWine\SFO2O.Supplier\SFO2O.Supplier.Services\obj\Debug\SFO2O.Supplier.Services.csprojResolveAssemblyReference.cache

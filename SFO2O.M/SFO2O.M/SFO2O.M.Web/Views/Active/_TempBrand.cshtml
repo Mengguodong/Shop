@@ -1,0 +1,116 @@
+﻿@using SFO2O.Utility.Uitl
+@using SFO2O.Utility.Extensions
+
+@model SFO2O.M.ViewModel.Activity.ActivityViewModel
+@{
+    string ImgVersion = ConfigHelper.ImgVersion;
+    decimal ExchangeRate = ViewBag.ExchangeRate;
+
+    string BrandImgPath = string.Format("{0}{1}brand.jpg?v={2}", ConfigHelper.ImageServer, Model.ImgPath, ImgVersion);
+}
+
+<!--品牌介绍Start-->
+<div class="brandInfCon mb8 bgColor3">
+    <a href="brand/@(Model.BrandInfo.BrandId).html" target="_self">
+        <h3 class="title tc pr mc f28"><span>@Html.Raw(Model.BrandInfo.BrandName)</span></h3>
+        <img src="@BrandImgPath" alt="@Model.BrandInfo.BrandName" class="w100 show">
+        <div class="f22 FontColor3 w95p brandInfP">@Model.BrandInfo.BrandDescription</div>
+        <p class="w95p tr redFont">详细介绍 >></p>
+    </a>
+</div>
+<!--品牌介绍End-->
+@if (Model.Modules.Count > 0)
+{
+    var modules = Model.Modules;
+    var firstModule = modules[0];
+    <!--主推产品-->
+    if (firstModule.ModuleName == "主推产品")
+    {
+        <div class="mainProductCon mb8 bgColor3">
+            <h3 class="title tc pr mc f28"><span>主推产品</span></h3>
+            @foreach (var item in firstModule.ProductList)
+            {
+                <div class="proDiv w95p">
+                    <a href="http://www.wdnzmt9.com/item.html?productCode=@item.SPU" target="_self" class="boxFlexWrap">
+                        <div class="productImg_temp pr lazyloadImgWrap templateBrandProductImg">
+                            <img data-original="@item.ImagePath?v=@ImgVersion" class="lazyloadImg img310 show">
+                            @if (item.DiscountPrice < item.MinPrice)
+                            {
+                                <span class="account">@item.DiscountRate@Html.Raw("折")</span>
+                            }
+                            @if (item.Qty <= 0)
+                            {
+                                <div class="saleOut">
+                                    <span>已售罄</span>
+                                </div>
+                            }
+                        </div>
+                        <div class="productInf boxFlex ">
+                            <h4 class="f28 FontColor3">@item.Name</h4>
+                            <div class="productDes f20 FontColor3">
+                                <div>@Html.Raw(item.Description)</div>
+                            </div>
+                            <p class="productPrice f20 FontColor6">
+                                活动价：
+                                @if (@item.DiscountPrice < item.MinPrice)
+                                {
+                                    <span class="f28">￥@((item.DiscountPrice * ExchangeRate).ToNumberRoundStringWithPoint())</span>
+                                }
+                                else
+                                {
+                                    <span class="f28">￥@((item.MinPrice * ExchangeRate).ToNumberRoundStringWithPoint())</span>
+                                }
+                            </p>
+                            <input type="button" class="btn_temp btn_temp1 f22" value="立即购买">
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    }
+    if (modules.Count == 2)
+    {
+        var secondModule = modules[1];
+        <div class="proList_temp w100 bgColor3">
+            <h3 class="title tc pr mc f28"><span>@secondModule.ModuleName</span></h3>
+            <ul class="w95p clearfix">
+                @foreach (var item in secondModule.ProductList)
+                {
+                    <li>
+                        <a href="http://www.wdnzmt9.com/item.html?productCode=@item.SPU" target="_self">
+                            <div class="pr lazyloadImgWrap templateBrandProductImg">
+                                <img data-original="@item.ImagePath?v=@ImgVersion" class="lazyloadImg show img310 mc">
+                                @if (item.DiscountPrice < item.MinPrice)
+                                {
+                                    <span class="account">@item.DiscountRate@Html.Raw("折")</span>
+                                }
+                                @if (item.Qty <= 0)
+                                {
+                                    <div class="saleOut">
+                                        <span>已售罄</span>
+                                    </div>
+                                }
+                            </div>
+                            <h4 class="f24 FontColor3">@item.Name</h4>
+                            <p class="productPrice f20 FontColor6">
+                                活动价：
+                                @if (@item.DiscountPrice < item.MinPrice)
+                                {
+                                    <span class="f28">￥@((item.DiscountPrice * ExchangeRate).ToNumberRoundStringWithPoint())</span>
+                                }
+                                else
+                                {
+                                    <span class="f28">￥@((item.MinPrice * ExchangeRate).ToNumberRoundStringWithPoint())</span>
+                                }
+                            </p>
+                            <input type="button" class="btn_temp btn_temp2 f22 mc" value="立即购买">
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+}
+
+
+

@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="no">
+<meta name="format-detection" content="telephone=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit">
+<title>爱玖网购物商城</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="../Content/css/base.css?v=201512150001" rel="stylesheet">
+<!--页面独有样式-->
+<link href="../Content/css/payType.css?v=201512150001" rel="stylesheet">
+<!--页面独有样式 END-->
+</head>
+<body>
+<div class="MContainer" id="MContainer">
+	<!-- 页头 -->
+	<header class="pageHeader w100 pr tc overflowH">
+      <a class="returnBtn" id="returnBtn"></a>
+      <b class="f36 FontColor1">选择支付方式</b>
+    </header>
+    <!-- 页头 end -->
+	<div class="boxShadow payMoney bgColor3 w95p">
+		<span class="FontColor6 fr">￥671.00</span>
+		订单金额
+	</div>	
+	<div class="mb8 w95p f24 FontColor3">选择支付方式</div>
+	<div class="boxShadow mb8 payMentListWrap">
+		<div class="payMentList bgColor3 w95p selected" id="zfbBtn">
+			<div>
+				<img src="../Content/Images/payType/zfb.png" title="" alt="">支付宝支付
+			</div> 
+			<i class="radioRight"></i>
+		</div>
+		<div class="payMentList bgColor3 w95p hide"  id="wxBtn">
+			<div>
+				<img src="../Content/Images/payType/weixin.png" title="" alt="" />微信支付
+			</div> 
+			<i class=""></i>
+		</div>
+		<div class="payMentList bgColor3 w95p hide" id="yplBtn">
+			<div>
+				<img src="../Content/Images/payType/yipiaolian.png" title="" alt="">易票联支付<span>(支持多种支付)</span>
+			</div> 
+			<i class=""></i>
+		</div>
+		<div class="tc f24 FontColor4 pr bgColor3 pt17 pb17" id="more">更多支付方式<span class="more ml5"></span></div>
+	</div> 
+	<div class="tc mt20">
+		<a class="submitBtn" id="submitBtn">确认支付</a>
+	</div>
+<script src="../Scripts/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../Scripts/common/common.js?v=201512160001"></script>
+<!--页面独有脚本-->
+<script type="text/javascript" src="../Scripts/jquery/jquery.dialog.js"></script>
+<script type="text/javascript" src="../Scripts/payType.js"></script>
+<!--页面独有脚本 END-->
+</body>
+</html>

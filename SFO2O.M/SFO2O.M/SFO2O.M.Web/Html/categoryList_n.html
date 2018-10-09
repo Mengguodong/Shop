@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="no">
+<meta name="format-detection" content="telephone=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit">
+<title>爱玖网-商品分类</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="../Content/css/base.css?v=201512150001" rel="stylesheet">
+<!--页面独有样式-->
+<link href="../Content/css/categoryList_n.css?v=201512150001" rel="stylesheet">
+<!--页面独有样式 END-->
+</head>
+<body>
+<div class="MContainer" id="MContainer">
+    <!--页头-->
+    <header class="pageHeader w100 pr tc overflowH">
+        <a class="returnBtn" id="returnBtn"></a>
+        <b class="f36 FontColor1">商品分类</b>
+    </header>
+    <!--页头 END-->
+    <!--分类-->
+    <div class="categoryListWrap w100" id="categoryListWrap">
+    <script type="text/x-jsrender" id="categoryListTemp">
+        {{if CategoryId}}
+        <div class="boxShadow mb8 bgColor3 w100">
+            <h2>
+                <a href="{{:~setUrl(CategoryId,0)}}" target="_self">
+                    <img src="{{:ImgUrl}}" alt="{{:CategoryName}}">
+                </a>
+            </h2>
+            <ul class="categoryListItem clearfix w95p">
+                {{for Items}}
+                <li class=" fl boxSizingB">
+                    <a class="FontColor3 f24" href="{{:~setUrl(CategoryId,2)}}" target="_self">
+                        {{:CategoryName}}
+                    </a>
+                </li>
+                {{/for}}
+            </ul>
+        </div>
+        {{else}}
+        <div class="otherList boxShadow mb8 bgColor3 w100">
+            <h2>
+                <a>
+                    <img src="../Content/Images/categoryList/categoryList4.png?v=201603100001" alt="其他分类">
+                </a>
+            </h2>
+            <ul class="categoryListItem clearfix w100">
+                {{for Items}}
+                <li class=" fl tc">
+                    <a class="FontColor3 f24 boxSizingB" href="{{:~setUrl(CategoryId,2)}}" target="_self">
+                        <img class="mc lazyloadImg" src="../Content/Images/categoryList/defaultCategory.png" data-original="{{:ImgUrl}}" alt="{{:CategoryName}}">
+                        {{:CategoryName}}
+                    </a>
+                </li>
+                {{/for}}
+            </ul>
+        </div>
+        {{/if}}
+    </script>
+    </div>
+    <!--分类-->
+    <!--页脚-->
+    <p class="loginArea f24 FontColor3 mb20 mt20 w95p">
+        <!--未登录状态显示-->
+        <a class="f24 FontColor3 mr10 ml5" href="#" target="_self">登录</a>|
+        <a class="f24 FontColor3 ml10" href="#" target="_self">注册</a>
+        <!--未登录状态显示 END-->
+        <!--已登录状态显示-->
+        <!--<a class="f24 FontColor3">退出</a>-->
+        <!--已登录状态显示 END-->
+        <a href="javascript:FSH.goTop()" class="fr f24 FontColor3 mr5">回到顶部</a>
+    </p>
+    <footer class="w95p pb10 tc grayOnLine">    
+        <p class="links FontColor3 f24 mt20 mb10">
+            <a class="f24 FontColor3 mr10" href="#" target="_self">常见问题</a>|
+            <a class="f24 FontColor3  ml10 mr10" href="#" target="_self">关于我们</a>|
+            <a class="f24 FontColor3 mr10 ml10" href="#" target="_self">配送及售后服务</a>|
+            <a class="f24 FontColor3 ml10" href="#" target="_self">条款</a>
+        </p>
+        <p class="copyright f18 FontColor4">2016© 北京梵禹科技有限公司版权所有</p>
+    </footer>
+    <!--页脚 END-->
+</div> 
+<script src="../Scripts/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../Scripts/jquery/jquery.lazyload.js"></script>
+<script type="text/javascript" src="../Scripts/common/common.js?v=201512160001"></script>
+<!--页面独有脚本-->
+<script type="text/javascript" src="../Scripts/jquery/jsrender-v1.0.0-beta.js"></script>
+<script type="text/javascript">
+   var str={
+    "Type": "1",
+    "Data": [
+        {
+            "CategoryName": "衣物服饰",
+            "CategoryId": "11",
+            "ImgUrl": "../Content/Images/categoryList/categoryList1.png?v=201603100001",
+            "Items": [
+                {
+                    "CategoryName": "个人护理及化妆",
+                    "CategoryId": "111",
+                    "ImgUrl": "http://i1image.sf-o2o.com/LIB/Category/10001_sc.png"
+                },
+                {
+                    "CategoryName": "个人护理及化妆",
+                    "CategoryId": "111",
+                    "ImgUrl": "http://i1image.sf-o2o.com/LIB/Category/10001_sc.png"
+                },
+                {
+                    "CategoryName": "个人个人个人个人个人个人个人个人个人",
+                    "CategoryId": "111",
+                    "ImgUrl": "http://i1image.sf-o2o.com/LIB/Category/10001_sc.png"
+                },
+                {
+                    "CategoryName": "个人护理及化妆个人护理及化妆个人护理及化妆",
+                    "CategoryId": "111",
+                    "ImgUrl": "http://i1image.sf-o2o.com/LIB/Category/10001_sc.png"
+                },
+                {
+                    "CategoryName": "个人护理及化妆个人护理及化妆个人护理及化妆",
+                    "CategoryId": "111",
+                    "ImgUrl": "http://i1image.sf-o2o.com/LIB/Category/10001_sc.png"
+                }
+            ]
+        },
+        {
+            "CategoryName": "衣物服饰",
+            "CategoryId": "",
+            "ImgUrl": "../Content/Images/categoryList/categoryList1.png?v=201603100001",
+            "Items": [
+                {
+                    "CategoryName": "个人护理及化妆",
+                    "CategoryId": "111",
+                    "ImgUrl": "http://i1image.sf-o2o.com/LIB/Category/10001_sc.png"
+                },
+                {
+                    "CategoryName": "个人护理及化妆",
+                    "CategoryId": "111",
+                    "ImgUrl": "http://i1image.sf-o2o.com/LIB/Category/10001_sc.png"
+                },
+                {
+                    "CategoryName": "个人个人个人个人个人个人个人个人个人",
+                    "CategoryId": "111",
+                    "ImgUrl": "http://i1image.sf-o2o.com/LIB/Category/10001_sc.png"
+                },
+                {
+                    "CategoryName": "个人护理及化妆个人护理及化妆个人护理及化妆",
+                    "CategoryId": "111",
+                    "ImgUrl": "http://i1image.sf-o2o.com/LIB/Category/10001_sc.png"
+                },
+                {
+                    "CategoryName": "个人护理及化妆个人护理及化妆个人护理及化妆",
+                    "CategoryId": "111",
+                    "ImgUrl": "http://i1image.sf-o2o.com/LIB/Category/10001_sc.png"
+                }
+            ]
+        }
+    ],
+    "Content": "",
+    "LinkUrl": "",
+    "Title": ""
+},
+json=str;
+/*json=str.replace(/&quot;/g,"\"");
+json=eval('(' + json + ')');
+*/
+</script>
+<script type="text/javascript" src="../Scripts/cagetoryList_n.js?v=201512160003"></script>
+<!--页面独有脚本 END-->
+</body>
+</html>

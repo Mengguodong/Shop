@@ -1,0 +1,62 @@
+﻿@using SFO2O.Utility.Uitl
+@using SFO2O.Utility.Extensions
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    this.ViewBag.Title = "拼生活规则说明";
+    ViewBag.ShowFooter = true;
+}
+@section styles {
+<link href="../Content/css/item.css?v=201512150001" rel="stylesheet">
+}
+@section scripts {
+<!--页面独有脚本-->
+<!--页面独有脚本 END-->
+}
+@section pageHeader {
+<!-- 页头 -->
+<header class="pageHeader w100 pr tc overflowH">
+    <a class="returnBtn" id="returnBtn"></a>
+    <b class="f36 FontColor1">拼生活规则说明</b>
+    <div class="flowerMenu" id="flowerMenu"></div>
+</header>
+<!-- 页头 end -->
+}
+<div class="MContainer" id="MContainer">
+    <p class="tc f28 mt15 mb8">拼生活简介</p>
+    <div class="w95p boxShadow bgColor3 pt10 pb10 pinRuleDiv FontColor3 mb8 f28">
+        <span class="FontColor1">拼生活</span>是爱玖网平台独有的团购活动。爱玖网会员基于好友关系，组团购买从而获取团购优惠。活动期间，会员点击“去开团”启动拼团活动并完成支付即成为<span class="FontColor1">团长</span>。<span class="FontColor1">团长</span>通过微信邀请朋友参与拼团，一同享受中华人民共和国大陆地区正货商品折扣优惠。<br />推广期间，<span class="FontColor1">团长</span>首次开团且交易成功后，即可获得订单商品金额一百倍的“酒豆”数量。酒豆可用于购买爱玖网平台上任何商品（参团的团购商品除外）。即使未能成功开团，系统亦不会收取任何费用，所支付的商品金额将会全数退回，让您拼得开心，买得放心！
+    </div>
+    <!--20160425 新增内容-->
+    <p class="tc f28 mt15 mb8">如何开团？</p>
+    <div class="w95p boxShadow bgColor3 pt10 pb10 pinRuleDiv FontColor3">
+        <p class="f28 mb5 FontColor1">
+            1.选择商品：
+        </p>
+        <p class="f24 mb5">
+            如商品上有标示<span class="FontColor1">拼生活</span>的图示（如下图），会员即可点选<span class="FontColor1">去开团</span>，建立订单。
+        </p>
+        <p class="mb5 tc"><img src="../Content/Images/Item/pinRule1.jpg?v=201605110001"></p>
+        <p class="f28 FontColor1 mb5">2.支付开团：</p>
+        <p class="f24 mb5">点选喜爱的支付方式，成为<span class="FontColor1">拼团</span>的<span class="FontColor1">团长</span>。</p>
+        <p class="mb5 tc"><img src="../Content/Images/Item/pinRule2.jpg?v=201604250002"></p>
+        <p class="f28 FontColor1 mb5">3.好友参团：</p>
+        <p class="f24 mb5">到<span class="FontColor1">拼团</span>详情页面，按<span class="FontColor1">邀请小伙伴</span>（如下图），利用微信和朋友圈分享参团连结，邀请他们支付购买。</p>
+        <p class="mb5 tc mb5"><img src="../Content/Images/Item/pinRule3.jpg?v=201604250001"></p>
+        <p class="f28 FontColor1 mb5">4.团购成功：</p>
+        <p class="f24 mb5">当<span class="FontColor1">拼团</span>达到指定参团人数，即可以优惠价购买成功交易商品。</p>
+        <p class="mb5 tc"><img src="../Content/Images/Item/pinRule4.jpg?v=201604250001"></p>
+    </div>
+    <p class="tc f28 mt15 mb8">如何参团？</p>
+    <div class="w95p boxShadow bgColor3 pt10 pb10 pinRuleDiv mb8 FontColor3">
+        <p class="f28 FontColor1 mb5">1.朋友邀请：</p>
+        <p class="f24 ">收到来自朋友<span class="FontColor1">拼团</span>的邀请，点击链接到<span class="FontColor1">拼团</span>详情页面。</p>
+        <p class="f28 FontColor1 mb5">2.接受邀请：</p>
+        <p class="f24  mb5">细阅商品详情后，点选下方的<span class="FontColor1">我也要参团</span>（如下图）。若<span class="FontColor1">团员</span>人数已达上限，会员可以另外<span class="FontColor1">开团</span>，成为新<span class="FontColor1">拼团团长</span>，重新邀请<span class="FontColor1">团员</span>。</p>
+        <p class="mb5 tc"><img src="../Content/Images/Item/pinRule6.jpg?v=201604250001"></p>
+        <p class="f28 FontColor1 mb5">3.支付商品：</p>
+        <p class="f24  mb5">点选喜爱的支付方式，成为<span class="FontColor1">拼团</span>的<span class="FontColor1">团员</span>。</p>
+        <p class="f28 FontColor1 mb5">4.团购成功：</p>
+        <p class="f24  mb5">当<span class="FontColor1">拼团</span>达到指定参团人数，即可以优惠价购买成功交易商品。</p>
+    </div>
+</div>
+

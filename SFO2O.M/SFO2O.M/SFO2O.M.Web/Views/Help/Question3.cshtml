@@ -1,0 +1,86 @@
+﻿@using SFO2O.M.Controllers
+@using SFO2O.M.Controllers.Common
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.ViewModel.Product
+@using SFO2O.Utility.Extensions 
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "订购及付款问题 ";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = false;
+}
+@section styles { 
+<style>
+    table{width:100%;}
+    th{text-align:center;}
+    th,td{ border:1px solid #e0e0e0; padding:5px;word-break: break-all;}
+</style>
+}
+@section scripts {
+}
+@section pageHeader {
+   <!-- 页头 -->
+<header class="pageHeader w100 pr tc overflowH">
+    <a class="returnBtn" id="returnBtn"></a>
+    <b class="f36 FontColor1">订购及付款问题</b>
+</header>
+    <!-- 页头 end -->
+}
+<dl class="problemsWrap w100 mt8 boxShadow bgColor3 f28">
+    <dt>
+        <span class="icon">问</span>如何订购商品？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>您可以先浏览本网站，了解商品资料。看到满意的商品，您可以按「加入购物车」，集合商品后，于「购物车」内一并结账，或在商品栏选择「立即购买」，直接进入付款程序。
+    </dd>
+
+    <dt>
+        <span class="icon">问</span>是否任何人都可以于「爱玖网」订购商品配送至中国境内收货？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>您必须具备中国大陆居民身份证和中国大陆地区银行卡才能完成配送至中国境内的购物结账程序。
+    </dd>
+
+    <dt>
+        <span class="icon">问</span>「爱玖网」提供什么付款方式？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>我们将接受以支付宝、微信以及银行卡快捷支付付款。
+    </dd>
+   
+    <dt>
+        <span class="icon">问</span>「爱玖网」的商品价格会不断浮动吗？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>我们将尽最大努力确保商品价格准确，商品价格以付款当日所显示为准。
+    </dd>
+
+    <dt>
+        <span class="icon">问</span>「爱玖网」的商品价格是以哪种货币列明？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>「爱玖网」上列明的商品价格均以人民币为单位。
+    </dd>
+    <dt>
+        <span class="icon">问</span>「爱玖网」提供的付款方式安全吗？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>我们只会获取您在使用SSL加密的浏览器所传输的支付信息。当您输入支付信息之后，SSL系统会将信息进行加密，防止任何形式的数据盗窃。我们不会记录您的支付信息，过程绝对保密。SSL的安全连接和安全交易技术可有效地保护您的支付信息安全。
+    </dd>
+
+    <dt>
+        <span class="icon">问</span>如何查询订单资料？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>您可于本网站「我的账户」页面，按「订单」，查看您的订单资料。
+    </dd>
+
+    <dt>
+        <span class="icon">问</span>提交订单后，我可以取消订单吗？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>一旦完成付款程序后，均不可取消订单。
+    </dd>
+
+</dl>

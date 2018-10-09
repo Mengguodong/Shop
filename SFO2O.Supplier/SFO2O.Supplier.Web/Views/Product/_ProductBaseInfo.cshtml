@@ -1,0 +1,216 @@
+﻿@using SFO2O.Supplier.Common
+@using SFO2O.Supplier.Models.Product
+@{
+    IList<ProductBrandModel> brands = ViewBag.SupplierBrand;
+    var units = SFO2O.Supplier.Businesses.CommonBLL.GetDicsInfoByKey("Unit");
+
+    var productModel = ViewBag.ProductModel;
+}
+
+<input type="hidden" id="CategoryId" value="@ViewBag.CategoryId" />
+<input type="hidden" id="Spu" value="@ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfo_T, "Spu")" />
+<table class="mg_t5">
+
+    <tr>
+
+        <th class="product_title" rowspan="7">
+            <p class="pd_t15">商品基本信息</p>
+        </th>
+        <td class="w3"></td>
+        <td colspan="2" height="18"></td>
+    </tr>
+    <tr>
+        <td class="w3"></td>
+        <td class="t_r vtop" width="150"><i class="color_red vmiddle bitian">*</i><span class="tdspan">选择销售区域：</span></td>
+        <td id="SalesTerritory" class="Require">
+            <div class="clearfix RequireValue">
+
+                @{
+                    var SalesTerritory = ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfo_T, "SalesTerritory");
+                    if (SalesTerritory == "1")
+                    {
+                        <label class="chbx_wrap active" data-value="1"><em></em><span>中国大陆</span></label>
+                        @*<label class="chbx_wrap mg_l20" data-value="2"><em></em><span>香港地区</span></label>*@
+                    }
+                    else if (SalesTerritory == "2")
+                    {
+                        <label class="chbx_wrap" data-value="1"><em></em><span>中国大陆</span></label>
+                        @*<label class="chbx_wrap mg_l20 active" data-value="2"><em></em><span>香港地区</span></label>*@
+                    }
+                    else if (SalesTerritory == "3")
+                    {
+                        <label class="chbx_wrap active" data-value="1"><em></em><span>中国大陆</span></label>
+                        @*<label class="chbx_wrap mg_l20 active" data-value="2"><em></em><span>香港地区</span></label>*@
+                    }
+                    else
+                    {
+                        <label class="chbx_wrap" data-value="1"><em></em><span>中国大陆</span></label>
+                        @*<label class="chbx_wrap mg_l20" data-value="2"><em></em><span>香港地区</span></label>*@
+                    }
+                }
+            </div>
+            <p class="wrong_tips color_red">请选择商品销售区域</p>
+        </td>
+    </tr>
+    <tr>
+        <td class="w3"></td>
+        <td class="t_r vtop"><i class="color_red vmiddle bitian">*</i><span class="tdspan">品牌：</span></td>
+        <td class="Require">
+            <div class="w228 f_l">
+                @{
+                    var brandDics = new Dictionary<string, string>();
+
+                    foreach (var brand in brands)
+                    {
+                        brandDics.Add(brand.Id.ToString(), brand.BrandNameSample);
+                    }
+
+                }
+                @Html.Partial("_DropDownList", new SFO2O.Supplier.Models.DropDownList { Id = "BrandIdSel", KeyName = "brand", SelectList = brandDics, Type = 1, SelectedValue = ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfo_S, "Brand"), IsOther = false })
+
+            </div>
+            <span class="f_l mg_l10 lineH30">如果没有合适的品牌，请先到品牌管理处添加品牌。</span>
+            <p class="wrong_tips color_red">请选择品牌信息</p>
+        </td>
+    </tr>
+    <tr>
+        <td class="w3"></td>
+        <td class="t_r vtop"><i class="color_red vmiddle bitian">*</i><span class="tdspan">商品名称：</span></td>
+        <td id="name" class="Require">
+            @{
+                var name = ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfo_S, "Name");
+                if (string.IsNullOrEmpty(name))
+                {
+                    <div class="add_wrap">
+                        <a href="javascript:void(0)" class="color_green add_btn" onclick="ShowAddTips(this,'1','name','1','0',200,1)">+添加</a>
+                    </div>
+                    <div class="add_success_list f_l RequireValue">
+                    </div>
+                }
+                else
+                {
+                    <div class="add_wrap" style="display: none">
+                        <a href="javascript:void(0)" class="color_green add_btn" onclick="ShowAddTips(this,'1','name','1','0',200,1)">+添加</a>
+                    </div>
+                    <div class="add_success_list f_l RequireValue">
+                        <div class="f_l add_success_li mg_r20" id="0-name-1-1-1">
+                            <ul class="add_success_wrap f_l fff_bor mg_t5">
+                                @*<li class=" clearfix icon_f">
+                                    <span class="f_l left"></span>
+                                    <p class="f_l right traditional">@name</p>
+                                </li>*@
+                                <li class=" clearfix icon_j">
+                                    @*<span class="f_l left"></span>*@
+                                    <p class="f_l right simplified">@ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfo_S, "Name")</p>
+                                </li>
+                                @*<li class=" clearfix icon_e">
+                                    <span class="f_l left"></span>
+                                    <p class="f_l right english">@ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfo_E, "Name")</p>
+                                </li>*@
+                            </ul>
+                            <a href="javascript:void(0)" class="btn_edit" onclick="EditValue(this,1,200)"></a>
+                        </div>
+                    </div>
+                }
+
+            }
+            <p class="wrong_tips color_red">请填写商品名称</p>
+        </td>
+    </tr>
+    <tr>
+        <td class="w3"></td>
+        <td class="t_r vtop"><i class="color_red vmiddle bitian">*</i><span class="tdspan">商品价格：</span></td>
+        <td class="Require">
+            <div class="clearfix">
+                <div class="price_pinpai normal_bor mg_t5 f_l">
+                    <span class="left f_l">￥</span>
+                    <input type="text" id="Price" class="right f_r" value="@ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfo_S, "Price")" />
+                </div>
+
+                @{
+
+                    var isDutyOnSeller = ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfo_S, "IsDutyOnSeller");
+
+                    @*if (isDutyOnSeller == "1")
+                    {
+                        <label class="chbx_wrap mg_l10 active" id="IsDutyOnSeller"><em></em><span>商家承担关税</span></label>
+                    }
+                    else
+                    {
+                        <label class="chbx_wrap mg_l10" id="IsDutyOnSeller"><em></em><span>商家承担关税</span></label>
+                    }*@
+                }
+            </div>
+            <p class="wrong_tips color_red">请填写商品基础价格</p>
+        </td>
+    </tr>
+    <tr>
+        <td class="w3"></td>
+        <td class="t_r vtop"><i class="color_red vmiddle bitian">*</i><span class="tdspan">商品单位：</span></td>
+        <td id="Unit">
+            @{
+
+                string unit = ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfo_T, "Unit");
+                var stand = units.Where(p => p.KeyValue == unit);
+                <div class="select_pinpai f_l w122" data-value="0">
+                    @Html.Partial("_DropDownList", new SFO2O.Supplier.Models.DropDownList { Id = "UnitSel", KeyName = "Unit", SelectList = units.ToDictionary(i => i.KeyName, i => i.KeyValue), Type = 1, SelectedValue = ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfo_T, "Unit") })
+                </div>
+
+
+                if (!string.IsNullOrEmpty(unit) && stand.Count() <= 0)
+                {
+                    if (unit.Contains("其它"))
+                    {
+                        <div class="add_wrap f_l">
+                            <a href="javascript:void(0)" class="color_green add_btn mg_l10" onclick="ShowAddTips(this,'1','unit','1','0',20,1)">+添加</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="add_wrap f_l" style="display: none">
+                            <a href="javascript:void(0)" class="color_green add_btn mg_l10" onclick="ShowAddTips(this,'1','unit','1','0',20,1)">+添加</a>
+                        </div>
+                    }
+                    <div class="add_success_list f_l">
+                        <div class="f_l add_success_li mg_r20" id="0-unit-1-10002">
+                            <ul class="add_success_wrap f_l fff_bor mg_t5">
+                                @*<li class=" clearfix icon_f">
+                                    <span class="f_l left"></span>
+                                    <p class="f_l right traditional">@ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfo_T, "Unit")</p>
+                                </li>*@
+                                <li class=" clearfix icon_j">
+                                    @*<span class="f_l left"></span>*@
+                                    <p class="f_l right simplified">@ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfo_S, "Unit")</p>
+                                </li>
+                                @*<li class=" clearfix icon_e">
+                                    <span class="f_l left"></span>
+                                    <p class="f_l right english">@ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfo_E, "Unit")</p>
+                                </li>*@
+                            </ul>
+                            <a href="javascript:void(0)" class="close" onclick="DeleteValue(this,1)"></a>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="add_wrap f_l" style="display: none">
+                        <a href="javascript:void(0)" class="color_green add_btn mg_l10" onclick="ShowAddTips(this,'1','unit','1','0',20,1)">+添加</a>
+                    </div>
+                    <div class="add_success_list f_l">
+                    </div>
+                }
+
+            }
+
+            <p class="wrong_tips color_red">请选择商品单位</p>
+        </td>
+    </tr>
+    <tr>
+        <td class="w3"></td>
+        <td colspan="2" height="18"></td>
+    </tr>
+</table>
+
+
+
+

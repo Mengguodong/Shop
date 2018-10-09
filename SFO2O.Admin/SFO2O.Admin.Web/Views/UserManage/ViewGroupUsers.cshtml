@@ -1,0 +1,21 @@
+﻿@model IList<SFO2O.Admin.Models.Admin.AdminUserInfo>
+@{
+    Layout = null;
+}
+<div class="pd_t20">
+    <table class="fff_bor t_c f15 mg_b20" width="408">
+        <tr class="lineH36 bg_f8f8f8">
+            <th width="240" class="bor_b">後台賬號</th>
+            <th width="100" class="bor_b">姓名</th>
+            <th width="60" class="bor_b">狀態</th>
+        </tr>
+        @foreach (var user in Model)
+        {
+            <tr class="lineH54">
+                <td class="bor_b">@user.UserName</td>
+                <td class="bor_b">@user.TrueName</td>
+                <td class="bor_b">@(user.Status == 1 ? "啟用" : "禁用")</td>
+            </tr>
+        }
+    </table>
+</div>

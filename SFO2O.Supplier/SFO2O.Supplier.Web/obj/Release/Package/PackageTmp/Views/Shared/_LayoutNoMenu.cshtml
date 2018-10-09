@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ViewBag.Title - 村村通</title>
+    @Html.Script("~/Content/Js/jquery-1.8.3.js")
+    @Html.Script("~/Scripts/Common.js")
+    @Html.Script("~/Scripts/Dialog.js")
+    @Html.Script("~/Scripts/Plugins/my97/WdatePicker.js")
+    @Html.Script("~/Scripts/Plugins/chosen/chosen.jquery.js")
+    @Html.Style("~/Scripts/Plugins/chosen/chosen.css")
+    @Html.Style("~/Content/CSS/supplier.css")
+    @Html.Style("~/Content/CSS/common.css")
+</head>
+
+<body>
+    <div class="header_wrap">
+        @Html.Partial("HeaderPartial")
+    </div>
+    <div class="center_cont w1200 clearfix">
+        <div class="center_cont w1156 clearfix">
+            @RenderBody()
+        </div>
+    </div>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+

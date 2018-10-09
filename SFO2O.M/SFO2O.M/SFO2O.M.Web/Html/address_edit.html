@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="no">
+<meta name="format-detection" content="telephone=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit">
+<title>爱玖网购物商城-编辑收货地址</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="../Content/css/base.css?v=201512150001" rel="stylesheet">
+<!--页面独有样式-->
+<link href="../Content/css/address.css?v=201512150001" rel="stylesheet">
+<!--页面独有样式 END-->
+</head>
+<body>
+<div class="MContainer" id="MContainer">
+	<!-- 页头 -->
+	<header class="pageHeader w100 pr tc">
+        <a class="returnBtn" id="returnBtn"></a>
+        <b class="f36 FontColor1">编辑收货地址</b>
+        <div class="flowerMenu" onclick="FSH.menuDialog()"></div>
+    </header>
+    <!-- 页头 end -->
+    <div class="addressEdit mt10 boxShadow bgColor3 mb8">
+        <div class="item displayBox whiteOnLine w95p">
+            <span>收货人姓名</span>
+            <div class="boxflex1">
+                <input id="consigneeName" type="text" maxlength="20" placeholder="填写真实姓名，用于入境申报" value="张三" />
+            </div>
+        </div>
+        <div class="item displayBox whiteOnLine w95p">
+            <span>手机号码</span>
+            <div class="boxflex1">
+                <input id="tel" type="text" maxlength="11" value="18701356666" />
+            </div>
+        </div>
+        <div class="item displayBox whiteOnLine w95p pr">
+            <span>所在地区</span>
+            <div class="boxflex1" id="selectAddress">
+                <i class="rightArrow fr"></i>
+                <span id="area">北京市朝阳区</span>
+            </div>
+        </div>
+        <div class="item displayBox whiteOnLine w95p">
+            <span>详细地址</span>
+            <div class="boxflex1">
+                <input id="address" type="text" maxlength="400" value="胜古中路一号234室" />
+            </div>
+        </div>
+
+        <div class="item displayBox whiteOnLine w95p">
+            <span>邮政编码</span>
+            <div class="boxflex1">
+                <input id="zipCode" type="text" maxlength="6" value="100020" />
+            </div>
+        </div>
+    </div>
+    <div class="addressEdit boxShadow bgColor3 mb8">
+        <div class="item displayBox whiteOnLine w95p pr">
+            <span>通关有效证件</span>
+            <div class="boxflex1" id="select">
+                <i class="downJT"></i>
+                <span id="docNumberType" val="1">身份证</span>
+            </div>
+        </div>
+        <div class="item displayBox whiteOnLine w95p">
+            <span>证件号</span>
+            <div class="boxflex1">
+                <input id="docNumber" maxlength="200" type="text" value="130431**********20" />
+            </div>
+        </div>
+    </div>
+    <a class="btn w95m" id="saveInfo">保存</a>
+    <div class="sf-pop selectAreaCode" id="areaCode">
+        <ul class="content">
+            <li class="current" val="1">
+                <i class="radio checked fr"></i>
+                身份证
+            </li>
+            <li val="2">
+                <i class="radio fr"></i>
+                护照
+            </li>
+            <li val="3">
+                <i class="radio fr"></i>
+                其他
+            </li>
+        </ul>
+        <div class="btn-box">
+            <a id="cancel">取消</a>
+            <a id="sure" class="hover m-btn">完成</a>
+        </div>
+    </div>
+
+    <!-- 省份 -->
+    <!-- <div class="MContainer secPage" id="province">
+        <header class="pageHeader w100 pr tc">
+            <a class="returnBtn"></a>
+            <b class="f36 FontColor1">编辑收货地址</b>
+        </header>
+        <div class="content">
+            <ul>
+                <li>北京</li>
+                <li>天津</li>
+                <li>河北省</li>
+                <li>内蒙古自治区</li>
+                <li>辽宁省</li>
+                <li>吉林省</li>
+                <li>黑龙江省</li>
+                <li>上海</li>
+                <li>江苏省</li>
+                <li>北京</li>
+                <li>天津</li>
+                <li>河北省</li>
+                <li>内蒙古自治区</li>
+                <li>辽宁省</li>
+                <li>吉林省</li>
+                <li>黑龙江省</li>
+                <li>上海</li>
+                <li>江苏省</li>
+                <li>北京</li>
+                <li>天津</li>
+                <li>河北省</li>
+                <li>内蒙古自治区</li>
+                <li>辽宁省</li>
+                <li>吉林省</li>
+                <li>黑龙江省</li>
+                <li>上海</li>
+                <li>江苏省</li>
+            </ul>
+        </div>
+    </div> -->
+    <!-- 省份end -->
+    <!-- 城市 -->
+    <!-- <div class="MContainer secPage" id="city">
+        <header class="pageHeader w100 pr tc">
+            <a class="returnBtn"></a>
+            <b class="f36 FontColor1">编辑收货地址</b>
+        </header>
+        <div class="content">
+            <ul>
+                <li>秦皇岛</li>
+                <li>衡水</li>
+                <li>邢台</li>
+                <li>唐山</li>
+                <li>邯郸</li>
+                <li>张家口</li>
+                <li>石家庄</li>
+                <li>沧州</li>
+            </ul>
+        </div>
+    </div> -->
+    <!-- 城市end -->
+     <!-- 城市 -->
+    <!-- <div class="MContainer secPage" id="areaName">
+        <header class="pageHeader w100 pr tc">
+            <a class="returnBtn"></a>
+            <b class="f36 FontColor1">编辑收货地址</b>
+        </header>
+        <div class="content">
+            <ul>
+                <li>市辖区</li>
+                <li>桃城区</li>
+                <li>枣强县</li>
+                <li>武邑县</li>
+                <li>武强县</li>
+                <li>饶阳县</li>
+                <li>安平县</li>
+                <li>故城县</li>
+            </ul>
+        </div>
+    </div> -->
+    <!-- 城市end -->
+</div>
+<input type="hidden" provinceid="1" id="provincename" value="1" />
+<input type="hidden" cityid="1" id="cityname" value="1" />
+<input type="hidden" areaid="1" id="areaname" value="1" />
+<input type="hidden" id="addressId" value="1" /><!-- 大于0 是编辑 等于0是新增 -->
+<script src="../Scripts/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../Scripts/common/common.js?v=201512160001"></script>
+<script type="text/javascript" src="../Scripts/jquery/jquery.dialog.js?v=201512160001" charset="utf-8"></script>
+<!--页面独有脚本-->
+<script type="text/javascript" src="../Scripts/address.js?v=20160111"></script>
+<!--页面独有脚本 END-->
+</body>
+</html>

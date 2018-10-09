@@ -1,0 +1,118 @@
+﻿@using SFO2O.Utility.Uitl
+@{
+    this.ViewBag.IsSelfTitle = true;
+    this.ViewBag.Description = "中华人民共和国大陆地区百年品牌“位元堂”倾城送大礼，商品低至4.9折。";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    this.ViewBag.Title = "爱心“丰”献，健康到“位” – 爱玖网购物商城之位元堂专栏";
+    this.ViewBag.HeaderTitle = "爱心丰献 健康到位";
+    string ImgVersion = ConfigHelper.ImgVersion;
+    string CssVersion = ConfigHelper.CssVersion;
+    string JSVersion = ConfigHelper.JsVersion;
+}
+
+@section styles {
+    <!--页面独有样式-->
+    <link href="~/Content/css/active/0615.css?v=@CssVersion" rel="stylesheet">
+    <link rel="apple-touch-icon-precomposed" href="~/Content/Images/active/0615/shareImg.jpg?v=@CssVersion" />
+    <!--页面独有样式 END-->
+}
+
+<!-- 页头 使用公共页头-->
+@section pageHeader {
+    @Html.Partial("~/Views/Shared/_HeaderTop.cshtml")
+}
+
+<!--专题内容-->
+<div class="hide">
+    <img src="~/Content/Images/active/0615/shareImg.jpg?v=@ImgVersion">
+</div>
+<img src="~/Content/Images/active/0615/banner.jpg?v=@ImgVersion" class="w100 show">
+<div class="con" id="discountWrap">
+    <a href="~/brand/14.html" target="_self">
+        <img src="~/Content/Images/active/0615/gotoIntro.jpg?v=@ImgVersion" alt="百年位元堂" class="w100 show">
+    </a>
+    <div class="con1">
+        <img src="~/Content/Images/active/0615/title1.png?v=@ImgVersion" alt="中药防掉发系列" class="title show mc">
+        <a href="~/item.html?productCode=10150308886612" target="_self">
+            <img src="~/Content/Images/active/0615/lazyload.png?v=@ImgVersion" data-original="/Content/Images/active/0615/item1.jpg?v=@ImgVersion" alt="中药防掉发洗发露（强韧配方）" class="w100 show lazyloadImg">
+        </a>
+        <a href="~/item.html?productCode=10150308886614" target="_self">
+            <img src="~/Content/Images/active/0615/lazyload.png?v=@ImgVersion" data-original="/Content/Images/active/0615/item2.jpg?v=@ImgVersion" alt="中药防掉发洗发露（防屑配方）" class="w100 show lazyloadImg">
+        </a>
+        <a href="~/item.html?productCode=10150308886613" target="_self">
+            <img src="~/Content/Images/active/0615/lazyload.png?v=@ImgVersion" data-original="/Content/Images/active/0615/item3.jpg?v=@ImgVersion" alt="中药防掉发洗发露（乌发配方）" class="w100 show lazyloadImg">
+        </a>
+    </div>
+    <div class="con2">
+        <img src="~/Content/Images/active/0615/title2.png?v=@ImgVersion" alt="蛇胆陈皮川贝末" class="title show mc">
+        <p class="tc mb5 FontColor3"><span class="fs40">止咳</span><span class="fs20">，从根源入手。</span></p>
+        <p class="tc mb20 fs18 FontColor3">（集合五种止咳润肺的药材：蛇胆、陈皮、川贝、桔梗及甘草）</p>
+        <a href="~/item.html?productCode=10150308886830" target="_self">
+            <img src="~/Content/Images/active/0615/lazyload.png?v=@ImgVersion" data-original="/Content/Images/active/0615/item4.jpg?v=@ImgVersion" alt="蛇胆陈皮川贝末（成人配方）" class="w100 show lazyloadImg">
+        </a>
+        <a href="~/item.html?productCode=10150308886838" target="_self">
+            <img src="~/Content/Images/active/0615/lazyload.png?v=@ImgVersion" data-original="/Content/Images/active/0615/item5.jpg?v=@ImgVersion" alt="蛇胆陈皮川贝末（儿童配方）" class="w100 show lazyloadImg">
+        </a>
+    </div>
+    <div class="con3 clearfix">
+        <img src="~/Content/Images/active/0615/title3.png?v=@ImgVersion" alt="更多好物" class="title show mc">
+        <div class="list">
+            <a href="~/item.html?productCode=10150308886814" target="_self">
+                <img src="~/Content/Images/active/0615/lazyload2.png?v=@ImgVersion" data-original="/Content/Images/active/0615/item6.jpg?v=@ImgVersion" alt="位元堂虫草Cs-4胶囊" class="show lazyloadImg">
+            </a>
+            <a href="~/item.html?productCode=10150308886820" target="_self">
+                <img src="~/Content/Images/active/0615/lazyload2.png?v=@ImgVersion" data-original="/Content/Images/active/0615/item7.jpg?v=@ImgVersion" alt="位元堂护肝康胶囊" class="show lazyloadImg">
+            </a>
+            <a href="~/item.html?productCode=10150308886815" target="_self">
+                <img src="~/Content/Images/active/0615/lazyload2.png?v=@ImgVersion" data-original="/Content/Images/active/0615/item8.jpg?v=@ImgVersion" alt="位元堂纯虫草菌丝体胶囊" class="show lazyloadImg">
+            </a>
+            <a href="~/item.html?productCode=10160419210294" target="_self">
+                <img src="~/Content/Images/active/0615/lazyload2.png?v=@ImgVersion" data-original="/Content/Images/active/0615/item9.jpg?v=@ImgVersion" alt="喉宝散6包装 (成人配方)" class="show lazyloadImg">
+            </a>
+            <a href="~/item.html?productCode=10160420692089" target="_self">
+                <img src="~/Content/Images/active/0615/lazyload2.png?v=@ImgVersion" data-original="/Content/Images/active/0615/item10.jpg?v=@ImgVersion" alt="70g特选冰糖燕窝6樽装礼盒(新版)" class="show lazyloadImg">
+            </a>
+            <a href="~/item.html?productCode=10150308886865" target="_self">
+                <img src="~/Content/Images/active/0615/lazyload2.png?v=@ImgVersion" data-original="/Content/Images/active/0615/item11.jpg?v=@ImgVersion" alt="位元堂特选低糖燕窝礼盒" class="show lazyloadImg">
+            </a>
+            <a href="~/item.html?productCode=10150308886859" target="_self">
+                <img src="~/Content/Images/active/0615/lazyload2.png?v=@ImgVersion" data-original="/Content/Images/active/0615/item12.jpg?v=@ImgVersion" alt="位元堂特选冰糖燕窝礼盒" class="show lazyloadImg">
+            </a>
+            <a href="~/item.html?productCode=10150308886855" target="_self">
+                <img src="~/Content/Images/active/0615/lazyload2.png?v=@ImgVersion" data-original="/Content/Images/active/0615/item13.jpg?v=@ImgVersion" alt="位元堂特选低糖燕窝礼盒(100%洞燕）" class="show lazyloadImg">
+            </a>
+            <a href="~/item.html?productCode=10150308886841" target="_self">
+                <img src="~/Content/Images/active/0615/lazyload2.png?v=@ImgVersion" data-original="/Content/Images/active/0615/item14.jpg?v=@ImgVersion" alt="位元堂至尊虫草鸡精" class="show lazyloadImg">
+            </a>
+            <a href="~/item.html?productCode=10150308886829" target="_self">
+                <img src="~/Content/Images/active/0615/lazyload2.png?v=@ImgVersion" data-original="/Content/Images/active/0615/item15.jpg?v=@ImgVersion" alt="位元堂养阴丸 50粒装" class="show lazyloadImg">
+            </a>
+            <a href="~/item.html?productCode=10150308886828" target="_self">
+                <img src="~/Content/Images/active/0615/lazyload2.png?v=@ImgVersion" data-original="/Content/Images/active/0615/item16.jpg?v=@ImgVersion" alt="位元堂清心石斛花旗蔘胶囊" class="show lazyloadImg">
+            </a>
+            <a href="~/item.html?productCode=10150308886827" target="_self">
+                <img src="~/Content/Images/active/0615/lazyload2.png?v=@ImgVersion" data-original="/Content/Images/active/0615/item17.jpg?v=@ImgVersion" alt="位元堂破壁灵芝孢子胶囊升级配方 60粒装" class="show lazyloadImg">
+            </a>
+            <a href="~/item.html?productCode=10150308886826" target="_self">
+                <img src="~/Content/Images/active/0615/lazyload2.png?v=@ImgVersion" data-original="/Content/Images/active/0615/item18.jpg?v=@ImgVersion" alt="位元堂燕窝白凤丸" class="show lazyloadImg">
+            </a>
+            <a href="~/item.html?productCode=10150308886825" target="_self">
+                <img src="~/Content/Images/active/0615/lazyload2.png?v=@ImgVersion" data-original="/Content/Images/active/0615/item19.jpg?v=@ImgVersion" alt="位元堂破壁灵芝孢子胶囊升级配方 90粒装" class="show lazyloadImg">
+            </a>
+        </div>
+        <a href="~/brand/14.html" target="_self" class="gotoIntro2">
+            <img src="~/Content/Images/active/0615/lazyload.png?v=@ImgVersion" data-original="/Content/Images/active/0615/gotoIntro2.png?v=@ImgVersion" alt="位元堂" class="show mc lazyloadImg">
+        </a>
+    </div>
+    <!--
+      <img src="~/Content/Images/active/0615/defaultImg.png?v=@ImgVersion" data-original="/Content/Images/active/0615/item2.jpg?v=@ImgVersion" class="w100 show itemImg" alt="儿童全营养钙C益生片(莓果味)">
+      -->
+</div>
+<!--专题内容 END-->
+@section scripts {
+    <!--页面独有脚本-->
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.lazyload.js?v=@JSVersion"></script>
+    <script type="text/javascript" src="~/Scripts/active/0615.js?v=@JSVersion"></script>
+    <!--页面独有脚本 END-->
+}

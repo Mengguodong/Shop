@@ -1,0 +1,91 @@
+﻿@using SFO2O.M.Controllers
+@using SFO2O.M.Controllers.Common
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.ViewModel.Product
+@using SFO2O.Utility.Extensions 
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "关于拼生活问题";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = false;
+}
+@section styles { 
+}
+@section scripts {
+}
+@section pageHeader {
+   <header class="pageHeader w100 pr tc overflowH">
+    <a class="returnBtn" id="returnBtn"></a>
+    <b class="f36 FontColor1">关于拼生活问题</b>
+</header>
+}<!-- 页头 end -->
+<dl class="problemsWrap w100 mt8 boxShadow bgColor3 f28">
+    <dt>
+        <span class="icon">问</span>什么是「拼生活」?
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>「拼生活」是爱玖网的团购活动，「团长」只要于24小时内成功招募指定人数购买商品，就可以「拼生活」的优惠价格购买到正货商品。
+    </dd>
+    <dt>
+        <span class="icon">问</span>如何参与「拼生活」？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>只要在商品的购买页面，有标示「拼生活」的图示，会员即可点选「去开团」，建立「拼生活」订单，并将拼团分享到微信朋友圈或微信聊天邀请朋友参团。
+    </dd>
+    <dt>
+        <span class="icon">问</span>参与「拼生活」有没有时间限制？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>有。每个拼生活商品均设置活动期限，请留意商品详情。
+    </dd>
+    <dt>
+        <span class="icon">问</span>「拼生活」需要多少人才能够成团？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>每个拼生活商品的成团人数要求不同，从2人成团到10人成团，具体请查看商品详情。
+    </dd>
+    <dt>
+        <span class="icon">问</span>要怎样建立「拼生活」的「拼团」？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>只要选择可以进行「拼生活」的商品，点选「去开团」。然后选择适合自己的支付方式，完成商品支付，就成功建立「拼团」成为「团长」，并分享给微信的朋友参团。
+    </dd>
+    <dt>
+        <span class="icon">问</span>要怎样招募朋友加入我的「拼团」？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>您可以到「拼团」详情页面，按「邀请小伙伴」，透过微信向朋友圈分享参团连结，邀请他们参与「拼团」。
+    </dd>
+    <dt>
+        <span class="icon">问</span>要怎样参与朋友建立的「拼生活」的「拼团」？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>您可以从社交媒体收到来自朋友的「拼团」的邀请，点击链接到「拼团」详情页面。细阅商品详情后，点选下方的「我也要参团」，支付商品费用，就可以成功加入朋友的「拼团」。
+    </dd>
+    <dt>
+        <span class="icon">问</span>如果朋友的「拼团」已经「满团」，我还可以加入吗？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>不可以。但您可以通过连结，进入商品详情页面，建立自己的「拼团」，然后选择适合自己的支付方式，完成商品支付，就可以建立「拼团」，成为「团长」。
+    </dd>
+    <dt>
+        <span class="icon">问</span>「拼团」有时间限制吗？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>有。「团长」支付「拼生活」的商品金额后，须于24小时内邀请「团员」直至「满团」，方可享用本优惠。
+    </dd>
+    <dt>
+        <span class="icon">问</span>如果我的「拼团」于24小时内仍未满人，我的订单会怎样处理？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>若未能于24小时内「满团」，系统会将自动设定订单状态为「交易关闭」，并进入退款程序。退款程序会根据您使用的支付方式，按本公司的《中国境内退货条款及细则》进行。
+    </dd>
+    <dt>
+        <span class="icon">问</span>如果商品已经售罄，我的「拼团」会结束吗？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>拼生活只有到达设定的时间才会结束。商品可能阶段性售罄，但平台也会进行补货，所以如果发现拼团的商品已经售罄，请过一段时间再来查看。如果拼团已经到期仍未有货，我们会安排退款。
+    </dd>
+    
+</dl>

@@ -1,0 +1,52 @@
+﻿@model SFO2O.Supplier.ViewModels.LoginModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <title>登入 - 村村通商家中心</title>
+    @Html.Style("~/Content/CSS/common.css")
+    @Html.Style("~/Content/CSS/supplier.css")
+    <script src="~/Content/Js/jquery-1.8.3.js" type="text/javascript"></script>
+    @Html.Script("~/Scripts/Account/Login.js")
+</head>
+<body>
+    <div class="header_wrap">
+        <div class="header w1200 t_c"><a href="#"><img src="../Content/Images/logo_big.png" class="logo" /></a> </div>
+    </div>
+    <div class="login_footer w1200">
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "loginForm" }))
+        {
+            <h1 class="t_c">村村通商家中心</h1>
+            <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+            <ul class="login_wrap">
+                <li class="clearfix">
+                    <span>账号</span>
+                    <input type="text" name="username" id="username" value="@Model.UserName" maxlength="50" />
+                    <p id="login_wrong" class="login_wrong" style="display:block">@Model.ErrorInfoForUserName</p>
+                </li>
+                <li class="clearfix">
+                    <span>密码</span>
+                    <input type="password" name="password" id="password" maxlength="32" />
+                    <p id="password_wrong" class="login_wrong" style="display:block">@Model.ErrorInfoForPassword</p>
+                </li>
+            </ul>
+            <p class="t_c"><button type="submit" class="btn_g">登入</button></p>
+            <div class="footer t_c">
+                <p>&copy; 2017 北京梵禹科技有限公司 版权所有</p>
+                <p>ICP备案证书号：京ICP备17011056号-1</p>
+            </div>
+        }
+    </div>
+    <script type="text/javascript">
+        var selfUrl = "@(this.Request.Url.AbsolutePath)";
+        if (location.pathname != selfUrl) {
+            location = selfUrl + "?ReturnUrl=" + encodeURI(location.pathname + location.search);
+        }
+    </script>
+</body>
+</html>

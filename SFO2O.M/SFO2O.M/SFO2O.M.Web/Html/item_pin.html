@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="no">
+<meta name="format-detection" content="telephone=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit">
+<title>爱玖网购物商城-商品详情</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="../Content/css/base.css?v=201512150001" rel="stylesheet">
+<!--页面独有样式-->
+<link href="../Content/css/item.css?v=201512150001" rel="stylesheet">
+<!--页面独有样式 END-->
+</head>
+<body>
+<div class="MContainer" id="MContainer">
+	<!-- 页头 -->
+	<header class="pageHeader w100 pr tc overflowH">
+      <a class="returnBtn" id="returnBtn"></a>
+      <b class="f36 FontColor1">商品详情页</b>
+			<div class="flowerMenu"></div>
+  </header>
+  <!-- 页头 end -->
+  <!--第一部分-->
+	<div class="itemCon w100 boxShadow bgColor3 pt8 mb8">
+		<!--轮播图-->
+		<div class=" banner pr  mc clearfix hide" id="mySwipe" style="background:#F00">
+		    <div class="bannerIndex clearfix hd" id="mySwipeLiItems">
+		        <ul>
+		           
+		        </ul>
+		    </div>
+		    <div class="swipe focusBox f0 bd">
+	            <ul class="swipe-wrap focusBoxIn">
+	                <li><a target="_self"><img src="../Content/Images/index/banner1.jpg?v=20151215" /></a></li>
+	            </ul>
+	            <ul class="swipe-wrap focusBoxIn">
+	                <li><a target="_self"><img src="../Content/Images/index/banner1.jpg?v=20151215" /></a></li>
+	            </ul>
+	            <ul class="swipe-wrap focusBoxIn">
+	                <li><a target="_self"><img src="../Content/Images/index/banner1.jpg?v=20151215" /></a></li>
+	            </ul>
+		    </div>
+		</div>
+		<!--轮播图 END-->
+		<!--20160425 修改内容-->
+    <div class="w95m brandArea mt15 f24 FontColor3 displayBox overflowH">
+    	<p class="boxflex1"><span></span>不丹 404品牌英文(404品牌简体)</p>
+	    <a class=" FontColor4" id="taxTip_pin"><span class="taxIcon"></span><b style="font-weight:normal; text-decoration: underline;">税费</b></a>
+    </div>
+		<p class="w95p itemProName f28 mt8 mb8 pr">商品名称商 M 
+		<!--售罄 过期图标 售罄样式名为soldOutIcon 过期样式名为overdueIcon -->
+		<span class="markIcon overdueIcon pr hide"></span>
+		<!--售罄 过期图标 售罄样式名为soldOutIcon 过期样式名为overdueIcon END-->
+		</p>
+		<!--售罄状态下   下面这个div需要 soldOutStatu
+		    已过期状态下 下面这个div需要 overdueStatu 
+		-->
+		<div class="w95m mb8 clearfix">
+			<div class=" gotoBuy tc boxSizingB" >
+				<a href="#" target="_self">
+					<p class="f32 price_pin">￥399.99</p>
+					<p class="f20 gotoBuyFont">单独购买 ></p>
+				</a>
+			</div>	
+			<div class=" gotoPin tc boxSizingB">
+				<a href="#" target="_self" >
+				<p class="f32 price_pin">3人团:￥399.99</p>
+				<p class="f20 gotoPinFont">去开团 ></p>
+				</a>
+			</div>
+		</div>
+		<p class="w95p pinTip FontColor6 f20 mb8">
+			支持开团并邀请 n-1人参加，人数不足自动退款；开团团长获得金币奖励。
+		</p>
+		<!--20160425 修改内容 END-->
+		<ul class="w100 itemFeature f24 FontColor3 overflowH ">
+      <li style="text-indent: 8px;"><span class="itemIcon_r"></span>酒厂直发</li>
+      <li style="text-indent: 8px;"><span class="itemIcon_r"></span>全场包邮</li>
+      <li style="text-indent: 8px;"><span class="itemIcon_r"></span>正品保证</li>
+    </ul>
+	</div>
+	<!--第一部分 END-->
+	<!--跳转区域-->
+	<div class="itemCon w100 mb8 boxShadow bgColor3 f28">
+		<p class="w95p pt17 pb17 whiteOnLine borderBottom"><a href="param.html" target="_self" class="show w100">产品参数<i class="itemIcon_jt"></i></a></p>
+		<p class="w95p pt17 pb17 "><a href="commodityDetails.html" target="_self" class="show w100">商品详情<i class="itemIcon_jt"></i></a></p>
+	</div>
+	<!--跳转区域 END-->
+	<!--20160425 修改内容-->
+	<div class="pinRule w95p boxShadow bgColor3 ">
+		<a href="pinRule.html" target="_self">
+		<p class="title w100 f28">拼生活规则 <i class="itemIcon_jt"></i></p>
+		<ul class="w100 overflowH pinRule f20 FontColor4 displayBox">
+			<li class="cur tc">
+				<p class="stepNum mc">1</p>
+				<p class="stepName">选择<br>心仪商品</p>
+			</li>
+			<li class="tc">
+				<p class="stepNum mc">2</p>
+				<p class="stepName">支付开团<br>或参团</p>
+			</li>
+			<li class="tc">
+				<p class="stepNum mc">3</p>
+				<p class="stepName">等待好友<br>参团支付</p>
+			</li>
+			<li class="tc">
+				<p class="stepNum mc">4</p>
+				<p class="stepName">达到人数<br>团购成功</p>
+			</li>
+		</ul>
+		</a>
+	</div>
+	<!--20160425 修改内容 END-->
+	
+  <!--页脚-->
+	<p class="loginArea f24 FontColor3 mb20 mt20 w95p">
+		<!--未登录状态显示-->
+		<a class="f24 FontColor3 mr10 ml5" href="#" target="_self">登录</a>|
+		<a class="f24 FontColor3 ml10" href="#" target="_self">注册</a>
+		<!--未登录状态显示 END-->
+		<!--已登录状态显示-->
+		<!--<a class="f24 FontColor3">退出</a>-->
+		<!--已登录状态显示 END-->
+		<a href="javascript:FSH.goTop()" class="fr f24 FontColor3 mr5">回到顶部</a>
+	</p>
+	<footer class="w95p pb10 tc grayOnLine">	
+		<p class="links FontColor3 f24 mt20 mb10">
+			<a class="f24 FontColor3 mr10" href="#" target="_self">常见问题</a>|
+			<a class="f24 FontColor3  ml10 mr10" href="#" target="_self">关于我们</a>|
+			<a class="f24 FontColor3 mr10 ml10" href="#" target="_self">配送及售后服务</a>|
+			<a class="f24 FontColor3 ml10" href="#" target="_self">条款</a>
+		</p>
+		<p class="copyright f18 FontColor4">2017© 北京梵禹科技有限公司版权所有</p>
+	</footer>
+	<!--页脚 END-->
+	<!--20160425 修改内容 过期吸底-->
+	<div class="fixedBottomDiv w100 overflowH ">
+		<div class="fixedBottomDivCon tc overdueJump">
+			<a href="#" target="_self" class="f28 ">该商品活动已过期，查看更多拼团活动</a>
+		</div>
+	</div>
+	<!--20160425 修改内容 过期吸底 END-->
+	<!--20160425 修改内容 税费弹窗-->
+	<div class="skuMark hide" id="skuMark"></div>
+	<div class="w100 selectSKU bgColor3 hide " id="taxDialog">
+		<a class="closeA"></a>	
+		<div class="title w95p f28 FontColor3">税费</div>
+		<p class="w95p f24 FontColor4 whiteOnLine borderBottom">
+			拼团税费：<span class="lineThrough FontColor1">￥9.99</span><span class="FontColor1">（商品税≤50元，免征）</span>
+		</p>	
+		<p class="w95p f24 FontColor4 whiteOnLine borderBottom">单独买税费：<span class="FontColor1">￥29.99</span></p>
+		<p class="w95p f24 FontColor4 whiteOnLine borderBottom"><span class="FontColor1">中华人民共和国大陆地区1号仓发货</span></p>					
+	</div>
+	<!--20160425 修改内容 税费弹窗 END-->
+</div>
+<script src="../Scripts/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../Scripts/common/common.js?v=201512160001"></script>
+<!--页面独有脚本-->
+<script src="../Scripts/jquery/TouchSlide.1.1.js?v=201509091111"></script>
+<script src="../Scripts/jquery/jquery.dialog.js?v=201509091111"></script>
+<script type="text/javascript" src="../Scripts/item_pin.js?v=201509091111"></script>
+<!--页面独有脚本 END-->
+</body>
+</html>

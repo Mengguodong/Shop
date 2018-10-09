@@ -1,0 +1,53 @@
+﻿@{
+    Layout = null;
+}
+@using SFO2O.M.Controllers.Common
+@using SFO2O.Utility.Uitl
+@model List<SFO2O.Model.Index.BannerImagesEntity>
+<div class="indexSlideWrap w100">
+
+    <div class="banner pr hide" id="mySwipe">
+        @if (Model.Count > 0)
+        {
+            <div class="bannerIndex clearfix hd" id="mySwipeLiItems">
+                <ul></ul>
+            </div>
+            <div class="swipe focusBox f0 bd">
+                @foreach (var p in Model)
+                {
+                    <ul class="swipe-wrap focusBoxIn">
+                        <li>
+                            @if (!string.IsNullOrEmpty(p.LinkUrl))
+                            {
+                                <a target="_self" href="@p.LinkUrl">
+
+                                    <img src="@p.ImageUrl.GetImageUrl()" class="banner_n" />
+                                </a>
+                            }
+                            else
+                            {
+                                <img src="@p.ImageUrl.GetImageUrl()" class="banner_n"/>
+                            }
+
+                        </li>
+                    </ul>
+                }
+            </div>
+        }
+        else
+        {
+            string defaultImage = ConfigHelper.GetAppConfigString("superMarket_ScrollmageUrl");
+            <div class="swipe focusBox f0 bd">
+
+                <ul class="swipe-wrap focusBoxIn">
+                    <li>
+                        <img src="@defaultImage.GetImageUrl()" />
+
+                    </li>
+                </ul>
+
+            </div>
+
+        }
+    </div>
+</div>

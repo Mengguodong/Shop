@@ -1,0 +1,42 @@
+﻿@using SFO2O.Admin.Common
+@using SFO2O.Admin.Models
+@using SFO2O.Admin.Models.Enums
+@{
+    List<SFO2O.Admin.Models.ProductAuditingLog> auditLog = ViewBag.AuditLog;
+}
+
+
+<table class="color_table fff_bor mg_t10">
+    <tbody>
+        <tr>
+            <td rowspan="@(auditLog.Count + 1)" width="140" class="bor_none_l bor_none_b vtop" style="background: #fff;"><span class="f_l pd_l10 mg_t40">商品管理記錄</span></td>
+            <th width="160">操作時間</th>
+            <th width="160">操作人</th>
+            <th width="160">操作內容</th>
+            <th width="310">備註</th>
+        </tr>
+        @foreach (var audit in auditLog)
+        {
+            <tr>
+                <td colspan="4">
+                    <div class="f_l">
+                        <span class="f_l w160">@audit.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")</span>
+                        <span class="f_l w160">@audit.CreateBy</span>
+                        <span class="f_l w160">@(EnumUtils.GetEnumDescriptionByText(typeof(AuditStatus), audit.Status.ToString()))</span>
+                      
+                            @if(audit.Status==2)
+                            {
+                                 <span class="f_l w300 t_l">駁回原因：@audit.Reason  </span>
+                            }
+                            else
+                            {
+                                <span class="f_l w300 t_l">@audit.Reason</span>
+                            }
+
+                      
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

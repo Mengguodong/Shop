@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="no">
+<meta name="format-detection" content="telephone=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit">
+<title>爱玖网购物商城</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="../Content/css/base.css?v=201512150001" rel="stylesheet">
+<!--页面独有样式-->
+<link href="../Content/css/payType.css?v=201512150001" rel="stylesheet">
+<!--页面独有样式 END-->
+</head>
+<body>
+<div class="MContainer" id="MContainer">
+	<!-- 支付成功 -->
+	<div class="sf-pop payStatusWrap">
+		<p class="content title"><span class="successIcon"></span>支付成功！</p>
+		<p class="conent tip">支付成功，可以去查看订单。</p>
+		<p class="btn-box">
+			<a class="closeBtn m-btn" href="#" target="_self">去首页</a>
+			<a class="closeBtn m-btn hover" href="#" target="_self">查看订单</a>
+		</p>
+	</div>
+	<!-- 支付成功end -->
+	<!-- 支付失败 -->
+	<div class="sf-pop payStatusWrap">
+		<p class="content title"><span class="failIcon"></span>支付失败！</p>
+		<p class="conent tip">支付失败，请稍后再试。</p>
+		<p class="btn-box">
+			<a class="closeBtn m-btn hover" href="#" target="_self">查看待支付订单</a>
+		</p>
+	</div>
+	<!-- 支付失败end -->
+</div> 
+<script src="../Scripts/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../Scripts/common/common.js?v=201512160001"></script>
+<!--页面独有脚本-->
+<!--页面独有脚本 END-->
+</body>
+</html>

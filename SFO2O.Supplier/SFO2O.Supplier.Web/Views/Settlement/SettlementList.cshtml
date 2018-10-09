@@ -1,0 +1,221 @@
+﻿@using SFO2O.Supplier.Models;
+@using SFO2O.Supplier.Common;
+
+@model PageOf<SFO2O.Supplier.Models.SettlementOrderInfo>
+@{
+    ViewBag.Title = "结算单管理";
+    ViewBag.PageName = "SettlementList";
+
+    var settlementstatus = EnumHelper.ConvertToDict<SettlementStatus>();
+
+    SettlementQueryModel queryInfo = ViewBag.QueryInfo;
+
+}
+
+<div class="cont_right_crumb"><span class="homepage"></span>&gt; 财务管理 &gt; 结算单管理</div>
+<div class="w931">
+    <div class="upload_edit mg_t20">
+        <div class="wrap_yisc bor_bg pd_t5">
+            <div class="list_yisc bor clearfix">
+                @using (Html.BeginForm(null, null, FormMethod.Get))
+                {
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">生成时间：</span>
+                        <div class="bor f_l fff_bor" style="width: 123px; height: 29px; overflow: hidden">
+                            <input type="text" id="StartTime" class="Wdate" name="StartTime" onclick="WdatePicker({ isShowClear: true, isShowOK: true, isShowToday: true })" value="@queryInfo.StartTime.ToString("yyyy-MM-dd")" />
+                        </div>
+                        <em class="f_l mg_l5 mg_r5 lineH30">至</em>
+                        <div class="bor f_l fff_bor" style="width: 123px; height: 29px; overflow: hidden">
+                            <input type="text" id="EndTime" class="Wdate" name="EndTime" onclick="WdatePicker({ isShowClear: true, isShowOK: true, isShowToday: true })" value="@queryInfo.EndTime.ToString("yyyy-MM-dd")" />
+                        </div>
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l" style="width: 130px;">结算单状态：</span>
+                        <div class="f_l" style="width: 140px;">
+                            <select id="settlementstatus" name="settlementstatus" style="display: none;">
+                                <option value="0" selected="selected">全部</option>
+                                @foreach (var item in settlementstatus)
+                                {
+                                    if (item.Key == queryInfo.SettlementStatus)
+                                    {
+                                        <option value="@item.Key" selected="selected">@item.Value</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.Key">@item.Value</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">结算单号：</span>
+                        <input type="text" class="f_l bor" style="width: 262px;" id="settlementCode" name="settlementCode" value="@queryInfo.SettlementCode">
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l" style="width: 130px;">订单号/退款单号：</span>
+                        <input type="text" class="f_l bor" style="width: 262px;" id="orderCode" name="orderCode" value="@queryInfo.OrderCode">
+                    </div>
+                    <div class="f_l" style="width: 100%;"><a href="javascript:void(0)" id="search" class="btn_green w160 mg_l20 mg_r20 mg_t10">搜 寻</a> </div>
+                }
+            </div>
+            <table style="width: 908px;" class="mg_l10 mg_r10 mg_t20 bor bg_fff f15 t_c table_lineH43">
+                <tr class="bg_ebebeb color_838383">
+                    <th width="88"></th>
+                    <th width="120">结算单数</th>
+                    <th width="140">商品总金额</th>
+                    <th width="140">商品退款金额</th>
+                    <th width="140">商家承担关税</th>
+                    <th width="210">商家承担商品促销费用</th>
+                    <th width="140">其他费用</th>
+                    <th width="140">结算金额</th>
+                </tr>
+                <tr>
+                    <td>合计</td>
+                    <td>
+                        <p class="pd_l10 pd_r10 pd_t15 pd_b10">@Model.Total</p>
+                    </td>
+                    <td>
+                        <p class="pd_l10 pd_r10 pd_t15 pd_b10">￥ @Model.TotalObject.ProductTotalAmount</p>
+                    </td>
+                    <td>
+                        <p class="pd_l10 pd_r10 pd_t15 pd_b10">￥ @Model.TotalObject.ProductRefundAmount</p>
+                    </td>
+                    <td>
+                        <p class="pd_l10 pd_r10 pd_t15 pd_b10">￥ @Model.TotalObject.SupplierBearDutyAmount</p>
+                    </td>
+                    <td>
+                        <p class="pd_l10 pd_r10 pd_t15 pd_b10">￥ @Model.TotalObject.PromotionAmount.ToString("f2")</p>
+                    </td>
+                    <td>
+                        <p class="pd_l10 pd_r10 t_c pd_t15 pd_b10">￥ @Model.TotalObject.OtherAmount</p>
+                    </td>
+                    <td>
+                        <p class="pd_l10 pd_r10 t_c pd_t15 pd_b10">￥ @((Model.TotalObject.SettlementAmount).ToString("f2"))</p>
+                    </td>
+                </tr>
+            </table>
+            <div class="tongji_title mg_t30 mg_l10 clearfix">
+                <span class="tongji_title_l f_l mg_t5">结算单列表</span>
+                @Html.ActionLink("导出", "ExportSettlementList",
+                new
+                {
+                    StartTime = queryInfo.StartTime,
+                    EndTime = queryInfo.EndTime,
+                    SettlementStatus = queryInfo.SettlementStatus,
+                    SettlementCode = queryInfo.SettlementCode,
+                    OrderCode = queryInfo.OrderCode
+                }, new { @class = "btn_daochu f_l mg_l20 f12 ftfml_sun" })
+
+            </div>
+            <div class="mg_t5 fuwb_wrap dingdglist mg_l10">
+                <div class="wrap_yisc mg_r10" style="margin-bottom: 0; border-bottom: none;">
+                    <div>
+                        <table style="width: 1222px;" class="bg_fff bor f15 t_c vtop">
+                            <tbody>
+                                <tr class="t_c bg_f8f8f8 table_lineH43">
+                                    <th class="bor_b" width="188">结算单号</th>
+                                    <th class="bor_b" width="112">生成时间</th>
+                                    <th class="bor_b" width="188">订单号/退款单号</th>
+                                    <th class="bor_b" width="102">商品金额</th>
+                                    <th class="bor_b" width="120">商品退款金额</th>
+                                    <th class="bor_b" width="112">商家承担关税</th>
+                                    <th class="bor_b" width="120">商家承担商品促销费用</th>
+                                    <th class="bor_b" width="100">其他费用</th>
+                                    <th class="bor_b" width="120">结算金额</th>
+                                    <th class="bor_b" width="80">状态</th>
+                                    <th class="bor_b" width="100">操作</th>
+                                </tr>
+                                @if (Model.Items != null && Model.Items.Count > 0)
+                                {
+                                    foreach (var settle in Model.Items)
+                                    {
+                                        <tr class="lineH22">
+                                            <td class="bor_b">
+                                                <p class="pd10">@settle.SettlementCode</p>
+                                            </td>
+                                            <td class="bor_b">
+                                                <p class="pd10">@settle.CreateTime.ToString("yyyy-MM-dd")</p>
+                                            </td>
+                                            <td class="bor_b">
+                                                <p class="pd10">@settle.OrderCode</p>
+                                            </td>
+                                            <td class="bor_b">
+                                                <p class="pd10">￥@settle.RmbProductTotalAmount.ToString("f2")</p>
+                                            </td>
+                                            <td class="bor_b">
+                                                <p class="pd10">￥@settle.RmbProductRefundAmount.ToString("f2")</p>
+                                            </td>
+                                            <td class="bor_b">
+                                                <p class="pd10">￥@settle.RmbSupplierBearDutyAmount.ToString("f2")</p>
+                                            </td>
+                                            <td class="bor_b">
+                                                <p class="pd10">￥@((settle.PromotionAmount * settle.ExchangeRate).ToString("f2"))</p>
+                                            </td>
+                                            <td class="bor_b">
+                                                <p class="pd10">￥@settle.RmbOtherAmount.ToString("f2")</p>
+                                            </td>
+                                            <td class="bor_b">
+                                                <p class="pd_l10 pd_r10 pd_t10">￥@((settle.RmbSettlementAmount).ToString("f2"))</p>
+                                                <p class="pd_l10 pd_r10 pd_b10 col_999">($ @((settle.SettlementAmount).ToString("f2")))</p>
+                                            </td>
+                                            <td class="bor_b">
+                                                <p class="pd10">@(EnumHelper.GetDescription(settle.SettlementStatus, typeof(SettlementStatus)))</p>
+                                            </td>
+                                            <td class="bor_b">
+                                                <p class="pd10"><a href="/Settlement/SettlementDetail?SettlementCode=@settle.SettlementCode" target="_blank" class="col_link">结算单详情</a></p>
+                                            </td>
+                                        </tr>
+
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td class="vtop" colspan="10">
+                                            <p class="color_green pd_l20 t_l mg_t20 mg_b20">没有符合条件的结算单信息！</p>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="page">
+
+                        @if (Model != null && Model.Items.Count > 0)
+                        {
+
+                            @Html.ShowFPage(Url.Action("SettlementList"
+                        , new
+                        {
+                            PageNo = "{0}",
+                            StartTime = queryInfo.StartTime,
+                            EndTime = queryInfo.EndTime,
+                            OrderCode = queryInfo.OrderCode,
+                            SettlementCode = queryInfo.SettlementCode,
+                            SettlementStatus = queryInfo.SettlementStatus
+                        })
+                        , Model.PageIndex
+                        , Model.PageSize
+                        , Model.Total)
+                            <p class="f14 mg_l20 mg_b5 inline">
+                                共<em class="color_green pd_l10 pd_r10"> @(Model.Total) </em>条数据
+                            </p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+
+        $("#settlementstatus").chosen({ disable_search: true, width: "277px" });
+
+        $("#search").click(function () { $(this).closest("form").submit() });
+    });
+
+</script>

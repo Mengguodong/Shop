@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7C3BC410-841C-40F0-AD9C-35B104E55352}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SFO2O.Admin.ViewModel</RootNamespace>
+    <AssemblyName>SFO2O.Admin.ViewModel</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Customer\CustomerQueryModel.cs" />
+    <Compile Include="Account\LoginModel.cs" />
+    <Compile Include="AdminUser\AdminMenuModel.cs" />
+    <Compile Include="AdminUser\LoginUserModel.cs" />
+    <Compile Include="HomePageViewModel.cs" />
+    <Compile Include="ImageView.cs" />
+    <Compile Include="Order\OrderListAndCountModel.cs" />
+    <Compile Include="Order\OrderListQueryModel.cs" />
+    <Compile Include="PageOf.cs" />
+    <Compile Include="Product\CustomReportJsonModel.cs" />
+    <Compile Include="Product\InventoryListExportModel.cs" />
+    <Compile Include="Product\InventoryListViewModel.cs" />
+    <Compile Include="Product\ProductAuditingQuyModel.cs" />
+    <Compile Include="Product\ProductAuditingViewModel.cs" />
+    <Compile Include="Promotion\PromotionDetail.cs" />
+    <Compile Include="Promotion\PromotionQueryModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Refund\RefundQueryModel.cs" />
+    <Compile Include="Supplier\SupplierInfoJsonModel.cs" />
+    <Compile Include="Supplier\SupplierQueryModel.cs" />
+    <Compile Include="Settlement\SettlementQueryModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SFO2O.Admin.Common\SFO2O.Admin.Common.csproj">
+      <Project>{77635b3f-f322-4591-90c1-23c7544e280f}</Project>
+      <Name>SFO2O.Admin.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SFO2O.Admin.Models\SFO2O.Admin.Models.csproj">
+      <Project>{8de9952e-802b-4afd-b070-795205543dec}</Project>
+      <Name>SFO2O.Admin.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

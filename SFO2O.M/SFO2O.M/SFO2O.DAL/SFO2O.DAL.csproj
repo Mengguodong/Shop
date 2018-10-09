@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A70AFA49-A80D-44AB-BB18-C3269B219C5B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SFO2O.DAL</RootNamespace>
+    <AssemblyName>SFO2O.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
+      <HintPath>..\References\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
+      <HintPath>..\References\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling">
+      <HintPath>..\References\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\References\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity">
+      <HintPath>..\References\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception">
+      <HintPath>..\References\Microsoft.Practices.Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Account\AccountDal.cs" />
+    <Compile Include="Account\SupplierDal.cs" />
+    <Compile Include="Activity\ActivityDal.cs" />
+    <Compile Include="GiftCard\GiftCardDal.cs" />
+    <Compile Include="Huoli\HuoliDal.cs" />
+    <Compile Include="Information\InformationDal.cs" />
+    <Compile Include="My\MyDal.cs" />
+    <Compile Include="Order\OrderInfoDal.cs" />
+    <Compile Include="Order\OrderInfoLogDal.cs" />
+    <Compile Include="Order\OrderPaymentDal.cs" />
+    <Compile Include="Order\OrderProductsDal.cs" />
+    <Compile Include="Order\StockDal.cs" />
+    <Compile Include="Promotion\PromotionDal.cs" />
+    <Compile Include="Refund\RefundDal.cs" />
+    <Compile Include="Search\SearchDal.cs" />
+    <Compile Include="Settle\SettleDal.cs" />
+    <Compile Include="Shopping\AddressDal.cs" />
+    <Compile Include="BaseDal.cs" />
+    <Compile Include="Category\CategoryDal.cs" />
+    <Compile Include="Common\CommonDal.cs" />
+    <Compile Include="Index\BulletinDal.cs" />
+    <Compile Include="Index\IndexModulesDal.cs" />
+    <Compile Include="Message\MessageDal.cs" />
+    <Compile Include="Product\ProductDal.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shopping\ShoppingCartDal.cs" />
+    <Compile Include="Source\SourceDal.cs" />
+    <Compile Include="Supermarket\SupermarketDal.cs" />
+    <Compile Include="SupplierBrand\SupplierBrandDal.cs" />
+    <Compile Include="Supplier\BrandDal.cs" />
+    <Compile Include="Supplier\SupplierDal.cs" />
+    <Compile Include="Team\TeamDal.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SFO2O.EntLib.DataExtensions\SFO2O.EntLib.DataExtensions.csproj">
+      <Project>{555a95cb-4e4e-42ef-aee3-7e335b50eaab}</Project>
+      <Name>SFO2O.EntLib.DataExtensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SFO2O.Model\SFO2O.Model.csproj">
+      <Project>{4f4f1395-7148-429f-a636-92f2dc353670}</Project>
+      <Name>SFO2O.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SFO2O.Utility\SFO2O.Utility.csproj">
+      <Project>{68F35E34-4B4B-4B41-9C36-243AE509A4D1}</Project>
+      <Name>SFO2O.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

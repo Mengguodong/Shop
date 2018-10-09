@@ -1,0 +1,66 @@
+﻿@using SFO2O.Admin.Common;
+@using SFO2O.Admin.Businesses;
+@using SFO2O.Admin.Models;
+@using SFO2O.Admin.ViewModel;
+@using SFO2O.Admin.Models.Promotion;
+@model PageOf<PromotionInfoModel>
+@{
+    Layout = null;
+
+    var pageData = Model ?? new PageOf<PromotionInfoModel>();
+    var dic = new Dictionary<int, string>
+    {
+        {0,"待審核"},
+        {1,"未開始"},
+        {2,"進行中"},
+        {3,"已過期"},
+        {4,"已駁回"}
+    };
+}
+<div class="wrap_yisc mg_r10" style="margin-bottom:0; border-bottom:none;" id="promotionList">
+    <div>
+        <input type="hidden" value="@pageData.RowCount" id="recordCount" />
+        <input type="hidden" value="@pageData.PageIndex" id="pageIndex" />
+        <table style="position:relative; width:930px;" class="bg_fff bor f15 t_c table_bor vtop">
+            <tbody>
+                <tr class="t_c bg_f8f8f8 table_lineH43">
+                    <th width="158">活動商家</th>
+                    <th width="158">活動名稱</th>
+                    <th width="300">活動時間</th>
+                    <th width="90">狀態</th>
+                    <th width="100">操作</th>
+                </tr>
+            @if (pageData.Items != null && pageData.Items.Count > 0)
+            {
+                foreach (var p in pageData.Items)
+                {
+                    <tr class="lineH22">
+                        <td class="bor_none_r bor_none_l"><p class="pd10">@p.CompanyName</p></td>
+                        <td class="bor_none_r bor_none_l"><p class="pd10">@p.PromotionName</p></td>
+                        <td class="bor_none_r bor_none_l"><p class="pd10">@p.StartTime.ToDateTimeString() - @p.EndTime.ToDateTimeString()</p></td>
+                        <td class="bor_none_r bor_none_l"><p class="pd10">@dic[p.PromotionStatus]</p></td>
+                        <td class="bor_none_r bor_none_l">
+                            @if (p.PromotionStatus == 0)
+                            {
+                                <p class="pd_l10 pd_r10 t_c pd_t10"><a href="/Promotion/Audit?pid=@p.Id" class="col_link">審核</a></p>
+                            }
+                            else
+                            {
+                                <p class="pd_l10 pd_r10 t_c pd_t10"><a href="/Promotion/View?pid=@p.Id" class="col_link" target="_blank">查看</a></p>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr class="lineH22">
+                    <td class="bor_none_l" colspan="5">
+                        <p class="pd_l30 t_l mg_t20 mg_b20 color_ee7a01 color_green">沒有符合查詢條件的商品！</p>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

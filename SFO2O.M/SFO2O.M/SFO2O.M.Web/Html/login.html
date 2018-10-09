@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="no">
+<meta name="format-detection" content="telephone=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit">
+<title>爱玖网-登录</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="../Content/css/base.css?v=201512150001" rel="stylesheet">
+<!--页面独有样式-->
+<link href="../Content/css/login.css?v=201512150001" rel="stylesheet">
+<!--页面独有样式 END-->
+</head>
+<body>
+<div class="MContainer">
+	<div class="logo">
+		<img src="../Content/Images/login/logo.png?v=20160104" alt="logo" />
+	</div>
+	<div class="loginBox" id="login">
+		<p>
+			<span class="select" id="select">
+				<span>+852</span>
+				<img src="../Content/Images/login/down.png?v=20160104">
+			</span>
+			<input type="text" id="tel" maxlength="20" placeholder="请您输入手机号" />
+		</p>
+		<p>
+			<input type="password" id="psw" maxlength="32" placeholder="请输入密码" />
+		</p>
+	</div>
+	<div class="btnBox">
+		<a class="btn" id="loginBtn">登&nbsp;录</a>
+		<p class="tc links">
+			<a href="">我要注册</a><span>|</span>
+			<a href="">忘记密码</a>
+		</p>
+	</div>
+
+	<div class="selectAreaCode" id="areaCode">
+		<div class="title w95p">
+			<a class="cancel" id="cancel">取消</a>
+			<a class="sure" id="sure">完成</a>
+		</div>
+		<ul class="content">
+			<li class="current" data-code="86">中国大陆（+86）</li>
+			<li data-code="852">中华人民共和国大陆地区（+852）</li>
+		</ul>
+	</div>
+</div>
+<script src="../Scripts/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../Scripts/common/common.js?v=201512160001"></script>
+<script type="text/javascript" src="../Scripts/jquery/jquery.dialog.js?v=201512160001" charset="utf-8"></script>
+<!--页面独有脚本-->
+<script type="text/javascript" src="../Scripts/login.js?v=201512160001"></script>
+<!--页面独有脚本 END-->
+</body>
+</html>

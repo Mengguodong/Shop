@@ -1,0 +1,85 @@
+﻿@using SFO2O.Supplier.Models;
+@using SFO2O.Supplier.Common;
+
+@{
+    ViewBag.Title = "商品上传";
+    ViewBag.PageName = "ProductList";
+    PageOf<SFO2O.Supplier.Models.Product.ProductInfoTemp> model = Model;
+
+    string ReturnUrl = Url.Action("ProductList", new
+    {
+        PageNo = Model == null ? 1 : Model.PageIndex,
+    });
+}
+
+<div class="cont_right_crumb"><span class="homepage"></span>&gt; 商品管理 &gt; 商品上传</div>
+<div class="w931 mg_t30">
+    <div class="tongji_title"><span class="tongji_title_l">待上传商品列表</span></div>
+    <div class="t_r wrap_dr_sc">
+        <div class="dr_sc">
+        @*<a href="#" class="addpro_btn btn_dr"><i></i>批量导入</a>*@
+        <a href="/Product/SelectCategory" class="addpro_btn btn_sc mg_l10"><i></i>上传新商品</a></div>
+    </div>
+    @if (model != null && model.Items.Count > 0)
+    {
+
+        <div class="product_list bor">
+            <table class="t_c">
+                <tr>
+                    <th width="86">
+
+                    </th>
+                    <th width="333">商品名称</th>
+                    <th width="229">商品分类</th>
+                    <th width="129">保存时间</th>
+                    <th width="152">操作</th>
+                </tr>
+
+                @foreach (var item in model.Items)
+                {
+                    <tr>
+                        <td>
+                            <label class="chbx_wrap" data-value="@item.Id" name="chkProductID"><em style="margin-top:0;margin-left:15px;"></em></label>
+                        </td>
+                        <td class="t_l">@item.Name</td>
+                        <td class="t_l">@item.CategoryNames</td>
+                        <td>@item.ModifyTime</td>
+                        <td>
+                            <a href="/Product/ProductUpload?categoryId=@item.CategoryId&spu=@item.Spu" class="edit">继续编辑</a><br />
+                            <a href="javascript:void(0)" class="dele" onclick="DeleteProduct(@item.Id,'@MvcHtmlString.Create(ReturnUrl)')">删除</a>
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td colspan="5" class="t_l bor_none"><a href="javascript:void(0)" class="chek_all" id="selectAll">√ 全选</a><a href="javascript:void(0)" class="chek_all mg_l20" id="deleteAll" onclick="DeleteAllProduct('@MvcHtmlString.Create(ReturnUrl)')">× 删除</a></td>
+                </tr>
+            </table>
+        </div>
+        <div class="page">
+            @if (model != null && model.Items.Count > 0)
+            {
+
+                @Html.ShowFPage(Url.Action("ProductList"
+                        , new
+                        {
+                            PageNo = "{0}",
+                        })
+                        , model.PageIndex
+                        , model.Total)
+                <p class="f14 mg_l20 mg_b5 inline">
+                    共<em class="color_green pd_l10 pd_r10"> @(model.Total) </em>条数据
+                </p>
+
+            }
+        </div>
+
+    }
+    else
+    {
+        <div class="product_null t_c bor">
+            <img src="../Content/Images/p_null.png" class="mg_b10" />
+            <p class="null_tips">没有待上传的商品 <a href="/Product/SelectCategory">我要上传新商品</a></p>
+        </div>
+    }
+</div>
+@Html.Script("~/Scripts/Product/ProductList.js")

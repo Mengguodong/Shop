@@ -1,0 +1,229 @@
+﻿@model HomePageViewModel
+@using SFO2O.Admin.Common;
+@using SFO2O.Admin.ViewModel;
+@{
+    ViewBag.PageName = "index";
+    ViewBag.Title = "首页";
+    var total = Model.TotalStatistics ?? new HomePageStatistics();
+    var yesterday = Model.YesterdayStatistics ?? new HomePageStatistics();
+    var pastmonth = Model.PastmonthStatistics ?? new HomePageStatistics();
+    double rate1 = 0, rate2 = 0;
+    decimal rate3 = 0;
+    if (total.SellSkuCount > 0)
+    {
+        rate1 = ((double)total.RefundOrderCount) / total.SellSkuCount;
+    }
+    if(Model.TotalConsumeMemberCount>0)
+    {
+        rate2 = ((double)Model.TotalReConsumeMemberCount) / Model.TotalConsumeMemberCount;
+        rate3 = total.SellProductAmount / Model.TotalConsumeMemberCount;
+    }
+}
+<div class="w931">
+    <div class="f15 bg_f8f8f8 clearfix bor mg_t20 posR lineH22 color_838383">
+        <span class="f_l mg_l20 pd_t20 pd_b20"><i class="f_l"></i><em class="f_l">平台商家總數：</em><em class="f_l col_464646">@(Model.TotalSupplierCount)家</em></span>
+        <p class="posA t_c pd_t20 pd_b20" style="width:100%;"><i></i><em class="">平台會員總數：</em><em class="col_464646">@(total.MemberCount)個</em></p>
+        <span class="f_r mg_r20 t_c pd_t10 pd_b5"> <span class="block" style="width:100%;"><em class="">平台SKU總數：</em><em class="col_464646">@(Model.TotalSkuCount)件</em></span> <span class="block" style="width:100%; font-size:13px;"><em class="">(當前在售SKU總數：@(Model.TotalSkuSellCount)件)</em></span> </span>
+    </div>
+    <div class="bor mg_t20 bg_fff admin_index_tongj clearfix">
+        <ul style="width:363px;" class="f15 col_fff f_l">
+            <li class="mg_b10"><span class="f_r f18">@rate1.ToString("p2")</span><span class="">平台退貨率</span></li>
+            <li class="mg_b10 fugoulv"><span class="f_r f18">@rate2.ToString("p2")</span><span class="">平台複購率</span></li>
+            <li class="mg_b10 kedanjia"><span class="f_r f18">$ @rate3.ToString("#,0.00")</span><span class="">平台客單價</span></li>
+            <li class="mg_b10 zongl"><span class="f_r f18">@total.CompleteOrderCount.ToString("#,0")單</span><span class="">平台已成交訂單總量</span></li>
+        </ul>
+        <table class="f_l bor f15 mg_l20 mg_t20" width="514">
+            <tr>
+                <td class="bor pd_t10 pd_r10 pd_l20 pd_b30">
+                    <p class="color_838383">銷售商品總金額</p>
+                    <p class="t_c color_green pd_t20 f24">$ @total.SellProductAmount.ToString("#,0.00")</p>
+                </td>
+                <td class="bor pd_t10 pd_r10 pd_l20 pd_b30">
+                    <p class="color_838383">已售商品總數量</p>
+                    <p class="t_c color_green pd_t20 f24">@total.SellSkuCount.ToString("#,0") 件</p>
+                </td>
+            </tr>
+            <tr class="bg_f8f8f8 color_838383">
+                <td class="bor pd_t10 pd_r10 pd_l20 pd_b20">
+                    <p>已退商品總金額</p>
+                    <p class="pd_t5">$ @total.RefundProductAmount.ToString("#,0.00")</p>
+                </td>
+                <td class="bor pd_t10 pd_r10 pd_l20 pd_b20">
+                    <p>已退商品總數量</p>
+                    <p class="pd_t5">@total.RefundOrderCount.ToString("#,0") 件</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <ul class="cont_right_zongji cont_right_jinri mg_t20 clearfix">
+        <li class="pd_t15 mg_r20 bg_fff bor">
+            <p class="title_icon clearfix"><span>昨日數據統計</span></p>
+            <table width="350" class="f15">
+                <tr>
+                    <td width="110" class="color_838383">銷售金額：</td>
+                    <td width="172" class="t_r f17">$ @yesterday.SellProductAmount.ToString("#,0.00")</td>
+                </tr>
+                <tr>
+                    <td width="110" class="color_838383">銷售商品數量：</td>
+                    <td width="172" class="t_r f17">@yesterday.SellSkuCount.ToString("#,0")件</td>
+                </tr>
+                <tr>
+                    <td width="110" class="color_838383">成交訂單量：</td>
+                    <td width="172" class="t_r f17">@yesterday.CompleteOrderCount.ToString("#,0")單</td>
+                </tr>
+            </table>
+            <div class="bg_f8f8f8 pd_t5">
+                <table width="350" style="background-color:#f8f8f8;">
+                    <tr>
+                        <td width="110" class="color_838383">退款金額：</td>
+                        <td width="172" class="t_r f17">- $@yesterday.RefundProductAmount.ToString("#,0.00")</td>
+                    </tr>
+                    <tr>
+                        <td width="110" class="color_838383">退貨量：</td>
+                        <td width="172" class="t_r f17">- @yesterday.RefundOrderCount.ToString("#,0")件</td>
+                    </tr>
+                </table>
+            </div>
+            <p class="t_c lineH36 color_838383 f15">新增會員：@yesterday.MemberCount.ToString("#,0")</p>
+        </li>
+        <li class="pd_t15 bg_fff bor">
+            <p class="title_icon clearfix"><span>30天內數據統計</span></p>
+            <table width="350" class="f15">
+                <tr>
+                    <td width="110" class="color_838383">銷售金額：</td>
+                    <td width="172" class="t_r f17">$ @pastmonth.SellProductAmount.ToString("#,0.00")</td>
+                </tr>
+                <tr>
+                    <td width="110" class="color_838383">銷售商品數量：</td>
+                    <td width="172" class="t_r f17">@pastmonth.SellSkuCount.ToString("#,0")件</td>
+                </tr>
+                <tr>
+                    <td width="110" class="color_838383">成交訂單量：</td>
+                    <td width="172" class="t_r f17">@pastmonth.CompleteOrderCount.ToString("#,0")單</td>
+                </tr>
+            </table>
+            <div class="bg_f8f8f8 pd_t5">
+                <table width="350" style="background-color:#f8f8f8;">
+                    <tr>
+                        <td width="110" class="color_838383">退款金額：</td>
+                        <td width="172" class="t_r f17">- $@pastmonth.RefundProductAmount.ToString("#,0.00")</td>
+                    </tr>
+                    <tr>
+                        <td width="110" class="color_838383">退貨量：</td>
+                        <td width="172" class="t_r f17">- @pastmonth.RefundOrderCount.ToString("#,0")件</td>
+                    </tr>
+                </table>
+            </div>
+            <p class="t_c lineH36 color_838383 f15">新增會員：@pastmonth.MemberCount.ToString("#,0")</p>
+        </li>
+    </ul>
+    <div class="cont_right_zongji cont_right_tongji mg_t30">
+        <div class="tongji_title"><a class="f_r color_838383 hover_color f15" target="_blank" href="@Url.Action("TopSellSupplier")">查看全部&gt;&gt;</a><span class="tongji_title_l">30天内商家銷售情況統計</span></div>
+        <table class="f15">
+            <tr>
+                <th width="55" class="pd_l20 pd_r20 t_c">排名</th>
+                <th width="160" class="pd_l40 pd_r20">商家名稱</th>
+                <th width="124" class="t_r pd_r30">在售SKU數量</th>
+                <th width="124" class="color_green t_r pd_r30">已售商品數量</th>
+                <th width="124" class="t_r pd_r30">已售商品金額</th>
+                <th width="124" class="t_r pd_r30">成交訂單量</th>
+            </tr>
+        @if (Model.TopSellCountSupplierList != null && Model.TopSellCountSupplierList.Count > 0)
+        {
+            for (int i = 0; i < Model.TopSellCountSupplierList.Count; i++)
+            {
+                var p = Model.TopSellCountSupplierList[i];
+            <tr>
+                <td><p class="pd_l20 pd_r20">Top@((i + 1).ToString())</p></td>
+                <td><p class="pd_l20 pd_r20">@p.CompanyName</p></td>
+                <td><p class="t_r pd_r30">@p.OnSaleCount.ToString("#,0")個</p></td>
+                <td><p class="t_r color_green pd_r30">@p.SellCount.ToString("#,0")個</p></td>
+                <td><p class="t_r pd_r30">$ @p.SellAmount.ToString("#,0.00")</p></td>
+                <td><p class="t_r pd_r30">@p.OrderCount.ToString("#,0")單</p></td>
+            </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td class="pd_l20" colspan="6">暫無數據！</td>
+            </tr>
+        }
+        </table>
+    </div>
+
+    <div class="cont_right_zongji cont_right_tongji mg_t30">
+        <div class="tongji_title"><a class="f_r color_838383 hover_color f15" target="_blank" href="@Url.Action("Top50SellProduct")">查看前50排名&gt;&gt;</a><span class="tongji_title_l">30天内商品SPU銷量排名</span></div>
+        <table class="f15">
+            <tr>
+                <th width="55" class="pd_l20 pd_r20 t_c">排名</th>
+                <th width="160" class="pd_l40 pd_r20">商品名稱</th>
+                <th width="180" class="pd_r10">所屬商家</th>
+                <th width="106" class="color_green t_r pd_r30">已售數量</th>
+                <th width="124" class="t_r pd_r30">已成交金額</th>
+                <th width="106" class="t_r pd_r30">成交訂單量</th>
+            </tr>
+        @if (Model.TopSellCountProductList != null && Model.TopSellCountProductList.Count > 0)
+        {
+            for (int i = 0; i < Model.TopSellCountProductList.Count; i++)
+            {
+                var p = Model.TopSellCountProductList[i];
+                <tr>
+                    <td><p class="pd_l20 pd_r20">Top@((i + 1).ToString())</p></td>
+                    <td><p class="pd_l20 pd_r20">@p.Name.Omit(56)</p></td>
+                    <td><p class="pd_r10">@p.CompanyName</p></td>
+                    <td><p class="t_r color_green pd_r30">@p.SellCount.ToString("#,0")個</p></td>
+                    <td><p class="t_r pd_r30">$ @p.SellAmount.ToString("#,0.00")</p></td>
+                    <td><p class="t_r pd_r30">@p.OrderCount.ToString("#,0")單</p></td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td class="pd_l20" colspan="6">暫無數據！</td>
+            </tr>
+        }
+        </table>
+    </div>
+
+    <div class="cont_right_zongji cont_right_tongji mg_t30">
+        <div class="tongji_title"><a class="f_r color_838383 hover_color f15" target="_blank" href="@Url.Action("Top50ReturnProduct")">查看前50排名&gt;&gt;</a><span class="tongji_title_l">30天内商品退貨量排名</span></div>
+        <table class="f15">
+            <tr>
+                <th width="55" class="pd_l20 pd_r20 t_c">排名</th>
+                <th width="160" class="pd_l40 pd_r20">商品名稱</th>
+                <th width="180" class="pd_r10">所屬商家</th>
+                <th width="106" class="t_r pd_r30">退貨數量</th>
+                <th width="106" class="t_r pd_r30">已售數量</th>
+                <th width="124" class="color_green t_r pd_r30">退貨率</th>
+            </tr>
+        @if (Model.TopReturnCountProductList != null && Model.TopReturnCountProductList.Count > 0)
+        {
+            for (int i = 0; i < Model.TopReturnCountProductList.Count; i++)
+            {
+                var p = Model.TopReturnCountProductList[i];
+                double rate = 0;
+                if (p.SellCount > 0)
+                {
+                    rate = ((double)p.ReturnCount) / p.SellCount;
+                }
+                <tr>
+                    <td><p class="pd_l20 pd_r20">Top@((i + 1).ToString())</p></td>
+                    <td><p class="pd_l20 pd_r20">@p.Name.Omit(56)</p></td>
+                    <td><p class="pd_r10">@p.CompanyName</p></td>
+                    <td><p class="t_r pd_r30">@p.ReturnCount.ToString("#,0")個</p></td>
+                    <td><p class="t_r pd_r30">@p.SellCount.ToString("#,0")個</p></td>
+                    <td><p class="t_r color_green pd_r30">@rate.ToString("p2")</p></td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td class="pd_l20" colspan="6">暫無數據！</td>
+            </tr>
+        }
+        </table>
+    </div>
+</div>

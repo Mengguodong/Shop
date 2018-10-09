@@ -1,0 +1,69 @@
+﻿@model SFO2O.Supplier.Models.PageOf<SFO2O.Supplier.Models.Promotion.PromotionListModel>
+@{
+    Layout = null;
+}
+<table class="fff_bor t_c f15" style="margin:0 15px;" width="900">
+    <tr class="lineH36 bg_f8f8f8">
+        <th width="230" class="bor_b">活动名称</th>
+        <th width="380" class="bor_b">活动时间</th>
+        <th width="106" class="bor_b">状态</th>
+        <th width="180" class="bor_b">操作</th>
+    </tr>
+    @if (Model != null && Model.Items != null && Model.Items.Count > 0)
+    {
+        foreach (var item in Model.Items)
+        {
+            <tr class="lineH54">
+                <td class="bor_b pd_l10 t_c">@item.PromotionName</td>
+                <td class="bor_b">@item.StartTime.ToString("yyyy-MM-dd HH:00:00") - @item.EndTime.ToString("yyyy-MM-dd HH:00:00")</td>
+                <td class="bor_b">@SFO2O.Supplier.Common.EnumHelper.GetDescription(item.PromotionStatus, typeof(SFO2O.Supplier.Models.PromotionStatus))</td>
+                <td class="bor_b">
+                    @switch (item.PromotionStatus)
+                    {
+                        case 0:
+                            <a target="_blank" href="/Promotion/PromotionDetail?promotionId=@item.Id" class="col_link mg_l20">查看</a>
+                            break;
+                        case 1:
+                            //<a href="/Promotion/EditPromotion?promotionId=@item.Id" class="col_link mg_l20">编辑</a>
+                            <a href="javascript:void(0);" onclick="EndPromotion(@item.Id)" class="col_link mg_l20">终止活动</a>
+                            break;
+                        case 2:
+                        <a target="_blank" href="/Promotion/PromotionDetail?promotionId=@item.Id" class="col_link mg_l20">查看</a>
+                            break;
+                        case 3:
+                        case 4:
+                        <a target="_blank" href="/Promotion/PromotionDetail?promotionId=@item.Id" class="col_link mg_l20">查看</a>
+
+                            break;
+                    }
+                </td>
+            </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td class="vtop" colspan="4">
+                <p class="color_green pd_l20 t_l mg_t20 mg_b20">没有符合条件的活动信息！</p>
+            </td>
+        </tr>
+    }
+</table>
+@if (Model != null && Model.Items != null && Model.Items.Count > 0)
+{
+    <div class="page" id="pager" style="margin-left:-5px;">
+
+    </div>
+}
+@{
+    var rowCount = 0;
+    var pageIndex = 1;
+    if (Model != null && Model.Items != null && Model.Items.Count > 0)
+    {
+        rowCount = Model.RowCount;
+        pageIndex = Model.PageIndex;
+    }
+}
+
+<input type="hidden" id="recordCount" value="@rowCount" />
+<input type="hidden" id="pageIndex" value="@pageIndex" />

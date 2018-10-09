@@ -1,0 +1,76 @@
+﻿@using SFO2O.M.Controllers
+@using SFO2O.M.ViewModel.Account
+@{
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    bool isShowFastShoppingCart = ViewBag.ShowFastShoppingCart ?? false;
+    bool isShowFooter = ViewBag.ShowFooter ?? true;
+    bool isShowHeader = ViewBag.ShowHeader ?? true;
+    
+    bool isShowGoBak = ViewBag.isShowGoBak ?? false;
+    string numString = Html.Action("MiniCart", "ShoppingCart").ToHtmlString();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="no">
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit">
+
+    @*活动或专题页面独有标题*@
+    @if (this.ViewBag.Preheat == 1 || (this.ViewBag.IsSelfTitle!=null))
+    {
+        <title>@(this.ViewBag.Title)</title>
+    }
+    else//统一格式标题：  Title + 爱玖网
+    {
+        <title>@(this.ViewBag.Title) - 爱玖网</title>
+    }
+    <meta name="description" content="@(this.ViewBag.Description)">
+    <meta name="keywords" content="">
+    @*暂时不对css压缩，会有未知问题*@
+    @if (isShowHeader)
+    {
+    <link href="@BundleConfig.BuildCss("Content/css/base.css")" rel="stylesheet">
+    }
+    <!--页面独有样式-->
+    @RenderSection("styles", required: false)@*头部模块*@
+    <!--页面独有样式 END-->
+</head>
+
+<body>
+    <div class="MContainer" id="MContainer">
+        <!--页头-->
+        @RenderSection("pageHeader", required: false)@*头部模块*@
+        <!--页头 END-->
+        @RenderBody()
+        @if (isShowFooter)
+        {
+            var vd = new ViewDataDictionary(user);
+            vd.Add("isShowGoBak", isShowGoBak);
+
+            @Html.Partial("_Footer", vd)@*mvc bug*@
+        }
+        @if (isShowFastShoppingCart)
+        {
+            if(user!=null){
+            <!--购物车快速入口-->
+            <a href="/shoppingcart" target="_self" class="shoppingCartIco">@if (numString!="0"){<span class="shoppingCartIcoNum"> @numString</span>}</a>
+            <!--购物车快速入口 END-->
+        }
+        else{
+                 <a href="/shoppingcart" target="_self" class="shoppingCartIco"></a>
+            }
+        }
+    </div>
+         @Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJquery))
+         @Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJsCommon))
+   
+    <!--页面独有脚本-->
+    @RenderSection("scripts", required: false)
+    <!--页面独有脚本 END-->
+</body>
+</html>

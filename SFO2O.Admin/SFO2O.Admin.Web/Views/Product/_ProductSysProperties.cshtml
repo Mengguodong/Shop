@@ -1,0 +1,139 @@
+﻿@model SFO2O.Admin.ViewModel.Product.ProductSysPropertyModel
+@{
+    var spu = String.Empty;
+    var cName = String.Empty;
+    var sName = String.Empty;
+    var salesTerritory = String.Empty;
+
+    var commissionInCHINA = Decimal.Zero;
+    var commissionInHK = Decimal.Zero;
+    var minQty = Decimal.Zero;
+    var preOnSale = new DateTime();
+    var modifyTime = new DateTime();
+
+    var changeInCHINA = "不允許";
+    var changeInHK = "不允許";
+    var returnProduct = "不允許";
+
+    if (Model != null)
+    {
+        spu = String.IsNullOrWhiteSpace(Model.Spu) ? "" : Model.Spu;
+        cName = String.IsNullOrWhiteSpace(Model.CategoryName) ? "" : Model.CategoryName;
+        salesTerritory = String.IsNullOrWhiteSpace(Model.SalesTerritory) ? "" : Model.SalesTerritory;
+
+        sName = String.IsNullOrWhiteSpace(Model.CompanyName) ? "" : Model.CompanyName;
+        minQty = Model.MinForOrder;
+
+        if (Model.IsExchangeInCHINA == 1)
+        {
+            changeInCHINA = "允許";
+        }
+
+        if (Model.IsExchangeInHK == 1)
+        {
+            changeInHK = "允許";
+        }
+
+        if (Model.IsReturn == 1)
+        {
+            returnProduct = "允許";
+        }
+
+        commissionInCHINA = Model.CommissionInCHINA;
+        commissionInHK = Model.CommissionInHK;
+
+        preOnSale = Model.PreOnSaleTime;
+        modifyTime = Model.ModifyTime;
+    }
+
+
+    <table class="fff_bor mg_t10">
+        <tr>
+            <th rowspan="10" width="140" class="vtop"><span class="f_l pd_l10 mg_t40">系統屬性</span></th>
+            <td>
+                <span class="f_l pd_l10 w105">SPU ID：</span>
+                <span class="f_l pd_l10">@spu</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="f_l pd_l10 w105">商品分類：</span>
+                <span class="f_l pd_l10">@cName</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="f_l pd_l10 w105">商家名稱：</span>
+                <span class="f_l pd_l10">@sName</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="f_l pd_l10 w105">銷售區域：</span>
+                <span class="f_l pd_l10">@salesTerritory</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="f_l pd_l10 w105">傭金：</span>
+                @switch (salesTerritory)
+                {
+                    case "中國大陸":
+                        <span class="f_l pd_l10 w250">中国大陸：@commissionInCHINA<text>%</text></span>
+                        break;
+                    case "香港":
+                    <span class="f_l pd_l10">香港地區：@commissionInHK<text>%</text></span>
+                        break;
+                    default:
+                    <span class="f_l pd_l10 w250 bor_r">中国大陸：@commissionInCHINA<text>%</text></span>
+                    <span class="f_l pd_l10">香港地區：@commissionInHK<text>%</text></span>
+                        break;
+                }
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="f_l pd_l10 w105">最小數量：</span>
+                <span class="f_l pd_l10">@minQty</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="f_l pd_l10 w105">換貨：</span>
+                @switch (salesTerritory)
+                {
+                    case "中國大陸":
+                        <span class="f_l pd_l10 w250">中国大陸：@changeInCHINA</span>
+                        break;
+                    case "香港":
+                    <span class="f_l pd_l10">香港地區：@changeInHK</span>
+                        break;
+                    default:
+                    <span class="f_l pd_l10 w250 bor_r">中国大陸：@changeInCHINA</span>
+                    <span class="f_l pd_l10">香港地區：@changeInHK</span>
+                        break;
+                }
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="f_l pd_l10 w105">退貨：</span>
+                <span class="f_l pd_l10">@returnProduct</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="f_l pd_l10 w105">商品上架時間：</span>
+                <span class="f_l pd_l10">@preOnSale.ToString("yyyy-MM-dd")</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="f_l pd_l10 w105">商品提交時間：</span>
+                <span class="f_l pd_l10">@modifyTime.ToString("yyyy-MM-dd HH:mm:ss")</span>
+            </td>
+        </tr>
+    </table>
+}

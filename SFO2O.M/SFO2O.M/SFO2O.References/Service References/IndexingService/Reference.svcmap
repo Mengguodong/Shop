@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f5d85ad6-5605-40f7-875d-86a2f3b03b7f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://wcfdemo.sfo2o.com/IndexingService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="IndexingService.xsd" MetadataType="Schema" ID="17d44c86-ecc5-49dc-b029-0ea99164c4e7" SourceId="1" SourceUrl="http://wcfdemo.sfo2o.com/IndexingService.svc?xsd=xsd2" />
+    <MetadataFile FileName="IndexingService1.xsd" MetadataType="Schema" ID="4e1d6a77-63a8-4d52-aea1-a44758b5958e" SourceId="1" SourceUrl="http://wcfdemo.sfo2o.com/IndexingService.svc?xsd=xsd3" />
+    <MetadataFile FileName="IndexingService2.xsd" MetadataType="Schema" ID="67ad6e38-96d8-4f80-a100-a0f119663121" SourceId="1" SourceUrl="http://wcfdemo.sfo2o.com/IndexingService.svc?xsd=xsd0" />
+    <MetadataFile FileName="IndexingService3.xsd" MetadataType="Schema" ID="68e304cf-7f0a-476a-91f4-af85b17295ba" SourceId="1" SourceUrl="http://wcfdemo.sfo2o.com/IndexingService.svc?xsd=xsd1" />
+    <MetadataFile FileName="IndexingService.wsdl" MetadataType="Wsdl" ID="1d654e98-0665-48b8-8e94-cce09552411a" SourceId="1" SourceUrl="http://wcfdemo.sfo2o.com/IndexingService.svc?wsdl" />
+    <MetadataFile FileName="IndexingService.disco" MetadataType="Disco" ID="bdabd7a5-84ba-45b6-820e-94d5eb242005" SourceId="1" SourceUrl="http://wcfdemo.sfo2o.com/IndexingService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

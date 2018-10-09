@@ -1,0 +1,28 @@
+﻿@using SFO2O.M.Controllers
+@using SFO2O.M.Controllers.Common
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.ViewModel.Product
+@using SFO2O.Utility.Extensions
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "配送及售后服务 ";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = false;
+}
+@section styles {
+}
+@section scripts {
+}
+@section pageHeader {
+  <!-- 页头 -->
+<header class="pageHeader w100 pr tc overflowH">
+    <a class="returnBtn" id="returnBtn"></a>
+    <b class="f36 FontColor1">配送及售后服务</b>
+</header>
+    <!-- 页头 end -->
+}
+<div class="footerList w100 mt8 boxShadow bgColor3 f28">
+    <p class="w95p pt17 pb17 whiteOnLine borderBottom"><a href="@Url.Action("Service",new{id=1})" target="_self" class="show w100">配送服务<i class="itemIcon_jt"></i></a></p>
+    <p class="w95p pt17 pb17 whiteOnLine borderBottom"><a href="@Url.Action("Service",new{id=2})" target="_self" class="show w100">售后服务<i class="itemIcon_jt"></i></a></p>
+</div>

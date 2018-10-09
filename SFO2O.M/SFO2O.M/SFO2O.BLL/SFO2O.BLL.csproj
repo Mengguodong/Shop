@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{71EA7FB4-14F9-40D4-A3C4-041AB1818EFF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SFO2O.BLL</RootNamespace>
+    <AssemblyName>SFO2O.BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="aliyun-net-sdk-core">
+      <HintPath>..\References\aliyun-net-sdk-core.dll</HintPath>
+    </Reference>
+    <Reference Include="aliyun-net-sdk-sms">
+      <HintPath>..\References\aliyun-net-sdk-sms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="SolrNet">
+      <HintPath>..\References\SolrNet.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Account\AccountBll.cs" />
+    <Compile Include="Activity\ActivityBll.cs" />
+    <Compile Include="GiftCard\GiftCardBll.cs" />
+    <Compile Include="Holiday\HolidayBll.cs" />
+    <Compile Include="Information\InformationBll.cs" />
+    <Compile Include="Item\ItemBll.cs" />
+    <Compile Include="Message\MessageBll.cs" />
+    <Compile Include="My\MyBll.cs" />
+    <Compile Include="Order\AliPay.cs" />
+    <Compile Include="Order\BuyOrderManager.cs" />
+    <Compile Include="Order\OrderManager.cs" />
+    <Compile Include="Pay\PayBll.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Refund\RefundBll.cs" />
+    <Compile Include="Search\SearchBll.cs" />
+    <Compile Include="Settle\SettleBll.cs" />
+    <Compile Include="Shared\SharedBll.cs" />
+    <Compile Include="Shopping\AddressBll.cs" />
+    <Compile Include="Category\CategoryBll.cs" />
+    <Compile Include="Common\CommonBll.cs" />
+    <Compile Include="Common\ConstClass.cs" />
+    <Compile Include="Index\IndexModulesBll.cs" />
+    <Compile Include="Exceptions\AuthorizeException.cs" />
+    <Compile Include="Exceptions\SFO2OException.cs" />
+    <Compile Include="Product\ProductBll.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shopping\ShoppingBll.cs" />
+    <Compile Include="Source\SourceBll.cs" />
+    <Compile Include="Supermarket\SupermarketBll.cs" />
+    <Compile Include="Supplier\BrandBll.cs" />
+    <Compile Include="Supplier\SupplierBll.cs" />
+    <Compile Include="Team\TeamBll.cs" />
+    <Compile Include="Web References\com.hksmspro.api3\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SFO2O.DAL\SFO2O.DAL.csproj">
+      <Project>{a70afa49-a80d-44ab-bb18-c3269b219c5b}</Project>
+      <Name>SFO2O.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SFO2O.EntLib.DataExtensions\SFO2O.EntLib.DataExtensions.csproj">
+      <Project>{555A95CB-4E4E-42EF-AEE3-7E335B50EAAB}</Project>
+      <Name>SFO2O.EntLib.DataExtensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SFO2O.M.ViewModel\SFO2O.M.ViewModel.csproj">
+      <Project>{539e2bbb-84ba-45b1-a0af-9dda53b84a1e}</Project>
+      <Name>SFO2O.M.ViewModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SFO2O.Model\SFO2O.Model.csproj">
+      <Project>{4f4f1395-7148-429f-a636-92f2dc353670}</Project>
+      <Name>SFO2O.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SFO2O.References\SFO2O.References.csproj">
+      <Project>{504c3a27-363b-486c-939b-2ebff6302432}</Project>
+      <Name>SFO2O.References</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SFO2O.Utility\SFO2O.Utility.csproj">
+      <Project>{68F35E34-4B4B-4B41-9C36-243AE509A4D1}</Project>
+      <Name>SFO2O.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\com.hksmspro.api3\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\com.hksmspro.api3\smsapi5.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="https://api3.hksmspro.com/service/smsapi5.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\com.hksmspro.api3\</RelPath>
+      <UpdateFromURL>https://api3.hksmspro.com/service/smsapi5.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>SFO2O_BLL_com_hksmspro_api3_SmsAPI5</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\com.hksmspro.api3\smsapi5.disco" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

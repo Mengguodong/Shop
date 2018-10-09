@@ -1,0 +1,877 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="Able" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="Able" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="Able">
+      <s:element name="SendMessage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Hex" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Telephone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserDefineNo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendMessageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendMessageResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendMessageSchedule">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Hex" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Telephone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserDefineNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SendTime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Optoutfilter" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendMessageScheduleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendMessageScheduleResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendMessageScheduleWithSender">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Hex" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Telephone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserDefineNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SendTime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sender" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendMessageScheduleWithSenderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendMessageScheduleWithSenderResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteMessageSchedule">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MessageID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteMessageScheduleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteMessageScheduleResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendMessageWithSender">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Hex" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Telephone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserDefineNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sender" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendMessageWithSenderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendMessageWithSenderResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendMessageWithSenderForSmpp">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Hex" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Telephone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserDefineNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sender" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendMessageWithSenderForSmppResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendMessageWithSenderForSmppResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetXml_MessageTotal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetXml_MessageTotalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetXml_MessageTotalResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetXML_DeliveryReport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ResponseID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetXML_DeliveryReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetXML_DeliveryReportResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetControlTime">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FromHour" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ToHour" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetControlTimeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SetControlTimeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="SendMessageSoapIn">
+    <wsdl:part name="parameters" element="tns:SendMessage" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageSoapOut">
+    <wsdl:part name="parameters" element="tns:SendMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageScheduleSoapIn">
+    <wsdl:part name="parameters" element="tns:SendMessageSchedule" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageScheduleSoapOut">
+    <wsdl:part name="parameters" element="tns:SendMessageScheduleResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageScheduleWithSenderSoapIn">
+    <wsdl:part name="parameters" element="tns:SendMessageScheduleWithSender" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageScheduleWithSenderSoapOut">
+    <wsdl:part name="parameters" element="tns:SendMessageScheduleWithSenderResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMessageScheduleSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteMessageSchedule" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMessageScheduleSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteMessageScheduleResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageWithSenderSoapIn">
+    <wsdl:part name="parameters" element="tns:SendMessageWithSender" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageWithSenderSoapOut">
+    <wsdl:part name="parameters" element="tns:SendMessageWithSenderResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageWithSenderForSmppSoapIn">
+    <wsdl:part name="parameters" element="tns:SendMessageWithSenderForSmpp" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageWithSenderForSmppSoapOut">
+    <wsdl:part name="parameters" element="tns:SendMessageWithSenderForSmppResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetXml_MessageTotalSoapIn">
+    <wsdl:part name="parameters" element="tns:GetXml_MessageTotal" />
+  </wsdl:message>
+  <wsdl:message name="GetXml_MessageTotalSoapOut">
+    <wsdl:part name="parameters" element="tns:GetXml_MessageTotalResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetXML_DeliveryReportSoapIn">
+    <wsdl:part name="parameters" element="tns:GetXML_DeliveryReport" />
+  </wsdl:message>
+  <wsdl:message name="GetXML_DeliveryReportSoapOut">
+    <wsdl:part name="parameters" element="tns:GetXML_DeliveryReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetControlTimeSoapIn">
+    <wsdl:part name="parameters" element="tns:SetControlTime" />
+  </wsdl:message>
+  <wsdl:message name="SetControlTimeSoapOut">
+    <wsdl:part name="parameters" element="tns:SetControlTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageHttpGetIn">
+    <wsdl:part name="Username" type="s:string" />
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="Hex" type="s:string" />
+    <wsdl:part name="Message" type="s:string" />
+    <wsdl:part name="Telephone" type="s:string" />
+    <wsdl:part name="UserDefineNo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageScheduleHttpGetIn">
+    <wsdl:part name="Username" type="s:string" />
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="Hex" type="s:string" />
+    <wsdl:part name="Message" type="s:string" />
+    <wsdl:part name="Telephone" type="s:string" />
+    <wsdl:part name="UserDefineNo" type="s:string" />
+    <wsdl:part name="SendTime" type="s:string" />
+    <wsdl:part name="Optoutfilter" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageScheduleHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageScheduleWithSenderHttpGetIn">
+    <wsdl:part name="Username" type="s:string" />
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="Hex" type="s:string" />
+    <wsdl:part name="Message" type="s:string" />
+    <wsdl:part name="Telephone" type="s:string" />
+    <wsdl:part name="UserDefineNo" type="s:string" />
+    <wsdl:part name="SendTime" type="s:string" />
+    <wsdl:part name="Sender" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageScheduleWithSenderHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMessageScheduleHttpGetIn">
+    <wsdl:part name="Username" type="s:string" />
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="MessageID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMessageScheduleHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageWithSenderHttpGetIn">
+    <wsdl:part name="Username" type="s:string" />
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="Hex" type="s:string" />
+    <wsdl:part name="Message" type="s:string" />
+    <wsdl:part name="Telephone" type="s:string" />
+    <wsdl:part name="UserDefineNo" type="s:string" />
+    <wsdl:part name="Sender" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageWithSenderHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageWithSenderForSmppHttpGetIn">
+    <wsdl:part name="Username" type="s:string" />
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="Hex" type="s:string" />
+    <wsdl:part name="Message" type="s:string" />
+    <wsdl:part name="Telephone" type="s:string" />
+    <wsdl:part name="UserDefineNo" type="s:string" />
+    <wsdl:part name="Sender" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageWithSenderForSmppHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetXml_MessageTotalHttpGetIn">
+    <wsdl:part name="Username" type="s:string" />
+    <wsdl:part name="Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetXml_MessageTotalHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetXML_DeliveryReportHttpGetIn">
+    <wsdl:part name="Username" type="s:string" />
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="ResponseID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetXML_DeliveryReportHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SetControlTimeHttpGetIn">
+    <wsdl:part name="Username" type="s:string" />
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="FromHour" type="s:string" />
+    <wsdl:part name="ToHour" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SetControlTimeHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageHttpPostIn">
+    <wsdl:part name="Username" type="s:string" />
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="Hex" type="s:string" />
+    <wsdl:part name="Message" type="s:string" />
+    <wsdl:part name="Telephone" type="s:string" />
+    <wsdl:part name="UserDefineNo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageScheduleHttpPostIn">
+    <wsdl:part name="Username" type="s:string" />
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="Hex" type="s:string" />
+    <wsdl:part name="Message" type="s:string" />
+    <wsdl:part name="Telephone" type="s:string" />
+    <wsdl:part name="UserDefineNo" type="s:string" />
+    <wsdl:part name="SendTime" type="s:string" />
+    <wsdl:part name="Optoutfilter" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageScheduleHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageScheduleWithSenderHttpPostIn">
+    <wsdl:part name="Username" type="s:string" />
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="Hex" type="s:string" />
+    <wsdl:part name="Message" type="s:string" />
+    <wsdl:part name="Telephone" type="s:string" />
+    <wsdl:part name="UserDefineNo" type="s:string" />
+    <wsdl:part name="SendTime" type="s:string" />
+    <wsdl:part name="Sender" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageScheduleWithSenderHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMessageScheduleHttpPostIn">
+    <wsdl:part name="Username" type="s:string" />
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="MessageID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMessageScheduleHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageWithSenderHttpPostIn">
+    <wsdl:part name="Username" type="s:string" />
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="Hex" type="s:string" />
+    <wsdl:part name="Message" type="s:string" />
+    <wsdl:part name="Telephone" type="s:string" />
+    <wsdl:part name="UserDefineNo" type="s:string" />
+    <wsdl:part name="Sender" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageWithSenderHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageWithSenderForSmppHttpPostIn">
+    <wsdl:part name="Username" type="s:string" />
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="Hex" type="s:string" />
+    <wsdl:part name="Message" type="s:string" />
+    <wsdl:part name="Telephone" type="s:string" />
+    <wsdl:part name="UserDefineNo" type="s:string" />
+    <wsdl:part name="Sender" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SendMessageWithSenderForSmppHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetXml_MessageTotalHttpPostIn">
+    <wsdl:part name="Username" type="s:string" />
+    <wsdl:part name="Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetXml_MessageTotalHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetXML_DeliveryReportHttpPostIn">
+    <wsdl:part name="Username" type="s:string" />
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="ResponseID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetXML_DeliveryReportHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SetControlTimeHttpPostIn">
+    <wsdl:part name="Username" type="s:string" />
+    <wsdl:part name="Password" type="s:string" />
+    <wsdl:part name="FromHour" type="s:string" />
+    <wsdl:part name="ToHour" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SetControlTimeHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="SmsAPI5Soap">
+    <wsdl:operation name="SendMessage">
+      <wsdl:input message="tns:SendMessageSoapIn" />
+      <wsdl:output message="tns:SendMessageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageSchedule">
+      <wsdl:input message="tns:SendMessageScheduleSoapIn" />
+      <wsdl:output message="tns:SendMessageScheduleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageScheduleWithSender">
+      <wsdl:input message="tns:SendMessageScheduleWithSenderSoapIn" />
+      <wsdl:output message="tns:SendMessageScheduleWithSenderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMessageSchedule">
+      <wsdl:input message="tns:DeleteMessageScheduleSoapIn" />
+      <wsdl:output message="tns:DeleteMessageScheduleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageWithSender">
+      <wsdl:input message="tns:SendMessageWithSenderSoapIn" />
+      <wsdl:output message="tns:SendMessageWithSenderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageWithSenderForSmpp">
+      <wsdl:input message="tns:SendMessageWithSenderForSmppSoapIn" />
+      <wsdl:output message="tns:SendMessageWithSenderForSmppSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetXml_MessageTotal">
+      <wsdl:input message="tns:GetXml_MessageTotalSoapIn" />
+      <wsdl:output message="tns:GetXml_MessageTotalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetXML_DeliveryReport">
+      <wsdl:input message="tns:GetXML_DeliveryReportSoapIn" />
+      <wsdl:output message="tns:GetXML_DeliveryReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetControlTime">
+      <wsdl:input message="tns:SetControlTimeSoapIn" />
+      <wsdl:output message="tns:SetControlTimeSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="SmsAPI5HttpGet">
+    <wsdl:operation name="SendMessage">
+      <wsdl:input message="tns:SendMessageHttpGetIn" />
+      <wsdl:output message="tns:SendMessageHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageSchedule">
+      <wsdl:input message="tns:SendMessageScheduleHttpGetIn" />
+      <wsdl:output message="tns:SendMessageScheduleHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageScheduleWithSender">
+      <wsdl:input message="tns:SendMessageScheduleWithSenderHttpGetIn" />
+      <wsdl:output message="tns:SendMessageScheduleWithSenderHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMessageSchedule">
+      <wsdl:input message="tns:DeleteMessageScheduleHttpGetIn" />
+      <wsdl:output message="tns:DeleteMessageScheduleHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageWithSender">
+      <wsdl:input message="tns:SendMessageWithSenderHttpGetIn" />
+      <wsdl:output message="tns:SendMessageWithSenderHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageWithSenderForSmpp">
+      <wsdl:input message="tns:SendMessageWithSenderForSmppHttpGetIn" />
+      <wsdl:output message="tns:SendMessageWithSenderForSmppHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetXml_MessageTotal">
+      <wsdl:input message="tns:GetXml_MessageTotalHttpGetIn" />
+      <wsdl:output message="tns:GetXml_MessageTotalHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetXML_DeliveryReport">
+      <wsdl:input message="tns:GetXML_DeliveryReportHttpGetIn" />
+      <wsdl:output message="tns:GetXML_DeliveryReportHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetControlTime">
+      <wsdl:input message="tns:SetControlTimeHttpGetIn" />
+      <wsdl:output message="tns:SetControlTimeHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="SmsAPI5HttpPost">
+    <wsdl:operation name="SendMessage">
+      <wsdl:input message="tns:SendMessageHttpPostIn" />
+      <wsdl:output message="tns:SendMessageHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageSchedule">
+      <wsdl:input message="tns:SendMessageScheduleHttpPostIn" />
+      <wsdl:output message="tns:SendMessageScheduleHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageScheduleWithSender">
+      <wsdl:input message="tns:SendMessageScheduleWithSenderHttpPostIn" />
+      <wsdl:output message="tns:SendMessageScheduleWithSenderHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMessageSchedule">
+      <wsdl:input message="tns:DeleteMessageScheduleHttpPostIn" />
+      <wsdl:output message="tns:DeleteMessageScheduleHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageWithSender">
+      <wsdl:input message="tns:SendMessageWithSenderHttpPostIn" />
+      <wsdl:output message="tns:SendMessageWithSenderHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageWithSenderForSmpp">
+      <wsdl:input message="tns:SendMessageWithSenderForSmppHttpPostIn" />
+      <wsdl:output message="tns:SendMessageWithSenderForSmppHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetXml_MessageTotal">
+      <wsdl:input message="tns:GetXml_MessageTotalHttpPostIn" />
+      <wsdl:output message="tns:GetXml_MessageTotalHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetXML_DeliveryReport">
+      <wsdl:input message="tns:GetXML_DeliveryReportHttpPostIn" />
+      <wsdl:output message="tns:GetXML_DeliveryReportHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetControlTime">
+      <wsdl:input message="tns:SetControlTimeHttpPostIn" />
+      <wsdl:output message="tns:SetControlTimeHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SmsAPI5Soap" type="tns:SmsAPI5Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SendMessage">
+      <soap:operation soapAction="Able/SendMessage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageSchedule">
+      <soap:operation soapAction="Able/SendMessageSchedule" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageScheduleWithSender">
+      <soap:operation soapAction="Able/SendMessageScheduleWithSender" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMessageSchedule">
+      <soap:operation soapAction="Able/DeleteMessageSchedule" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageWithSender">
+      <soap:operation soapAction="Able/SendMessageWithSender" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageWithSenderForSmpp">
+      <soap:operation soapAction="Able/SendMessageWithSenderForSmpp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetXml_MessageTotal">
+      <soap:operation soapAction="Able/GetXml_MessageTotal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetXML_DeliveryReport">
+      <soap:operation soapAction="Able/GetXML_DeliveryReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetControlTime">
+      <soap:operation soapAction="Able/SetControlTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SmsAPI5Soap12" type="tns:SmsAPI5Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SendMessage">
+      <soap12:operation soapAction="Able/SendMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageSchedule">
+      <soap12:operation soapAction="Able/SendMessageSchedule" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageScheduleWithSender">
+      <soap12:operation soapAction="Able/SendMessageScheduleWithSender" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMessageSchedule">
+      <soap12:operation soapAction="Able/DeleteMessageSchedule" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageWithSender">
+      <soap12:operation soapAction="Able/SendMessageWithSender" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageWithSenderForSmpp">
+      <soap12:operation soapAction="Able/SendMessageWithSenderForSmpp" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetXml_MessageTotal">
+      <soap12:operation soapAction="Able/GetXml_MessageTotal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetXML_DeliveryReport">
+      <soap12:operation soapAction="Able/GetXML_DeliveryReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetControlTime">
+      <soap12:operation soapAction="Able/SetControlTime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SmsAPI5HttpGet" type="tns:SmsAPI5HttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="SendMessage">
+      <http:operation location="/SendMessage" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageSchedule">
+      <http:operation location="/SendMessageSchedule" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageScheduleWithSender">
+      <http:operation location="/SendMessageScheduleWithSender" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMessageSchedule">
+      <http:operation location="/DeleteMessageSchedule" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageWithSender">
+      <http:operation location="/SendMessageWithSender" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageWithSenderForSmpp">
+      <http:operation location="/SendMessageWithSenderForSmpp" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetXml_MessageTotal">
+      <http:operation location="/GetXml_MessageTotal" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetXML_DeliveryReport">
+      <http:operation location="/GetXML_DeliveryReport" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetControlTime">
+      <http:operation location="/SetControlTime" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SmsAPI5HttpPost" type="tns:SmsAPI5HttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="SendMessage">
+      <http:operation location="/SendMessage" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageSchedule">
+      <http:operation location="/SendMessageSchedule" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageScheduleWithSender">
+      <http:operation location="/SendMessageScheduleWithSender" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMessageSchedule">
+      <http:operation location="/DeleteMessageSchedule" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageWithSender">
+      <http:operation location="/SendMessageWithSender" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageWithSenderForSmpp">
+      <http:operation location="/SendMessageWithSenderForSmpp" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetXml_MessageTotal">
+      <http:operation location="/GetXml_MessageTotal" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetXML_DeliveryReport">
+      <http:operation location="/GetXML_DeliveryReport" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetControlTime">
+      <http:operation location="/SetControlTime" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SmsAPI5">
+    <wsdl:port name="SmsAPI5Soap" binding="tns:SmsAPI5Soap">
+      <soap:address location="https://api3.hksmspro.com/service/smsapi5.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SmsAPI5Soap12" binding="tns:SmsAPI5Soap12">
+      <soap12:address location="https://api3.hksmspro.com/service/smsapi5.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SmsAPI5HttpGet" binding="tns:SmsAPI5HttpGet">
+      <http:address location="https://api3.hksmspro.com/service/smsapi5.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SmsAPI5HttpPost" binding="tns:SmsAPI5HttpPost">
+      <http:address location="https://api3.hksmspro.com/service/smsapi5.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

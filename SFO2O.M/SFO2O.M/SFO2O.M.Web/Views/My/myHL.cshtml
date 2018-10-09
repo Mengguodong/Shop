@@ -1,0 +1,111 @@
+﻿@using SFO2O.Model.Enum
+@using SFO2O.Utility.Extensions
+@using SFO2O.Utility.Uitl
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.Model.My
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "我的酒豆";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = true;
+
+}
+@model SFO2O.Model.My.MyHL
+@section styles {
+    <link href="../Content/css/base.css?v=201512150001" rel="stylesheet">
+    <!--页面独有样式-->
+    <link href="../Content/css/my.css?v=201512150001" rel="stylesheet">
+    <!--页面独有样式 END-->
+}
+@section scripts {
+
+}
+@section pageHeader {
+    <!-- 页头 -->
+    <header class="pageHeader w100 pr tc overflowH">
+        <a class="returnBtn" id="returnBtn"></a>
+        <b class="f36 FontColor1">我的酒豆</b>
+        <div id="flowerMenu" class="flowerMenu"></div>
+    </header>
+    <!-- 页头 end -->
+}
+<head>
+    <title>爱玖网购物商城-我的酒豆</title>
+</head>
+@if (Model != null)
+{
+        <!--20160425 新增内容 我的酒豆-->
+    <div class="w100 boxShadow bgColor3 mb8 mt8">
+        <div class=" whiteOnLine borderBottom myIntegralCon1">
+            <p class="f28 FontColor4 mb5">总酒豆</p>
+            @if (string.IsNullOrEmpty(Model.countHL.ToString()) || Model.countHL == 0)
+            {
+                <p class="totalIntegralNum">0</p>
+            }
+            else
+            {
+                <p class="totalIntegralNum">@Model.countHL.ToString("N0")</p>
+            }
+        </div>
+        <div class="w100 myIntegralCon2">
+            <div class="boxSizingB">
+                <span class="f24 FontColor4">冻结中</span>
+                @if (string.IsNullOrEmpty(Model.freezeHL.ToString()) || Model.freezeHL == 0)
+                {
+                    <p class="f28">0</p>
+                }
+                else
+                {
+                    <p class="f28">@Model.freezeHL.ToString("N0")</p>
+                }
+            </div>
+            <div class="boxSizingB">
+                <span class="f24 FontColor4">可用酒豆</span>
+                @if (string.IsNullOrEmpty(Model.usableHL.ToString()) || Model.usableHL == 0)
+                {
+                    <p class="f28">0</p>
+                }
+                else
+                {
+                    <p class="f28">@Model.usableHL.ToString("N0")</p>
+                }
+
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="w100 boxShadow bgColor3 mb8 mt8">
+        <div class=" whiteOnLine borderBottom myIntegralCon1">
+            <p class="f28 FontColor4 mb5">总酒豆</p>
+            <p class="totalIntegralNum">0</p>
+        </div>
+        <div class="w100 myIntegralCon2">
+            <div class="boxSizingB">
+                <span class="f24 FontColor4">冻结中</span>
+                <span class="f28">0</span>
+            </div>
+            <div class="boxSizingB">
+                <span class="f24 FontColor4">可用酒豆</span>
+                <span class="f28">0</span>
+            </div>
+        </div>
+    </div>
+
+}
+<div class="boxShadow bgColor3 myCon3 mb8">
+    @*<p class="whiteOnLine borderBottom">
+        <a href="/my/HLDetail" target="_self" class="f28">
+            查看流水<i class="itemIcon_jt fr"></i>
+        </a>
+    </p>*@
+    <p>
+        <a href="../my/rule" target="_self" class="f28">
+            酒豆规则说明<i class="itemIcon_jt fr"></i>
+        </a>
+    </p>
+</div>
+
+

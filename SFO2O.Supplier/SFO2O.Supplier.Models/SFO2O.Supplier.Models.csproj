@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0971CFCA-852F-4D0D-A80D-9603F9D12B93}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SFO2O.Supplier.Models</RootNamespace>
+    <AssemblyName>SFO2O.Supplier.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common.EntLib.DataExtensions">
+      <HintPath>..\Libs\Common.EntLib.DataExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\SFO2O.Admin\Libs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Account\FindPasswordToken.cs" />
+    <Compile Include="Account\SupplierMenuModel.cs" />
+    <Compile Include="Account\SupplierRoleInfo.cs" />
+    <Compile Include="Account\SupplierUserInfo.cs" />
+    <Compile Include="CategoryLevelEnum.cs" />
+    <Compile Include="Category\CategoryAttrModel.cs" />
+    <Compile Include="Category\CategoryHistoryModel.cs" />
+    <Compile Include="Category\CategoryModel.cs" />
+    <Compile Include="CountryModel.cs" />
+    <Compile Include="DicsModel.cs" />
+    <Compile Include="EnumPermission.cs" />
+    <Compile Include="Order\OrderExpressEntity.cs" />
+    <Compile Include="Order\OrderPaymentInfo.cs" />
+    <Compile Include="Order\OrderStatus.cs" />
+    <Compile Include="Order\OrderListInfoModel.cs" />
+    <Compile Include="Order\OrderQueryInfo.cs" />
+    <Compile Include="Order\RefundQueryInfo.cs" />
+    <Compile Include="Order\RefundInfoModel.cs" />
+    <Compile Include="Order\OrderViewModel.cs" />
+    <Compile Include="Order\RefundDetailModel.cs" />
+    <Compile Include="Order\SettlementInfo.cs" />
+    <Compile Include="Order\SettlementOrderInfo.cs" />
+    <Compile Include="Order\SettlementProductInfo.cs" />
+    <Compile Include="Order\SettlementQueryModel.cs" />
+    <Compile Include="PageOf`1.cs" />
+    <Compile Include="Product\DropDownList.cs" />
+    <Compile Include="Product\ProductBrandModel.cs" />
+    <Compile Include="Product\ProductDicsModel.cs" />
+    <Compile Include="LanguageEnum.cs" />
+    <Compile Include="PageDTO.cs" />
+    <Compile Include="Product\ProductExtTempModel.cs" />
+    <Compile Include="Product\ProductImgModel.cs" />
+    <Compile Include="Product\ProductInfoTemp.cs" />
+    <Compile Include="Product\ProductTempImageModel.cs" />
+    <Compile Include="Product\ProductQuery.cs" />
+    <Compile Include="Product\ProductTempModel.cs" />
+    <Compile Include="Product\SkuTempModel.cs" />
+    <Compile Include="Promotion\PromotionInfoModel.cs" />
+    <Compile Include="Promotion\PromotionListModel.cs" />
+    <Compile Include="Promotion\PromotionMainInfoModel.cs" />
+    <Compile Include="Promotion\PromotionSkuListModel.cs" />
+    <Compile Include="Promotion\RedisPromotionSkuModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProvinceModel.cs" />
+    <Compile Include="StoreModel.cs" />
+    <Compile Include="SupplierBrand\SupplierBrandModel.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

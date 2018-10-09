@@ -1,0 +1,158 @@
+﻿@model SFO2O.Admin.ViewModel.Order.OrderListQueryModel
+@{
+    ViewBag.Title = "訂單列表";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var sNames = (Dictionary<int, string>)ViewBag.SallerNames;
+}
+
+<div class="cont_right_crumb"><span class="homepage"></span>&gt; 訂單管理 &gt; 訂單列表</div>
+<div class="w931">
+    <div class="wrap_yisc pd_t5">
+        <form id="queryForm">
+            <div class="list_yisc bor clearfix" style="margin-left:0; margin-right:0;">
+                <div class="box_choose f_l">
+                    <span class="choose_left f_l">下單時間：</span>
+                    <div style="width:123px; height:29px;overflow:hidden;" class="bor f_l fff_bor">
+                        <input id="CreateTimeStart" name="CreateTimeStart" class="inputdp w70 Wdate f15" type="text" value="@Model.CreateTimeStart.ToString("yyyy-MM-dd")"
+                               onfocus="WdatePicker({ maxDate: '%y-%M-%d', vel: 'StartTime', isShowClear: true, isShowOK: true, isShowToday: true })" />
+                        <input id="startTime" name="StartTime" type="hidden" value="@Model.CreateTimeStart" />
+                    </div>
+                    <em class="f_l mg_l5 mg_r5 lineH30">至</em>
+                    <div style="width:123px; height:29px;overflow:hidden;" class="bor f_l fff_bor">
+                        <input id="CreateTimeEnd" name="CreateTimeEnd" class="inputdp w70 Wdate f15" type="text" value="@Model.CreateTimeEnd.ToString("yyyy-MM-dd")"
+                               onfocus="WdatePicker({ maxDate: '%y-%M-%d', vel: 'EndTime', isShowClear: true, isShowOK: true, isShowToday: true })" />
+                        <input id="endTime" name="EndTime" type="hidden" value="@Model.CreateTimeEnd" />
+                    </div>
+                </div>
+                @{
+                    var orderStatus_2 = Model.OrderStatus == -2 ? "selected=\"selected\"" : String.Empty;
+                    var orderStatus0 = Model.OrderStatus == 0 ? "selected=\"selected\"" : String.Empty;
+                    var orderStatus1 = Model.OrderStatus == 1 ? "selected=\"selected\"" : String.Empty;
+                    var orderStatus2 = Model.OrderStatus == 2 ? "selected=\"selected\"" : String.Empty;
+                    var orderStatus3 = Model.OrderStatus == 3 ? "selected=\"selected\"" : String.Empty;
+                    var orderStatus4 = Model.OrderStatus == 4 ? "selected=\"selected\"" : String.Empty;
+                    var orderStatus5 = Model.OrderStatus == 5 ? "selected=\"selected\"" : String.Empty;
+                }
+                <div class="box_choose f_l">
+                    <span class="choose_left f_l">訂單狀態：</span>
+                    <select name="OrderStatus" style="width:155px;" id="OrderStatus">
+                        <option value="-2" @orderStatus_2>全部</option>
+                        <option value="0" @orderStatus0>待付款</option>
+                        <option value="1" @orderStatus1>待发货</option>
+                        <option value="2" @orderStatus2>已发货</option>
+                        <option value="3" @orderStatus3>已送达</option>
+                        <option value="4" @orderStatus4>交易成功</option>
+                        <option value="5" @orderStatus5>交易关闭</option>
+                    </select>
+                </div>
+                <div class="box_choose f_l" style="margin-right:0;">
+                    <span class="choose_left f_l">商品SKU：</span>
+                    <input type="tel" name="SKU" class="f_l fff_bor h19" style="width:155px;" value="@Model.SKU" id="SKU">
+                </div>
+                <div class="box_choose f_l">
+                    <span class="choose_left f_l">買家賬號：</span>
+                    <input type="text" name="BuyerAccount" class="f_l bor" style="width:262px;" value="@Model.BuyerAccount" id="buyerAccount">
+                </div>
+                <div class="box_choose f_l">
+                    <span class="choose_left f_l">賣家賬號：</span>
+                    <select name="SellerId" style="width:155px;" id="SellerId">
+                        <option value="0">全部</option>
+                        @foreach (var name in sNames.Keys)
+                        {
+                            var select = String.Empty;
+                            <option value="@name" @select>@sNames[name]</option>
+                        }
+                    </select>
+
+                </div>
+                <div class="box_choose f_l">
+                    <span class="choose_left f_l">訂單編號：</span>
+                    <input type="text" class="f_l bor" name="OrderCode" style="width:262px;" value="@Model.OrderCode" id="orderCode">
+                </div>
+                <div class="box_choose f_l">
+                    <span id="emCheckBox" class="chbx_wrap f_l"><em style="margin:7px 10px 0 5px;"></em>排除無效訂單</span>
+                    <input type="hidden" id="isExcludeCloseOrder" name="IsExcludeCloseOrder" value="@Model.IsExcludeCloseOrder" />
+                </div>
+                <div class="f_l" style="width:100%;"> <a href="javascript:void(0);" class="btn_green w160 mg_l20 mg_r20 mg_t10" id="search">搜 尋</a> </div>
+            </div>
+            <input type="hidden" value="" id="countryCode" name="CountryCode" />
+        </form>
+        <div id="total">
+        </div>
+        <div class="tongji_title mg_t30 clearfix">
+            <span class="tongji_title_l f_l mg_t5">訂單列表</span>
+            <a href="javascript:void(0);" class="btn_daochu f_l mg_l20 f12 ftfml_sun" id="Export" onclick="Export()">導出</a>
+        </div>
+        <div class="mg_t5 dingdglist" style="position:relative;">
+            <a id="orderStockOut"style="position: absolute; right: 5px; top: 0;" href="javascript:void(0);" class="addpro_btn btn_sc mg_l10 posR">下載出庫列表</a>
+            <ul class="check_title clearfix">
+                <li id="mainLi" class="current" style="height:auto;"><a href="javascript:void(1);" class="clearfix"><span>大陸地區訂單</span><i></i></a></li>
+                <li id="hkLi"><a href="javascript:void(1);" class="clearfix"><span>香港地區訂單</span><i></i></a></li>
+            </ul>
+                
+            <div id="main">
+                <div class="wrap_yisc mg_r10" style="margin-bottom:0; border-bottom:none;" id="mainLandDiv">
+                </div>
+                <div class="page" id="pagerMain">
+
+                </div>
+            </div>
+            <div id="HK">
+                <div class="wrap_yisc mg_r10" style="margin-bottom:0; border-bottom:none;" id="HKDiv">
+                </div>
+                <div class="page" id="pagerHK">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="display:none;" id="hidDiv">
+
+
+</div>
+<div style="left: 50px; top: 50px; display: none; z-index: 9999; position: absolute" class="win_wrap f16" id="divLogistics">
+    <div class="win_top clearfix"> <span class="f_l mg_l20" id="title">查看物流信息</span><a class="win_close f_r" title="關閉" href="javascript:void(0);"></a></div>
+    <div>
+        <div class="win_wrap f16">
+            <div class="win_cont pd_l20 pd_r20" id="logs">
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="left: 50px; top: 50px; display: none; z-index: 9999; position: absolute" class="win_wrap f16" id="divOrderStockOut">
+    <div class="win_top clearfix"> <span class="f_l mg_l20" id="title">下載出庫列表</span><a class="win_close f_r" title="關閉" href="javascript:void(0);"></a></div>
+    <p class="t_c pd_t30 pd_b20">
+        <span>請選擇訂單支付時間段</span>
+    </p>
+    <table class="f15 mg_r30 mg_l30 mg_b30 lineH54">
+        <tbody>
+            <tr>
+                <td class="t_r pd_r10 pd_l10" width="70px;">開始</td>
+                <td class="clearfix">
+                    <input id="orderStockOutStartTime" name="orderStockOutStartTime" style="width:200px;background-position:180px 9px;" class="inputdp w70 Wdate f15 bor" type="text" value="@DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd HH:mm:ss")"
+                           onfocus="WdatePicker({ maxDate: '%y-%M-%d', dateFmt: 'yyyy-MM-dd HH:mm:00', isShowClear: true, isShowOK: true, isShowToday: true })" />
+                </td>
+            </tr>
+            <tr>
+                <td class="t_r pd_r10 pd_l10" width="">截止</td>
+                <td>
+                    <input id="orderStockOutEndTime" name="orderStockOutEndTime" style="width:200px;background-position:180px 9px;" class="inputdp w70 Wdate f15 bor" type="text" value="@DateTime.Now.AddMinutes(-1).ToString("yyyy-MM-dd HH:mm:ss")"
+                           onfocus="WdatePicker({ maxDate: '%y-%M-%d', dateFmt: 'yyyy-MM-dd HH:mm:00', isShowClear: true, isShowOK: true, isShowToday: true })" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="win_btm f18 t_c pd_b30">
+        <a class="win_btn btn_green w135" href="javascript:void(0);" id="orderStockOutDownload">下 載</a>
+    </div>
+</div>
+<link href="~/Scripts/chosen/chosen.css" type="text/css" rel="stylesheet" />
+<script src="~/Scripts/chosen/chosen.jquery.js"></script>
+<script src="~/Scripts/common.js?@ViewBag.JsAndCssVersion"></script>
+<script src="~/Scripts/jquerypager/jquery.pager.latest.js"></script>
+<script src="~/Scripts/my97/WdatePicker.js"></script>
+<script src="~/Scripts/Order/OrderList.js?@ViewBag.JsAndCssVersion"></script>

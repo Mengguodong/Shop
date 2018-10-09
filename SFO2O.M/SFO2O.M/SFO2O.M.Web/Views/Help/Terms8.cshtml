@@ -1,0 +1,50 @@
+﻿@using SFO2O.M.Controllers
+@using SFO2O.M.Controllers.Common
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.ViewModel.Product
+@using SFO2O.Utility.Extensions
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "「拼生活」条款及细则";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = false;
+}
+@section styles {
+}
+@section scripts {
+}
+@section pageHeader {
+	<!-- 页头 -->
+<header class="pageHeader w100 pr tc overflowH">
+    <a class="returnBtn" id="returnBtn"></a>
+    <b class="f36 FontColor1">「拼生活」条款及细则</b>
+</header>
+    <!-- 页头 end -->
+}
+<div class="articleWrap  mt8 boxShadow bgColor3 f28 FontColor3">
+    <b>文字定义</b><Br>
+1.  「拼生活」即爱玖网平台的团购活动。<Br>
+2.  「团长」即在「拼生活」中活动中第一个成功下单并完成支付的会员。<Br>
+3.  「团员」即参与「团长」所建立的「拼生活订单」的会员。<Br>
+4.  「团长」只要于24小时内成功招募指定人数购买商品，就可以「拼生活」的优惠价格购买到正货商品。<Br><Br>
+<b>基本条款及细则</b><Br>
+1.  本优惠只适用于爱玖网的注册会员。<Br>
+2.  本优惠只适用于特定商品，商品的优惠会因应不同的推广活动而改变。<Br>
+3.  本优惠为期有限，优惠时限以网页所示为准。<Br><Br>
+
+<b>团购条款及细则</b><Br>
+1.  本优惠之「成团」人数最少为2人，最多为10人，「成团」人数以网页所示为准。<Br>
+2.  会员須要完成支付后，方可「开团」成为「团长」，邀请其他会员「参团」。<Br>
+3.  其他会员須要完成支付后，方可「参团」成为「团员」。<Br>
+4.  「团长」支付「拼生活」的商品金额后，须于24小时内邀请足夠的「团员」，直至「满团」为至方可享用本优惠；若未能于24小时内「满团」，「拼生活」系统会将自动设定订单状态为「交易关闭」，并进入退款程序。<Br><Br>
+
+<b>团购退货条款及细则</b><Br>
+1.  若「团员」或「团长」需要退货，本优惠商品之退货程序与一般退货程序相同。<Br>
+2.  爱玖网将不会承担团购活动中止所衍生之费用及成本。<Br>
+3.  「团员」或「团长」于使用本优惠时或可同时使用其他优惠，一切以个别优惠之条款为准。<Br><Br>
+
+爱玖网有权随时修订或终止以上优惠，包括并不限于优惠时限、优惠价格、拼团方式，一切以网页显示为准。本公司亦有权随时更改或终止以上活动和修改有关条款及细则而不需另行通知，爱玖网保留对此推广之最终决定权。
+
+
+</div>

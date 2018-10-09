@@ -1,0 +1,39 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    this.ViewBag.Title = "商品收藏";
+    ViewBag.ShowFooter = true;
+    string CSSVersion = System.Web.Configuration.WebConfigurationManager.AppSettings["CSSVersion"].ToString();
+    string JSVersion = System.Web.Configuration.WebConfigurationManager.AppSettings["JSVersion"].ToString();
+    string ImgVersion = System.Web.Configuration.WebConfigurationManager.AppSettings["ImgVersion"].ToString();
+}
+@section styles {
+<!--页面独有样式-->
+<link href="../../Content/css/collection.css?v=@(CSSVersion)" rel="stylesheet">
+<!--页面独有样式 END-->
+}
+@section scripts {
+<!--页面独有脚本-->
+<script type="text/javascript" src="../../Scripts/jquery/jquery.lazyload.js?v=@(JSVersion)"></script>
+<script type="text/javascript" src="../../Scripts/collection.js?v=@(JSVersion)"></script>
+<!--页面独有脚本 END-->
+}
+@section pageHeader {
+<!-- 页头 -->
+<header class="pageHeader w100 pr tc overflowH">
+    <a class="returnBtn" id="returnBtn"></a>
+    <b class="f36 FontColor1">商品收藏</b>
+    <div class="flowerMenu" id="flowerMenu"></div>
+</header>
+}
+<!--20160510 新增内容-->
+<div class="con w100 overflowH">
+    <!-- 空提示-->
+    <div class="w100 emptyTip tc hide " id="emptyTip">
+        <img src="../Content/Images/collection/empty.png?v=@(ImgVersion)" class="mb10">
+        <p class="f24 FontColor3">暂无收藏任何商品哦~</p>
+    </div>
+    <!-- 空提示 End-->
+    <ul class="collectionList w100 overflowH" id="collectionList">
+    </ul>
+    <p class="f20 FontColor4 pt10 pb10 tc hide" id="more">上滑加载更多</p>
+</div>

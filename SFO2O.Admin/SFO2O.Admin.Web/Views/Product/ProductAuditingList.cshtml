@@ -1,0 +1,106 @@
+﻿@model SFO2O.Admin.ViewModel.PageOf<SFO2O.Admin.Models.Product.ProductAuditingListModel>
+@{
+    Layout = null;
+}
+
+<div class="shangpsh">
+    <table style="width:1192px;" class="f15 bor bg_fff posRT">
+        <tbody>
+            <tr class="bg_ebebeb">
+                <th width="160">商品SPU編號</th>
+                <th width="180">商品名稱</th>
+                <th width="172">商品分類</th>
+                <th width="132">商家名稱</th>
+                <th width="109">提交時間</th>
+                <th width="84">銷售區域</th>
+                <th width="75">編輯類型</th>
+                <th width="160">商品SKU編號</th>
+                <th width="75">報備狀態</th>
+                <th width="60">審核</th>
+            </tr>
+            @if (Model != null && Model.Items != null && Model.Items.Count > 0)
+            {
+                var spu = String.Empty;
+
+                foreach (var sku in Model.Items)
+                {
+                    if (spu != sku.Spu)
+                    {
+                        int i = 0;
+                        var skus = Model.Items.Where(p => p.Spu == sku.Spu);
+                        var skuCount = skus.Count();
+
+                        <tr>
+                            <td><p class="pd_l10 pd_r10 pd_t15 pd_b10 t_c">@sku.Spu</p></td>
+                            <td><p class="pd_l10 pd_r10 pd_t15 pd_b10">@sku.ProductName</p></td>
+                            <td><p class="pd_l10 pd_r10 pd_t15 pd_b10">@sku.CategoryName</p></td>
+                            <td><p class="pd_l10 pd_r10 pd_t15 pd_b10">@sku.SupplierName</p></td>
+                            <td><p class="pd_l10 pd_r10 pd_t15 pd_b10">@sku.Createtime.ToString("yyyy-MM-dd HH:mm:ss")</p></td>
+                            <td><p class="pd_l10 pd_r10 t_c pd_t15 pd_b10">@sku.SalesTerritory</p></td>
+                            <td class="bor_r"><p class="pd_l10 pd_r10 t_c pd_t15 pd_b10">@sku.DataSource</p></td>
+                            <td class="bor_r">
+                                @foreach (var skuDetail in Model.Items)
+                                {
+                                    var bor_b = "bor_b";
+
+                                    if (skuDetail.Spu != sku.Spu)
+                                    {
+                                        continue;
+                                    }
+                                    if (i == skuCount - 1)
+                                    {
+                                        bor_b = String.Empty;
+                                    }
+                                    <p class="pd_l10 pd_r10 t_c lineH54 @bor_b">@skuDetail.Sku</p>
+                                    i++;
+                                }
+                                @{
+
+                        i = 0;
+                                }
+                            </td>
+                            <td class="bor_r">
+                                @foreach (var skuDetail in Model.Items)
+                                {
+                                    var bor_b = "bor_b";
+
+                                    if (skuDetail.Spu != sku.Spu)
+                                    {
+                                        continue;
+                                    }
+                                    if (i == skuCount - 1)
+                                    {
+                                        bor_b = String.Empty;
+                                    }
+                                    <p class="pd_l10 pd_r10 t_c lineH54 @bor_b">@skuDetail.ReportStatus</p>
+                                    i++;
+                                }
+                            </td>
+                            <td><p class="pd_l10 pd_r10 t_c pd_t15 pd_b10"><a class="col_link" href="javascript:void(0);" onclick="auditingProduct(@sku.Spu)">審核</a></p></td>
+                        </tr>
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                    spu = sku.Spu;
+
+                }
+            }
+            else
+            {
+                <tr>
+                    <td class="vtop" colspan="10">
+                        <p class="color_green pd_l20 t_l mg_t20 mg_b20">没有符合條件的待審核商品信息！</p>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="page" id="pager">
+
+</div>
+<input type="hidden" id="pageIndex" value="@Model.PageIndex" />
+<input type="hidden" id="recordCount" value="@Model.Total" />
+<input type="hidden" id="rowCount" value="@Model.RowCount" />

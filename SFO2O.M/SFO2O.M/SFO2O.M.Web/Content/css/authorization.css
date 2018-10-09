@@ -1,0 +1,9 @@
+﻿.cancel{
+	position: absolute;
+	top: 15px;
+	left: 12px;
+}
+.content{
+	padding-top: 16px;
+	line-height: 26px;
+}

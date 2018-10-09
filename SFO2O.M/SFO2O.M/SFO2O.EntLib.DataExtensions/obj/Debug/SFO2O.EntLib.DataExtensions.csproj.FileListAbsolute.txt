@@ -1,0 +1,11 @@
+D:\LoveWine\SFO2O.M\SFO2O.EntLib.DataExtensions\bin\Debug\SFO2O.EntLib.DataExtensions.dll
+D:\LoveWine\SFO2O.M\SFO2O.EntLib.DataExtensions\bin\Debug\SFO2O.EntLib.DataExtensions.pdb
+D:\LoveWine\SFO2O.M\SFO2O.EntLib.DataExtensions\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\LoveWine\SFO2O.M\SFO2O.EntLib.DataExtensions\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\LoveWine\SFO2O.M\SFO2O.EntLib.DataExtensions\bin\Debug\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll
+D:\LoveWine\SFO2O.M\SFO2O.EntLib.DataExtensions\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+D:\LoveWine\SFO2O.M\SFO2O.EntLib.DataExtensions\bin\Debug\Microsoft.Practices.Unity.dll
+D:\LoveWine\SFO2O.M\SFO2O.EntLib.DataExtensions\bin\Debug\Microsoft.Practices.Unity.Interception.dll
+D:\LoveWine\SFO2O.M\SFO2O.EntLib.DataExtensions\obj\Debug\SFO2O.EntLib.DataExtensions.dll
+D:\LoveWine\SFO2O.M\SFO2O.EntLib.DataExtensions\obj\Debug\SFO2O.EntLib.DataExtensions.pdb
+D:\LoveWine\SFO2O.M\SFO2O.EntLib.DataExtensions\obj\Debug\SFO2O.EntLib.DataExtensions.csprojResolveAssemblyReference.cache

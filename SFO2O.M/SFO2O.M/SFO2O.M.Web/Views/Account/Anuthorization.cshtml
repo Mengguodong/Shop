@@ -1,0 +1,34 @@
+﻿@using SFO2O.Utility.Uitl
+@using SFO2O.Utility.Extensions
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.Controllers;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "下单授权";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = false;
+    
+}
+
+
+@section scripts{
+    @Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJsAuthorize))
+}
+@section styles{
+    <link href="@BundleConfig.BuildCss("Content/css/authorization.css")" type="text/css" rel="stylesheet" />
+    }
+
+<!-- 页头 -->
+	<header class="pageHeader w100 pr tc">
+        <a id="returnBtn" class="FontColor4 f28 cancel">取消</a>
+        <b class="f36 FontColor1">下单授权</b>
+    </header>
+    <!-- 页头 end -->
+    <div class="content w95p f28 FontColor3 mb8">
+    	<div class="FontColor1">爱玖网下单授权</div>
+        <p>在第一次购买爱玖网商品之前，您需要授权爱玖网访问您的账户的如下信息：</p>
+		<p>· 姓名、地址、电子邮箱地址、电话、银行账户</p>
+    </div>
+    <a id="btn" class="btn w95m mb8">立即授权</a>
+    <p class="f20 FontColor4 w95p">如果不授权，将无法购买爱玖网商品</p>

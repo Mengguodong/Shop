@@ -1,0 +1,61 @@
+﻿@using SFO2O.Utility.Uitl
+
+@model SFO2O.M.ViewModel.Activity.ActivityViewModel
+@{
+    this.ViewBag.IsSelfTitle = true;
+    this.ViewBag.Description = Model.Discription;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    this.ViewBag.Title = Model.Title;
+    this.ViewBag.HeaderTitle = Model.HeadTitle;
+    string ImgVersion = ConfigHelper.ImgVersion;
+    string CssVersion = ConfigHelper.CssVersion;
+    string JSVersion = ConfigHelper.JsVersion;
+    string ActivityShareKey = string.Format("activity{0}Shared", Model.Key);
+    string ShareImgPath = string.Format("{0}{1}shareImg.jpg?v={2}", ConfigHelper.ImageServer, Model.ImgPath,ImgVersion);
+    string BannerImgPath = string.Format("{0}{1}banner.jpg?v={2}", ConfigHelper.ImageServer, Model.ImgPath,ImgVersion); 
+}
+
+@section styles {
+    <!--页面独有样式-->
+    <link href='~/Content/css/active/@(Model.TempType != 3?"template":"template_brand").css?v=@CssVersion' rel="stylesheet">
+    <link rel="apple-touch-icon-precomposed" href="@ShareImgPath" />
+    <!--页面独有样式 END-->
+}
+
+<!-- 页头 使用公共页头-->
+@section pageHeader {
+    @Html.Partial("~/Views/Shared/_HeaderTop.cshtml")
+}
+<input type="hidden" id="shareParam" value="@ActivityShareKey">
+<div class="hide">
+    <img src="@ShareImgPath">
+</div>
+<!--banner start-->
+<div class="banner">
+    <img src="@BannerImgPath" class="w100 show">
+</div>
+<!--banner end-->
+<!--专题内容-->
+@if (Model.TempType == 1)
+{
+    Html.RenderPartial("_TempNormal", Model);
+}
+else if (Model.TempType == 2)
+{
+    Html.RenderPartial("_TempCategory", Model);
+}
+else
+{
+    Html.RenderPartial("_TempBrand", Model);
+}
+
+<!--专题内容 END-->
+@section scripts {
+    <!--页面独有脚本-->
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/iscroll.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.lazyload.js?v=@JSVersion"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.inductiveTab.js?v=@JSVersion"></script>
+    <script type="text/javascript" src="~/Scripts/active/@(Model.TempType != 3?"template":"template_brand").js?v=@JSVersion"></script>
+    <!--页面独有脚本 END-->
+}

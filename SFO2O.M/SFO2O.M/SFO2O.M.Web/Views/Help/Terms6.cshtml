@@ -1,0 +1,26 @@
+﻿@using SFO2O.M.Controllers
+@using SFO2O.M.Controllers.Common
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.ViewModel.Product
+@using SFO2O.Utility.Extensions
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "中华人民共和国大陆地区配送条款及细则 ";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = false;
+}
+@section styles {
+}
+@section scripts {
+}
+@section pageHeader {
+	<!-- 页头 -->
+<header class="pageHeader w100 pr tc overflowH">
+    <a class="returnBtn" id="returnBtn"></a>
+    <b class="f36 FontColor1">中华人民共和国大陆地区配送条款及细则</b>
+</header>
+<!-- 页头 end -->}
+<div class="articleWrap  mt8 boxShadow bgColor3 f28 FontColor3">
+    本使用条款及细则适用于买家在浏览及使用北京梵禹科技有限公司（以下简称为「本公司」）的电子商务平台－爱玖网（以下简称为「本网站」)，请于使用本网站前仔细阅读本条款及细则。买家使用本网站，即表示买家接受并同意受本条款及细则所约束。<br>
+</div>

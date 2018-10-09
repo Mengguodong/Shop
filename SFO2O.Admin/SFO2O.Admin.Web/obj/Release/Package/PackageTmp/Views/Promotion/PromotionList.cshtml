@@ -1,0 +1,65 @@
+﻿@using SFO2O.Admin.Common;
+@using SFO2O.Admin.Businesses;
+@using SFO2O.Admin.Models;
+@using SFO2O.Admin.ViewModel;
+@model PromotionQueryModel
+@{
+    ViewBag.Title = "促銷價管理";
+
+    var promotionStatus = new Dictionary<int, string>
+    {
+        {-1,"請選擇"},
+        {0,"待審核"},
+        {1,"已通过"},
+        {4,"已駁回"}
+    };
+    var suppliers = CommonBLL.GetSuppliers().OrderBy(p => p.Value);
+}
+
+<div class="cont_right_crumb"><span class="homepage"></span>&gt; 市場營銷 &gt; 促銷價管理</div>
+<div class="w931">
+    <div class="upload_edit">
+        <div style="border-top:none;" class="wrap_yisc pd_t15">
+            <form id="queryForm">
+                <div style="margin-left:0; margin-right:0;" class="list_yisc bor clearfix">
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">活動時間：</span>
+                        <div style="width:123px; height:29px;overflow:hidden;" class="bor f_l fff_bor">
+                            <input id="BeginDate" name="BeginDate" class="inputdp w70 Wdate" type="text" value="@Model.BeginDate.ToDateString()"
+                                   onfocus="WdatePicker({ maxDate: '#F{$dp.$D(\'EndDate\')}', vel: 'StartTime', isShowClear: true, isShowOK: true, isShowToday: true })" />
+                        </div>
+                        <em class="f_l mg_l5 mg_r5 lineH30">至</em>
+                        <div style="width:123px; height:29px;overflow:hidden;" class="bor f_l fff_bor">
+                            <input id="EndDate" name="EndDate" class="inputdp w70 Wdate" type="text" value="@Model.EndDate.ToString("yyyy-MM-dd")"
+                                   onfocus="WdatePicker({ minDate: '#F{$dp.$D(\'BeginDate\')}', vel: 'EndTime', isShowClear: true, isShowOK: true, isShowToday: true })" />
+                        </div>
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">活動狀態：</span>
+                        <div class="f_l" style="width: 153px;">
+                            @Html.DropDownListFor(p => p.PromotionStatusType, new SelectList(promotionStatus, "Key", "Value", 0))
+                        </div>
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">活動名稱：</span>
+                        <input type="text" style="width:262px;" class="f_l bor f15" name="PromotionName" id="PromotionName" value="@Model.PromotionName" maxlength="10">
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">商家名稱：</span>
+                        <div class="f_l" style="width: 275px;">
+                            @Html.DropDownListFor(p => p.SupplierID, new SelectList(suppliers, "Key", "Value", 0), "請選擇")
+                        </div>
+                    </div>
+                    <div class="f_l">
+                        <a class="btn_green w160 mg_l20 mg_r20 mg_t10" href="javascript:void(0)" id="search">搜 尋</a>
+                    </div>
+                </div>
+            </form>
+            <div class="tongji_title mg_t30"><span class="tongji_title_l">活動列表</span></div>
+            <div id="promotions"></div>
+            <div class="page" id="pager"></div>
+        </div>
+    </div>
+</div>
+@Html.Script("~/Scripts/jquerypager/jquery.pager.latest.js")
+@Html.Script("~/Scripts/Promotion/PromotionList.js")

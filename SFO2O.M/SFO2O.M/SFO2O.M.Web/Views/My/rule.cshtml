@@ -1,0 +1,67 @@
+﻿@using SFO2O.Model.Enum
+@using SFO2O.Utility.Extensions
+@using SFO2O.Utility.Uitl
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.Model.My
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "酒豆规则说明";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = true;
+
+}
+@model SFO2O.Model.My.MyHL
+@section styles {
+}
+@section scripts {
+
+}
+@section pageHeader {
+	<!-- 页头 -->
+<header class="pageHeader w100 pr tc overflowH">
+    <a class="returnBtn" id="returnBtn"></a>
+    <b class="f36 FontColor1">酒豆规则说明</b>
+</header>
+<!-- 页头 end -->
+}
+<head>
+    <title>爱玖网购物商城-我的酒豆</title>
+</head>
+  <!--20160425 新增内容-->
+  <p class="pt10 pb10 f24" style="background:#b7da71; color:#fff; text-indent:12px;">酒豆用于参与促销反馈活动，不可抵扣购买酒类商品金额。</p>
+	<dl  class="problemsWrap w100  boxShadow f28">
+		<dt class="bgColor3">
+			<span class="icon">问</span>如果获取酒豆？
+		</dt>
+		<dd class="w100 whiteOnLine borderBottom FontColor3 bgColor3  displayBox boxSizingB">
+			<div><span class="icon">答</span></div>
+			<div class="boxflex1">目前爱玖网获取酒豆方式：<br>
+                购买指定商品会获得平台赠送的相应数量的「酒豆」，赠送仅限于参与过平台渠道推广活动的注册用户。
+</div>
+		</dd>
+		<dt class="mt8 bgColor3">
+			<span class="icon">问</span>什么时候可以消费酒豆？
+		</dt>
+		<dd class="w100 whiteOnLine borderBottom FontColor3 bgColor3  displayBox  boxSizingB">
+			<div><span class="icon">答</span></div>
+			<div class="boxflex1">参与平台举办的促销回馈活动会消耗一定量的酒豆。
+		</dd>
+		<dt class="mt8 bgColor3">
+			<span class="icon">问</span>酒豆是否可退或换取其它促销商品？
+		</dt>
+		<dd class="w100 whiteOnLine borderBottom FontColor3 bgColor3  displayBox boxSizingB">
+			<div><span class="icon">答</span></div>
+			<div class="boxflex1">酒豆是平台的一种促销方式，是对新老顾客的消费回馈，是用户购买指定商品后免费赠送，不可退。促销活动围绕酒豆展开，后期支持兑换充值卡、抽奖、爱奇艺会员账号等。
+			</div>
+		</dd>
+		<dt class="mt8 bgColor3">
+			<span class="icon">问</span> 酒豆是否有有效期？
+		</dt>
+		<dd class="w100 whiteOnLine borderBottom FontColor3 bgColor3  displayBox boxSizingB">
+			<div><span class="icon">答</span></div>
+			<div class="boxflex1">酒豆没有有效期，不会过期清除。<Br>
+			</div>
+		</dd>
+	</dl>
+	<!--20160425 新增内容 End-->

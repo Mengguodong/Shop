@@ -1,0 +1,35 @@
+﻿@using SFO2O.M.Controllers
+@using SFO2O.M.Controllers.Common
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.ViewModel.Product
+@using SFO2O.Utility.Extensions
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "「酒豆」条款及细则";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = false;
+}
+@section styles {
+}
+@section scripts {
+}
+@section pageHeader {
+	<!-- 页头 -->
+<header class="pageHeader w100 pr tc overflowH">
+    <a class="returnBtn" id="returnBtn"></a>
+    <b class="f36 FontColor1">「酒豆」条款及细则</b>
+</header>
+    <!-- 页头 end -->
+}
+<div class="articleWrap  mt8 boxShadow bgColor3 f28 FontColor3">
+    <b>获得「酒豆」条款及细则</b><br>
+1. 「酒豆」是「爱玖网」平台用于向用户返利的一种积分形式。<br>
+2. 「酒豆」可在活动中参与抽奖，兑换（购物券），兑换实物，兑换虚拟物品等（「酒豆」暂不支持抵扣或兑换酒类商品）。<br>
+3. 「酒豆」没有有效期，可永久保留。<br>
+4.  &nbsp;&nbsp;用户在「爱玖网」购买指定商品时，即可获得由平台赠送的该指定商品中标注的一定数量的「酒豆」，并获得不定期举办的活动的参与资格。<br>
+
+
+本公司有权随时更改或终止以上活动和修改有关条款及细则而不需另行通知，爱玖网保留对此推广之最终决定权。
+
+</div>

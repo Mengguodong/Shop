@@ -1,0 +1,35 @@
+﻿@using SFO2O.M.Controllers
+@using SFO2O.M.Controllers.Common
+@using SFO2O.Utility.Uitl
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    this.ViewBag.Title = "爱玖网购物商城-品牌街";
+    ViewBag.ShowFooter = true;
+    int i = 1;
+}
+@section styles {
+<!--页面独有样式-->
+<link href="~/Content/css/brandList.css?v=@ConfigHelper.CssVersion" rel="stylesheet">
+<!--页面独有样式 END-->
+}
+@section scripts {
+<!--页面独有脚本-->
+<script type="text/javascript" src="~/Scripts/jquery/jquery.lazyload.js?v=@ConfigHelper.JsVersion"></script>
+<script type="text/javascript" src="~/Scripts/brandList.js?v=@ConfigHelper.JsVersion"></script>
+<!--页面独有脚本 END-->
+}
+@section pageHeader {
+<!-- 页头 -->
+	<!-- 页头 -->
+<header class="pageHeader w100 pr tc overflowH">
+    <a class="returnBtn" id="returnBtn"></a>
+    <b class="f36 FontColor1">品牌街</b>
+    <div id="flowerMenu" class="flowerMenu"></div>
+</header>
+<!-- 页头 end -->
+}
+  <!--20160726 品牌列表-->
+  <ul class="brandsList w100" id="brandsList">
+  </ul>
+  <p class="f20 FontColor4 pt10 pb10 tc" id="more">上滑加载更多</p>
+  <!--20160726 品牌列表 End-->

@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8DE9952E-802B-4AFD-B070-795205543DEC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SFO2O.Admin.Models</RootNamespace>
+    <AssemblyName>SFO2O.Admin.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common.EntLib.DataExtensions">
+      <HintPath>..\Libs\Common.EntLib.DataExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Admin\AdminMenuInfo.cs" />
+    <Compile Include="Admin\AdminRoleInfo.cs" />
+    <Compile Include="Admin\AdminUserInfo.cs" />
+    <Compile Include="CommonEnum.cs" />
+    <Compile Include="Customer\CustomerInfo.cs" />
+    <Compile Include="DicsModel.cs" />
+    <Compile Include="Enums\AuditProductLogStatusEnum.cs" />
+    <Compile Include="Enums\EnumPermission.cs" />
+    <Compile Include="Enums\LanguagEnum.cs" />
+    <Compile Include="Enums\ProductStatus.cs" />
+    <Compile Include="Enums\OrderStatus.cs" />
+    <Compile Include="Order\OrderDetailModel.cs" />
+    <Compile Include="Order\OrderInfoModel.cs" />
+    <Compile Include="Order\OrderInfo.cs" />
+    <Compile Include="Order\OrderListModel.cs" />
+    <Compile Include="Order\OrderListTotalModel.cs" />
+    <Compile Include="Order\OrderModel.cs" />
+    <Compile Include="Order\OrderLogisticsModel.cs" />
+    <Compile Include="Order\OrderStockOutModel.cs" />
+    <Compile Include="PagingModel.cs" />
+    <Compile Include="PagedList.cs" />
+    <Compile Include="Payment\OrderPaymentInfo.cs" />
+    <Compile Include="Product\ProductAuditingLog.cs" />
+    <Compile Include="Product\CategoryModel.cs" />
+    <Compile Include="Product\ImportErrorModel.cs" />
+    <Compile Include="Product\ImportSpuModel.cs" />
+    <Compile Include="Product\ProductAuditingListModel.cs" />
+    <Compile Include="Product\ProductAuditingModel.cs" />
+    <Compile Include="Product\ProductExportModel.cs" />
+    <Compile Include="Product\SkuReportStatusModel.cs" />
+    <Compile Include="Promotion\PromotionInfoModel.cs" />
+    <Compile Include="Promotion\PromotionSkuInfoModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Refund\RefundDetailInfo.cs" />
+    <Compile Include="Refund\RefundOrderInfo.cs" />
+    <Compile Include="Refund\RefundOrderListInfo.cs" />
+    <Compile Include="Refund\RefundProductInfo.cs" />
+    <Compile Include="Settlement\SettlementInfo.cs" />
+    <Compile Include="Settlement\SettlementOrderInfo.cs" />
+    <Compile Include="Settlement\SettlementProductInfo.cs" />
+    <Compile Include="StoreModel.cs" />
+    <Compile Include="BrandModel.cs" />
+    <Compile Include="Supplier\SupplierAbstractModel.cs" />
+    <Compile Include="Supplier\SupplierDetailModel.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

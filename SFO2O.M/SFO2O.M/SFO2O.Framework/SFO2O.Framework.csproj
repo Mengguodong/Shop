@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{06D7A92B-D227-492F-BAF4-17E3C404F982}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SFO2O.Framework</RootNamespace>
+    <AssemblyName>SFO2O.Framework</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\..\Lib\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\..\Lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\..\..\Lib\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>..\..\..\Lib\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>..\..\..\Lib\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>..\..\..\Lib\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Common">
+      <HintPath>..\..\..\Lib\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces">
+      <HintPath>..\..\..\Lib\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Redis">
+      <HintPath>..\..\..\Lib\ServiceStack.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\..\..\Lib\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Cache\RedisCacheHelper.cs" />
+    <Compile Include="Extensions\EnumExtension.cs" />
+    <Compile Include="Extensions\ObjectExtension.cs" />
+    <Compile Include="Extensions\SiteExtensions.cs" />
+    <Compile Include="Extensions\StringExtension.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringUtils.cs" />
+    <Compile Include="Uitl\AssertUtils.cs" />
+    <Compile Include="Uitl\BanWordHelper.cs" />
+    <Compile Include="Uitl\ClassMapHelper.cs" />
+    <Compile Include="Uitl\ConfigHelper.cs" />
+    <Compile Include="Uitl\ConvertHelper.cs" />
+    <Compile Include="Uitl\CookieEncrypt.cs" />
+    <Compile Include="Uitl\CookieHelper.cs" />
+    <Compile Include="Uitl\DataMapHelper.cs" />
+    <Compile Include="Uitl\DnsUtils.cs" />
+    <Compile Include="Uitl\DomainHelper.cs" />
+    <Compile Include="Uitl\EntityHelper.cs" />
+    <Compile Include="Uitl\EnumUtils.cs" />
+    <Compile Include="Uitl\ExcelHelper.cs" />
+    <Compile Include="Uitl\Extensions.cs" />
+    <Compile Include="Uitl\FileHelper.cs" />
+    <Compile Include="Uitl\FormatDateTime.cs" />
+    <Compile Include="Uitl\ImageHelper.cs" />
+    <Compile Include="Uitl\ImagePath.cs" />
+    <Compile Include="Uitl\JSON.cs" />
+    <Compile Include="Uitl\JsonHelper.cs" />
+    <Compile Include="Uitl\LogHelper.cs" />
+    <Compile Include="Uitl\LTImage.cs" />
+    <Compile Include="Uitl\Mail.cs" />
+    <Compile Include="Uitl\NumGetstring.cs" />
+    <Compile Include="Uitl\ParseHelper.cs" />
+    <Compile Include="Uitl\PathHelper.cs" />
+    <Compile Include="Uitl\PerformanceTracer.cs" />
+    <Compile Include="Uitl\ReturnHelper.cs" />
+    <Compile Include="Uitl\Serializer.cs" />
+    <Compile Include="Uitl\SMS.cs" />
+    <Compile Include="Uitl\StringHelper.cs" />
+    <Compile Include="Uitl\StringVerify.cs" />
+    <Compile Include="Uitl\UploadHelper.cs" />
+    <Compile Include="Uitl\ValidateCodeHelper.cs" />
+    <Compile Include="Uitl\ValidationHelper.cs" />
+    <Compile Include="Uitl\Verify.cs" />
+    <Compile Include="Uitl\XmlHelper.cs" />
+    <Compile Include="Uitl\ZBase64.cs" />
+    <Compile Include="Uitl\ZDateTime.cs" />
+    <Compile Include="Uitl\ZEncryption.cs" />
+    <Compile Include="Uitl\ZImage.cs" />
+    <Compile Include="Uitl\ZipHelper.cs" />
+    <Compile Include="Uitl\ZRandom.cs" />
+    <Compile Include="Uitl\ZWeb.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

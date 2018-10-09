@@ -1,0 +1,29 @@
+﻿.tabs a{ display:block; float: left; width:33.3333333%; text-align: center; color:#333333; padding-top:13px;}
+.tabs a b{ display:block; font-weight: normal; width:100%; margin-bottom:11px; border-left:1px solid #e0e0e0;}
+.tabs a span{ display: block; width:80%; height:2px; overflow: hidden; background:#Fff;}
+.tabs a:first-child b{ border:none;}
+.tabs a.cur b{ color:#98ca35;}
+.tabs a.cur span{ background:#99cb34;}
+.empty img{ width:23.59%; margin-bottom: 10px;}
+.couponsList{ width:90%; margin-bottom: 10px;}
+.couponsList li{  width:100%; margin-top:20px;-moz-box-shadow:0px 5px 9px #B6B6B6; -webkit-box-shadow:0px 5px 9px #B6B6B6; box-shadow:0px 5px 9px #B6B6B6; }
+.couponsList li a{background: #fffee3;}
+.couponsLeft{ width:30%;   background:url("../Images/myCoupons/couponsLeftBg.jpg?v=201608110001") repeat-y top right #ff718d; background-size:80px auto;-moz-background-size:80px auto;-webkit-background-size:80px auto; color:#fff;}
+.couponsRight{  background: #fffee3;}
+.effective a:active .couponsLeft,.effective a.active .couponsLeft{background:url("../Images/myCoupons/couponsLeftBg1.jpg?v=201608110001") repeat-y top right #f35473;background-size:80px auto;-moz-background-size:80px auto;-webkit-background-size:80px auto;}
+.couponsList li.effective a:active,
+.couponsList li.effective a.active,
+.effective a:active .couponsRight,.effective a.active .couponsRight{  background: #fffdc5;}
+.status{ padding-top:6px;}
+.status,.conditions1{ padding-left:6px;}
+.price1{ font-size: 23px; margin-top: 18px; margin-bottom: 18px; text-align: center;}
+.conditions1{ padding-bottom: 6px;}
+.couponsRight p{ margin-left:17px;padding-top:18px;white-space: nowrap;}
+.couponsRight .date{ padding-top:17px;}
+.effective .name,.effective .date{ color:#696969;}
+.effective .conditions2{color: #333333;}
+.failure .couponsRight p{ color: #bcbcbc;}
+.failure .couponsLeft{ background:url("../Images/myCoupons/couponsLeftBg2.jpg?v=201608110001") repeat-y top right #d2d2d2;background-size:85px auto;-moz-background-size:85px auto;-webkit-background-size:85px auto;}
+.failure .couponsRight,.couponsList .failure a{ background: #f5f5f5;}
+.gotoFont{ color:#ff718d; top:20px; right:10px;}
+.gotoFont span{display:inline-block; width:10px; height:10px; overflow: hidden; background:url("../Images/myCoupons/goto.png?v=201608110002") no-repeat; background-size:10px auto; -moz-background-size:10px auto; -webkit-background-size:10px auto; vertical-align:-2px;  margin-left:2px;}

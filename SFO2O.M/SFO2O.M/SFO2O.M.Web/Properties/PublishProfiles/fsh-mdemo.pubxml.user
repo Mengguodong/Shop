@@ -1,0 +1,2371 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+您 Web 项目的发布/打包进程将使用此文件。您可以通过编辑此 MSBuild 文件
+来自定义该进程的行为。若要了解与此相关的详细信息，请访问 http://go.microsoft.com/fwlink/?LinkID=208121。
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>F:\酒游戏\O2Orelease</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>06/23/2016 19:04:21</publishTime>
+    </File>
+    <File Include="bin/HttpWebAdapters.dll">
+      <publishTime>07/06/2016 10:29:32</publishTime>
+    </File>
+    <File Include="bin/ICSharpCode.SharpZipLib.dll">
+      <publishTime>06/23/2016 19:00:26</publishTime>
+    </File>
+    <File Include="bin/LitJson.dll">
+      <publishTime>06/23/2016 18:58:21</publishTime>
+    </File>
+    <File Include="bin/log4net.dll">
+      <publishTime>06/23/2016 19:00:26</publishTime>
+    </File>
+    <File Include="bin/LowercaseRoutesMVC.dll">
+      <publishTime>06/23/2016 19:04:25</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.EnterpriseLibrary.Common.dll">
+      <publishTime>06/23/2016 19:00:26</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.EnterpriseLibrary.Data.dll">
+      <publishTime>06/23/2016 19:00:26</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.ServiceLocation.dll">
+      <publishTime>06/23/2016 18:58:21</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.Unity.dll">
+      <publishTime>06/23/2016 19:00:26</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.Unity.Interception.dll">
+      <publishTime>06/23/2016 19:00:26</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>06/23/2016 19:04:38</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Mvc.FixedDisplayModes.dll">
+      <publishTime>06/23/2016 19:04:27</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>06/23/2016 19:04:39</publishTime>
+    </File>
+    <File Include="bin/NPOI.dll">
+      <publishTime>06/23/2016 19:00:26</publishTime>
+    </File>
+    <File Include="bin/NPOI.OOXML.dll">
+      <publishTime>06/23/2016 19:00:26</publishTime>
+    </File>
+    <File Include="bin/NPOI.OpenXml4Net.dll">
+      <publishTime>06/23/2016 19:00:26</publishTime>
+    </File>
+    <File Include="bin/NPOI.OpenXmlFormats.dll">
+      <publishTime>06/23/2016 19:00:26</publishTime>
+    </File>
+    <File Include="bin/ServiceStack.Redis.dll">
+      <publishTime>06/23/2016 19:00:26</publishTime>
+    </File>
+    <File Include="bin/SFO2O.BLL.dll">
+      <publishTime>04/20/2017 19:29:47</publishTime>
+    </File>
+    <File Include="bin/SFO2O.BLL.XmlSerializers.dll">
+      <publishTime>04/20/2017 19:29:52</publishTime>
+    </File>
+    <File Include="bin/SFO2O.DAL.dll">
+      <publishTime>04/20/2017 19:29:36</publishTime>
+    </File>
+    <File Include="bin/SFO2O.EntLib.DataExtensions.dll">
+      <publishTime>04/20/2017 19:29:20</publishTime>
+    </File>
+    <File Include="bin/SFO2O.M.Controllers.dll">
+      <publishTime>04/20/2017 19:29:59</publishTime>
+    </File>
+    <File Include="bin/SFO2O.M.ViewModel.dll">
+      <publishTime>04/20/2017 19:29:36</publishTime>
+    </File>
+    <File Include="bin/SFO2O.M.Web.dll">
+      <publishTime>04/20/2017 19:30:06</publishTime>
+    </File>
+    <File Include="bin/SFO2O.Model.dll">
+      <publishTime>04/20/2017 19:29:29</publishTime>
+    </File>
+    <File Include="bin/SFO2O.Payment.BLL.dll">
+      <publishTime>04/20/2017 19:29:40</publishTime>
+    </File>
+    <File Include="bin/SFO2O.References.dll">
+      <publishTime>04/20/2017 19:29:21</publishTime>
+    </File>
+    <File Include="bin/SFO2O.Utility.dll">
+      <publishTime>04/20/2017 19:29:24</publishTime>
+    </File>
+    <File Include="bin/SolrNet.dll">
+      <publishTime>07/06/2016 10:29:32</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.dll">
+      <publishTime>09/26/2012 03:16:08</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>06/23/2016 19:04:31</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.WebRequest.dll">
+      <publishTime>09/26/2012 03:16:08</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>06/23/2016 19:04:33</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>06/23/2016 19:04:34</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>06/23/2016 19:04:26</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>06/23/2016 19:04:30</publishTime>
+    </File>
+    <File Include="bin/System.Web.Providers.dll">
+      <publishTime>06/23/2016 19:04:27</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>06/23/2016 19:04:29</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>06/23/2016 19:04:35</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>06/23/2016 19:04:35</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>06/23/2016 19:04:35</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>06/23/2016 19:04:39</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Net.Http.Formatting.resources.dll">
+      <publishTime>06/23/2016 19:04:32</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Http.resources.dll">
+      <publishTime>06/23/2016 19:04:33</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Http.WebHost.resources.dll">
+      <publishTime>06/23/2016 19:04:34</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Mvc.resources.dll">
+      <publishTime>06/23/2016 19:04:27</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Providers.resources.dll">
+      <publishTime>06/23/2016 19:04:28</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Razor.resources.dll">
+      <publishTime>06/23/2016 19:04:29</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.WebPages.Deployment.resources.dll">
+      <publishTime>06/23/2016 19:04:36</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.WebPages.Razor.resources.dll">
+      <publishTime>06/23/2016 19:04:36</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.WebPages.resources.dll">
+      <publishTime>06/23/2016 19:04:36</publishTime>
+    </File>
+    <File Include="ClassDiagram1.cd">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/css/active/0508.css">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/css/active/0615.css">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/css/active/0701.css">
+      <publishTime>07/18/2016 12:11:54</publishTime>
+    </File>
+    <File Include="Content/css/active/activeEnd.css">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/css/active/childrenDay.css">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/css/active/mooncake.css">
+      <publishTime>08/02/2016 11:58:21</publishTime>
+    </File>
+    <File Include="Content/css/active/pinIntroduce.css">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/css/active/preheat.css">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/css/active/template.css">
+      <publishTime>08/01/2016 18:10:18</publishTime>
+    </File>
+    <File Include="Content/css/active/template_brand.css">
+      <publishTime>07/18/2016 12:11:54</publishTime>
+    </File>
+    <File Include="Content/css/address.css">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/css/appeal.css">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/css/authorization.css">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/css/base.css">
+      <publishTime>08/04/2016 15:29:12</publishTime>
+    </File>
+    <File Include="Content/css/brand.css">
+      <publishTime>08/04/2016 15:29:12</publishTime>
+    </File>
+    <File Include="Content/css/brandIntro.css">
+      <publishTime>07/20/2016 16:12:24</publishTime>
+    </File>
+    <File Include="Content/css/brandList.css">
+      <publishTime>07/27/2016 09:59:12</publishTime>
+    </File>
+    <File Include="Content/css/categoryList.css">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/css/categoryList_n.css">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/css/collection.css">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/css/confirmOrder.css">
+      <publishTime>07/29/2016 11:35:00</publishTime>
+    </File>
+    <File Include="Content/css/evaluate.css">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/css/groupon/detail.css">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/css/groupon/grouponList.css">
+      <publishTime>07/21/2016 19:08:08</publishTime>
+    </File>
+    <File Include="Content/css/groupon/rule.css">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/css/importTariff.css">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/css/index-moi.css">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/css/index.css">
+      <publishTime>08/01/2016 15:55:07</publishTime>
+    </File>
+    <File Include="Content/css/item.css">
+      <publishTime>08/04/2016 19:51:01</publishTime>
+    </File>
+    <File Include="Content/css/login.css">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/css/msgCenter.css">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/css/my.css">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/css/myCoupons.css">
+      <publishTime>08/04/2016 17:37:55</publishTime>
+    </File>
+    <File Include="Content/css/order.css">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/css/param.css">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/css/payType.css">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/css/producList.css">
+      <publishTime>07/18/2016 12:11:54</publishTime>
+    </File>
+    <File Include="Content/css/productDetail.css">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/css/refundDetail.css">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/css/refundList.css">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/css/register.css">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/css/search.css">
+      <publishTime>07/26/2016 15:56:00</publishTime>
+    </File>
+    <File Include="Content/css/set.css">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/css/shop.css">
+      <publishTime>08/04/2016 15:29:12</publishTime>
+    </File>
+    <File Include="Content/css/shopIntro.css">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/css/shoppingCart.css">
+      <publishTime>07/18/2016 12:11:54</publishTime>
+    </File>
+    <File Include="Content/css/split.css">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/css/supermarket.css">
+      <publishTime>07/25/2016 15:16:36</publishTime>
+    </File>
+    <File Include="Content/css/tariff.css">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/css/tariffDesc.css">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/404.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/0508/img1.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0508/img10.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0508/img11.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0508/img12.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0508/img13.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0508/img14.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0508/img15.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0508/img16.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0508/img17.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0508/img18.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0508/img19.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0508/img2.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0508/img20.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0508/img21.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0508/img22.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0508/img3.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0508/img4.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0508/img5.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0508/img6.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0508/img7.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0508/img8.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0508/img9.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0508/shareImg.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0615/banner.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0615/gotoIntro.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0615/gotoIntro2.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0615/item1.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0615/item10.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0615/item11.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0615/item12.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0615/item13.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0615/item14.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0615/item15.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0615/item16.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0615/item17.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0615/item18.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0615/item19.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0615/item2.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0615/item3.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0615/item4.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0615/item5.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0615/item6.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0615/item7.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0615/item8.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0615/item9.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0615/lazyload.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0615/lazyload2.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0615/shareImg.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0615/title1.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0615/title2.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0615/title3.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/0701/banner.jpg">
+      <publishTime>07/18/2016 12:11:52</publishTime>
+    </File>
+    <File Include="Content/Images/active/0701/img1.jpg">
+      <publishTime>07/18/2016 12:11:52</publishTime>
+    </File>
+    <File Include="Content/Images/active/0701/img2.jpg">
+      <publishTime>07/18/2016 12:11:52</publishTime>
+    </File>
+    <File Include="Content/Images/active/0701/img3.jpg">
+      <publishTime>07/18/2016 12:11:52</publishTime>
+    </File>
+    <File Include="Content/Images/active/0701/img4.jpg">
+      <publishTime>07/18/2016 12:11:52</publishTime>
+    </File>
+    <File Include="Content/Images/active/0701/img5.jpg">
+      <publishTime>07/18/2016 12:11:52</publishTime>
+    </File>
+    <File Include="Content/Images/active/0701/img6.jpg">
+      <publishTime>07/18/2016 12:11:52</publishTime>
+    </File>
+    <File Include="Content/Images/active/0701/img7.jpg">
+      <publishTime>07/18/2016 12:11:52</publishTime>
+    </File>
+    <File Include="Content/Images/active/0701/shareImg.jpg">
+      <publishTime>07/18/2016 12:11:52</publishTime>
+    </File>
+    <File Include="Content/Images/active/activeEnd/bg.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/banner.jpg">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/banner/0713banner.jpg">
+      <publishTime>07/18/2016 12:11:52</publishTime>
+    </File>
+    <File Include="Content/Images/active/banner/0714banner.jpg">
+      <publishTime>07/26/2016 10:27:41</publishTime>
+    </File>
+    <File Include="Content/Images/active/banner/0715banner.jpg">
+      <publishTime>07/26/2016 10:27:41</publishTime>
+    </File>
+    <File Include="Content/Images/active/baojian.jpg">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/bg1.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/bg2.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/bg3.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/bg4.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/bg5.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/bg6.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/brandImg/0713brandImg.jpg">
+      <publishTime>07/18/2016 12:11:52</publishTime>
+    </File>
+    <File Include="Content/Images/active/brandImg/0714brandImg.jpg">
+      <publishTime>07/26/2016 10:27:41</publishTime>
+    </File>
+    <File Include="Content/Images/active/childrenDay/banner.jpg">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/childrenDay/con1Bg.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/childrenDay/con1Img.jpg">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/childrenDay/con1Title.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/childrenDay/con2Bg.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/childrenDay/con2Img1.jpg">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/childrenDay/con2Img2.jpg">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/childrenDay/con2Img3.jpg">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/childrenDay/con2Title.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/childrenDay/con3Bg.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/childrenDay/con3Title.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/childrenDay/defaultImg.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/childrenDay/item1.jpg">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/childrenDay/item10.jpg">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/childrenDay/item11.jpg">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/childrenDay/item12.jpg">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/childrenDay/item13.jpg">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/childrenDay/item14.jpg">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/childrenDay/item2.jpg">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/childrenDay/item3.jpg">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/childrenDay/item4.jpg">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/childrenDay/item5.jpg">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/childrenDay/item6.jpg">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/childrenDay/item7.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/childrenDay/item8.jpg">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/childrenDay/item9.jpg">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/childrenDay/more1.jpg">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/childrenDay/more2.jpg">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/childrenDay/shareImg.jpg">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/dianzi.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/gehu.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/hdbanner.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/jiaju.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/key.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/meishi.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/menuBg.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/menuBg.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/menuBg_a.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/menuBg_a.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/mingpin.jpg">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/moonCake/banner1.jpg">
+      <publishTime>07/27/2016 13:03:11</publishTime>
+    </File>
+    <File Include="Content/Images/active/moonCake/banner2.jpg">
+      <publishTime>08/02/2016 11:58:21</publishTime>
+    </File>
+    <File Include="Content/Images/active/moonCake/more.jpg">
+      <publishTime>07/27/2016 13:03:11</publishTime>
+    </File>
+    <File Include="Content/Images/active/moonCake/moreB.jpg">
+      <publishTime>07/27/2016 13:03:11</publishTime>
+    </File>
+    <File Include="Content/Images/active/moonCake/pro.jpg">
+      <publishTime>07/27/2016 13:03:11</publishTime>
+    </File>
+    <File Include="Content/Images/active/more_baojian.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/more_muying.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/muying.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/pinIntroduce/bg1.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/pinIntroduce/bg2.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/pinIntroduce/bg3.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/pinIntroduce/bg4.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/pinIntroduce/bg5.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/pinIntroduce/bg6.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/pinIntroduce/btn1.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/pinIntroduce/btn2.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/pinIntroduce/shareImg.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/pp01.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/pp02.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/pp03.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/pp04.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/pp05.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/pp06.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/pp07.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/pp08.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/pp09.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/pp10.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/shareImg/0713shareImg.jpg">
+      <publishTime>07/18/2016 12:11:52</publishTime>
+    </File>
+    <File Include="Content/Images/active/template/banner.jpg">
+      <publishTime>07/18/2016 12:11:53</publishTime>
+    </File>
+    <File Include="Content/Images/active/template/brandImg.jpg">
+      <publishTime>07/18/2016 12:11:53</publishTime>
+    </File>
+    <File Include="Content/Images/active/template/line.jpg">
+      <publishTime>07/18/2016 12:11:53</publishTime>
+    </File>
+    <File Include="Content/Images/active/template/productImg.jpg">
+      <publishTime>07/18/2016 12:11:53</publishTime>
+    </File>
+    <File Include="Content/Images/active/template/tmp_normal_title.png">
+      <publishTime>07/18/2016 12:11:53</publishTime>
+    </File>
+    <File Include="Content/Images/active/time.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/title_bj.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/title_dz.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/title_gh.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/active/title_jj.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/title_ms.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/active/title_my.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/address/address.png">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/address/icon_do.png">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/appeal/add.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/appeal/icon_close.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/appeal/icon_listener.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/appeal/tmp.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/blank.png">
+      <publishTime>08/01/2016 10:35:50</publishTime>
+    </File>
+    <File Include="Content/Images/brandLogo.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/categoryList/category1.jpg">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/categoryList/categoryList1.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/categoryList/categoryList2.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/categoryList/categoryList3.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/categoryList/categoryList4.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/categoryList/categoryList5.png">
+      <publishTime>07/18/2016 12:11:52</publishTime>
+    </File>
+    <File Include="Content/Images/categoryList/categoryList6.png">
+      <publishTime>07/18/2016 12:11:52</publishTime>
+    </File>
+    <File Include="Content/Images/categoryList/defaultCategory.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/categoryList/searchIco.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/checkbox.png">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/closeBtn.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/collection/empty.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/collection/icon.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/collection/icon2.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/confirmOrder/icon.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/confirmOrder/icon_address.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/defaultImg.png">
+      <publishTime>08/01/2016 10:35:50</publishTime>
+    </File>
+    <File Include="Content/Images/default_brand.png">
+      <publishTime>07/29/2016 18:15:56</publishTime>
+    </File>
+    <File Include="Content/Images/default_product.png">
+      <publishTime>07/29/2016 18:15:56</publishTime>
+    </File>
+    <File Include="Content/Images/discount.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/downJT.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/downloadTip.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/FAQ.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/freeIcon.png">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/fshwx.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/groupon/avastar.png">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/groupon/avastar_default.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/groupon/brand.jpg">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/groupon/btnBg.png">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/groupon/duration.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/groupon/goon.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/groupon/head.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/groupon/saleOut.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/groupon/tmp.jpg">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/headerCart.png">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/icon-flower.png">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/icon-moreMenu.png">
+      <publishTime>08/04/2016 14:33:07</publishTime>
+    </File>
+    <File Include="Content/Images/icon-radioRight.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/icon.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/icon_collect.png">
+      <publishTime>06/24/2016 15:03:34</publishTime>
+    </File>
+    <File Include="Content/Images/icon_success.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/importTariff/tmp.jpg">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/index/adv.jpg">
+      <publishTime>07/18/2016 12:11:54</publishTime>
+    </File>
+    <File Include="Content/Images/index/adv1.jpg">
+      <publishTime>07/18/2016 12:11:54</publishTime>
+    </File>
+    <File Include="Content/Images/index/banner.jpg">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/index/banner1.jpg">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/index/brandImg.jpg">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/index/brandImg2.jpg">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/index/brandImg3.jpg">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/index/brandImg4.jpg">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/index/category1.jpg">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/index/category1.png">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/index/category2.jpg">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/index/category2.png">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/index/category3.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/index/category3.png">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/index/category4.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/index/category4.png">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/index/category5.jpg">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/index/category5.png">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/index/category6.png">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/index/category7.png">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/index/gotoMarket.jpg">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/index/groupon.jpg">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/index/indexIco.png">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/index/indexIcon_n.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/index/indexNav.png">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/index/jt.png">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/index/pinAdv.jpg">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/index/product1.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/index/zk.png">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/item/icon1.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/item/icon2.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/item/mark.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/item/pinRule1.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/item/pinRule2.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/item/pinRule3.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/item/pinRule4.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/item/pinRule5.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/item/pinRule6.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/lazyload2.png">
+      <publishTime>07/18/2016 12:11:54</publishTime>
+    </File>
+    <File Include="Content/Images/loading.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/login/bg.jpg">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/login/down.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/login/icon.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/login/logo.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/logo.png">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/message/defImg.jpg">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/message/msgIcon.png">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/message/msgtype1.jpg">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/message/msgtype2.jpg">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/message/msgtype3.jpg">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/my/empty.png">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/my/icon.png">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/my/img1.jpg">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/my/img2.jpg">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/my/img3.jpg">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/my/img4.jpg">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/my/img5.jpg">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/my/img6.jpg">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/my/img7.jpg">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/my/integralIcon.png">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/my/myIntegralBg.png">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/my/n_bg1.jpg">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/my/n_bg2.jpg">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/my/n_bg3.jpg">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/my/n_bg4.jpg">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/my/n_bg5.jpg">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/my/n_bg6.jpg">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/my/n_bg7.jpg">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/my/topBg.jpg">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/myCoupons/couponsLeftBg.jpg">
+      <publishTime>08/04/2016 17:37:54</publishTime>
+    </File>
+    <File Include="Content/Images/myCoupons/couponsLeftBg1.jpg">
+      <publishTime>08/04/2016 17:37:54</publishTime>
+    </File>
+    <File Include="Content/Images/myCoupons/couponsLeftBg2.jpg">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/myCoupons/empty.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/myCoupons/goto.png">
+      <publishTime>08/04/2016 17:37:54</publishTime>
+    </File>
+    <File Include="Content/Images/noData.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/null.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/order/down.png">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/order/failIcon.png">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/order/null.png">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/order/pinFailIcon.png">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/order/tipIcon.png">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/order/up.png">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/payType/fail.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/payType/success.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/payType/weixin.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/payType/yipiaolian.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/payType/zfb.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/productList/addCart.png">
+      <publishTime>07/18/2016 12:11:53</publishTime>
+    </File>
+    <File Include="Content/Images/productList/arrowRight.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/productList/right.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/productList/screen.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/proError.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/quickEntry.png">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/refundDetail/tmp.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/refundList/noData.png">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/refundList/tmp.jpg">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/rightArrow.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/search/icon_delete.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/search/icon_search.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/second_nav_03.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/second_nav_06.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/second_nav_08.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/second_nav_10.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/serviceIcon.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/set.png">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/shop/banner.jpg">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/shop/banner.png">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/shop/ellipsis.jpg">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/shop/logo.jpg">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/shop/screen.png">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Content/Images/shopClose.png">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/shoppingCart/checkbox.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/shoppingCart/close.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/shoppingCart/down.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/shoppingCart/icon_depot.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/shoppingCart/null.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/shoppingCartIco.png">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/sorry.png">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/split/tmp.jpg">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="Content/Images/starPro.png">
+      <publishTime>06/24/2016 15:03:34</publishTime>
+    </File>
+    <File Include="Content/Images/step.jpg">
+      <publishTime>06/23/2016 19:00:24</publishTime>
+    </File>
+    <File Include="Content/Images/supermarket/baby.jpg">
+      <publishTime>07/18/2016 12:11:54</publishTime>
+    </File>
+    <File Include="Content/Images/supermarket/banner.jpg">
+      <publishTime>07/18/2016 12:11:54</publishTime>
+    </File>
+    <File Include="Content/Images/supermarket/dove.png">
+      <publishTime>07/18/2016 12:11:54</publishTime>
+    </File>
+    <File Include="Content/Images/supermarket/gaolu.png">
+      <publishTime>07/18/2016 12:11:54</publishTime>
+    </File>
+    <File Include="Content/Images/supermarket/gjs.png">
+      <publishTime>07/18/2016 12:11:54</publishTime>
+    </File>
+    <File Include="Content/Images/supermarket/home.jpg">
+      <publishTime>07/18/2016 12:11:54</publishTime>
+    </File>
+    <File Include="Content/Images/supermarket/lady.jpg">
+      <publishTime>07/29/2016 18:15:56</publishTime>
+    </File>
+    <File Include="Content/Images/supermarket/lidun.jpg">
+      <publishTime>07/18/2016 12:11:54</publishTime>
+    </File>
+    <File Include="Content/Images/supermarket/lidun.png">
+      <publishTime>07/18/2016 12:11:54</publishTime>
+    </File>
+    <File Include="Content/Images/supermarket/lyzh.jpg">
+      <publishTime>07/18/2016 12:11:54</publishTime>
+    </File>
+    <File Include="Content/Images/supermarket/lyzh.png">
+      <publishTime>07/18/2016 12:11:54</publishTime>
+    </File>
+    <File Include="Content/Images/supermarket/man.jpg">
+      <publishTime>07/29/2016 18:15:56</publishTime>
+    </File>
+    <File Include="Content/Images/supermarket/merries.png">
+      <publishTime>07/18/2016 12:11:54</publishTime>
+    </File>
+    <File Include="Content/Images/supermarket/title1.png">
+      <publishTime>07/18/2016 12:11:54</publishTime>
+    </File>
+    <File Include="Content/Images/supermarket/title2.png">
+      <publishTime>07/18/2016 12:11:54</publishTime>
+    </File>
+    <File Include="Content/Images/supermarket/xiuxian.jpg">
+      <publishTime>07/29/2016 18:15:56</publishTime>
+    </File>
+    <File Include="Content/Images/supermarket/xiuxian.png">
+      <publishTime>07/18/2016 12:11:54</publishTime>
+    </File>
+    <File Include="Content/Images/to_top.png">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Content/Images/userImg.jpg">
+      <publishTime>06/23/2016 19:00:23</publishTime>
+    </File>
+    <File Include="File/Tariff.pdf">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Html/404.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/active/0508.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/active/0615.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/active/0701.html">
+      <publishTime>07/18/2016 12:11:52</publishTime>
+    </File>
+    <File Include="Html/active/activeEnd.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/active/childrenDay.html">
+      <publishTime>06/27/2016 16:15:41</publishTime>
+    </File>
+    <File Include="Html/active/moonCake.html">
+      <publishTime>07/29/2016 10:19:57</publishTime>
+    </File>
+    <File Include="Html/active/pinIntroduce.html">
+      <publishTime>04/20/2017 18:58:37</publishTime>
+    </File>
+    <File Include="Html/active/preheat.html">
+      <publishTime>04/21/2017 09:16:04</publishTime>
+    </File>
+    <File Include="Html/active/template_brand.html">
+      <publishTime>07/18/2016 12:11:52</publishTime>
+    </File>
+    <File Include="Html/active/template_category.html">
+      <publishTime>07/18/2016 12:11:52</publishTime>
+    </File>
+    <File Include="Html/active/template_normal.html">
+      <publishTime>07/18/2016 12:11:52</publishTime>
+    </File>
+    <File Include="Html/address.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/address_edit.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/agreement.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/appeal.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/authorization.html">
+      <publishTime>07/18/2016 12:11:52</publishTime>
+    </File>
+    <File Include="Html/brand.html">
+      <publishTime>06/24/2016 15:03:34</publishTime>
+    </File>
+    <File Include="Html/brandIntro.html">
+      <publishTime>07/20/2016 16:12:24</publishTime>
+    </File>
+    <File Include="Html/brandList.html">
+      <publishTime>06/27/2016 11:07:08</publishTime>
+    </File>
+    <File Include="Html/categoryList.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/categoryList_n.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/commodityDetails.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/confirmOrder.html">
+      <publishTime>07/29/2016 11:35:00</publishTime>
+    </File>
+    <File Include="Html/confirmOrder1.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/evaluate.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/footer/aboutUs.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/footer/problem1.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/footer/problem2.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/footer/problem3.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/footer/problem4.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/footer/problem5.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/footer/problem6.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/footer/problemList.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/footer/service1.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/footer/service2.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/footer/serviceList.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/footer/terms1.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/footer/terms2.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/footer/terms3.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/footer/terms4.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/footer/terms5.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/footer/terms6.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/footer/terms7.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/footer/termsList.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/groupon/detail.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/groupon/index.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/groupon/rule.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/groupon/ruleIntro.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/importTariff.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/index-moi.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/index-v2.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/index.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/index_n.html">
+      <publishTime>07/25/2016 15:16:36</publishTime>
+    </File>
+    <File Include="Html/integral/integralList.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/integral/myIntegral.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/integral/rule.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/item.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/item_pin.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/login.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/logisticsInf.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/message/activityMsg.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/message/msgCenter.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/message/orderMsg.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/message/systemMsg.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/message/systemMsgCon.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/my.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/myCollection.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/myCoupons.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/myOrderDetail.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/myOrders.html">
+      <publishTime>04/20/2017 18:58:37</publishTime>
+    </File>
+    <File Include="Html/noData.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/param.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/payFail.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/payIframe.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/payStatus.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/paySuccess.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/payType.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/pinRule.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/productList.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/productList2.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/productPicture.html">
+      <publishTime>04/21/2017 09:16:07</publishTime>
+    </File>
+    <File Include="Html/refundDetail.html">
+      <publishTime>04/21/2017 09:16:04</publishTime>
+    </File>
+    <File Include="Html/refundList.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/register/step1.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/register/step2.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/register/step3.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/search.html">
+      <publishTime>07/05/2016 14:08:00</publishTime>
+    </File>
+    <File Include="Html/searchResult.html">
+      <publishTime>07/05/2016 14:08:00</publishTime>
+    </File>
+    <File Include="Html/selectAddress.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/selectSKU_Demo.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/set.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/shop.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/shopIntro.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/shoppingCart.html">
+      <publishTime>04/20/2017 18:58:37</publishTime>
+    </File>
+    <File Include="Html/sorry.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/split.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/supermarket.html">
+      <publishTime>07/27/2016 11:07:21</publishTime>
+    </File>
+    <File Include="Html/tariff.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/tariffDesc.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Html/uploadPhotosSteps.html">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/account/Register.js">
+      <publishTime>07/18/2016 12:11:52</publishTime>
+    </File>
+    <File Include="Scripts/active/0508.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/active/0615.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/active/0701.js">
+      <publishTime>07/18/2016 12:11:52</publishTime>
+    </File>
+    <File Include="Scripts/active/Activity0615.cshtml">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/active/childrenDay.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/active/mooncake.js">
+      <publishTime>07/27/2016 13:03:11</publishTime>
+    </File>
+    <File Include="Scripts/active/pinIntroduce.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/active/preheat.js">
+      <publishTime>07/21/2016 14:48:27</publishTime>
+    </File>
+    <File Include="Scripts/active/template.js">
+      <publishTime>08/01/2016 15:55:06</publishTime>
+    </File>
+    <File Include="Scripts/active/template_brand.js">
+      <publishTime>08/01/2016 15:55:06</publishTime>
+    </File>
+    <File Include="Scripts/active/_skulist.cshtml">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/address.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/appeal.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/authorization.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/brand.js">
+      <publishTime>08/04/2016 15:29:12</publishTime>
+    </File>
+    <File Include="Scripts/brandIntro.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/brandList.js">
+      <publishTime>07/26/2016 15:56:00</publishTime>
+    </File>
+    <File Include="Scripts/buynow.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/cagetoryList.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/cagetoryList_n.js">
+      <publishTime>04/21/2017 09:16:12</publishTime>
+    </File>
+    <File Include="Scripts/cartSubmit.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/collection.js">
+      <publishTime>07/26/2016 15:56:00</publishTime>
+    </File>
+    <File Include="Scripts/comment.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/common/common.js">
+      <publishTime>04/20/2017 19:17:03</publishTime>
+    </File>
+    <File Include="Scripts/confirmOrder.js">
+      <publishTime>07/28/2016 11:45:55</publishTime>
+    </File>
+    <File Include="Scripts/groupon/detail.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/groupon/grouponList.js">
+      <publishTime>07/26/2016 15:56:00</publishTime>
+    </File>
+    <File Include="Scripts/importTariff.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/index.js">
+      <publishTime>08/01/2016 10:35:50</publishTime>
+    </File>
+    <File Include="Scripts/integralList.js">
+      <publishTime>06/27/2016 11:07:08</publishTime>
+    </File>
+    <File Include="Scripts/item.js">
+      <publishTime>07/21/2016 19:08:07</publishTime>
+    </File>
+    <File Include="Scripts/itemDetail.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/item_o.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/item_pin.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/jquery/ajaxupload.3.5.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/jquery/iscroll.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/jquery/jquery-1.9.1.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/jquery/jquery-1.9.1.min.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/jquery/jquery-ui-1.8.24.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/jquery/jquery-ui-1.8.24.min.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/jquery/jquery.dialog.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/jquery/jquery.inductiveTab.js">
+      <publishTime>07/18/2016 12:11:52</publishTime>
+    </File>
+    <File Include="Scripts/jquery/jquery.lazyload.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/jquery/jquery.nicescroll.min.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/jquery/jquery.showSearch.js">
+      <publishTime>08/04/2016 14:33:07</publishTime>
+    </File>
+    <File Include="Scripts/jquery/jquery.unobtrusive-ajax.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/jquery/jquery.unobtrusive-ajax.min.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/jquery/jquery.validate.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/jquery/jquery.validate.min.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/jquery/jquery.validate.unobtrusive.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/jquery/jquery.validate.unobtrusive.min.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/jquery/jsrender-v1.0.0-beta.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/jquery/knockout-2.2.0.debug.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/jquery/knockout-2.2.0.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/jquery/modernizr-2.6.2.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/jquery/swipe.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/jquery/TouchSlide.1.1.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/jquery/_references.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/login.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/message/activityMsg.js">
+      <publishTime>06/27/2016 11:07:08</publishTime>
+    </File>
+    <File Include="Scripts/message/orderMsg.js">
+      <publishTime>06/27/2016 11:07:08</publishTime>
+    </File>
+    <File Include="Scripts/message/systemMsg.js">
+      <publishTime>06/27/2016 11:07:08</publishTime>
+    </File>
+    <File Include="Scripts/myCoupons.js">
+      <publishTime>08/04/2016 17:37:54</publishTime>
+    </File>
+    <File Include="Scripts/myOrders.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/order.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/orderDetail.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/param.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/payIframe.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/payType.js">
+      <publishTime>08/03/2016 10:17:19</publishTime>
+    </File>
+    <File Include="Scripts/productList.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/productList2.js">
+      <publishTime>08/04/2016 10:34:33</publishTime>
+    </File>
+    <File Include="Scripts/productPicture.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/refundDetail.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/refundList.js">
+      <publishTime>04/21/2017 09:16:12</publishTime>
+    </File>
+    <File Include="Scripts/search.js">
+      <publishTime>07/25/2016 11:10:26</publishTime>
+    </File>
+    <File Include="Scripts/searchResult.js">
+      <publishTime>08/01/2016 15:55:07</publishTime>
+    </File>
+    <File Include="Scripts/selectSKU.js">
+      <publishTime>07/22/2016 14:02:21</publishTime>
+    </File>
+    <File Include="Scripts/set.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/shop.js">
+      <publishTime>07/26/2016 15:56:00</publishTime>
+    </File>
+    <File Include="Scripts/shoppingCart.js">
+      <publishTime>07/18/2016 12:11:52</publishTime>
+    </File>
+    <File Include="Scripts/split.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Scripts/supermarket.js">
+      <publishTime>08/02/2016 15:29:58</publishTime>
+    </File>
+    <File Include="Scripts/uploadPhotoSteps.js">
+      <publishTime>06/23/2016 19:00:22</publishTime>
+    </File>
+    <File Include="Views/Account/Anuthorization.cshtml">
+      <publishTime>07/18/2016 12:11:55</publishTime>
+    </File>
+    <File Include="Views/Account/FindPassword.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Account/Login.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Account/Register.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Account/Register2.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Account/Register3.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Account/_reg1.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Account/_reg3.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Account/_RegionMobile.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Account/_SetPassword.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Account/_ValidateCode.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Active/Activity0615.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Active/Activity0701.cshtml">
+      <publishTime>07/18/2016 12:11:56</publishTime>
+    </File>
+    <File Include="Views/Active/ActivityTemplate.cshtml">
+      <publishTime>07/26/2016 12:27:10</publishTime>
+    </File>
+    <File Include="Views/Active/ChildrenDay.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Active/MotherDay.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Active/PinLife.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Active/preheat.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Active/_skulist.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Active/_TempBrand.cshtml">
+      <publishTime>08/01/2016 18:10:18</publishTime>
+    </File>
+    <File Include="Views/Active/_TempCategory.cshtml">
+      <publishTime>08/01/2016 18:10:18</publishTime>
+    </File>
+    <File Include="Views/Active/_TempNormal.cshtml">
+      <publishTime>08/01/2016 18:10:18</publishTime>
+    </File>
+    <File Include="Views/Brand/Index.cshtml">
+      <publishTime>08/04/2016 15:29:12</publishTime>
+    </File>
+    <File Include="Views/Brand/Intro.cshtml">
+      <publishTime>07/20/2016 16:12:24</publishTime>
+    </File>
+    <File Include="Views/Buy/AddAddress.cshtml">
+      <publishTime>07/18/2016 12:11:55</publishTime>
+    </File>
+    <File Include="Views/Buy/AddressList.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Buy/BuyNow.cshtml">
+      <publishTime>08/01/2016 18:10:18</publishTime>
+    </File>
+    <File Include="Views/Buy/ChooseAddress.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Buy/ImportTariff.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Buy/TaxDescription.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Buy/_defaultAddress.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Category/Default.cshtml">
+      <publishTime>07/25/2016 12:27:20</publishTime>
+    </File>
+    <File Include="Views/Category/Index.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/demo/Index.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/demo/Partial1.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/demo/Partial2.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Favorite/Index.cshtml">
+      <publishTime>06/27/2016 11:07:08</publishTime>
+    </File>
+    <File Include="Views/giftcard/index.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Help/AboutUs.cshtml">
+      <publishTime>07/18/2016 12:11:55</publishTime>
+    </File>
+    <File Include="Views/Help/Agreement.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Help/Question1.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Help/Question2.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Help/Question3.cshtml">
+      <publishTime>07/26/2016 09:51:37</publishTime>
+    </File>
+    <File Include="Views/Help/Question4.cshtml">
+      <publishTime>07/18/2016 12:11:55</publishTime>
+    </File>
+    <File Include="Views/Help/Question5.cshtml">
+      <publishTime>07/20/2016 16:55:54</publishTime>
+    </File>
+    <File Include="Views/Help/Question6.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Help/Question7.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Help/Question8.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Help/QuestionList.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Help/Service1.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Help/Service2.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Help/ServiceList.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Help/Terms1.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Help/Terms2.cshtml">
+      <publishTime>07/18/2016 12:11:55</publishTime>
+    </File>
+    <File Include="Views/Help/Terms3.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Help/Terms4.cshtml">
+      <publishTime>07/20/2016 16:55:54</publishTime>
+    </File>
+    <File Include="Views/Help/Terms5.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Help/Terms6.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Help/Terms7.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Help/Terms8.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Help/Terms9.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Help/TermsList.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Help/UPloadIdentity.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Holiday/Index.cshtml">
+      <publishTime>08/03/2016 11:25:39</publishTime>
+    </File>
+    <File Include="Views/Holiday/ProductList.cshtml">
+      <publishTime>08/03/2016 11:25:28</publishTime>
+    </File>
+    <File Include="Views/Holiday/_Item.cshtml">
+      <publishTime>08/04/2016 19:51:01</publishTime>
+    </File>
+    <File Include="Views/Home.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>12/18/2016 12:13:18</publishTime>
+    </File>
+    <File Include="Views/Home/PiliangUpdate.cshtml">
+      <publishTime>07/18/2016 12:11:55</publishTime>
+    </File>
+    <File Include="Views/Home/_Bulletin.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Home/_CategoryModule1.cshtml">
+      <publishTime>06/27/2016 17:57:50</publishTime>
+    </File>
+    <File Include="Views/Home/_CategoryModule2.cshtml">
+      <publishTime>06/27/2016 17:57:50</publishTime>
+    </File>
+    <File Include="Views/Home/_CMSCustomProduct.cshtml">
+      <publishTime>08/01/2016 11:47:25</publishTime>
+    </File>
+    <File Include="Views/Home/_CMSHotProduct.cshtml">
+      <publishTime>08/01/2016 10:35:50</publishTime>
+    </File>
+    <File Include="Views/Home/_NewProductRecommend.cshtml">
+      <publishTime>08/01/2016 10:35:50</publishTime>
+    </File>
+    <File Include="Views/Home/_ScrollImage.cshtml">
+      <publishTime>07/21/2016 14:48:27</publishTime>
+    </File>
+    <File Include="Views/Information/ActivityMsgList.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Information/InformationCenter.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Information/OrderMsgList.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Information/SystemMsgDetail.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Information/SystemMsgList.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Item/Comment.cshtml">
+      <publishTime>07/27/2016 16:32:39</publishTime>
+    </File>
+    <File Include="Views/Item/Detail.cshtml">
+      <publishTime>07/27/2016 16:32:39</publishTime>
+    </File>
+    <File Include="Views/Item/Index.cshtml">
+      <publishTime>08/04/2016 17:37:55</publishTime>
+    </File>
+    <File Include="Views/Item/Param.cshtml">
+      <publishTime>07/27/2016 16:32:39</publishTime>
+    </File>
+    <File Include="Views/Item/ProductPicture.cshtml">
+      <publishTime>07/27/2016 16:32:39</publishTime>
+    </File>
+    <File Include="Views/Item/Recommended.cshtml">
+      <publishTime>07/27/2016 16:32:39</publishTime>
+    </File>
+    <File Include="Views/Item/SimilarBrand.cshtml">
+      <publishTime>07/27/2016 16:32:39</publishTime>
+    </File>
+    <File Include="Views/Item/Tariff.cshtml">
+      <publishTime>07/27/2016 16:32:39</publishTime>
+    </File>
+    <File Include="Views/Item/_Item.cshtml">
+      <publishTime>08/04/2016 19:51:01</publishTime>
+    </File>
+    <File Include="Views/My/Detail.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/My/GiftCardIndex.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/My/HLDetail.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/My/Index.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/My/List.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/My/LogisticsInfo.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/My/LogisticsInfoLast.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/My/myHL.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/My/rule.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/My/set.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/My/_Items.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Order/Submit.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Order/Tariff.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Pay/Index.cshtml">
+      <publishTime>08/03/2016 10:17:19</publishTime>
+    </File>
+    <File Include="Views/Pay/payIframe.cshtml">
+      <publishTime>08/01/2016 15:55:07</publishTime>
+    </File>
+    <File Include="Views/Pay/ReturnPage.cshtml">
+      <publishTime>07/18/2016 12:11:55</publishTime>
+    </File>
+    <File Include="Views/Pay/TeamDetail.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Pay/WxPay.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Pay/ZFBReturnPage.cshtml">
+      <publishTime>07/18/2016 12:11:55</publishTime>
+    </File>
+    <File Include="Views/Product/FightDetail.cshtml">
+      <publishTime>08/04/2016 17:37:55</publishTime>
+    </File>
+    <File Include="Views/Product/FightIndex.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Product/Index.cshtml">
+      <publishTime>08/04/2016 10:34:33</publishTime>
+    </File>
+    <File Include="Views/Product/List.cshtml">
+      <publishTime>08/04/2016 10:34:33</publishTime>
+    </File>
+    <File Include="Views/Product/PinEnd.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Product/pinRule.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Refund/Complain.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Refund/EditComplain.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Refund/Refund.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Refund/RefundImage.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Refund/RefundInfo.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Search/Index.cshtml">
+      <publishTime>07/22/2016 14:51:52</publishTime>
+    </File>
+    <File Include="Views/Search/Search.cshtml">
+      <publishTime>08/04/2016 10:34:33</publishTime>
+    </File>
+    <File Include="Views/Shared/Error.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Shared/NotFound.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Shared/_Footer.cshtml">
+      <publishTime>08/05/2016 23:23:08</publishTime>
+    </File>
+    <File Include="Views/Shared/_Header.cshtml">
+      <publishTime>07/25/2016 15:16:36</publishTime>
+    </File>
+    <File Include="Views/Shared/_HeaderItem.cshtml">
+      <publishTime>08/04/2016 17:37:55</publishTime>
+    </File>
+    <File Include="Views/Shared/_HeaderTop.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>12/18/2016 12:52:27</publishTime>
+    </File>
+    <File Include="Views/Shared/_LayoutDetail.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout_Category.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout_Common.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout_login.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout_ProductList.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Shared/_MiniCart.cshtml">
+      <publishTime>07/12/2016 10:01:49</publishTime>
+    </File>
+    <File Include="Views/ShoppingCart/Index.cshtml">
+      <publishTime>07/18/2016 12:11:55</publishTime>
+    </File>
+    <File Include="Views/ShoppingCart/_InvalidItems.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/ShoppingCart/_Items.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Split/split.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Store/Index.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Store/Intro.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/SuperMarket/BerserkDay.cshtml">
+      <publishTime>07/18/2016 12:11:55</publishTime>
+    </File>
+    <File Include="Views/SuperMarket/Default.cshtml">
+      <publishTime>08/04/2016 15:29:12</publishTime>
+    </File>
+    <File Include="Views/SuperMarket/_ScrollImage.cshtml">
+      <publishTime>07/18/2016 12:11:55</publishTime>
+    </File>
+    <File Include="Views/SuperMarket/_SingleBannerImage.cshtml">
+      <publishTime>07/18/2016 12:11:55</publishTime>
+    </File>
+    <File Include="Views/Team/TeamDetail.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>06/23/2016 19:00:25</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>04/21/2017 09:18:32</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,135 @@
+﻿.cartPos{
+    position: absolute;
+    right: 40px;
+    top: 3px;
+}
+
+.shopHeader{
+}
+.shopHeader .banner{
+	width: 100%;
+	display: block;
+}
+.shopHeader .shopInfo{
+	position: relative;
+	margin-top: -29px;
+	display: -webkit-box;
+	display: -moz-box;
+	display: box;
+	background: #fff;
+	padding-bottom: 10px;
+}
+.shopHeader .shopInfo .logo{
+	width: 110px;
+	height: 110px;
+	text-align: center;
+	margin-top: -23px;
+	margin-left: 10px;
+	border: 1px solid #e9e9e9;
+}
+.shopHeader .shopInfo img{
+	width: 100%;
+}
+.shopHeader .shopInfo .rightContent{
+	width: 1px;
+	-webkit-box-flex:1;
+	margin-left: 8px;
+}
+.shopHeader .shopName{
+	position: relative;
+	top: -29px;
+	background: rgba(0,0,0,0.6);
+	color: #fff;
+	font-size: 1.4rem;
+	height: 29px;
+	line-height: 29px;
+	white-space: nowrap;
+	overflow: hidden;
+	padding-right: 2.5%;
+	padding-left: 128px;
+}
+.shopHeader .shopInfo .intro{
+	line-height: 19px;
+	height: 38px;
+	padding-top: 5px;
+	-webkit-line-clamp:2; /* 两行显示不开显示... */
+	display:-webkit-box;
+	-webkit-box-orient: vertical;
+	text-overflow:ellipsis ;
+	 overflow: hidden; 
+	 word-wrap: break-word;
+	 word-break: break-all;
+}
+
+.products{
+	border-top-width: 1px;
+	border-top-style: solid;
+}
+/* 筛选框 */
+.screenBox{
+	float: right;
+	display: -webkit-box;
+	display: -moz-box;
+	display: box;
+	width: 40%;
+	background: #fff;
+	font-size: 1.2rem;
+	color: #333;
+}
+.screenBox div{
+	width: 0;
+	-webkit-box-flex:1;
+	-moz-box-flex:1;
+	box-flex:1;
+	text-align: center;
+	padding:12px 0;
+}
+.screenBox div a{
+	display: block;
+	width: 100%;
+	border-right: 1px solid #e0e0e0;
+}
+.screenBox div:nth-last a{
+	border-right: none;
+}
+.screenBox div.active a{
+	color:#98ca35;
+}
+.screenBox i{
+	display: inline-block;
+	margin-left: 5px;
+	background: url(../Images/shop/screen.png?v=20160331) no-repeat;
+	background-size: 40px 25px;
+}
+.screenBox .price i{
+	position: relative;
+	top: 1px;
+	width: 9px;
+	height: 11px;
+}
+.screenBox .price.asc i{
+	background-position: -15px top;
+}
+.screenBox .price.desc i{
+	background-position: -31px top;
+}
+/* 筛选框end */
+.products{
+	
+}
+.screen{
+	width: 100%;
+	background: #fff;
+}
+.screen .allCounts{
+	display: inline-block;
+	color: #313131;
+	font-size: 1.4rem;
+	padding: 12px 0 12px 12px;
+}
+.screen .allCounts span{
+	color: #bcbcbc;
+}
+.productList .w95p{
+	background: #fff;
+}

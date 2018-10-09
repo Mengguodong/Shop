@@ -1,0 +1,68 @@
+﻿@using SFO2O.Utility.Uitl
+@{
+    this.ViewBag.IsSelfTitle = true;
+    this.ViewBag.Description = "口正品 中华人民共和国大陆地区实体 物流直邮 限时7折";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    this.ViewBag.Title = "源自新西兰的天然奶源";
+    this.ViewBag.HeaderTitle = "源自新西兰的天然奶源";
+    string ImgVersion = ConfigHelper.ImgVersion;
+    string CssVersion = ConfigHelper.CssVersion;
+    string JSVersion = ConfigHelper.JsVersion;
+}
+
+@section styles {
+    <!--页面独有样式-->
+    <link href="~/Content/css/active/0701.css?v=@CssVersion" rel="stylesheet">
+    <link rel="apple-touch-icon-precomposed" href="~/Content/Images/active/0701/shareImg.jpg?v=@CssVersion" />
+    <!--页面独有样式 END-->
+}
+
+<!-- 页头 使用公共页头-->
+@section pageHeader {
+    @Html.Partial("~/Views/Shared/_HeaderTop.cshtml")
+}
+
+<!--专题内容-->
+<div class="hide">
+    <img src="~/Content/Images/active/0701/shareImg.jpg?v=@ImgVersion">
+</div>
+<img src="~/Content/Images/active/0701/banner.jpg?v=@ImgVersion" class="w100 show">
+<div class="con">
+    <a href="http://www.wdnzmt9.com/brand/2.html" target="_self">
+        <img src="~/Content/Images/active/0701/img1.jpg?v=20160519" alt="诗妙健" class="w100 show">
+    </a>
+    <a href="http://www.wdnzmt9.com/item.html?productCode=10150308886925" target="_self">
+        <img data-original="/Content/Images/active/0701/img2.jpg?v=20160519" alt="诗妙健 0-6个月初生婴儿" class="w100 show lazyloadImg">
+    </a>
+    <a href="http://www.wdnzmt9.com/item.html?productCode=10150308886926" target="_self">
+        <img data-original="/Content/Images/active/0701/img3.jpg?v=20160519" alt="诗妙健 6-12个月较大婴儿" class="w100 show lazyloadImg">
+    </a>
+    <a href="http://www.wdnzmt9.com/item.html?productCode=10150308886927" target="_self">
+        <img data-original="/Content/Images/active/0701/img4.jpg?v=20160519" alt="诗妙健 12-36个月幼童" class="w100 show lazyloadImg">
+    </a>
+    <div class="con1 w100">
+        <div class="categoryList w100 clearfix">
+            <a href="http://www.wdnzmt9.com/product/index?level=2&c=10020" target="_self">
+                <img data-original="/Content/Images/active/0701/img5.jpg?v=20160519" alt="婴儿护理及清洁用品" class=" w100 show lazyloadImg">
+            </a>
+            <a href="http://www.wdnzmt9.com/product/index?level=2&c=10021" target="_self">
+                <img data-original="/Content/Images/active/0701/img6.jpg?v=20160519" alt="婴儿常用用品" class="w100 show lazyloadImg">
+            </a>
+            <a href="http://www.wdnzmt9.com/product/index?level=2&c=10007" target="_self">
+                <img data-original="/Content/Images/active/0701/img7.jpg?v=20160519" alt="儿童专科保健" class="w100 show lazyloadImg">
+            </a>
+        </div>
+        <div class="w95p con2">
+            <p class="boxFlexWrap"><span class="boxFlex">&nbsp;活动起止时间：2016年7月1日至2016年7月14日</span></p>
+        </div>
+    </div>
+</div>
+
+<!--专题内容 END-->
+@section scripts {
+    <!--页面独有脚本-->
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.lazyload.js?v=@JSVersion"></script>
+    <script type="text/javascript" src="~/Scripts/active/0701.js?v=@JSVersion"></script>
+    <!--页面独有脚本 END-->
+}

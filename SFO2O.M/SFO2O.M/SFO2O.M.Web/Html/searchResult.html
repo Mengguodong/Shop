@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="no">
+<meta name="format-detection" content="telephone=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit">
+<title>爱玖网购物商城-商品列表</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="../Content/css/base.css?v=201512150001" rel="stylesheet">
+<!--页面独有样式-->
+<link href="../Content/css/producList.css?v=201512150001" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../Content/css/search.css?v=20160622">
+<!--页面独有样式 END-->
+</head>
+<body>
+<!-- 如果直接进到第三级类目 -->
+<div class="MContainer" id="MContainer">
+	<!-- 页头 -->
+	<header class="pageHeader w100 pr">
+        <a class="returnBtn" id="returnBtn"></a>
+        <div class="searchBox">
+            <i></i>
+            <input type="search" name="" id="search"/>
+            <em class="hide" id="delete"></em>
+        </div>
+        <div class="headerCart cartPos"><span>12</span></div>
+    </header>
+    <!-- 页头 end -->
+    <!-- 有商品 -->
+    <!-- 筛选 -->
+	<div class="screenBox whiteOnLine mb8 hide " id="sortType">
+	    <div class="active" id="new">
+	        <a>上新排序</a>
+	    </div>
+	    <div class="price" id="price">
+	        <a>价格<i></i></a>
+	    </div>
+	    <div class="discount" id="discount">
+	        <a>折扣<i></i></a>
+	    </div>
+	    <div class="select" id="select">
+	        <a href="javascript:;">筛选<i></i></a>
+	    </div>
+	</div>
+    <!-- 筛选 end -->
+    <div class="list productList w95p" id="productList">
+        <div class="w100 clearfix">
+        	
+        </div>
+        <div id="loadMore" class="loadMore"></div>
+    </div>
+    <!-- 有商品end -->
+</div>
+
+
+<script src="../Scripts/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../Scripts/jquery/fly/jquery.fly.min.js"></script>
+<script type="text/javascript" src="../Scripts/jquery/jquery.dialog.js"></script>
+<script type="text/javascript" src="../Scripts/common/common.js?v=201512160001"></script>
+<script type="text/javascript" src="../Scripts/jquery/jquery.lazyload.js?v=20160627"></script>">
+<!--页面独有脚本-->
+<script type="text/javascript" src="../Scripts/searchResult.js?v=20160622"></script>
+<!--页面独有脚本 END-->
+</body>
+</html>

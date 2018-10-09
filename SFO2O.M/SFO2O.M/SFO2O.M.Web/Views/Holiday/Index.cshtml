@@ -1,0 +1,45 @@
+﻿@using SFO2O.M.Controllers
+@using SFO2O.M.Controllers.Common
+@using SFO2O.Utility.Uitl
+@{
+    this.ViewBag.Title = "中秋月饼";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    string CssVersion = ConfigHelper.CssVersion;
+    string JsVersion = ConfigHelper.JsVersion;
+}
+@section styles{
+    <link href="/Content/css/active/template.css?v=20160508" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/Content/css/active/mooncake.css?v=20160727">
+    <link rel="apple-touch-icon-precomposed" href="." />
+}
+@section scripts{
+    <script src="~/Scripts/jquery/jquery.lazyload.js?v=@ConfigHelper.JsVersion"></script>
+    <script type="text/javascript" src="/Scripts/active/mooncake.js?v=@JsVersion"></script>
+}
+
+@section pageHeader{
+    <!-- 页头 -->
+    <header class="pageHeader w100 pr tc">
+        <a class="returnBtn" id="returnBtn"></a>
+        <b class="f36 FontColor1">中秋月饼</b>
+        <div class="flowerMenu" onclick="FSH.menuDialog()"></div>
+    </header>
+    <!-- 页头 使用公共页头-->
+}
+<input type="hidden" id="shareParam" value="">
+<!--banner start-->
+<div class="banner tc pr">
+    <img src="/Content/Images/active/moonCake/banner1.jpg?v=20160727" />
+    <img src="/Content/Images/active/moonCake/banner2.jpg?v=20160727" />
+    <div class="text">
+        <p class="f24 w95p" style="line-height:24px;">
+            订购月饼开始啦！<span style="color:#ffe500">8月8日-9月2日</span>期间订购月饼，中华人民共和国大陆地区直送，
+            全场月饼全场包邮哦~
+        </p>
+    </div>
+</div>
+<!--banner end-->
+<!-- 商品列表 start -->
+@Html.Action("GetProductList", new { cid = 10163, level = 2, sort = 2, pageindex = 1, pagesize = 1000 })
+<!-- 商品列表 end -->

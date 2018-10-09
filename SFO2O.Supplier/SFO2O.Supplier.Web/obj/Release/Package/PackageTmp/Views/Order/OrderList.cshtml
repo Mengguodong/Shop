@@ -1,0 +1,623 @@
+﻿@using SFO2O.Supplier.Models;
+@using SFO2O.Supplier.Common;
+@model PageOf<OrderListInfoModel>
+
+@{
+    ViewBag.Title = "订单列表";
+    ViewBag.PageName = "OrderList";
+
+    var orderstatus = EnumHelper.ConvertToDict<OrderStatus>();
+    PageOf<OrderListInfoModel> orderChina = new PageOf<OrderListInfoModel>();
+
+    orderChina = ViewBag.ChinaOrder;
+
+    if (orderChina == null || orderChina.Items == null)
+    {
+        orderChina = new PageOf<OrderListInfoModel>();
+        orderChina.Items = new List<OrderListInfoModel>();
+    }
+
+    PageOf<OrderListInfoModel> orderHK = ViewBag.HKOrder;
+
+    if (orderHK == null || orderHK.Items == null)
+    {
+        orderHK = new PageOf<OrderListInfoModel>();
+        orderHK.Items = new List<OrderListInfoModel>();
+    }
+
+    var orderChinaGroup = orderChina.Items.GroupBy(x => x.OrderCode);
+
+    var orderHKGroup = orderHK.Items.GroupBy(x => x.OrderCode);
+
+    OrderQueryInfo queryInfo = ViewBag.QueryInfo;
+
+    OrderTotalInfo ordertotalCN = ViewBag.OrderTotalCN;
+    //OrderTotalInfo ordertotalHK = ViewBag.OrderTotalHK;
+
+
+    if (ordertotalCN == null)
+    {
+        ordertotalCN = new OrderTotalInfo();
+    }
+    //if (ordertotalHK == null)
+    //{
+    //    ordertotalHK = new OrderTotalInfo();
+    //}
+
+}
+
+<div class="cont_right_crumb"><span class="homepage"></span>&gt; 订单管理 &gt; 订单列表</div>
+<div class="w931">
+    <div class="upload_edit mg_t20">
+        <div class="wrap_yisc bor_bg pd_t5">
+            <div class="list_yisc bor clearfix">
+                @using (Html.BeginForm(null, null, FormMethod.Get))
+                {
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">下单时间：</span>
+                        <div class="bor f_l fff_bor" style="width: 123px; height: 29px; overflow: hidden;">
+                            <input type="text" id="StartTime" class="Wdate" name="StartTime" onclick="WdatePicker({ isShowClear: true, isShowOK: true, isShowToday: true })" value="@queryInfo.startTime.ToString("yyyy-MM-dd")" />
+                        </div>
+                        <em class="f_l mg_l5 mg_r5 lineH30">至</em>
+                        <div class="bor f_l fff_bor" style="width: 123px; height: 29px; overflow: hidden;">
+                            <input type="text" id="EndTime" class="Wdate" name="EndTime" onclick="WdatePicker({ isShowClear: true, isShowOK: true, isShowToday: true })" value="@queryInfo.endTime.ToString("yyyy-MM-dd")" />
+                        </div>
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">订单状态：</span>
+                        <div class="f_l" style="width: 140px;">
+                            <select id="orderStatus" name="orderStatus">
+                                <option value="-1" selected="selected">全部</option>
+                                @foreach (var item in orderstatus)
+                                {
+                                    if (item.Key == queryInfo.orderSatus)
+                                    {
+                                        <option value="@item.Key" selected="selected">@item.Value</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.Key">@item.Value</option>
+                                    }
+                                }
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">订单编号：</span>
+                        <input type="text" class="f_l bor" style="width: 262px;" id="OrderCode" name="OrderCode" value="@queryInfo.orderCode">
+                    </div>
+                    <div class="f_l" style="width: 100%;"><a href="javascript:void(0)" class="btn_green w160 mg_l20 mg_r20 mg_t10" id="search">搜 寻</a> </div>
+                }
+            </div>
+
+            <div id="TotalliDiv1" style="display:@(ViewBag.ReceiptCountry == 0 || ViewBag.ReceiptCountry == 1 ? "" : "none") ;">
+                <table style="width: 908px;" class="mg_l10 mg_r10 mg_t20 bor bg_fff f15 t_c table_lineH43">
+                    <tr class="bg_ebebeb color_838383">
+                        <th width="78"></th>
+                        <th width="130">买家数</th>
+                        <th width="130">订单数</th>
+                        <th width="130">商品数</th>
+                        <th width="180">商品总金额</th>
+                        <th width="130">总运费</th>
+                        <th width="130">单均价</th>
+                    </tr>
+                    <tr>
+                        <td>合计</td>
+                        <td>@ordertotalCN.BuyerCount</td>
+                        <td>@ordertotalCN.OrderCount</td>
+                        <td>@ordertotalCN.ProductCount</td>
+                        <td>￥ @ordertotalCN.OrderAmountTotal</td>
+                        <td>￥ @ordertotalCN.FreightTotal</td>
+                        <td>￥ @(ordertotalCN.OrderCount == 0 ? "0" : (ordertotalCN.OrderAmountTotal / ordertotalCN.OrderCount).ToString("N2"))</td>
+                    </tr>
+                </table>
+            </div>
+            @*<div id="TotalliDiv2" style="display:@(ViewBag.ReceiptCountry == 2 ? "" : "none") ;">
+                <table style="width: 908px;" class="mg_l10 mg_r10 mg_t20 bor bg_fff f15 t_c table_lineH43">
+                    <tr class="bg_ebebeb color_838383">
+                        <th width="78"></th>
+                        <th width="130">买家数</th>
+                        <th width="130">订单数</th>
+                        <th width="130">商品数</th>
+                        <th width="180">商品总金额</th>
+                        <th width="130">单均价</th>
+                    </tr>
+                    <tr>
+                        <td>合计</td>
+                        <td>@ordertotalHK.BuyerCount</td>
+                        <td>@ordertotalHK.OrderCount</td>
+                        <td>@ordertotalHK.ProductCount</td>
+                        <td>￥ @ordertotalHK.OrderAmountTotal</td>
+                        <td>￥ @(ordertotalHK.OrderCount == 0 ? "0" : (ordertotalHK.OrderAmountTotal / ordertotalHK.OrderCount).ToString("N2"))</td>
+                    </tr>
+                </table>
+            </div>*@
+            <div class="tongji_title mg_t30 mg_l10 clearfix">
+                <span class="tongji_title_l f_l mg_t5">订单列表</span>
+                @Html.ActionLink("导出", "ExportOrderList",
+                    new
+                    {
+                        startTime = queryInfo.startTime,
+                        endTime = queryInfo.endTime,
+                        orderStatus = queryInfo.orderSatus,
+                        orderCode = queryInfo.orderCode
+                    }, new { @class = "btn_daochu f_l mg_l20 f12 ftfml_sun" })
+
+
+            </div>
+            <div class="mg_t5 fuwb_wrap dingdglist mg_l10">
+                <ul class="check_title clearfix" id="ulDetail">
+                    <li data-for="liDiv1" class="@(ViewBag.ReceiptCountry == 0 || ViewBag.ReceiptCountry == 1 ? "current" : "") "><a href="javascript:void(0)" class="clearfix"><span>订单信息</span><i></i></a></li>
+                    @*<li data-for="liDiv2" class="@(ViewBag.ReceiptCountry == 2 ? "current" : "")"><a href="javascript:void(0)" class="clearfix"><span>香港地区订单</span><i></i></a></li>*@
+                </ul>
+                <div id="liDiv1" class="wrap_yisc mg_r10" style="margin-bottom: 0; border-bottom: none;display:@(ViewBag.ReceiptCountry == 0 || ViewBag.ReceiptCountry == 1 ? "" : "none") ;">
+                    <div>
+                        <table style="position: relative; width: 1250px;" class="bg_fff f15 t_c table_bor vtop bor">
+                            <tbody>
+                                <tr class="t_c bg_f8f8f8 table_lineH43">
+                                    <th width="168">订单号</th>
+                                    <th width="112">生成时间</th>
+                                    <th width="352">商品名称</th>
+                                    <th width="102">单价</th>
+                                    <th width="82">数量</th>
+                                    <th width="112">小计</th>
+                                    <th width="132">商品总金额</th>
+                                    <th width="132">支付金额</th>
+                                    <th width="90">状态</th>
+                                    <th width="100">操作</th>
+                                </tr>
+
+                                @{
+                                    if (orderChinaGroup.Count() > 0)
+                                    {
+                                        foreach (var order in orderChinaGroup)
+                                        {
+                                            var orderFirst = order.First();
+                                            var totalAmountRMB = order.Sum(p => p.UnitPrice * p.Quantity);
+                                            //var totalAmountHK = order.Sum(p => p.UnitPrice * p.Quantity);
+                                            var orderAmount = orderFirst.TotalAmount;
+                                            <tr class="lineH22">
+                                                <td class="bor_none_l" rowspan="@order.Count()">
+                                                    <p class="pd10">@orderFirst.OrderCode</p>
+                                                </td>
+                                                <td rowspan="@order.Count()">
+                                                    <p class="pd_t10 pd_l10 pd_r10">@orderFirst.CreateTime.ToString("yyyy-MM-dd")</p>
+                                                    <p><em class="col_999">@orderFirst.CreateTime.ToString("HH:mm:ss")</em></p>
+                                                </td>
+                                                <td class="t_l bor_none_r">
+                                                    <div class="clearfix">
+                                                        <a href="@Url.Action("PublishedList", "Product", new { Sku = orderFirst.Sku })" target="_blank">
+                                                            <img src="@(SFO2O.Supplier.Common.ConfigHelper.ImageServer + orderFirst.ProductImagePath.Replace(".jpg", "_180.jpg"))" class="f_l mg10" />
+                                                        </a>
+                                                        <div class="f_l w240">
+                                                            <p class="pd_r10 pd_t10 mg_b5 substr"><a href="@Url.Action("ViewProduct", "Product", new { Spu = orderFirst.Spu })" target="_blank" class="hover_color">@(orderFirst.Name.Length > 15 ? orderFirst.Name.Substring(0, 15) + "..." : orderFirst.Name)</a></p>
+                                                            @if (!string.IsNullOrEmpty(orderFirst.MainDicValue))
+                                                            {
+                                                                <p class="f14 col_999">@orderFirst.MainDicValue：@orderFirst.MainValue</p>
+                                                            }
+                                                            @if (!string.IsNullOrEmpty(orderFirst.SubDicValue))
+                                                            {
+                                                                <p class="f14 col_999 mg_b10">@orderFirst.SubDicValue：@orderFirst.SubValue</p>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="bor_none_r bor_none_l">
+                                                    <p class="pd10">￥@orderFirst.PayUnitPrice</p>
+                                                </td>
+                                                <td class="bor_none_r bor_none_l">
+                                                    <p class="pd10">@orderFirst.Quantity</p>
+                                                </td>
+                                                <td class="bor_none_l">
+                                                    <p class="pd10">￥@(orderFirst.PayUnitPrice * orderFirst.Quantity)</p>
+                                                </td>
+                                                <td rowspan="@order.Count()">
+                                                    <p class="pd_l10 pd_r10 pd_t10 color_red">￥ @totalAmountRMB.ToString("N2")</p>
+                                                </td>
+                                                <td rowspan="@order.Count()">
+                                                    <p class="pd_l10 pd_r10 pd_t10 color_red">￥ @orderAmount.ToString("N2")</p>
+                                                </td>
+                                                <td rowspan="@order.Count()">
+                                                    <p class="pd10 color_red">@(EnumHelper.GetDescription(orderFirst.OrderStatus, typeof(OrderStatus)))</p>
+                                                </td>
+                                                <td class="bor_none_r" rowspan="@order.Count()">
+                                                    <p class="pd5"><a target="_blank" href="/Order/OrderDetail?OrderCode=@orderFirst.OrderCode" class="col_link">订单详情</a></p>
+                                                    @if (orderFirst.OrderStatus == 1)
+                                                    {
+                                                        <p class="pd5"><a href="javascript:void(0)" onclick="InsertExpress('@orderFirst.OrderCode')" class="col_link">确认发货</a></p>
+                                                    }
+                                                    @if (orderFirst.OrderStatus == 2)
+                                                    {
+                                                        <p class="pd5"><a href="javascript:void(0)" onclick="UpdateExpress('@orderFirst.OrderCode')" class="col_link">运单编辑</a></p>
+                                                    }
+                                                </td>
+                                            </tr>
+
+
+                                            foreach (var o in order.Skip(1))
+                                            {
+                                                <tr class="lineH22">
+                                                    <td class="t_l bor_none_r">
+                                                        <div class="clearfix">
+                                                            <a href="@Url.Action("ViewProduct", "Product", new { Spu = o.Spu })" target="_blank">
+                                                                <img src="@(SFO2O.Supplier.Common.ConfigHelper.ImageServer + o.ProductImagePath.Replace(".jpg", "_180.jpg"))" class="f_l mg10" />
+                                                            </a>
+                                                            <div class="f_l w240">
+                                                                <p class="pd_r10 pd_t10 mg_b5 substr"><a href="@Url.Action("PublishedList", "Product", new { Sku = o.Sku })" target="_blank" class="hover_color">@(o.Name.Length > 15 ? o.Name.Substring(0, 15) + "..." : o.Name)</a></p>
+                                                                @if (!string.IsNullOrEmpty(o.MainDicValue))
+                                                                {
+                                                                    <p class="f14 col_999">@o.MainDicValue：@o.MainValue</p>
+                                                                }
+                                                                @if (!string.IsNullOrEmpty(o.SubDicValue))
+                                                                {
+                                                                    <p class="f14 col_999 mg_b10">@o.SubDicValue：@o.SubValue</p>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="bor_none_r bor_none_l">
+                                                        <p class="pd10">￥@o.PayUnitPrice</p>
+                                                    </td>
+                                                    <td class="bor_none_r bor_none_l">
+                                                        <p class="pd10">@o.Quantity</p>
+                                                    </td>
+                                                    <td class="bor_none_l">
+                                                        <p class="pd10">￥@(o.PayUnitPrice * o.Quantity)</p>
+                                                    </td>
+                                                </tr>
+                                            }
+
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td class="vtop" colspan="9">
+                                                <p class="color_green pd_l20 t_l mg_t20 mg_b20">没有符合条件的订单信息！</p>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="div_form_insertExpress" class="win_cont pd_l20 pd_r20" style="display:none">
+                        <form id="dialogForm">
+                            <div class="box_choose f_l">
+                                <span style="float:left">物流公司：</span>
+                                @*<input type="text" class="f_l bor" style="width: 200px;" id="insert_expressCompany" name="expressCompany" value="德邦物流" readonly="readonly">*@
+                                <select style="width:214px;height:31px;font-size:14px;" id="insert_expressCompany">
+                                    <option value="德邦物流">德邦物流</option>
+                                    <option value="宅急送">宅急送</option>
+                                </select>
+                            </div>
+                            <div class="box_choose f_l">
+                                <span style="float:left">运单编号：</span>
+                                <input type="text" class="f_l bor" style="width: 200px;" id="insert_expressCode" name="expressCode">
+                            </div>
+                            <div class="box_choose f_l">
+                                <span style="float:left">快递费用：</span>
+                                <input type="text" class="f_l bor" style="width: 200px;" id="insert_freight" name="freight">
+                            </div>
+                        </form>
+                        <div class="f_1" style="width: 50%;"><a href="javascript:void(0)" class="btn_green w60" id="insert_isOk" style="float:left; margin-left:30px;">确 定</a> </div>
+                        <div class="f_1" style="width: 50%;"><a href="javascript:void(0)" class="btn_green w60" id="insert_cancel" style="float:right;">取 消</a> </div>
+                    </div>
+                    <div id="div_form_updateExpress" class="win_cont pd_l20 pd_r20" style="display:none">
+                        <form id="dialogForm">
+                            <div class="box_choose f_l">
+                                <span style="float:left">物流公司：</span>
+                                <input type="text" class="f_l bor" style="width: 200px;" id="update_expressCompany" name="update_expressCompany" value="">
+                            </div>
+                            <div class="box_choose f_l">
+                                <span style="float:left">运单编号：</span>
+                                <input type="text" class="f_l bor" style="width: 200px;" id="update_expressCode" name="update_expressCode" value="">
+                            </div>
+                        </form>
+                        <div class="f_1" style="width: 50%;"><a href="javascript:void(0)" class="btn_green w60" id="update_isOk" style="float:left; margin-left:30px;">确 定</a> </div>
+                        <div class="f_1" style="width: 50%;"><a href="javascript:void(0)" class="btn_green w60" id="update_cancel" style="float:right;">取 消</a> </div>
+                    </div>
+                    <div class="page">
+                        @if (orderChina != null && orderChina.Items.Count > 0)
+                        {
+                            int pageIndex = ViewBag.ReceiptCountry == 1 || ViewBag.ReceiptCountry == 0 ? orderChina.PageIndex : ViewBag.Page;
+                            @Html.ShowFPage(Url.Action("OrderList"
+                        , new
+                        {
+                            PageNo = "{0}",
+                            StartTime = queryInfo.startTime,
+                            EndTime = queryInfo.endTime,
+                            OrderCode = queryInfo.orderCode,
+                            receiptCountry = 1,
+                            page = ViewBag.Page,
+                            orderStatus = queryInfo.orderSatus
+                        })
+                        , pageIndex
+                        , orderChina.PageSize
+                        , orderChina.Total)
+                            <p class="f14 mg_l20 mg_b5 inline">
+                                共<em class="color_green pd_l10 pd_r10"> @(orderChina.RowCount) </em>条数据
+                            </p>
+                        }
+                    </div>
+                </div>
+
+                <div id="liDiv2" class="wrap_yisc mg_r10" style="margin-bottom: 0; border-bottom: none; display: @(ViewBag.ReceiptCountry == 2 ? "" : "none") ;">
+                    <div>
+                        <table style="position: relative; width: 1080px;" class="bg_fff f15 t_c table_bor vtop bor">
+                            <tbody>
+                                <tr class="t_c bg_f8f8f8 table_lineH43">
+                                    <th width="168">订单号</th>
+                                    <th width="112">生成时间</th>
+                                    <th width="352">商品名称</th>
+                                    <th width="102">单价</th>
+                                    <th width="82">数量</th>
+                                    <th width="112">小计</th>
+                                    <th width="132">商品总金额</th>
+                                    <th width="90">状态</th>
+                                    <th width="100">操作</th>
+                                </tr>
+
+                                @{
+                                    if (orderHKGroup.Count() > 0)
+                                    {
+                                        foreach (var order in orderHKGroup)
+                                        {
+                                            var orderFirst = order.First();
+                                            //var totalAmountRMB = order.Sum(p => p.PayUnitPrice * p.Quantity);
+                                            var totalAmountRMB =orderFirst.TotalAmount;
+                                            //var totalAmountHK = order.Sum(p => p.UnitPrice * p.Quantity);
+                                            <tr class="lineH22">
+                                                <td class="bor_none_l" rowspan="@order.Count()">
+                                                    <p class="pd10">@orderFirst.OrderCode</p>
+                                                </td>
+                                                <td rowspan="4">
+                                                    <p class="pd_t10 pd_l10 pd_r10">@orderFirst.CreateTime.ToString("yyyy-MM-dd")</p>
+                                                    <p><em class="col_999">@orderFirst.CreateTime.ToString("HH:mm:ss")</em></p>
+                                                </td>
+                                                <td class="t_l bor_none_r">
+                                                    <div class="clearfix">
+                                                        <a href="@Url.Action("PublishedList", "Product", new { Sku = orderFirst.Sku })" target="_blank">
+                                                            <img src="@(SFO2O.Supplier.Common.ConfigHelper.ImageServer + orderFirst.ProductImagePath.Replace(".jpg", "_180.jpg"))" class="f_l mg10" />
+                                                        </a>
+                                                        <div class="f_l w240">
+                                                            <p class="pd_r10 pd_t10 mg_b5 substr"><a href="@Url.Action("PublishedList", "Product", new { Sku = orderFirst.Sku })" target="_blank" class="hover_color">@(orderFirst.Name.Length > 15 ? orderFirst.Name.Substring(0, 15) + "..." : orderFirst.Name)</a></p>
+                                                            @if (!string.IsNullOrEmpty(orderFirst.MainDicValue))
+                                                            {
+                                                                <p class="f14 col_999">@orderFirst.MainDicValue：@orderFirst.MainValue</p>
+                                                            }
+                                                            @if (!string.IsNullOrEmpty(orderFirst.SubDicValue))
+                                                            {
+                                                                <p class="f14 col_999 mg_b10">@orderFirst.SubDicValue：@orderFirst.SubValue</p>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="bor_none_r bor_none_l">
+                                                    <p class="pd10">￥@orderFirst.PayUnitPrice </p>
+                                                </td>
+                                                <td class="bor_none_r bor_none_l">
+                                                    <p class="pd10">@orderFirst.Quantity</p>
+                                                </td>
+                                                <td class="bor_none_l">
+                                                    <p class="pd10">￥@(orderFirst.PayUnitPrice * orderFirst.Quantity)</p>
+                                                </td>
+                                                <td rowspan="4">
+                                                    <p class="pd_l10 pd_r10 pd_t10 color_red">￥ @totalAmountRMB.ToString("N2")</p>
+                                                </td>
+                                                <td rowspan="4">
+                                                    <p class="pd10 color_red">@(EnumHelper.GetDescription(orderFirst.OrderStatus, typeof(OrderStatus)))</p>
+                                                </td>
+                                                <td class="bor_none_r" rowspan="@order.Count()">
+                                                    <p class="pd5"><a target="_blank" href="/Order/OrderDetail?OrderCode=@orderFirst.OrderCode" class="col_link">订单详情</a></p>
+                                                    @if (orderFirst.OrderStatus == 2 || orderFirst.OrderStatus == 3)
+                                                    {
+                                                        <p class="pd5"><a href="javascript:void(0)" onclick="ShowLogistics('@orderFirst.ExpressList')" class="col_link">查看物流</a></p>
+                                                    }
+                                                    @if (orderFirst.RefundQuantity > 0 && (orderFirst.OrderStatus == 3 || orderFirst.OrderStatus == 4 || orderFirst.OrderStatus == 5))
+                                                    {
+                                                        <p class="pd5"><a target="_blank" href="/Refund/RefundList?OrderCode=@orderFirst.OrderCode" class="col_link">查看退款单</a></p>
+                                                    }
+                                                </td>
+                                            </tr>
+
+                                            foreach (var o in order.Skip(1))
+                                            {
+                                                <tr class="lineH22">
+                                                    <td class="t_l bor_none_r">
+                                                        <div class="clearfix">
+                                                            <a href="@Url.Action("PublishedList", "Product", new { Sku = orderFirst.Sku })" target="_blank">
+                                                                <img src="@(SFO2O.Supplier.Common.ConfigHelper.ImageServer + o.ProductImagePath.Replace(".jpg", "_180.jpg"))" class="f_l mg10" />
+                                                            </a>
+                                                            <div class="f_l w240">
+                                                                <p class="pd_r10 pd_t10 mg_b5 substr"><a href="@Url.Action("PublishedList", "Product", new { Sku = o.Sku })" target="_blank" class="hover_color">@(o.Name.Length > 15 ? o.Name.Substring(0, 15) + "..." : o.Name)</a></p>
+                                                                @if (!string.IsNullOrEmpty(o.MainDicValue))
+                                                                {
+                                                                    <p class="f14 col_999">@o.MainDicValue：@o.MainValue</p>
+                                                                }
+                                                                @if (!string.IsNullOrEmpty(o.SubDicValue))
+                                                                {
+                                                                    <p class="f14 col_999 mg_b10">@o.SubDicValue：@o.SubValue</p>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="bor_none_r bor_none_l">
+                                                        <p class="pd10">￥@o.PayUnitPrice</p>
+                                                    </td>
+                                                    <td class="bor_none_r bor_none_l">
+                                                        <p class="pd10">@o.Quantity</p>
+                                                    </td>
+                                                    <td class="bor_none_l">
+                                                        <p class="pd10">￥@(o.PayUnitPrice * o.Quantity)</p>
+                                                    </td>
+                                                </tr>
+                                            }
+
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td class="vtop" colspan="9">
+                                                <p class="color_green pd_l20 t_l mg_t20 mg_b20">没有符合条件的订单信息！</p>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="page">
+                        @if (orderHK != null && orderHK.Items.Count > 0)
+                        {
+                            int pageIndex = ViewBag.ReceiptCountry == 2 ? orderHK.PageIndex : ViewBag.Page;
+                            @Html.ShowFPage(Url.Action("OrderList"
+                        , new
+                        {
+                            PageNo = "{0}",
+                            StartTime = queryInfo.startTime,
+                            EndTime = queryInfo.endTime,
+                            OrderCode = queryInfo.orderCode,
+                            receiptCountry = 2,
+                            page = ViewBag.Page,
+                            orderStatus = queryInfo.orderSatus
+                        })
+                        , pageIndex
+                        , orderHK.PageSize
+                        , orderHK.Total)
+                            <p class="f14 mg_l20 mg_b5 inline">
+                                共<em class="color_green pd_l10 pd_r10"> @(orderHK.RowCount) </em>条数据
+                            </p>
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Script("~/Scripts/Order/OrderList.js")
+<script type="text/javascript">
+
+
+    function InsertExpress(orderId) {
+        orderIdRes = orderId;
+        index = layer.open({
+            type: 1,
+            title: "物流信息",
+            content: $("#div_form_insertExpress"),
+            area: ['380px', '250px'],
+            end: function () {
+            }
+        });
+    }
+
+    var index = -1;
+    var orderIdRes = '';
+    $("#insert_isOk").click(function () {
+        var expressCompany = $("#insert_expressCompany").val();
+        var expressCode = $("#insert_expressCode").val();
+        var freight = $("#insert_freight").val();
+        if (expressCompany != '' && expressCode != '' && freight != '') {
+            $.ajax({
+                url: "/Order/ComfirmSendGoods",
+                type: "post",
+                data: { orderId: orderIdRes, expressCompany: expressCompany, expressCode: expressCode, freight: freight },
+                dataType: "json",
+                success: function (data) {
+                    if (data.result) {
+                        layer.open({
+                            content: data.msg
+      , btn: ['确定']
+      , yes: function (index, layero) {
+          window.history.go(0);
+      }
+                        });
+                        layer.close(index);
+                    } else {
+                        layer.alert(data.msg, { shift: 6 });
+                    }
+                },
+                error: function () {
+                    alert("出错了哦");
+                },
+                yes: function () {
+                    alert("点击确定了");
+                }
+            });
+        }
+    });
+
+    $("#insert_cancel").click(function () {
+        layer.close(index);
+    })
+
+    function UpdateExpress(orderId) {
+        orderIdRes = orderId;
+
+        $.ajax({
+            url: "/Order/GetOrderExpress",
+            type: "post",
+            data: { orderId: orderIdRes },
+            dataType: "json",
+            success: function (data) {
+                if (data.result != '0') {
+
+                    $("#update_expressCompany").val(data.ExpressCompany);
+                    $("#update_expressCode").val(data.ExpressList);
+
+                } else {
+                    alert("加载异常！");
+                }
+            },
+            error: function () {
+                alert("出错了哦");
+            }
+
+        });
+        index = layer.open({
+            type: 1,
+            title: "物流信息",
+            content: $("#div_form_updateExpress"),
+            area: ['380px', '250px'],
+            end: function () {
+            }
+        });
+    }
+
+    var index = -1;
+    var orderIdRes = '';
+    $("#update_isOk").click(function () {
+        var expressCompany = $("#update_expressCompany").val();
+        var expressCode = $("#update_expressCode").val();
+        if (expressCompany != '' && expressCode != '') {
+            $.ajax({
+                url: "/Order/UpdateOrderInfo",
+                type: "post",
+                data: { orderId: orderIdRes, expressCompany: expressCompany, expressCode: expressCode },
+                dataType: "json",
+                success: function (data) {
+                    if (data.result) {
+                        layer.alert(data.msg, { shift: 6 });
+                        layer.close(index);
+                    } else {
+                        layer.alert(data.msg, { shift: 6 });
+                    }
+                },
+                error: function () {
+                    alert("出错了哦");
+                }
+            });
+        }
+    });
+
+    $("#update_cancel").click(function () {
+        layer.close(index);
+    })
+</script>

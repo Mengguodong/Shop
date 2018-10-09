@@ -1,0 +1,61 @@
+﻿@using SFO2O.Supplier.Models;
+@using SFO2O.Supplier.Common;
+@model List<SFO2O.Supplier.Models.Category.CategoryAttrModel>
+@{
+    ViewBag.Title = "商品上传";
+    ViewBag.PageName = "ProductList";
+    var categoryModel = ViewBag.CategoryModel;
+
+}
+
+<div class="cont_right_crumb"><span class="homepage"></span>&gt; 商品管理 &gt; 商品上传</div>
+<div class="w931 ">
+    @if (ViewBag.Action != "edit")
+    {
+        <!-- 上传商品 三部曲  -->
+        <div class="step_wrap clearfix t_c">
+            <div class="step active firststep">
+                <div class="detail">
+                    <div class="step_part">
+                        选择类目<br />
+                        <span>1</span>
+                    </div>
+                </div>
+            </div>
+            <div class="step active">
+                <div class="detail">
+                    <div class="step_part">
+                        填写商品资讯<br />
+                        <span>2</span>
+                    </div>
+                </div>
+            </div>
+            <div class="step active">
+                <div class="detail">
+                    <div class="step_part">
+                        商品上传成功<br />
+                        <span>3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product_success bor mg_t30 clearfix">
+            <img src="../Content/Images/p_success.png" class="f_l mg_r40" />
+            <h2 class="success_title mg_t20 mg_b30 f_l">恭喜，您的商品信息已经上传成功！</h2>
+            <p class="success_txt f_l">商品需要进行人工审核，审核通过之后会自动发布并按预定日期上架，请您耐心等待，</p>
+            <p class="success_txt f_l">在 <a href="/Product/EditList">管理商品--审核中商品</a> 中，可以查看商品发布状态。</p>
+            <div class="btn_wrap mg_t20 pd_t30 mg_l40 pd_l40 f_l"><a href="/Product/PublishedList" class="btn_white btn_w178">管理商品</a><a href="/Product/ProductList" class="btn_green btn_w178 mg_l30">上传更多商品</a></div>
+        </div>
+    }
+    else
+    {
+        <div class="product_success bor mg_t30 clearfix">
+            <img src="../Content/Images/p_success.png" class="f_l mg_r40" />
+            <h2 class="success_title mg_t20 mg_b30 f_l">商品信息修改内容已提交审核！</h2>
+            <p class="success_txt f_l">商品信息修改需要进行人工审核，审核通过之后会自动更新修改内容，请您耐心等待，</p><p class="success_txt f_l">在更新审核过程中，不影响在售商品的销售和提示。</p>
+            <p class="success_txt f_l">在 <a href="/Product/EditList">管理商品--审核中商品</a> 中，可以查看商品审核状态。</p>
+            <div class="btn_wrap mg_t20 pd_t30 mg_l40 pd_l40 f_l"><a href="/Product/PublishedList" class="btn_white btn_w178">管理商品</a></div>
+        </div>
+    }
+</div>

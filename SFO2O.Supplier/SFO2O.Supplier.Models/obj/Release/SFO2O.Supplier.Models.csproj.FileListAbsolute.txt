@@ -1,0 +1,14 @@
+D:\LoveWine\SFO2O.Supplier\SFO2O.Supplier.Models\bin\Release\SFO2O.Supplier.Models.dll
+D:\LoveWine\SFO2O.Supplier\SFO2O.Supplier.Models\bin\Release\SFO2O.Supplier.Models.pdb
+D:\LoveWine\SFO2O.Supplier\SFO2O.Supplier.Models\bin\Release\Common.EntLib.DataExtensions.dll
+D:\LoveWine\SFO2O.Supplier\SFO2O.Supplier.Models\bin\Release\Newtonsoft.Json.dll
+D:\LoveWine\SFO2O.Supplier\SFO2O.Supplier.Models\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\LoveWine\SFO2O.Supplier\SFO2O.Supplier.Models\bin\Release\Microsoft.Practices.ServiceLocation.dll
+D:\LoveWine\SFO2O.Supplier\SFO2O.Supplier.Models\bin\Release\Microsoft.Practices.Unity.dll
+D:\LoveWine\SFO2O.Supplier\SFO2O.Supplier.Models\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\LoveWine\SFO2O.Supplier\SFO2O.Supplier.Models\bin\Release\Microsoft.Practices.Unity.Interception.dll
+D:\LoveWine\SFO2O.Supplier\SFO2O.Supplier.Models\bin\Release\Common.EntLib.DataExtensions.pdb
+D:\LoveWine\SFO2O.Supplier\SFO2O.Supplier.Models\bin\Release\Newtonsoft.Json.xml
+D:\LoveWine\SFO2O.Supplier\SFO2O.Supplier.Models\obj\Release\SFO2O.Supplier.Models.csprojResolveAssemblyReference.cache
+D:\LoveWine\SFO2O.Supplier\SFO2O.Supplier.Models\obj\Release\SFO2O.Supplier.Models.dll
+D:\LoveWine\SFO2O.Supplier\SFO2O.Supplier.Models\obj\Release\SFO2O.Supplier.Models.pdb

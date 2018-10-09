@@ -1,0 +1,10 @@
+﻿.info{
+	color: #696969;
+	font-size: 1.4rem;
+	line-height: 26px;
+	padding-top: 12px;
+}
+.info p{
+	margin-bottom: 8px;
+}
+.info a{ color:#f95e28;}

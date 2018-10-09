@@ -1,0 +1,367 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="no">
+<meta name="format-detection" content="telephone=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit">
+<title>爱玖网购物商城</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="../Content/css/base.css?v=201512150001" rel="stylesheet">
+<!--页面独有样式-->
+<link href="../Content/css/producList.css?v=201512150001" rel="stylesheet">
+<!--页面独有样式 END-->
+</head>
+<body>
+<!-- 如果直接进到第三级类目 -->
+<div class="MContainer" id="MContainer">
+	<!-- 页头 -->
+	<header class="pageHeader w100 pr tc overflowH">
+        <a class="returnBtn" id="returnBtn"></a>
+        <b class="f36 FontColor1">饮品饮料</b>
+		<div class="headerCart cartPos"><span>12</span></div>
+		<div class="flowerMenu" onclick="FSH.menuDialog()"></div>
+    </header>
+    <!-- 页头 end -->
+    <!-- 筛选 -->
+	<div class="screenBox whiteOnLine mb8" id="sortType">
+		<div class="active">
+			<a href="javascript:;">上新排序</a>
+		</div>
+		<div class="price" id="price">
+			<a href="javascript:;">价格<i></i></a>
+		</div>
+		<div class="select" id="select">
+			<a href="javascript:;">筛选<i></i></a>
+		</div>
+	</div>
+    <!-- 筛选 end -->
+    
+    <!-- 商品列表 -->
+	<div class="list productList w95p" id="productList">
+		<div class="w100 clearfix">
+			
+			<div class="item pr">
+				<a href="">
+					<span class="freeSign">免<br>邮</span>
+					<div class="imgBox"><img src="../Content/Images/index/product1.jpg?v=20151215"></div>
+					<div class="title">Greenday 西蘭花西蘭花西蘭花西蘭花</div>
+					<div class="price">￥45</div>
+				</a>
+					<span class="addCart"></span>
+			</div>
+			<div class="item pr">
+				<a href="">
+					<span class="freeSign">免<br>邮</span>
+					<div class="imgBox"><img src="../Content/Images/index/product1.jpg?v=20151215"></div>
+					<div class="title">Greenday 西蘭花西蘭花西蘭花西蘭花</div>
+					<div class="price">￥45</div>
+					<span class="addCart"></span>
+				</a>
+			</div>
+			<div class="item pr">
+				<a href="">
+					<span class="freeSign">免<br>邮</span>
+					<div class="imgBox"><img src="../Content/Images/index/product1.jpg?v=20151215"></div>
+					<div class="title">Greenday 西蘭花西蘭花西蘭花西蘭花</div>
+					<div class="price">￥45</div>
+					<span class="addCart"></span>
+				</a>
+			</div>
+			<div class="item pr">
+				<a href="">
+					<span class="freeSign">免<br>邮</span>
+					<div class="imgBox"><img src="../Content/Images/index/product1.jpg?v=20151215"></div>
+					<div class="title">Greenday 西蘭花西蘭花西蘭花西蘭花</div>
+					<div class="price">￥45</div>
+					<div class="saleOut">已售罄</div>
+				</a>
+			</div>
+			<div id="loadMore" class="loadMore">上滑加载更多</div>
+		</div>
+	</div>
+    <!-- 商品列表end -->
+    <!--页脚-->
+	<p class="loginArea f24 FontColor3 mb20 mt20 w95p">
+		<!--未登录状态显示-->
+		<a class="f24 FontColor3 mr10 ml5" href="#" target="_self">登录</a>|
+		<a class="f24 FontColor3 ml10" href="#" target="_self">注册</a>
+		<!--未登录状态显示 END-->
+		<!--已登录状态显示-->
+		<!--<a class="f24 FontColor3">退出</a>-->
+		<!--已登录状态显示 END-->
+		<a href="javascript:FSH.goTop()" class="fr f24 FontColor3 mr5">回到顶部</a>
+	</p>
+	<footer class="w95p pb10 tc grayOnLine">	
+		<p class="links FontColor3 f24 mt20 mb10">
+			<a class="f24 FontColor3 mr10" href="#" target="_self">常见问题</a>|
+			<a class="f24 FontColor3  ml10 mr10" href="#" target="_self">关于我们</a>|
+			<a class="f24 FontColor3 mr10 ml10" href="#" target="_self">配送及售后服务</a>|
+			<a class="f24 FontColor3 ml10" href="#" target="_self">条款</a>
+		</p>
+		<p class="copyright f18 FontColor4">2017© 北京梵禹科技有限公司版权所有</p>
+	</footer>
+	<!--页脚 END-->
+	<!-- 如果level = 0 目前是一级分类 -->
+	<div class="MContainer selectBox class1" id="level0">
+		<header class="pageHeader w100 pr tc overflowH">
+	        <a class="returnBtn"></a>
+	        <b class="f36 FontColor1">筛选</b>
+	    </header>
+	    <div class="selectContent">
+	    	<div class="items boxShadow">
+	    		<div class="item" data-target="level1food">
+	    			<a href="javascript:;">
+	    				<i></i>
+						<span class="sortItem">美食</span>
+	    			</a>
+	    		</div>
+	    		<div class="item" data-target="level1health">
+	    			<a href="javascript:;">
+	    				<i></i>
+						<span class="sortItem">保健及纤体</span>
+	    			</a>
+	    		</div>
+	    	</div>
+	    	<div class="btn-box">
+	    		<a class="reset">重置</a>
+	    		<a class="sure">确定</a>
+	    	</div>
+	    </div>
+	</div>
+	<div class="MContainer selectBox class2" id="level1food">
+		<header class="pageHeader w100 pr tc overflowH">
+	        <a class="returnBtn"></a>
+	        <b class="f36 FontColor1">筛选</b>
+	    </header>
+	    <div class="selectContent">
+	    	<div class="items boxShadow">
+	    		<div class="item" data-target="level1food">
+	    			<a href="javascript:;">
+	    				<i></i>
+						<span class="sortItem">粮油杂货</span>
+	    			</a>
+	    		</div>
+	    		<div class="item" data-target="level1health">
+	    			<a href="javascript:;">
+	    				<i></i>
+						<span class="sortItem">肉干坚果</span>
+	    			</a>
+	    		</div>
+	    		<div class="item" data-target="level1health">
+	    			<a href="javascript:;">
+	    				<i></i>
+						<span class="sortItem">饮品饮料</span>
+	    			</a>
+	    		</div>
+	    		<div class="item" data-target="level1health">
+	    			<a href="javascript:;">
+	    				<i></i>
+						<span class="sortItem">咖啡茶包及即冲饮品</span>
+	    			</a>
+	    		</div>
+	    		<div class="item" data-target="level1health">
+	    			<a href="javascript:;">
+	    				<i></i>
+						<span class="sortItem">新鲜蔬果</span>
+	    			</a>
+	    		</div>
+	    	</div>
+	    	<div class="btn-box">
+	    		<a class="reset">重置</a>
+	    		<a class="sure">确定</a>
+	    	</div>
+	    </div>
+	</div>
+	<div class="MContainer selectBox class2" id="level1health">
+		<header class="pageHeader w100 pr tc overflowH">
+	        <a class="returnBtn"></a>
+	        <b class="f36 FontColor1">筛选</b>
+	    </header>
+	    <div class="selectContent">
+	    	<div class="items boxShadow">
+	    		<div class="item" data-target="level1food">
+	    			<a href="javascript:;">
+	    				<i></i>
+						<span class="sortItem">粮油杂货</span>
+	    			</a>
+	    		</div>
+	    		<div class="item" data-target="level1health">
+	    			<a href="javascript:;">
+	    				<i></i>
+						<span class="sortItem">肉干坚果</span>
+	    			</a>
+	    		</div>
+	    		<div class="item" data-target="level1health">
+	    			<a href="javascript:;">
+	    				<i></i>
+						<span class="sortItem">饮品饮料</span>
+	    			</a>
+	    		</div>
+	    		<div class="item" data-target="level1health">
+	    			<a href="javascript:;">
+	    				<i></i>
+						<span class="sortItem">咖啡茶包及即冲饮品</span>
+	    			</a>
+	    		</div>
+	    		<div class="item" data-target="level1health">
+	    			<a href="javascript:;">
+	    				<i></i>
+						<span class="sortItem">新鲜蔬果</span>
+	    			</a>
+	    		</div>
+	    	</div>
+	    	<div class="btn-box">
+	    		<a class="reset">重置</a>
+	    		<a class="sure">确定</a>
+	    	</div>
+	    </div>
+	</div>
+	<!-- 如果level = 0 目前是一级分类end -->
+	<!-- 筛选浮屠一层 -->
+	<div class="MContainer selectBox" id="select1">
+		<header class="pageHeader w100 pr tc overflowH">
+	        <a class="returnBtn"></a>
+	        <b class="f36 FontColor1">筛选</b>
+	    </header>
+	    <div class="selectContent">
+	    	<div class="items boxShadow">
+	    		<div class="item" data-target="itemData1">
+	    			<a href="javascript:;">
+	    				<i></i>
+						<span class="sortItem">品牌</span>
+						<span class="selected">全部</span>
+	    			</a>
+	    		</div>
+	    		<div class="item" data-target="itemData2">
+	    			<a href="javascript:;">
+	    				<i></i>
+						<span class="sortItem">颜色</span>
+						<span class="selected">全部</span>
+	    			</a>
+	    		</div>
+	    		<div class="item" data-target="itemData3">
+	    			<a href="javascript:;">
+	    				<i></i>
+						<span class="sortItem">尺码</span>
+						<span class="selected">全部</span>
+	    			</a>
+	    		</div>
+	    	</div>
+	    	<div class="btn-box">
+	    		<a class="reset">重置</a>
+	    		<a class="sure">确定</a>
+	    	</div>
+	    </div>
+	</div>
+	<!-- 筛选浮屠一层end -->
+	<!-- 筛选浮屠二层 -->
+	<div class="MContainer selectBox select2Box" id="itemData2">
+		<header class="pageHeader w100 pr tc overflowH">
+	        <a class="returnBtn"></a>
+	        <b class="f36 FontColor1">颜色</b>
+	    </header>
+	    <div class="selectContent">
+	    	<div class="items boxShadow">
+	    		<div class="item">
+	    			<a href="javascript:;">
+	    				<i></i>
+						<span class="sortItem">黑色</span>
+	    			</a>
+	    		</div>
+	    		<div class="item">
+	    			<a href="javascript:;">
+	    				<i></i>
+						<span class="sortItem">红色</span>
+	    			</a>
+	    		</div>
+	    		<div class="item">
+	    			<a href="javascript:;">
+	    				<i></i>
+						<span class="sortItem">白色</span>
+	    			</a>
+	    		</div>
+	    	</div>
+	    	<div class="btn-box">
+	    		<a class="reset">重置</a>
+	    		<a class="sure">确定</a>
+	    	</div>
+	    </div>
+	</div>
+	<!-- 筛选浮屠二层end -->
+</div>
+
+<!-- 如果直接进到第三级类目 end -->
+<!-- 一、二、三级分类 -->
+<!--
+<div class="MContainer" id="classBox">
+	<header class="pageHeader w100 pr tc overflowH">
+        <a class="returnBtn" id="pageInReturn"></a>
+        <b class="f36 FontColor1">筛选</b>
+    </header>
+    <div class="class class2"><!-- class2指的是现在是二级分类,如果是一级分类，则为class1 -->
+    	<!--<div class="items">
+    		<div class="item" data-classid="classLevel1">
+    			<a href="javascript:;">
+    				<i></i>
+					<span class="sortItem">二级分类名称1</span>
+    			</a>
+    		</div>
+    		<div class="item" data-classid="classLevel2">
+    			<a href="javascript:;">
+    				<i></i>
+					<span class="sortItem">二级分类名称2</span>
+    			</a>
+    		</div>
+    	</div>
+    </div>
+    <div id="classContent">
+    	<div class="class hide class3" id="classLevel1">
+	    	<div class="items">
+	    		<div class="item">
+	    			<a href="javascript:;">
+	    				<i></i>
+						<span class="sortItem">三级分类名称1</span>
+	    			</a>
+	    		</div>
+	    		<div class="item" data-classid="classLevel2">
+	    			<a href="javascript:;">
+	    				<i></i>
+						<span class="sortItem">三级分类名称2</span>
+	    			</a>
+	    		</div>
+	    	</div>
+	    </div>
+	    <div class="class hide class3" id="classLevel2">
+	    	<div class="items">
+	    		<div class="item">
+	    			<a href="javascript:;">
+	    				<i></i>
+						<span class="sortItem">三级分类名称11</span>
+	    			</a>
+	    		</div>
+	    		<div class="item">
+	    			<a href="javascript:;">
+	    				<i></i>
+						<span class="sortItem">三级分类名称22</span>
+	    			</a>
+	    		</div>
+	    	</div>
+	    </div>
+    </div>
+</div>-->
+<!-- 一、二、三级分类end -->
+
+<script src="../Scripts/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../Scripts/common/common.js?v=201512160001"></script>
+<script type="text/javascript" src="../Scripts/jquery/jquery.dialog.js"></script>
+<!--页面独有脚本-->
+<script type="text/javascript" src="../Scripts/jquery/iscroll.js"></script>
+<script type="text/javascript" src="../Scripts/productList.js"></script>
+<!--页面独有脚本 END-->
+</body>
+</html>
