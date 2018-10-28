@@ -52,7 +52,7 @@ namespace SFO2O.M.Controllers
                 ViewBag.Sec = 0;
             }
             ViewBag.Preheat = 1;
-            ViewBag.Description = "港货平台，「爱玖网」强势来袭！港货正品，全场包邮，由物流从中华人民共和国大陆地区直送全国各地。";
+            ViewBag.Description = "港货平台，「健康绿氧」强势来袭！港货正品，全场包邮，由物流从中华人民共和国大陆地区直送全国各地。";
 
             if (DateTime.Now < dtEndTime)
             {

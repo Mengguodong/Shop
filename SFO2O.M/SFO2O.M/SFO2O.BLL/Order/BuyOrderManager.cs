@@ -729,28 +729,28 @@ namespace SFO2O.BLL.Order
             {
                 throw new SFO2OException("单个订单金额不可超过" + ConfigHelper.ConsolidatedPrice + "元人民币。");
             }
-            
 
-
+           decimal totalAmountOne = Convert.ToDecimal(ConfigHelper.GetAppSetting<string>("libao_totalAmountOne"));
+            decimal totalAmountTwo = Convert.ToDecimal(ConfigHelper.GetAppSetting<string>("libao_totalAmountTwo"));
             OrderInfoEntity orderInfoEntity = new OrderInfoEntity();
             switch (giftType)
             {
-                case 1: orderInfoEntity.TotalAmount = 6250;
-                    orderInfoEntity.ProductTotalAmount = 6250;
-                    orderInfoEntity.Huoli = 6250;
+                case 1: orderInfoEntity.TotalAmount = totalAmountOne;
+                    orderInfoEntity.ProductTotalAmount = totalAmountOne;
+                    orderInfoEntity.Huoli = totalAmountOne;
                     break;
 
-                case 2: orderInfoEntity.TotalAmount = 5000;
-                    orderInfoEntity.ProductTotalAmount = 5000;
-                    orderInfoEntity.Huoli = 5000;
+                case 2: orderInfoEntity.TotalAmount = totalAmountOne;
+                    orderInfoEntity.ProductTotalAmount = totalAmountOne;
+                    orderInfoEntity.Huoli = totalAmountOne;
                     break;
-                case 3: orderInfoEntity.TotalAmount = 2000;
-                    orderInfoEntity.ProductTotalAmount = 2000;
-                    orderInfoEntity.Huoli = 2000;
+                case 3: orderInfoEntity.TotalAmount = totalAmountTwo;
+                    orderInfoEntity.ProductTotalAmount = totalAmountTwo;
+                    orderInfoEntity.Huoli = totalAmountTwo;
                     break;
-                case 4: orderInfoEntity.TotalAmount = 350;
-                    orderInfoEntity.ProductTotalAmount = 350;
-                    orderInfoEntity.Huoli = 350;
+                case 4: orderInfoEntity.TotalAmount = totalAmountTwo;
+                    orderInfoEntity.ProductTotalAmount = totalAmountTwo;
+                    orderInfoEntity.Huoli = totalAmountTwo;
                     break;
                 default:
                     break;

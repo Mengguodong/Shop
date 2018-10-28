@@ -1,0 +1,12 @@
+F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\bin\Release\SFO2O.EntLib.DataExtensions.dll
+F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\bin\Release\SFO2O.EntLib.DataExtensions.pdb
+F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\bin\Release\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll
+F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\bin\Release\Microsoft.Practices.ServiceLocation.dll
+F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\bin\Release\Microsoft.Practices.Unity.dll
+F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\bin\Release\Microsoft.Practices.Unity.Interception.dll
+F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\obj\Release\SFO2O.EntLib.DataExtensions.csproj.CoreCompileInputs.cache
+F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\obj\Release\SFO2O.EntLib.DataExtensions.csproj.CopyComplete
+F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\obj\Release\SFO2O.EntLib.DataExtensions.dll
+F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\obj\Release\SFO2O.EntLib.DataExtensions.pdb

@@ -1392,6 +1392,13 @@ namespace SFO2O.BLL.Product
                     var data = GetPList(sort,pageindex,pagesize,language,salesTerritory);
                     return data;
                 }, 1440);//缓存24小时
+                #region 孙健   缓存问题
+                if (modules.ProductInfoModel.Count <= 0)
+                {
+                    var data = GetPList(sort, pageindex, pagesize, language, salesTerritory);
+                    return data;
+                } 
+                #endregion
                 return modules;
             }
             catch (Exception ex)

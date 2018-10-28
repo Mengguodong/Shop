@@ -667,19 +667,25 @@ namespace SFO2O.BLL.Pay
 
 
 
-                        //获取订单活力
-                        decimal coinCount = orderManager.GetHuoLiByOrderId(entity.OrderCode);
+                        ////获取订单活力
+                        //decimal coinCount = orderManager.GetHuoLiByOrderId(entity.OrderCode);
 
-                          LogHelper.WriteInfo(typeof(PayBll), string.Format("调用酒币充值前记录！-----用户ID：{0}，充值金额：{1}", userInfo.UserName, coinCount));
+                        //  LogHelper.WriteInfo(typeof(PayBll), string.Format("调用酒币充值前记录！-----用户ID：{0}，充值金额：{1}", userInfo.UserName, coinCount));
 
                         #endregion
+                      
+                        #region 调用健康绿氧活动接口
+                        
 
+
+                        #endregion
                         
                     }
 
 
                     //订单回写
 
+                    #region 订单回写
                     OrderPaymentEntity orderPaymentEntity = BuildOrderPaymentEntity(model.tradeid, entity, null);
 
                     isOk = NomalOrderPay(entity, model.merorderid, model.tradeid, "", orderPaymentEntity, 1);
@@ -691,7 +697,8 @@ namespace SFO2O.BLL.Pay
                     else
                     {
                         LogHelper.WriteInfo(typeof(PayBll), string.Format("PayCallBackRetunResult支付回调操作成功！-----{0}", JsonHelper.ToJson(model)));
-                    }
+                    } 
+                    #endregion
 
                 }
             }

@@ -154,6 +154,10 @@ namespace SFO2O.M.Controllers
 
             if (this.IsAsync)
             {
+                //if (model.LinkUrl == null)
+                //{
+                //    model.LinkUrl = "http://www.wdnzmt9.net";
+                //}
                 return Json(model, JsonRequestBehavior.AllowGet);
             }
             else

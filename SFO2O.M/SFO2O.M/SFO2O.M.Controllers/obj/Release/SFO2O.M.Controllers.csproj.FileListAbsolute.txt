@@ -1,0 +1,2 @@
+F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.M.Controllers\obj\Release\SFO2O.M.Controllers.csprojAssemblyReference.cache
+F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.M.Controllers\obj\Release\SFO2O.M.Controllers.csproj.CoreCompileInputs.cache

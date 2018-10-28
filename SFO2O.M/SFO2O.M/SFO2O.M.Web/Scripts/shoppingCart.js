@@ -226,9 +226,9 @@ var cart={
 		           }else if(json.Type==2){
 		           	FSH.commonDialog(1,['<b class="tl  f30 lh16 show"><SPAN class="f24 FontColor3" style="font-weight:normal;">根据物流贸易规范规定，单笔订单金额不可超过￥'+json.Data+'，如订单内仅有一件商品且不可分割，订单金额可以超过￥'+json.Data+'。</SPAN></b>'],"","","知道了");
 		           } else if (json.Type == 4) {
-		               FSH.commonDialog(1, ['<b class="tl  f30 lh16 show"><SPAN class="f24 FontColor3" style="font-weight:normal;">根据物流贸易规范规定，单笔订单商品金额不可超过￥' +FSH.tools.formatNum(json.Data) + '。<br>爱玖网建议您分开下单，就可以购买到所有商品啰！</SPAN></b>'], "", "", "知道了");
+		               FSH.commonDialog(1, ['<b class="tl  f30 lh16 show"><SPAN class="f24 FontColor3" style="font-weight:normal;">根据物流贸易规范规定，单笔订单商品金额不可超过￥' +FSH.tools.formatNum(json.Data) + '。<br>健康绿氧建议您分开下单，就可以购买到所有商品啰！</SPAN></b>'], "", "", "知道了");
 		           }else if (json.Type == 0) {
-		               FSH.commonDialog(1, ['<b class="tl  f30 lh16 show"><SPAN class="f24 FontColor3" style="font-weight:normal;">基于不同商品的特性，商品须个别进行清关。爱玖网建议您将1号仓和2号仓的商品分开下单，就可以购买到所有商品啰！</SPAN></b>'], "", "", "知道了");
+		               FSH.commonDialog(1, ['<b class="tl  f30 lh16 show"><SPAN class="f24 FontColor3" style="font-weight:normal;">基于不同商品的特性，商品须个别进行清关。健康绿氧建议您将1号仓和2号仓的商品分开下单，就可以购买到所有商品啰！</SPAN></b>'], "", "", "知道了");
 		           }
 		           else {
 								FSH.commonDialog(1,[json.Content]);

@@ -295,10 +295,10 @@ function submitFun(url) {
                         var str = "恭喜，" + mobile + " 已注册成功！";
                         var str2 = "";
                         if (json.ReturnGift == 1) {
-                            //str2='爱玖网送您 '+ json.GiftNum +' 张 <span style="color:#f75e26;">'+ json.GiftAmount +'</span> 元优惠券，快去使用吧。';
+                            //str2='健康绿氧送您 '+ json.GiftNum +' 张 <span style="color:#f75e26;">'+ json.GiftAmount +'</span> 元优惠券，快去使用吧。';
                             str2 = '您收到 <span style="color:#f75e26;">' + json.GiftAmount + '</span> 元优惠券礼包，快去使用吧。';
                         } else {
-                            str2 = '你可以在爱玖网平台购买商品。';
+                            str2 = '你可以在健康绿氧平台购买商品。';
                         }
                         FSH.commonDialog(1, [str, str2], '', 'gotoPage', '知道了');
                     } else {

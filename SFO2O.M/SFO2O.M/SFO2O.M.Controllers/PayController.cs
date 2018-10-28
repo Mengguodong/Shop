@@ -856,7 +856,7 @@ namespace SFO2O.M.Controllers
             //transtime.Value = DateUtil.GetTimeStamp().ToString();
             //amount.Value = "1";//金额
             //productcatalog.Value = "7"; //商品类别码   ----7:实物电商
-            //productname.Value = "易宝支付测试商品-易宝收银台Demo";//商品名称  爱玖网-(商品名称)
+            //productname.Value = "易宝支付测试商品-易宝收银台Demo";//商品名称  健康绿氧-(商品名称)
             //identitytype.Value = "2";//用户标识类型    2:用户 ID
             //identityid.Value = "test-" + "fengke";
             //terminaltype.Value = "1";
@@ -917,7 +917,7 @@ namespace SFO2O.M.Controllers
                     data_request.Add("transtime", Int32.Parse(DateUtil.GetTimeStamp().ToString()));
                     data_request.Add("amount", amount);
                     data_request.Add("productcatalog", "7");//商品类别码   ----7:实物电商
-                    data_request.Add("productname", "爱玖网-茅台酒");
+                    data_request.Add("productname", "健康绿氧-茅台酒");
                     data_request.Add("identitytype", Convert.ToInt32(2));
                     data_request.Add("identityid", entity.UserId.ToString());
                     data_request.Add("terminaltype", Convert.ToInt32(1));

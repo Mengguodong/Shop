@@ -11,18 +11,18 @@ namespace SFO2O.Model.Product
 {
     [Serializable]
     [DataContract]
-  public  class SkuInfo
+    public class SkuInfo
     {
-      /// <summary>
-      /// skuId
-      /// </summary>
+        /// <summary>
+        /// skuId
+        /// </summary>
         [DataMember(Name = "Id")]
         [Display(Name = "Id")]
         public int Id { get; set; }
 
-      /// <summary>
-      /// spu
-      /// </summary>
+        /// <summary>
+        /// spu
+        /// </summary>
         [DataMember(Name = "Spu")]
         [Display(Name = "Spu")]
         public string Spu { get; set; }
@@ -104,9 +104,9 @@ namespace SFO2O.Model.Product
         [DataMember(Name = "Qty")]
         [Display(Name = "Qty")]
         public int Qty { get; set; }
-      /// <summary>
-      /// 预上架时间
-      /// </summary>
+        /// <summary>
+        /// 预上架时间
+        /// </summary>
         [DataMember(Name = "PreOnSaleTime")]
         [Display(Name = "PreOnSaleTime")]
         public DateTime PreOnSaleTime { get; set; }
