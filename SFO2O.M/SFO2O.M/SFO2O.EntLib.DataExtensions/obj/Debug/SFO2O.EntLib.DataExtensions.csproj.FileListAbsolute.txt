@@ -31,3 +31,16 @@ C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\bin\
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\bin\Debug\Microsoft.Practices.Unity.Interception.dll
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\obj\Debug\SFO2O.EntLib.DataExtensions.dll
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\obj\Debug\SFO2O.EntLib.DataExtensions.pdb
+E:\MyProgram\ShoppingMall\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\bin\Debug\SFO2O.EntLib.DataExtensions.dll
+E:\MyProgram\ShoppingMall\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\bin\Debug\SFO2O.EntLib.DataExtensions.pdb
+E:\MyProgram\ShoppingMall\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+E:\MyProgram\ShoppingMall\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+E:\MyProgram\ShoppingMall\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\bin\Debug\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll
+E:\MyProgram\ShoppingMall\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+E:\MyProgram\ShoppingMall\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\bin\Debug\Microsoft.Practices.Unity.dll
+E:\MyProgram\ShoppingMall\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\bin\Debug\Microsoft.Practices.Unity.Interception.dll
+E:\MyProgram\ShoppingMall\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\obj\Debug\SFO2O.EntLib.DataExtensions.csprojAssemblyReference.cache
+E:\MyProgram\ShoppingMall\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\obj\Debug\SFO2O.EntLib.DataExtensions.csproj.CoreCompileInputs.cache
+E:\MyProgram\ShoppingMall\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\obj\Debug\SFO2O.EntLib.DataExtensions.csproj.CopyComplete
+E:\MyProgram\ShoppingMall\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\obj\Debug\SFO2O.EntLib.DataExtensions.dll
+E:\MyProgram\ShoppingMall\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\obj\Debug\SFO2O.EntLib.DataExtensions.pdb

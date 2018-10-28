@@ -1,21 +1,15 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
-using System.Web.Helpers;
 using System.Web.UI.WebControls;
 using SFO2O.BLL.Account;
 using SFO2O.BLL.Message;
-using SFO2O.BLL.Exceptions;
 using SFO2O.M.Controllers.Common;
 using SFO2O.M.Controllers.Extensions;
 using SFO2O.M.ViewModel.Account;
 using SFO2O.Utility.Uitl;
 using SFO2O.Utility.Extensions;
-using SFO2O.Utility.Security;
 using SFO2O.M.Controllers.Filters;
 using SFO2O.Model.Account;
 using SFO2O.BLL.Shopping;
@@ -23,12 +17,9 @@ using SFO2O.Model.Information;
 using SFO2O.BLL.Information;
 using SFO2O.BLL.Source;
 using SFO2O.BLL.Common;
-using SFO2O.Model.Enum;
 using SFO2O.Utility;
-using SFO2O.BLL.GiftCard;
 using SFO2O.Model.GiftCard;
 using SFO2O.Model.SMS;
-using SFO2O.M.ViewModel.Common;
 
 namespace SFO2O.M.Controllers
 {
@@ -617,6 +608,33 @@ namespace SFO2O.M.Controllers
             }
 
         }
+        /// <summary>
+        /// 商城自动登录
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult ShopLogin(string userName)
+        {
+            if (string.IsNullOrEmpty(userName))
+            {
+                return this.HandleError("用户名不能为空");
+            }
+            var userInfo = BLL.GetUserInfoByUserName(userName);
+
+            if (userInfo!=null)
+            {
+                LoginHelper.SetLoginUserSession(userInfo.AsLoginUserModel());
+                return Redirect("/home/index");
+            }
+            else
+            {
+                return this.HandleError("用户不存在");
+            }
+
+        }
+
 
         #endregion
 

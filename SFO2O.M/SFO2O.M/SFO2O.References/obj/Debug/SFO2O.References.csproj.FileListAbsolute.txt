@@ -15,3 +15,10 @@ C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.References\bin\Debug\SFO2O
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.References\bin\Debug\SFO2O.References.pdb
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.References\obj\Debug\SFO2O.References.dll
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.References\obj\Debug\SFO2O.References.pdb
+E:\MyProgram\ShoppingMall\SFO2O.M\SFO2O.M\SFO2O.References\bin\Debug\SFO2O.References.dll.config
+E:\MyProgram\ShoppingMall\SFO2O.M\SFO2O.M\SFO2O.References\bin\Debug\SFO2O.References.dll
+E:\MyProgram\ShoppingMall\SFO2O.M\SFO2O.M\SFO2O.References\bin\Debug\SFO2O.References.pdb
+E:\MyProgram\ShoppingMall\SFO2O.M\SFO2O.M\SFO2O.References\obj\Debug\SFO2O.References.csprojAssemblyReference.cache
+E:\MyProgram\ShoppingMall\SFO2O.M\SFO2O.M\SFO2O.References\obj\Debug\SFO2O.References.csproj.CoreCompileInputs.cache
+E:\MyProgram\ShoppingMall\SFO2O.M\SFO2O.M\SFO2O.References\obj\Debug\SFO2O.References.dll
+E:\MyProgram\ShoppingMall\SFO2O.M\SFO2O.M\SFO2O.References\obj\Debug\SFO2O.References.pdb
