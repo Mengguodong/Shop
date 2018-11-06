@@ -1,0 +1,155 @@
+﻿@using SFO2O.Supplier.Models.Category
+@{
+    ViewBag.PageName = "ProductList";
+    ViewBag.Title = "选择类目";
+    var firstList = (ViewBag.FirstList as List<CategoryModel>) ?? new List<CategoryModel>();
+    var searchResult = ViewBag.SearchResult as List<CategoryHistoryModel>;
+    var usuallyList = ViewBag.UsuallyList as List<CategoryHistoryModel>;
+    var currentId = "";
+    var current = "";
+    var hideBtn = ViewBag.ProductName != null && (searchResult == null || searchResult.Count == 0);
+}
+
+<div class="cont_right_crumb"><span class="homepage"></span>&gt; 商品管理 &gt; 商品上传</div>
+<div class="w931">
+    <!-- 上传商品 三部曲  -->
+    <div class="step_wrap clearfix t_c">
+        <div class="step firststep">
+            <div class="detail current">
+                <div class="step_part">
+                    选择类目<br />
+                    <span>1</span>
+                </div>
+            </div>
+        </div>
+        <div class="step">
+            <div class="detail detail_off">
+                <div class="step_part">
+                    填写商品资讯<br />
+                    <span>2</span>
+                </div>
+            </div>
+        </div>
+        <div class="step">
+            <div class="detail detail_off">
+                <div class="step_part">
+                    商品上传成功<br />
+                    <span>3</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 选择类目 -->
+    <div class="check_sort_wrap mg_t30">
+        <div class="check_search">
+            @using (Html.BeginForm(null, null, FormMethod.Get, new { id = "searchForm" }))
+            {
+                <i class="icon_search"></i>
+                <input name="ProductName" type="text" value="@ViewBag.ProductName" placeholder="输入类目名称，系统为你自动推荐分类" class="ipt_search" />
+                <a id="btnSearch" class="btn_search" href="javascript:void(0);" title="搜 寻">搜 寻</a>
+            }
+        </div>
+        <div class="check_sort">
+            <ul id="tabs" class="check_title clearfix">
+                <li data-for="tab1" class="current"><a href="javascript:void(0)" class="clearfix"><span>选择类目</span><i></i></a></li>
+                <li data-for="tab2"><a href="javascript:void(0)" class="clearfix"><span>常用类目</span><i></i></a></li>
+            </ul>
+            <div class="check_tab bor">
+                <!-- 选择类目 -->
+                <div id="tab1" class="clearfix" style="display:block;">
+                    @if (ViewBag.ProductName == null)
+                    {
+                        <ul class="check_tab1" style="display:block;width:100%;">
+                            <li>
+                                <p class="title">一级分类</p>
+                                <div class="sort_select">
+                                    <ul id="sel0" class="clearfix">
+                                        @foreach (var item in firstList)
+                                        {
+                                            <li data-id="@item.CategoryId" title="@item.CategoryName"><span>@item.CategoryName</span></li>
+                                        }
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <p class="title">二级分类</p>
+                                <div class="sort_select">
+                                    <ul id="sel1" class="clearfix"></ul>
+                                </div>
+                            </li>
+                            <li>
+                                <p class="title">三级分类</p>
+                                <div class="sort_select">
+                                    <ul id="sel2" class="clearfix"></ul>
+                                </div>
+                            </li>
+                        </ul>
+                    }
+                    else if (searchResult != null && searchResult.Count > 0)
+                    {
+                        var first = searchResult[0];
+                        currentId = first.TCategoryID.ToString();
+                        current = first.FCategoryName + " >> " + first.SCategoryName + " >> " + first.TCategoryName;
+                        <div class="check_tab2" style="display:block;">
+                            <p class="search_title">以下是系统匹配到的分类路径，如没有合适的分类，请重新 @Html.ActionLink("选择类目", null, null, null, new { @class = "color_green" })：</p>
+                            <ul style="display:block;">
+                                <li data-id="@first.TCategoryID" class="clearfix current">
+                                    <input type="radio" name="search" checked="checked" />
+                                    <span>@current</span>
+                                </li>
+                                @for (int i = 1; i < searchResult.Count; i++)
+                                {
+                                    var item = searchResult[i];
+                                    <li data-id="@item.TCategoryID" class="clearfix">
+                                        <input type="radio" name="search" />
+                                        <span>@item.FCategoryName >> @item.SCategoryName >> @item.TCategoryName</span>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="product_null t_c bor">
+                            <img src="../Content/Images/p_null.png" class="mg_b10" />
+                            <p class="null_tips">系统没找到匹配的分类，你可以自行 @Html.ActionLink("选择类目", null, (string)null)</p>
+                        </div>
+                    }
+                </div>
+                <!-- 常用类目 -->
+                <div id="tab2" style="display:none">
+                    @if (usuallyList != null && usuallyList.Count > 0)
+                    {
+                        <ul class="check_tab2" style="display:block;">
+                            @foreach (var item in usuallyList)
+                            {
+                                <li data-id="@item.TCategoryID" class="clearfix">
+                                    <input type="radio" name="Usually" />
+                                    <span>@item.FCategoryName >> @item.SCategoryName >> @item.TCategoryName</span>
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <div class="product_null t_c bor">
+                            <img src="../Content/Images/p_null.png" class="mg_b10" />
+                            <p class="null_tips">您暂无常用的分类，请自行 @Html.ActionLink("选择类目", null, (string)null)</p>
+                        </div>
+                    }
+                </div>
+                <p class="yixuan t_c@(hideBtn ? " hide" : "")">您选择的类目是：<span id="CategoryPath">@current</span></p>
+            </div>
+            <div class="btn_wrap t_c mg_t20@(hideBtn ? " hide" : "")">
+                @using (Html.BeginForm("ProductUpload", null, FormMethod.Get, new { id = "nextStepForm" }))
+                {
+                    @Html.Hidden("CategoryID", currentId)
+                    <a id="btnNextStep" href="javascript:void(0)" class="btn_green@(currentId == "" ? " btn_green_off" : "") btn_w287">下一步，填写商品信息</a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    @Html.Script("~/Scripts/Product/SelectCategory.js")
+}

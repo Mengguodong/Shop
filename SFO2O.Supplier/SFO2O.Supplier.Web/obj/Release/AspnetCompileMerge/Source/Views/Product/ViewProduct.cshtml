@@ -1,0 +1,54 @@
+﻿@model SFO2O.Supplier.ViewModels.Product.ViewProductModel
+@using System.Globalization;
+@using SFO2O.Supplier.Common;
+@using SFO2O.Supplier.Models;
+@using SFO2O.Supplier.Models.Product;
+@using SFO2O.Supplier.ViewModels.Product;
+@{
+    ViewBag.Title = "查看商品信息";
+    ViewBag.PageName = "ProductManage";
+    //var dicSalesTerritoryTC = new Dictionary<int, string>
+    //{
+    //    {1,"中国大陆"},
+    //    {2,"香港地区"},
+    //    {3,"中国大陆，香港地区"}
+    //};
+    var dicSalesTerritorySC = new Dictionary<int, string>
+    {
+        {1,"中国大陆"},
+        {2,"香港地区"},
+        {3,"中国大陆，香港地区"}
+    };
+    //var dicSalesTerritoryEN = new Dictionary<int, string>
+    //{
+    //    {1,"China"},
+    //    {2,"HongKong"},
+    //    {3,"China , HongKong"}
+    //};
+    //ProductTempModel spuTC = Model.ProductInfo_TC;
+    ProductTempModel spuSC = Model.ProductInfo_SC;
+    //ProductTempModel spuEN = Model.ProductInfo_EN;
+}
+
+<div class="cont_right_crumb"><span class="homepage"></span>&gt; 商品管理 &gt; 管理商品</div>
+<div class="w931">
+    <div class="upload_edit mg_t30">
+        <ul id="tabs" class="check_title clearfix">
+            @*<li data-for="tabTC" class="current"><a href="javascript:void(0)" class="clearfix"><span>中文繁体版</span><i></i></a></li>*@
+            @*<li data-for="tabSC"><a href="javascript:void(0)" class="clearfix"><span>中文简体版</span><i></i></a></li>*@
+            <li data-for="tabSC"><a href="javascript:void(0)" class="clearfix"><span>信息</span><i></i></a></li>
+            @*<li data-for="tabEN"><a href="javascript:void(0)" class="clearfix"><span>英文版</span><i></i></a></li>*@
+        </ul>
+        @*<div id="tabTC" class="bor_bg viewCommInfo">
+            @Html.Partial("_ViewProduct", spuTC, new ViewDataDictionary { { "DisplayText", new ViewProductDisplayTextTC() }, { "SalesTerritory", dicSalesTerritoryTC } })
+        </div>*@
+        <div id="tabSC" class="bor_bg viewCommInfo">
+            @Html.Partial("_ViewProduct", spuSC, new ViewDataDictionary { { "DisplayText", new ViewProductDisplayTextSC() }, { "SalesTerritory", dicSalesTerritorySC } })
+        </div>
+        @*<div id="tabEN" class="bor_bg viewCommInfo" style="display:none">
+            @Html.Partial("_ViewProduct", spuEN, new ViewDataDictionary { { "DisplayText", new ViewProductDisplayTextEN() }, { "SalesTerritory", dicSalesTerritoryEN } })
+        </div>*@
+        <div class="zanc_shangc t_c pd_t20 pd_b20"> <a href="javascript:window.history.back()" class="btn_white btn_w240">返 回</a></div>
+    </div>
+</div>
+@Html.Script("~/Scripts/Product/ViewProduct.js")

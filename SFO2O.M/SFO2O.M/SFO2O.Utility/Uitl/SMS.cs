@@ -65,7 +65,7 @@ namespace SFO2O.Utility.Uitl
             string password = "sf168";
             //string senderId = "SFO2O";
 
-            content = System.Web.HttpUtility.UrlEncode(string.Format("爱玖网购物商城{0}", content), Encoding.GetEncoding("UTF-8"));
+            content = System.Web.HttpUtility.UrlEncode(string.Format("健康绿氧购物商城{0}", content), Encoding.GetEncoding("UTF-8"));
 
 
             string Url = string.Format("https://api3.hksmspro.com/service/smsapi5.asmx/SendMessage?Username={0}&Password={1}&Message={3}&Hex=&Telephone={2}&UserDefineNo="
@@ -97,7 +97,7 @@ namespace SFO2O.Utility.Uitl
             string username = "sf-o2o";
             string password = "sf168";
 
-            content = System.Web.HttpUtility.UrlEncode(string.Format("爱玖网购物商城{0}", content), Encoding.GetEncoding("UTF-8"));
+            content = System.Web.HttpUtility.UrlEncode(string.Format("健康绿氧购物商城{0}", content), Encoding.GetEncoding("UTF-8"));
 
             string Url = string.Format("https://api3.hksmspro.com/service/smsapi5.asmx/SendMessage?Username={0}&Password={1}&Message={3}&Hex=&Telephone={2}&UserDefineNo="
                 , username, password, "86" + mobile, content);

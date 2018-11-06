@@ -1,0 +1,50 @@
+﻿@{
+    Layout = null;
+}
+@using SFO2O.Utility.Uitl
+@model IEnumerable<SFO2O.Model.Supplier.BrandEntity>
+@if (Model != null && Model.Any())
+{
+    <div class="similarBrandWrap mt20 w100 overflowH">
+        <h3 class="f24 FontColor3 w95p mb8">相似品牌</h3>
+        <div class=" similarBrand  boxShadow bgColor3 pr  mc clearfix hide" id="similarBrand">
+            <div class="similarBrandIndex clearfix hd" id="similarBrandIndex">
+                <ul></ul>
+            </div>
+            <div class="similarBrandItems w100 overflowH clearfix  focusBox f0 bd">
+                @foreach (var m in Model)
+                {
+                    <ul class="similarBrandItemsWrap focusBoxIn">
+                        <li class="brandInf w95p pt17 pb17">
+                            <a href="@Url.Action("Index", "Brand", new { id = m.Id })" target="_self">
+                                <div class="brandDiv">
+                                    <img src="@m.Logo.GetImageUrl()" class="brandLogo">
+                                    <p>
+                                        @if (m.NameCN != m.NameEN)
+                                        {
+                                            <b class="f24 FontColor1">@(m.NameEN)(@(m.NameCN))</b>
+                                        }
+                                        else
+                                        {
+                                            <b class="f24 FontColor1">@m.NameEN</b>
+                                        }
+
+                                        @if (string.IsNullOrEmpty(m.NationalFlag))
+                                        {
+                                            <span class="f24 FontColor3">@m.CountryName</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="f24 FontColor3"><img src="@PathHelper.GetNationalFlagImageUrl(m.NationalFlag)" class="nationImg" /> @m.CountryName</span>
+                                        }
+                                    </p>
+                                </div>
+                                <div class="brandIntro f24 FontColor3">@Html.Raw(m.IntroductionCN)</div>
+                            </a>
+                        </li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+}

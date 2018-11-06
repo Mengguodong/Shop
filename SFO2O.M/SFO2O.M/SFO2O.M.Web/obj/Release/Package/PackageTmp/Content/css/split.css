@@ -1,0 +1,54 @@
+﻿.orderInfo{
+	border-bottom: 1px solid #e0e0e0;
+}
+.orderInfo p{
+	line-height: 40px;
+}
+.imgBox{
+	border: 1px solid #d6d6d6;
+}
+.single .imgBox img{
+	width: 74px;
+}
+.proInfo{
+	background: #f5f5f5;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.title{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.btn-box{
+	padding-top: 7px;
+	padding-bottom: 7px;
+	line-height: 50px;
+}
+.btn-box .btn{
+	padding-left: 23px;
+	padding-right: 23px;
+	line-height: 20px;
+}
+
+.indexHotPro .item{
+	margin-right: 36px;
+	background: #f5f5f5;
+	text-align: center;
+	padding-left: 0;
+	padding-right: 0;
+	padding-top:5px;
+	padding-bottom:0px;
+}
+
+.indexHotPro {
+	background: #f5f5f5;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.indexHotPro .item:last-child{
+	margin-right: 0;
+}
+
+.FontColor4 a {
+    color:#bcbcbc;
+}

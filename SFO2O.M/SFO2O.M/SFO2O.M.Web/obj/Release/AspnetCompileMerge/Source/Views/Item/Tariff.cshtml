@@ -1,0 +1,30 @@
+﻿@using SFO2O.M.Controllers
+@using SFO2O.M.Controllers.Common
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.ViewModel.Product
+@using SFO2O.Utility.Extensions
+@model IList<SFO2O.Model.Common.CommentEntity>
+@{
+    this.ViewBag.Title = "商品商品税表"; 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    
+}
+@section styles {
+    <link href="@BundleConfig.BuildCss("Content/css/tariff.css")" rel="stylesheet">
+}
+@section scripts {
+}
+@section pageHeader {
+   <header class="pageHeader w100 pr tc overflowH">
+    <a class="returnBtn" id="returnBtn"></a>
+    <b class="f36 FontColor1">商品商品税表</b>
+</header>
+}
+<!--下载区域-->
+<div class="w95p tc tariffDownWrap">
+    <img src="@Url.Content("~/Content/images/downloadTip.png")">
+    <p class="FontColor3 f20 mt10 mb20">商品商品税表内容比较丰富，需下载后，更方便浏览</p>
+    <a href="@Url.Action("DownloadTariff")" class="btn mc">点击下载商品商品税表</a>
+</div>
+<!--下载区域 END-->

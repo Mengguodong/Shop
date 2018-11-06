@@ -1,0 +1,117 @@
+﻿.banner{
+	margin:0 auto;
+	max-width:640px;
+	width:100%;
+	overflow:hidden;
+}
+.banner .focusBoxIn div{ 
+	text-align:center;
+}
+.banner .focusBoxIn a{
+	line-height: 0;
+}
+.banner .focusBoxIn div img{
+	max-width:100%;
+	display: block;
+}
+.bannerIndex{
+	height:8px;
+	position:absolute;
+	bottom:12px; 
+	right:6px;
+	text-align:center;
+	z-index:100;
+}
+.bannerIndex a{ 
+	float:left; 
+	margin-right:8px; 
+	width:8px; 
+	height:8px; 
+	background:#fff; 
+	border-radius: 4px;
+}
+.bannerIndex a.checked{ 
+	background:#ff0000; 
+	opacity:1;
+}
+
+/* 轮播 */
+.swipe {
+    overflow: hidden;
+    visibility: hidden;
+    position: relative;
+}
+.swipe-wrap {
+    overflow: hidden;
+    position: relative;
+}
+.swipe-wrap > div {
+    float: left;
+    width: 100%;
+    position: relative;
+}
+
+/* 公告 */
+.indexNotice{
+	background: #ffffff;
+	color: #333;
+	-webkit-box-shadow:1px 1px 5px rgba(7,0,2,.2);
+	-moz-box-shadwo:1px 1px 5px rgba(7,0,2,.2);
+	box-shadow: 1px 1px 5px rgba(7,0,2,.2);
+	/*box-shadow: 10px 10px 5px #888888;*/
+	font-size: 1.2rem;
+}
+.indexNotice .swipe-wrap>div{
+	padding: 8px 0 10px 0;
+	line-height: 1.2rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow:ellipsis;
+}
+.indexNotice .sun{
+	position: relative;
+	top: 5px;
+	display: inline-block;
+	width: 1.5rem;
+	height: 1.5rem;
+	background: url(../Images/index/indexIco.png?v=20160331) left -30px no-repeat;
+	background-size: 45px auto;
+	margin-left: 12px;
+}
+
+/* 热卖商品 */
+.indexHotPro{
+	overflow-x:visibility;
+}
+.indexHotPro .item{
+	float: left;
+	display: inline;
+	background: #fff;
+	text-align: center;
+	padding: 15px 10px 10px 10px;
+	margin-right: 10px;
+}
+.indexHotPro .item img{
+	margin-bottom: 12px;
+}
+.indexHotPro .item .title{
+	font-size: 1.2rem;
+	color: #313131;
+	margin-bottom: 10px;
+	text-align: left;
+	white-space: nowrap;
+	line-height: 1.2rem;
+	overflow: hidden;
+	text-overflow:ellipsis;
+}
+.indexHotPro .item .price{
+	font-size: 1.5rem;
+	color: #f75e26;
+	text-align: left;
+}
+.indexHotPro .item .imgBox{
+	width: 100%;
+}
+.indexHotPro .item img{
+	width: 100%;
+}

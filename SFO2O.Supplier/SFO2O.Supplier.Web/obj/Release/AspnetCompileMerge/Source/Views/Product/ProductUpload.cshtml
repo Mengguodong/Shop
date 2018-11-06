@@ -1,0 +1,113 @@
+﻿@using SFO2O.Supplier.Models;
+@using SFO2O.Supplier.Common;
+@model List<SFO2O.Supplier.Models.Category.CategoryAttrModel>
+@{
+    if (ViewBag.Action != "edit")
+    {
+        ViewBag.Title = "商品上传";
+    }
+    else
+    {
+        ViewBag.Title = "商品编辑";
+    }
+    ViewBag.PageName = "ProductList";
+    var categoryModel = ViewBag.CategoryModel;
+
+}
+
+<div class="cont_right_crumb"><span class="homepage"></span>&gt; 商品管理 &gt; @ViewBag.Title</div>
+
+<div class="w931">
+    <!-- 上传商品 三部曲  -->
+    @if (ViewBag.Action != "edit")
+    {
+        <div class="step_wrap clearfix t_c mg_b40">
+            <div class="step firststep">
+                <div class="detail active">
+                    <div class="step_part">
+                        选择类目<br />
+                        <span>1</span>
+                    </div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="detail current">
+                    <div class="step_part">
+                        填写商品资讯<br />
+                        <span>2</span>
+                    </div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="detail detail_off">
+                    <div class="step_part">
+                        商品上传成功<br />
+                        <span>3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <!-- 填写商品属性  -->
+    <div class="product_detail">
+        <p class="yixuan pd_l20 pd_r20"><a href="javascript:void(0)" id="updatecategory" onclick="UpdateCategory()" class="color_green f_r">[修改类目]</a>您选择的类目是：<span class="">@categoryModel.FCategoryName >> @categoryModel.SCategoryName >> @categoryModel.TCategoryName</span></p>
+        <div class="product_detail_list">
+            <div class="product_basic clearfix">
+                <div class="product_right">
+                    <!-- 商品基本信息 -->
+                    @Html.Partial("_ProductBaseInfo")
+                    <!-- 商品属性 -->
+                    @Html.Partial("_ProductSkuInfo", Model)
+
+
+                    <!-- 商品图片详情 -->
+                    @Html.Partial("_ProductDetailInfo")
+                    <!-- 物流包装 和 其他设置-->
+                    @Html.Partial("_ProductOtherInfo")
+                </div>
+                <div class="zanc_shangc t_c pd_t20 pd_b20">
+                    @if (ViewBag.Action != "edit")
+                    {
+                        <a href="javascript:void(0)" onclick="Save(1)" class="btn_white btn_w240">暂存</a>
+                        <a href="javascript:void(0)" onclick="Save(2)" class="btn_green mg_l20 btn_w240">上传</a>
+                    }
+                    else
+                    {
+                        <a href="/Product/PublishedList" class="btn_white btn_w240">放弃编辑</a>
+                        <a href="javascript:void(0)" onclick="Save(2)" class="btn_green mg_l20 btn_w240">提交修改</a>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" value="@ViewBag.Action" id="action">
+<div id="divUpdateCategory" style="display: none">
+    <div class="win_cont pd_l20 pd_r20">
+        <p class="pd_t20 pd_b30"><span>修改类目将清空当前已编辑的商品内容，您确认要修改类目吗？</span></p>
+    </div>
+
+</div>
+
+<div id="saveDraftSuccess" style="display: none">
+    <div class="win_cont pd_l20 pd_r20">
+        <p class="t_c pd_t40 pd_b30"><span class="sc_icon sc_success">于@(DateTime.Now.ToString("HH:mm:ss")) 保存成功！</span></p>
+    </div>
+</div>
+
+<div id="uploadError" style="display: none">
+    <div class="win_cont pd_l20 pd_r20">
+        <p class="t_c pd_t40 pd_b30"><span class="sc_icon sc_fail">上传失败，请稍后重试~</span></p>
+    </div>
+</div>
+
+<div id="saveDraftError" style="display: none">
+    <div class="win_cont pd_l20 pd_r20">
+        <p class="t_c pd_t40 pd_b30"><span class="sc_icon sc_fail">暂存失败，请稍后重试~</span></p>
+    </div>
+</div>
+
+@Html.Script("~/Scripts/ajaxupload.3.5.js")
+@Html.Script("~/Scripts/Product/ProductUpload.js")

@@ -1,0 +1,255 @@
+﻿.smallPromptTxt{
+	white-space: nowrap;
+}
+.bgYellow{
+	background: #fffaf3;
+}
+
+.logisticsInfo{
+	padding: 4px 0;
+	/*display: -webkit-box; 
+	-webkit-box-orient: horizontal;
+  	-webkit-box-pack: center;
+  	-webkit-box-align: center;*/
+}
+.logisticsInfo .content{
+	display: -webkit-box;
+	display: box;
+	-webkit-box-orient: horizontal;
+  	-webkit-box-pack: center;
+  	-webkit-box-align: center;
+}
+.logisticsInfo .detail{
+	-webkit-box-flex:1;
+	box-flex:1;
+}
+.logisticsInfo .rightArrow,.aboutMoney .rightArrow{
+	display: inline-block;
+	width: 7px;
+	height: 12px;
+	background: url(../../Content/Images/rightArrow.png?v=20160331) no-repeat;
+	background-size: 7px 12px;
+	margin-left: 30px;
+}
+.logisticsInfo .noAdress{
+	color: #333;
+	font-size: 1.4rem;
+	line-height: 47px;
+	-webkit-box-flex:1;
+	box-flex:1;
+}
+.logisticsInfo .icon{
+	display: inline-block;
+	background: url(../../Content/Images/confirmOrder/icon.png?v=20160331) no-repeat;
+	background-size: 18px auto;
+	width: 18px;
+	position: relative;
+	top: 3px;
+}
+.logisticsInfo .noAdress i{
+	height: 17px;
+	background-position: center top;
+	margin-right: 3px;
+}
+.logisticsInfo .user{
+	height: 18px;
+	background-position: left -25px;
+	margin-right: 5px;
+}
+.logisticsInfo .phone{
+	height: 17px;
+	background-position: left -50px;
+	margin-right: 5px;
+}
+.logisticsInfo .personalInfo{
+	padding: 15px 0 12px 0;
+}
+.logisticsInfo .name{
+	margin-right: 35px;
+}
+.logisticsInfo .address{
+	line-height: 19px;
+	padding-bottom: 15px;
+	font-size: 1.2rem;
+}
+
+/* 商品列表编辑状态 */
+.productInfo img{
+	width: 54px;
+	height: 54px;
+}
+.productInfo li{
+	margin-top: 0;
+}
+.productInfo li:last-child{
+	border-bottom: none;
+}
+.productInfo .displayBox{
+	margin-bottom: 0px;
+}
+.productInfo .cartProList li{
+	padding: 10px 0;
+}
+.productInfo .cartProList li:first-child{border-top:none;}
+.productInfo .cartProList .skuNum{
+	-webkit-box-flex:1;
+	margin-right: 20px;
+	margin-bottom: 0;
+	display: box;
+	display: -webkit-box;
+}
+.productInfo .doNumber{
+	margin-top: 10px;
+	display: -webkit-box;
+	padding-top:12px ;
+	border-top-width: 1px;
+	border-top-style: solid;
+}
+.productInfo .doNumber span{
+	display: inline-block;
+	font-size: 1.4rem;
+	color: #333;
+	padding-right: 24px;
+	position: relative;
+	top: 5px;
+}
+.productInfo .title{
+	font-size: 1.4rem;
+	color: #333333;
+	padding-top: 10px;
+}
+.productInfo .reduceBtn, .productInfo .addBtn{
+	width: 50px;
+	height: 30px;
+	line-height: 30px;
+	float: none;
+	display: block;
+}
+.productInfo .numTxt{
+	width: auto;
+	float: none;
+}
+
+.textOrange{
+	color: #f75e26;
+}
+.aboutMoney p{
+	text-align: right;
+	color: #bcbcbc;
+	font-size: 1.4rem;
+	padding: 15px 2.5%;
+	border-bottom: 1px solid #e0e0e0;
+}
+.aboutMoney p:last-child{
+	border-bottom: none;
+}
+.aboutMoney b{
+	font-weight: normal;
+	color: #333;
+}
+.aboutMoney .textOrange{
+	color: #f75e26;
+}
+.aboutMoney .textOrange *{
+	color: #f75e26; 
+}
+.aboutMoney span{
+	float: left;
+	display: inline-block;
+	color: #bcbcbc;
+}
+.aboutMoney .rightArrow{
+	margin-left: 5px;
+}
+.fixedBottomDiv .displayBox{
+	display: -webkit-box; 
+	-webkit-box-orient: horizontal;
+  	-webkit-box-pack: center;
+  	-webkit-box-align: center;
+}
+.fixedBottomDiv .boxflex1{
+	padding-right: 5px;
+}
+
+.productInfo .cartSelectedSku{
+	height: auto;
+}
+.productInfo .cartProName{
+	white-space: nowrap;
+	height: 18px;
+	overflow: hidden;
+	text-overflow:ellipsis;
+}
+
+
+/* 0425 */
+.radio{
+	display:inline-block;
+	background: url(../Images/confirmOrder/icon_radio.png?v=20160414) no-repeat;
+	  background-size:17px auto; 
+	  -moz-background-size:17px auto; 
+	  -webkit-background-size:17px auto;
+	   width:17px; 
+	   height: 17px; 
+	position: relative;
+	top: 2px;
+}
+.radio.selected{
+	  background-image:url("../Images/icon-radioRight.png?v=20160331"); 
+}
+.cartProImgWrap{margin-right:0px;}
+
+/* 0601 */
+.aboutMoney .discount{ padding-top:0; padding-bottom:0;}
+.discount{height:50px;}
+.discount b{display:table; height:100%;}
+.discount span{float:none; display: table-cell; vertical-align:middle; text-align:left;}
+.discount em{float:right; margin-right:5px; font-style:normal; margin-right:12px;}
+.discount cite{ font-style: normal; }
+.aboutMoney .discount i{background-position: left center; position: absolute; right: 0; top: 0; height: 100%;}
+
+.selectDiscount {
+  line-height: 140%;
+  position: relative;
+  padding: 16px 2.5% 26px;
+  width: 95%;
+  height: auto;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0px 0px 10px #333;
+  font-size: 17.5px;
+  display: none;
+  z-index: 11111;
+}
+.selectDiscount .closeBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+.selectDiscount .closeBtn img {
+  width: 16px;
+}
+.selectDiscount ul {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  margin: 10px auto;
+}
+.selectDiscount li {
+	border: 1px solid #e0e0e0;
+	border-radius:2px;
+	margin-bottom: 12px;
+	height: 46px;
+}
+.selectDiscount table{
+	width: 100%;
+	height: 100%;
+}
+.mb16{ margin-bottom: 16px; }
+.f34{ font-size: 1.7rem; }
+.pl15{ padding-left: 15px; }
+
+.holidayGoodsTips{
+	background:#fffaf3; line-height:20px; padding-top:10px; padding-bottom:10px;	
+}

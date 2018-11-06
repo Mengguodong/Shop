@@ -1,0 +1,31 @@
+﻿.title{padding:15px 0px; width:50%; font-weight:normal; }
+.title span{ display: inline-block; background:#fff; padding:0px 1rem; position:relative; z-index:5;}
+.title:before{ content:''; position:absolute; left:0; top:50%; width:100%; height:0px; border-top:1px solid #999999; z-index:1; margin-top:-1px;}
+.brandInfCon img{ margin:13px auto; width:95%;}
+.brandInfP{ display:-webkit-box;-webkit-box-orient: vertical;text-overflow: ellipsis;-webkit-line-clamp:3; overflow:hidden; line-height:150%; margin-bottom:10px;}
+.brandInfCon{ padding-bottom:15px; }
+.redFont{color:#f75e25;}
+.mainProductCon div.proDiv{padding-top:15px; padding-bottom:6px; background:url("../../Images/active/template/line.jpg?v=201607200001") repeat-x left bottom; background-size:auto 6px; -moz-background-size:auto 6px; -webkit-background-size:auto 6px;  }
+.mainProductCon div.proDiv a{ padding-bottom:15px;}
+.mainProductCon div.proDiv .productInf{ margin-left:7px;}
+.mainProductCon div.proDiv:first-child{ padding-top:0px;}
+.mainProductCon div.proDiv:last-child{ padding-bottom:0px;background:none;}
+.mainProductCon div.proDiv:nth-child(odd) a{  box-direction: reverse;-webkit-box-direction: reverse;-moz-box-direction: reverse;-ms-box-direction: reverse;-webkit-flex-direction:row-reverse;-moz-flex-direction:row-reverse;-ms-flex-direction:row-reverse;}
+.mainProductCon div.proDiv:nth-child(odd) a .productInf{ margin-left:0px; margin-right:7px;}
+.productImg_temp{ width:43.5%;}
+
+.originalPrice_temp{color:#999;text-decoration: line-through; margin-left:5px;}
+.btn_temp{-webkit-appearance: none; display:block; width:7em; padding:6px 0px; border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;}
+.btn_temp1{color:#fff;background:#f75e26;  border:none; }
+.btn_temp2{ color:#f75e26; background:#fff; border:1px solid #f75e26; margin-top:5px;}
+.productInf,.proList_temp{ line-height:160%;}
+.productInf h4{ font-weight:normal;display:-webkit-box;-webkit-box-orient: vertical;text-overflow: ellipsis;-webkit-line-clamp:2; overflow:hidden;   height:2.4em;}
+.productInf .productDes{overflow:hidden; }
+.productInf .productDes div{display:-webkit-box;-webkit-box-orient: vertical;text-overflow: ellipsis;overflow:hidden;}
+.productInf .productPrice{margin-bottom:3px;}
+
+.proList_temp ul li{width:50%; float:left; }
+.proList_temp ul li a{ display:inline-block; width:87%; padding:6.5%;}
+.proList_temp h4{ font-weight:normal; display:-webkit-box;-webkit-box-orient: vertical;text-overflow: ellipsis;-webkit-line-clamp:1; overflow: hidden; margin:5px 0px;}
+.proList_temp ul li:nth-child(odd){ clear:both;}
+.grayFont_temp{color:#999;}

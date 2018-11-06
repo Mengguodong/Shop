@@ -1,0 +1,274 @@
+﻿@model SFO2O.Admin.Models.Settlement.SettlementInfo
+@{
+    ViewBag.Title = "結算單詳情";
+    Layout = "~/Views/Shared/_Layout.Detail.cshtml";
+
+}
+<p class="color_green  f24 mg_t20 mg_b20">结算單詳情</p>
+<div class="bor_bg pd_t20 pd_r20 pd_l20 f15">
+    <div class="fff_bor mg_b20">
+        <div class="mg_b10 pildaor dingd_detail" style="height: 121px;">
+            <div class="step_wrap clearfix">
+                <div class="step active firststep">
+                    <div class="detail t_c">
+                        <div class="step_part">
+                            生成結算單<br />
+                            <span></span>
+                            <br>
+                            <div class="col_999 lineH22">
+                                @Model.OrderInfo.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @if (Model.OrderInfo.SettlementStatus == 2 || Model.OrderInfo.SettlementStatus == 3)
+                {
+                    <div class="step active">
+                        <div class="detail">
+                            <div class="step_part">
+                                確認結算單<br>
+                                <span></span>
+                                <br>
+                                <div class="col_999 lineH22">
+                                    @if (Model.OrderInfo.AuditTime.HasValue)
+                                    {
+                                        @Model.OrderInfo.AuditTime.Value.ToString("yyyy-MM-dd HH:mm:ss")
+                                    }
+                                    else
+                                    {
+                                        @Model.OrderInfo.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="step off">
+                        <div class="detail detail_off">
+                            <div class="step_part">
+                                確認結算單<br>
+                                <span></span>
+                                <br>
+                                <div class="col_999 lineH22">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                @if (Model.OrderInfo.SettlementStatus == 3)
+                {
+                    <div class="step active">
+                        <div class="detail">
+                            <div class="step_part">
+                                結算完成<br>
+                                <span></span>
+                                <br>
+                                <div class="col_999 lineH22">
+                                    @Model.OrderInfo.SettlementTime.ToString("yyyy-MM-dd HH:mm:ss")
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="step off">
+                        <div class="detail detail_off">
+                            <div class="step_part">
+                                結算完成<br>
+                                <span></span>
+                                <br>
+                                <div class="col_999 lineH22">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+    <div class="fff_bor mg_b20">
+        <p class="f17 pd_t15 pd_b10 pd_l30"><span class="bor_b_2green lineH22">結算單信息</span></p>
+        <table class="f15 lineH30 mg_l60 mg_b20">
+            <tr>
+                <td width="370">
+                    <span class="f_l">結算單號：</span>
+                    <p class="f_l">@Model.OrderInfo.SettlementCode</p>
+                </td>
+                <td width="370">
+                    <span class="f_l">結算方：</span>
+                    <p class="f_l">@Model.OrderInfo.CompanyName</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span class="f_l">訂單號/退款單號：</span>
+                    <p class="f_l col_link udline"><a href="@(Model.OrderInfo.SettlementType == 2 ? Url.Action("RefundIndex", "Refund", new { RefundCode = Model.OrderInfo.OrderCode }) : Url.Action("OrderList", "Order", new { OrderCode = Model.OrderInfo.OrderCode }))" class="js_Pay col_link block">@Model.OrderInfo.OrderCode</a></p>
+                </td>
+            </tr>
+        </table>
+        <div class="dash_bor_b1 mg_l60 mg_b20"></div>
+        <table class="f15 lineH30 mg_l60 mg_b20">
+            <tr>
+                <td width="370">
+                    <span class="f_l">商品金額：</span>
+                    <p class="f_l">￥@Model.OrderInfo.RmbProductTotalAmount<span class="color_838383">（$@Model.OrderInfo.ProductTotalAmount.ToString("f2"))</span></p>
+                </td>
+                <td width="370">
+                    <span class="f_l">商家承擔關稅：</span>
+                    <p class="f_l">￥@Model.OrderInfo.RmbSupplierBearDutyAmount<span class="color_838383">（$@Model.OrderInfo.SupplierBearDutyAmount.ToString("f2"))</span></p>
+                </td>
+                <td width="370">
+                    <span class="f_l">商家承擔商品促銷費用：</span>
+                    <p class="f_l">￥@Model.OrderInfo.RmbSupplierPromotionDutyAmount.ToString("f2")<span class="color_838383">（$@Model.OrderInfo.SupplierPromotionDutyAmount.ToString("f2"))</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td width="370">
+                    <span class="f_l">商品退款金額：</span>
+                    <p class="f_l">￥@Model.OrderInfo.RmbProductRefundAmount<span class="color_838383">（$@Model.OrderInfo.ProductRefundAmount.ToString("f2"))</span></p>
+                </td>
+                <td width="370">
+                    <span class="f_l">平臺承擔關稅：</span>
+                    <p class="f_l">￥@Model.OrderInfo.RmbBearDutyAmount<span class="color_838383">（$@Model.OrderInfo.BearDutyAmount.ToString("f2"))</span></p>
+                </td>
+                <td width="370">
+                    <span class="f_l">平台承擔商品促銷費用：</span>
+                    <p class="f_l">￥@Model.OrderInfo.RmbPromotionDutyAmount.ToString("f2")<span class="color_838383">（$@Model.OrderInfo.PromotionDutyAmount.ToString("f2"))</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <span class="f_l">其他費用：</span>
+                    <p class="f_l">$@Model.OrderInfo.OtherAmount.ToString("f2")<span class="color_838383">（￥@Model.OrderInfo.RmbOtherAmount）</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <span class="f_l">結算金額：</span>
+                    <p class="f_l color_red">$@((Model.OrderInfo.SettlementAmount).ToString("f2"))<span class="color_838383">（￥@((Model.OrderInfo.RmbSettlementAmount).ToString("f2"))）</span></p>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="fff_bor mg_b20">
+        <p class="f17 pd_t15 pd_b10 pd_l30"><span class="bor_b_2green lineH22">付款信息</span></p>
+        <table class="f15 lineH30 mg_l60 mg_b20">
+            <tbody>
+                <tr>
+                    <td width="370">
+                        <span class="f_l">付款時間：</span>
+                        <p class="f_l">@(Model.PaymentInfo != null && !string.IsNullOrEmpty(Model.OrderInfo.TradeCode) ? Model.OrderInfo.SettlementTime.ToString("yyyy-MM-dd HH:mm:ss") : "")</p>
+                    </td>
+                    <td width="370">
+                        <span class="f_l">付款金額：</span>
+                        @if (Model.PaymentInfo != null && !string.IsNullOrEmpty(Model.OrderInfo.TradeCode))
+                        {
+                            <p class="f_l color_red">$@Model.OrderInfo.SettlementAmount.ToString("f2")<span class="color_838383">（￥@Model.OrderInfo.RmbSettlementAmount.ToString("f2")）</span></p>
+                        }
+                        else
+                        {
+                            <p class="f_l color_red">$0.00<span class="color_838383">（￥0.00）</span></p>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td width="370">
+                        <span class="f_l">付款方式：</span>
+                        <p class="f_l">@(Model.PaymentInfo != null && !string.IsNullOrEmpty(Model.OrderInfo.TradeCode) ? "電匯" : "")</p>
+                    </td>
+                    <td width="370">
+                        <span class="f_l">付款編號：</span>
+                        <p class="f_l">@(Model.PaymentInfo != null && !string.IsNullOrEmpty(Model.OrderInfo.TradeCode) ? Model.OrderInfo.TradeCode : "")</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="fff_bor mg_b20">
+        <div class="dingdglist">
+            <p class="f17 pd_t15 pd_b10 pd_l30"><span class="bor_b_2green lineH22">結算商品</span></p>
+            <table class="f15 t_c table_bor vtop fff_bor mg_t10 mg_b20 mg_l30 mg_r30" width="1300">
+                <tbody>
+                    <tr class="t_c bg_ebebeb table_lineH43">
+                        <th width="321">商品名稱</th>
+                        <th width="135">條形碼</th>
+                        <th width="135">SKU</th>
+                        <th width="94">單價</th>
+                        <th width="50">數量</th>
+                        <th width="100">小計</th>
+                        <th width="94">商品退款</th>
+                        <th width="100">服務費率</th>
+                        <th width="100">商家承擔關稅</th>
+                        <th width="100">商家承擔商品促銷費用</th>
+                        <th width="94">其他費用</th>
+                        <th width="112">結算金額</th>
+                    </tr>
+                    @if (Model.OrderProducts != null && Model.OrderProducts.Count > 0)
+                    {
+                        foreach (var s in Model.OrderProducts)
+                        {
+                        <tr class="lineH22">
+                            <td class="t_l bor_none_r bor_none_l bor_none_b">
+                                <div class="clearfix">
+                                    <a href="@Url.Action("ProductInfoDetail", "Product", new { spu = s.Spu })" target="_blank">
+                                        <img src="@(SFO2O.Admin.Businesses.ConfigHelper.ImageServer + s.ImagePath.Replace(".jpg", "_180.jpg").Replace(".png", "_180.png").Replace(".jpeg", "_180.jpeg"))" class="f_l mg10"></a>
+                                    <div class="f_l w240">
+                                        <p class="pd_t10 mg_b5 substr"><a href="@Url.Action("ProductInfoDetail", "Product", new { spu = s.Spu })" target="_blank" class="hover_color">@s.ProductName</a></p>
+                                        @if (!string.IsNullOrEmpty(s.MainDicValue))
+                                        {
+                                            <p class="f14 col_999">@s.MainDicValue：@s.MainValue</p>
+                                        }
+                                        @if (!string.IsNullOrEmpty(s.SubDicValue))
+                                        {
+                                            <p class="f14 col_999 mg_b10">@s.SubDicValue：@s.SubValue</p>
+                                        }
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="bor_none_r bor_none_l bor_none_b">
+                                <p class="pd10">@s.BarCode</p>
+                            </td>
+                            <td class="bor_none_r bor_none_l bor_none_b">
+                                <p class="pd10">@s.Sku</p>
+                            </td>
+                            <td class="bor_none_r bor_none_l bor_none_b t_r">
+                                <p class="pd10">￥@s.RmbUnitPrice.ToString("f2")</p>
+                            </td>
+                            <td class="bor_none_r bor_none_l bor_none_b">
+                                <p class="pd10">@s.Quantity</p>
+                            </td>
+                            <td class="bor_none_r bor_none_l bor_none_b t_r">
+                                <p class="pd10">￥@s.RmbAmount.ToString("f2")</p>
+                            </td>
+                            <td class="bor_none_r bor_none_l bor_none_b t_r">
+                                <p class="pd10">￥@Model.OrderInfo.RmbProductRefundAmount.ToString("f2")</p>
+                            </td>
+                            <td class="bor_none_r bor_none_l bor_none_b">
+                                <p class="pd10">@s.Commission%</p>
+                            </td>
+                            <td class="bor_none_r bor_none_l bor_none_b t_r">
+                                <p class="pd10">￥@(s.IsBearDuty == 1 ? s.RmbTaxAmount.ToString("f2") : "0.00")</p>
+                            </td>
+                            <td class="bor_none_r bor_none_l bor_none_b">
+                                <p class="pd10">￥ @((s.PromotionAmount * Model.OrderInfo.ExchangeRate).ToString("f2"))</p>
+                            </td>
+                            <td class="bor_none_r bor_none_l bor_none_b t_r">
+                                <p class="pd10">￥ @Model.OrderInfo.RmbOtherAmount.ToString("f2")</p>
+                            </td>
+                            <td class="bor_none_l bor_none_b t_r">
+                                <p class="pd10">￥ @((s.RmbSettlementAmount).ToString("f2"))</p>
+                            </td>
+                        </tr>
+                        }
+
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

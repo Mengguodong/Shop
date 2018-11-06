@@ -1,0 +1,240 @@
+﻿
+.FontColor7{
+	color: #999;
+}
+.banner img{
+	width: 100%;
+	display: block;
+}
+
+/* 导航区域 */
+.placeholder{
+	width:100%;
+}
+.navContainer{
+	background: #f7f7f7;
+	border-bottom: 1px solid #eee;
+	position: relative;
+	width: 100%;
+	height: 44px;
+	overflow:hidden;
+	max-width: 640px;
+	min-width: 320px;
+}
+.navBox{
+	width: auto;
+}
+.cartBox{
+	border-left: 1px solid #eee;
+	padding: 0 5px;
+	float: right;
+	width: 10%;
+	height: 100%;
+}
+.cartBox .cartPos{
+	position: relative;
+	top: 5px;
+	right: 0;
+}
+.fixedTop{ position:fixed; top:0px; left:50%; z-index: 10000;}
+.nav .navBox{
+	white-space: nowrap;
+}
+.nav .navBox>div{
+	display: inline-block;
+	/*margin-right: 10px;*/
+	text-align: center;
+	width: 98px;
+	max-width: 98px;
+	border-bottom: 2px solid #f7f7f7;
+}
+.nav .navBox.average{
+	display: -webkit-box;
+	width: 100%;
+}
+.nav .navBox.average>div{
+	-webkit-box-flex:1;
+	width: 100px;
+	max-width: none;
+	display: block;
+}
+.nav .navBox.average a{
+	padding: 0;
+	width: 100%;
+}
+.nav a,.nav span{
+	display: inline-block;
+	height: 42px;
+	line-height: 42px;
+	color: #999;
+	font-size: 1.5rem;
+	width: 100%;
+}
+.nav .navBox>div.active{
+	color: #f75e26;
+	border-bottom:2px solid #f75e26;
+}
+.nav .navBox>div.active a{
+	color: #f75e26;
+}
+.nav .navBox>div:last-child{
+	margin-right: 0;
+}
+
+.navContent {
+	position: relative;
+}
+
+
+.tags a{
+	display: inline-block;
+	padding: 6px 10px;
+	border:1px solid #eee;
+	color: #696969;
+	font-size: 1.1rem;
+	margin: 10px 12px 10px 6px ;
+	border-radius:25px;
+}
+.tags>div{
+	display: none;
+}
+.productList{
+	/*min-height: 350px;*/
+}
+
+/* new */
+.navContent>div{
+	width: 100%;
+	position: relative;
+}
+.navContent .placeholder{
+	height: 1px;
+}
+.tmp_category .cat_name{
+	width: 100%;
+	padding: 15px 0;
+}
+.tmp_category .cat_name span{
+	display: inline-block;
+	width: 2px;
+	height: 12px;
+	background: #f75e26;
+	margin-right: 5px;
+	position: relative;
+	top: 1px;
+}
+.tmp_category .more{
+	font-size: 1rem;
+	color: #999;
+	float: right;
+} 
+.tmp_category .productList .item{
+	padding: 0;
+}
+.tmp_category .productList img{
+	display: block;
+}
+.tmp_category .productList .title,.tmp_normal .productList .title{
+	color: #696969;
+	height: 1.6rem;
+	line-height: 1.6rem;
+	-webkit-line-clamp:1;
+	margin-bottom: 8px;
+	margin-top: 8px;
+	padding-left: 2.5%;
+	padding-right: 2.5%;
+}
+.tmp_category .productList .item{
+	margin-right: 0;
+}
+.tmp_category .productList .item:nth-of-type(even){
+	float: right;
+}
+
+.tmp_category .original{
+	color: #999;
+}
+.tmp_category .goBuyNow{
+	font-size: 1.2rem;
+	text-align: center;
+	width: 100%;
+	padding: 7px 0;
+	background: #f75e26;
+	color: #fff;
+}
+.tmp_category .productList .item .price,.tmp_normal .productList .item .price{
+	font-size: 1rem;
+	margin-bottom: 8px;
+	overflow: visible;
+}
+.tmp_category .price.FontColor7,.tmp_normal .price.FontColor7{
+	color: #999;
+}
+
+
+/* 专题页-通用 */
+.pink{
+	background-color: #f8bacf;
+}
+.pink span{
+	background: #f8bacf;
+}
+.blue{
+	background-color: #7cd1f8;
+}
+.blue span{
+	background: #7cd1f8;
+}
+.green{
+	background-color: #92dbad;
+}
+.green span{
+	background: #92dbad;
+}
+.yellow{
+	background-color: #ffb940;
+}
+.yellow span{
+	background: #ffb940;
+}
+.violet{
+	background-color: #b18eff;
+}
+.violet span{
+	background: #b18eff;
+}
+
+.tmp_normal .cat_name{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.tmp_normal .cat_name >div{
+	width: 95%;
+	margin-left: 2.5%;
+	background-image: url(../../Images/active/template/tmp_normal_title.png?v=20160711);
+	background-repeat-x:repeat;
+	color: #fff;
+	height: 14px;
+	font-size: 1.4rem;
+	text-align: center;
+}
+.tmp_normal .cat_name span{
+	display: inline-block;
+	padding: 0 5px;
+	/*position: relative;
+	top: -3px;*/
+}
+.tmp_normal .productList .item{
+	width: 50%;
+	margin-right: 0;
+	margin-bottom: 0;
+	border:none;
+	border-bottom: 1px solid #eee;
+	border-right: 1px solid #eee;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing: border-box;
+}
+.tmp_normal .productList .item:nth-of-type(even){
+	border-right: 1px solid #fff;
+}

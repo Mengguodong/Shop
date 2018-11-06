@@ -161,7 +161,7 @@ namespace SFO2O.M.Controllers
                 {
                     /// 标题
                     StringBuilder strbul = new StringBuilder();
-                    strbul.Append("我参加了爱玖网").Append(teamDetailList.First().ProductName)
+                    strbul.Append("我参加了健康绿氧").Append(teamDetailList.First().ProductName)
                             .Append(teamDetailList.First().MainValue).Append(teamDetailList.First().SubValue)
                             .Append(teamDetailList.First().NetWeightUnit).Append("拼单!");
 
@@ -175,7 +175,7 @@ namespace SFO2O.M.Controllers
                     {
                         teamSharedModel.Description = "【还差"
                             + (teamDetailList.First().TeamNumbers - teamDetailList.Count())
-                            + "x人】爱玖网，贵州茅台怀桥酒厂发货，全场包邮，一起实惠一起拼！";
+                            + "x人】健康绿氧，贵州茅台怀桥酒厂发货，全场包邮，一起实惠一起拼！";
                         
                     }
                     else
@@ -201,7 +201,7 @@ namespace SFO2O.M.Controllers
                     teamSharedModel.ImagePath = PathHelper.GetImageSmallUrl(teamDetailList.First().ImagePath);
 
                     /// 描述
-                    teamSharedModel.Description = "爱玖网，贵州茅台怀桥酒厂发货，全场包邮，一起实惠一起拼！";
+                    teamSharedModel.Description = "健康绿氧，贵州茅台怀桥酒厂发货，全场包邮，一起实惠一起拼！";
 
                     /// 团详情页链接
                     /*teamSharedModel.Url = System.Web.Configuration.WebConfigurationManager.AppSettings["sharedUrl"].ToString()
@@ -222,7 +222,7 @@ namespace SFO2O.M.Controllers
                 teamSharedModel.ImagePath = PathHelper.GetImageSmallUrl(teamDetailList.First().ImagePath);
 
                 /// 描述
-                teamSharedModel.Description = "爱玖网，贵州茅台怀桥酒厂发货，全场包邮，一起实惠一起拼！";
+                teamSharedModel.Description = "健康绿氧，贵州茅台怀桥酒厂发货，全场包邮，一起实惠一起拼！";
 
                 /// 团详情页链接
                 /*teamSharedModel.Url = System.Web.Configuration.WebConfigurationManager.AppSettings["sharedUrl"].ToString()

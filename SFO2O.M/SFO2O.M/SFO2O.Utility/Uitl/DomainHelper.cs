@@ -34,7 +34,7 @@ namespace SFO2O.Utility.Uitl
             {
                 string url = GetConfig("MServer");
 
-                if (url.Length == 0) url = "http://www.wdnzmt9.com";
+                if (url.Length == 0) url = "http://www.discountmassworld.com";
 
                 return url;
             }

@@ -1,0 +1,61 @@
+﻿@model List<SFO2O.Model.SupplierEntity>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int index = 1;
+    this.ViewBag.Title = "首页";
+}
+ 
+<li>H5的小伙伴仅提供如下模板即可,Script的交互操作由H5的小伙伴封装，因此HTML标签的id和class命名权归属H5</li>
+<br />
+<br />
+<br /> 
+<div>
+    <table style="border: black; border-style: solid;border-width: 5px">
+        <tr>
+            <td data-extdata="##extDataColumn">ColumnName1</td>
+            <td>ColumnName2</td>
+            <td>ColumnName3</td>
+            <td>ColumnName4</td>
+        </tr>
+
+        @foreach (var m in Model) {
+             
+            <tr data-extdata="##extDataRow">
+                <td>@(index)-@(m.AgentId)</td>
+                <td>@(index)-@(m.AgentType)</td>
+                <td>@(index)-@(m.ApplyAuthentication)</td>
+                <td>@(index)-@(m.BaiduID)</td>
+
+            </tr>
+            { index++; }
+        }
+
+    </table>
+    <input type="button" id="btn" value="Click Me!"/>
+    @Html.Action("Partial1", Model)
+    @Html.Action("Partial2", Model)
+
+</div> 
+
+@section scripts {
+    <script type="text/javascript">
+        $(function () {
+            $("#btn").on("click", function() {
+
+                var url = "/home/get";
+                $.ajax({
+                    type: "GET",
+                    cache: false,
+                    url: url, 
+                    success: function (data) {
+                        console.log(data);
+                    }
+                    
+                });
+            });
+
+        });
+
+    </script> 
+}

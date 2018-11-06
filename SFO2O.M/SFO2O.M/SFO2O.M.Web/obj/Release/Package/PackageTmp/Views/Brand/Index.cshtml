@@ -1,0 +1,167 @@
+﻿@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.Controllers.Common
+@using SFO2O.Utility.Uitl;
+@using SFO2O.Model.Product
+@using SFO2O.Utility.Extensions
+@model SFO2O.Model.Supplier.BrandEntity
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    this.ViewBag.Title = Model.NameCN;
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = true;
+    ViewBag.ShowFastShoppingCart = false;
+}
+@section scripts{
+    <script type="text/javascript" src="../Scripts/jquery/fly/jquery.fly.min.js"></script>
+    <script src="~/Scripts/jquery/jquery.lazyload.js?v=@ConfigHelper.JsVersion"></script>
+    <script src="~/Scripts/jquery/jquery.showSearch.js?v=@ConfigHelper.JsVersion"></script>
+    <script src="~/Scripts/jquery/jsrender-v1.0.0-beta.js?v=@ConfigHelper.JsVersion"></script>
+    <script type="text/javascript" src="../Scripts/brand.js?v=201603160001"></script>
+    <script src="~/Scripts/selectSKU.js?v=@ConfigHelper.JsVersion"></script>
+}
+@section styles{
+    <link href="../Content/css/brand.css?v=@ConfigHelper.CssVersion" rel="stylesheet">
+    <link href="../Content/css/search.css?v=@ConfigHelper.CssVersion" rel="stylesheet">
+}
+
+<!-- 页头 -->
+<header class="pageHeader w100 pr tc">
+    <a class="returnBtn" id="returnBtn"></a>
+    <b class="f36 FontColor1">@Model.NameCN</b>
+    @{
+        string numString = Html.Action("MiniCart", "ShoppingCart").ToHtmlString();
+        string brandName = Model.NameEN + "(" + Model.NameCN + ")";
+        if (Model.NameEN == Model.NameCN)
+        {
+            brandName = Model.NameEN;
+        }
+        string className = "";
+        if (numString == "0")
+        {
+            className = "hide";
+        }
+    }
+    <div class="headerCart cartPos specialPos" id="headerCart"><a href="/shoppingcart"><span id="cartNum" class='@className'>@(numString)</span></a></div>
+    <div class="moreMenu menuPos" id="moreMenu">
+        <ul>
+            <li class="goIndex">
+                <a href="@DomainHelper.MUrl">
+                    <i></i>首页
+                </a>
+            </li>
+            @*<li id="showSearch" class="showSearch">
+                    <i></i>搜索
+            </li>
+            <li class="goHelp">
+                <a href="@DomainHelper.CustomerServicesUrl" class="linkToService" target="_blank">
+                    <i></i>客服
+                </a>
+            </li>*@
+        </ul>
+    </div>
+</header>
+<!-- 页头 end -->
+<!-- 品牌头部 -->
+<div class="shopHeader mb8">
+    <img class="banner banner_brand" src="@Model.Banner.GetImageUrl()" alt="" title="" />
+    <a href="/brand/intro?id=@Model.Id">
+        <div class="boxShadow">
+            <div class="shopName" id="shopName">@brandName</div>
+            <div class="shopInfo">
+                <div class="logo" id="logo">
+                    <img src="@Model.Logo.GetImageUrl()" alt="" title="">
+                </div>
+                <div class="rightContent f24 FontColor3 mt10">
+                    在售商品&nbsp;<span class="FontColor6">@ViewBag.SpuCount</span>&nbsp;款
+                </div>
+            </div>
+            <div class="w95p bgColor3 f24 FontColor3 shopInfo horizontal">
+                <div class="intro boxflex1">@Html.Raw(Model.IntroductionCN)</div>
+                <div class="rightArrow "></div>
+            </div>
+        </div>
+    </a>
+</div>
+<!-- 品牌头部end -->
+@if (Model.productInfoList.Count() != 0)
+{
+    <!-- 明星商品 -->
+    <div class="module_title f30 mb8">
+        <i class="mr5"></i>明星商品
+    </div>
+    <div class="boxShadow mb8 bgColor3 starProList">
+        @foreach (ProductInfoModel productInfoModel in Model.productInfoList)
+        {
+
+            <div class="item" data-procode="@productInfoModel.SPU">
+                <a href="/item.html?productCode=@productInfoModel.SPU">
+                    <div class="imgBox pr">
+                        <img src="@productInfoModel.ImagePath.GetImageUrl()" />
+                        @if (productInfoModel.compare != 1)
+                        {
+                            <div class="saleOut"><span>已售罄</span></div>
+                        }
+                        @if (!string.IsNullOrEmpty(productInfoModel.DiscountRate))
+                        {
+                            <span class="account">@Convert.ToDecimal(productInfoModel.DiscountRate).ToNumberStringFloat()<span>折</span></span>
+                        }
+                    </div>
+                    <div class="w95p">
+                        <div class="title f28 ">@productInfoModel.Name</div>
+                        <div class="detail f24 FontColor3">@productInfoModel.Description</div>
+                    </div>
+                </a>
+                <div class="price w95p">
+                    @if (string.IsNullOrEmpty(productInfoModel.fiSpu))
+                    {
+                        <div class="fr collect">
+                            <i></i>收&nbsp;&nbsp;藏
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="fr collect active">
+                            <i></i>已收藏
+                        </div>
+                    }
+                    @if (productInfoModel.DiscountPrice != 0)
+                    {
+                        <span>￥@productInfoModel.DiscountPrice.ToNumberRoundStringWithPoint()</span>
+                        <span class="f20 FontColor4 ml5 original">@productInfoModel.MinPrice.ToNumberRoundStringWithPoint()</span>
+                    }
+                    else
+                    {
+                        <span>￥@productInfoModel.MinPrice.ToNumberRoundStringWithPoint()</span>
+                    }
+
+                </div>
+            </div>
+        }
+    </div>
+}
+<!-- 明星商品end -->
+<!-- 商品列表 -->
+<div class="products whiteOnLine bgColor3 boxShadow hide">
+    <div class="screen clearfix hide" id="screen">
+        <div class="screenBox" id="sortType">
+            <div class="active" id="new">
+                <a href="javascript:;">上新排序</a>
+            </div>
+            <div class="price" id="price">
+                <a href="javascript:;">价格<i></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="list productList w95p" id="productList">
+        <div class="w100 clearfix">
+        </div>
+    </div>
+</div>
+<div id="loadMore" class="loadMore"></div>
+<input type="hidden" id="brandId" value="@Model.Id" />
+<div class="successInfo" id="successInfo">
+    <div class="success"></div>
+    <p>
+        恭喜您，商品已添加<br>至购物车
+    </p>
+</div>

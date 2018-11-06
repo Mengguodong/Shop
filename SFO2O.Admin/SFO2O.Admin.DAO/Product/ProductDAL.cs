@@ -13,7 +13,7 @@ using System.Reflection;
 using System.Data;
 using SFO2O.Admin.Models.Enums;
 using SFO2O.Admin.Models;
-
+using SFO2O.Utility.Uitl;
 
 namespace SFO2O.Admin.DAO.Product
 {
@@ -1773,5 +1773,95 @@ LEFT JOIN Stock t ON t.Sku=s.Sku WHERE p.LanguageVersion=@LanguageVersion";
             parameters.Append("PageSize", page.PageSize);
             return db.ExecuteSqlDataSet(finallySql, parameters);
         }
+
+
+        #region 添加库存，上架
+        /// <summary>
+        /// 获取所有待上架的sku
+        /// </summary>
+        /// <returns></returns>
+        public IList<SkuInfoStcok> GetPreShowSku()
+        {
+            List<SkuInfoStcok> list = new List<SkuInfoStcok>();
+            try
+            {
+                string sql = @"select sk.Id, sk.Spu, sk.Sku, sk.MainDicKey, sk.MainDicValue, sk.SubDicKey, sk.SubDicValue, sk.MainKey, sk.MainValue, sk.SubKey, sk.SubValue, sk.NetWeight, sk.NetContent, sk.Specifications, sk.Size, sk.Color, sk.AlcoholPercentage, sk.Smell, sk.CapacityRestriction, sk.Price, sk.BarCode, sk.AlarmStockQty, sk.CreateTime, sk.AuditTime, sk.ShelvesTime, sk.RemovedTime, sk.IsOnSaled, sk.Status, sk.ReportStatus,sp.PreOnSaleTime from SkuInfo(nolock) as sk inner join ProductInfo as sp on sk.SpuId = sp.Id where Status=1 and sp.LanguageVersion=1";
+
+                return DbSFO2ORead.ExecuteSqlList<SkuInfoStcok>(sql);
+            }
+            catch (Exception ex)
+            {
+
+                LogHelper.Error(ex);
+            }
+
+            return list;
+        }
+
+
+
+        /// <summary>
+        /// 更新待上架sku为已上架
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public bool UpdatePreShowSku(SkuInfoStcok item)
+        {
+
+            try
+            {
+                string sql = "update SkuInfo set Status=@Status where Id=@Id";
+                var parameters = DbSFO2OMain.CreateParameterCollection();
+                parameters.Append("@Status", item.Status);
+                parameters.Append("@Id", item.Id);
+
+                return DbSFO2OMain.ExecuteNonQuery(CommandType.Text, sql, parameters) > 0;
+
+            }
+            catch (Exception ex)
+            {
+
+                //LogHelper.Error("更新上架状态出错", ex);
+
+                return false;
+            }
+
+
+
+        }
+        /// <summary>
+        /// 更新库存
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public bool InsertStock(SkuInfoStcok item)
+        {
+
+
+            string sql = "insert into stock (spu,sku,qty,updatetime,updateby) values (@spu,@sku,@qty,GETDATE(),@updateby);";
+
+            try
+            {
+                var parameters = DbSFO2OMain.CreateParameterCollection();
+                parameters.Append("@spu", item.Spu);
+                parameters.Append("@sku", item.Sku);
+                parameters.Append("@qty", 10000000);
+                parameters.Append("@updateby", "System");
+
+                return DbSFO2OMain.ExecuteNonQuery(CommandType.Text, sql, parameters) > 0;
+
+            }
+            catch (Exception ex)
+            {
+
+                //LogHelper.Error("更新库存出错", ex);
+
+                return false;
+            }
+
+
+
+        } 
+        #endregion
     }
 }

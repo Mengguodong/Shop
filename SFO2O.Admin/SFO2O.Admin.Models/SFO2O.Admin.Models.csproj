@@ -55,6 +55,7 @@
     <Compile Include="Enums\LanguagEnum.cs" />
     <Compile Include="Enums\ProductStatus.cs" />
     <Compile Include="Enums\OrderStatus.cs" />
+    <Compile Include="GreenModel\ReturnModel.cs" />
     <Compile Include="Order\OrderDetailModel.cs" />
     <Compile Include="Order\OrderInfoModel.cs" />
     <Compile Include="Order\OrderInfo.cs" />

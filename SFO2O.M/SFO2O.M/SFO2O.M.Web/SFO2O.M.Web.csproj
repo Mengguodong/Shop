@@ -155,6 +155,7 @@
     <Content Include="Content\dx_index\dx\jquery.showSearch.js" />
     <Content Include="Content\dx_index\dx\TouchSlide.1.1.js" />
     <Content Include="Content\dx_index\dx\jquery.dialog.js" />
+    <Content Include="Content\dx_index\dx_image\band.png" />
     <Content Include="Content\dx_index\dx_image\index1-0611.png" />
     <Content Include="Content\dx_index\dx_image\index1-06bak.png" />
     <Content Include="Content\dx_index\dx_image\index1-0700.png" />
@@ -188,8 +189,14 @@
     <Content Include="Content\Images\liquorCulture\liquorCulture587.png" />
     <Content Include="Content\Images\liquorCulture\liquorCulture811.png" />
     <Content Include="Content\Images\liquorCulture\LiquorTasting.jpg" />
+    <Content Include="Content\Images\logo.png" />
     <Content Include="Content\Images\logo_small.png" />
     <Content Include="Content\Images\payType\yeebao.png" />
+    <Content Include="Content\Images\wdnz\1_330.jpg" />
+    <Content Include="Content\Images\wdnz\1_660.jpg" />
+    <Content Include="Content\Images\wdnz\2_330.jpg" />
+    <Content Include="Content\Images\wdnz\2_660.jpg" />
+    <Content Include="Content\Images\wdnz\3_660.jpg" />
     <Content Include="Content\Images\wdnz\normal_04.png" />
     <Content Include="Content\Images\wdnz\normal_01.png" />
     <Content Include="Content\Images\wdnz\normal_02.png" />
@@ -562,7 +569,6 @@
     <Content Include="Content\Images\login\down.png" />
     <Content Include="Content\Images\login\icon.png" />
     <Content Include="Content\Images\login\logo.png" />
-    <Content Include="Content\Images\logo.png" />
     <Content Include="Content\Images\message\defImg.jpg" />
     <Content Include="Content\Images\message\msgIcon.png" />
     <Content Include="Content\Images\message\msgtype1.jpg" />

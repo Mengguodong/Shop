@@ -130,7 +130,7 @@ namespace SFO2O.Supplier.Common
         public static string GetSaveSjPathImg()
         {
             var now = DateTime.Now;
-            return string.Format(@"LIB\{0}\{1}\{2}\{3}\IMG\SJ\{4}\",
+            return string.Format(@"UpImages\{0}\{1}\{2}\{3}\IMG\SJ\{4}\",
                          now.ToString("yyyy"), now.ToString("MM"), now.ToString("dd"), now.ToString("HH"),
                          StringHelper.GetRandomString(12));
         }

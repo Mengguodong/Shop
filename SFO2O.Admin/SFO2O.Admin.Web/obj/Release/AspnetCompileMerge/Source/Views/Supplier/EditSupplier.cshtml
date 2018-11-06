@@ -1,0 +1,206 @@
+﻿@model SFO2O.Admin.Models.Supplier.SupplierDetailModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "編輯商家";
+    ViewBag.PageName = "SupplierQuery";
+}
+@{
+    if (Model.Supplier == null)
+    {
+        Model.Supplier = new SFO2O.Admin.Models.Supplier.SupplierModel();
+    }
+
+    var supplier = Model.Supplier;
+
+    var title = "編輯商家";
+
+    if (supplier.SupplierID == 0)
+    {
+        title = "新增商家";
+    }
+
+}
+
+<div class="cont_right_crumb"><span class="homepage"></span>&gt; 商家管理 &gt; @title</div>
+<div class="w931">
+    <ul class="f15 fff_bor mg_t20 pd_r20 pd_b10 clearfix">
+        <li class="box_choose f_l">
+            <span class="choose_left f_l" style="width: 162px;"><i class="color_red vmiddle bitian">*</i>商家帳號：</span>
+            <div class="f_l w277 mg_l20">
+                @{
+                    var disable = "";
+
+                    if (supplier.SupplierID > 0)
+                    {
+                        disable = "disabled=\"disabled\"";
+                    }
+                    
+                }
+                <input type="text" class="f_l bor" style="width:262px;" id="userName" value="@supplier.UserName" @disable>
+                <p class="wrong_tips color_red">錯誤提示</p>
+            </div>
+        </li>
+        <li class="box_choose f_l" id="userNameError" style="display: none;">
+            <p class="col_999 mg_t5 mg_l20 pd_l5">商家账号必须是一个有效的Email地址</p>
+        </li>
+        <li class="box_choose f_l">
+            <span class="choose_left f_l t_r" style="width: 162px;"><i class="color_red vmiddle bitian">*</i>設置初始密碼：</span>
+            <div class="f_l w277  mg_l20">
+                <input type="text" class="f_l bor" style="width: 262px;" id="passWordFirst">
+                <p class="wrong_tips color_red" id="passWordFirstError" style="display: none;">錯誤提示</p>
+            </div>
+        </li>
+        <li class="box_choose f_l">
+            <span class="choose_left f_l t_r" style="width: 102px;"><i class="color_red vmiddle bitian">*</i>確認密碼：</span>
+            <div class="f_l w277">
+                <input type="text" class="f_l bor" style="width: 262px;" id="passWordSecond">
+                <p class="wrong_tips color_red" style="display: none;" id="passWordSecondError">密碼不一致</p>
+            </div>
+        </li>
+    </ul>
+    <div class="fff_bor mg_t20">
+        <div class="bor_b mg_l20 mg_r20 pd_b10">
+            <table class="f15 lineH54">
+                <tr>
+                    <td class="t_r" width="158"><i class="color_red vmiddle bitian">*</i><span class="">公司名稱：</span></td>
+                    <td>
+                        <div class="wrap_window mg_l20" style="padding-left: 0; width: 700px;">
+                            <table class="f15" style="width: 700px;" id="companyTable">
+                                <tbody>
+                                    <tr>
+                                        <td class="vtop t_c bg_eee" width="55">
+                                            <p>繁體 :</p>
+                                        </td>
+                                        <td>
+                                            <div class="div_area" style="width: 600px;">
+                                                <textarea id="companyName" @disable>@supplier.CompanyName</textarea>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="">
+                                        <td class="vtop t_c bg_eee">
+                                            <p>簡體 :</p>
+                                        </td>
+                                        <td>
+                                            <div class="div_area" style="width: 600px;">
+                                                <textarea id="companynameSample" @disable>@supplier.CompanyName_Sample</textarea>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="vtop t_c bg_eee">
+                                            <p>英文 :</p>
+                                        </td>
+                                        <td>
+                                            <div class="div_area" style="width: 600px;">
+                                                <textarea id="companyNameEnglish" @disable>@supplier.CompanyName_English</textarea>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p class="wrong_tips color_red"></p>
+                        </div>
+                    </td>
+                </tr>
+
+
+            </table>
+        </div>
+        <div class="bor_b mg_l20 mg_r20 pd_b10 pd_t10">
+            <table class="f15 lineH54">
+                <tr>
+                    <td class="t_r vtop" style="width: 158px;"><i class="color_red vmiddle bitian">*</i><span class="">公司詳細地址：</span></td>
+                    <td>
+                        <div class="wrap_window mg_l20" style="padding-left: 0; width: 700px;">
+                            <table class="f15" style="width: 700px;" id="addressTable">
+                                <tbody>
+                                    <tr>
+                                        <td class="vtop t_c bg_eee" width="55">
+                                            <p>繁體 :</p>
+                                        </td>
+                                        <td>
+                                            <div class="div_area" style="width: 600px;">
+                                                <textarea id="address">@supplier.Address</textarea>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="">
+                                        <td class="vtop t_c bg_eee">
+                                            <p>簡體 :</p>
+                                        </td>
+                                        <td>
+                                            <div class="div_area" style="width: 600px;">
+                                                <textarea id="addressSample">@supplier.Address_Sample</textarea>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="vtop t_c bg_eee">
+                                            <p>英文 :</p>
+                                        </td>
+                                        <td>
+                                            <div class="div_area" style="width: 600px;">
+                                                <textarea id="addressEnglish">@supplier.Address_English</textarea>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p class="wrong_tips color_red"></p>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+         <div class="bor_b mg_l20 mg_r20 pd_b10 pd_t10">
+            <table class="f15 lineH54">
+                <tr>
+                    <td class="t_r vtop" style="width: 158px;"><i class="color_red vmiddle bitian">*</i><span class="">聯絡人：</span></td>
+                    <td>
+                        <input type="text" class="fff_bor ipt_text mg_l20" id="connectPeople" value="@supplier.ContactPerson">
+                        <p class="wrong_tips color_red mg_l20"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="t_r vtop" style="width: 158px;"><span class="">公司電話：</span></td>
+                    <td>
+                        <input type="text" class="fff_bor ipt_text mg_l20" id="contactTel" value="@supplier.ContactTel">
+                        <p class="wrong_tips color_red mg_l20"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="t_r vtop" style="width: 158px;"><span class="">手提電話：</span></td>
+                    <td>
+                        <input type="text" class="fff_bor ipt_text mg_l20" id="contactPhone" value="@supplier.ContactPhone">
+                        <p class="wrong_tips color_red mg_l20"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="t_r vtop" style="width: 158px;"><span class="">傳真號碼：</span></td>
+                    <td>
+                        <input type="text" class="fff_bor ipt_text mg_l20" id="contactFax" value="@supplier.ContactFax">
+                        <p class="wrong_tips color_red mg_l20"></p>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+    <div class="zanc_shangc t_c pd_t20 pd_b20">
+        <a href="javascript:void(0);" class="btn_green mg_l20 btn_w240 mg_r40" id="submitInfo">完成</a>
+        <a href="/Supplier/SupplierQuery" class="btn_white btn_w240" id="returnBack">返 回</a>
+    </div>
+</div>
+<div style="left: 50px; top: 50px; display: none; z-index: 9999; position: absolute" class="win_wrap f16" id="warning">
+    <div class="win_top clearfix"><span class="f_l mg_l20">提示</span></div>
+    <div class="win_cont pd_l20 pd_r20">
+        <p class="t_c pd_t40 pd_b30"><span id="message"></span></p>
+    </div>
+    <div class="win_btm f18 t_c pd_b20">
+        <a class="win_btn btn_green w135" href="javascript:void(0);" id="temBtn">確 定</a>
+    </div>
+</div>
+<input id="supplierID" value="@supplier.SupplierID" type="hidden" />
+<script src="~/Scripts/UI/validate.js?@ViewBag.JsAndCssVersion"></script>
+<script src="~/Scripts/Supplier/EditSupplier.js?@ViewBag.JsAndCssVersion"></script>

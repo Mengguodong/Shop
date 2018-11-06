@@ -85,6 +85,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Auxiliary.cs" />
     <Compile Include="Cache\RedisCacheHelper.cs" />
     <Compile Include="Extensions\EnumExtension.cs" />
     <Compile Include="Extensions\HttpRequestExtension.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="Uitl\HttpClientHelper.cs" />
     <Compile Include="Uitl\ImagePath.cs" />
     <Compile Include="Uitl\JsonConvertTool.cs" />
+    <Compile Include="Uitl\PubConstant.cs" />
     <Compile Include="Uitl\ShareUtils.cs" />
     <Compile Include="Uitl\JSON.cs" />
     <Compile Include="Uitl\JsonHelper.cs" />

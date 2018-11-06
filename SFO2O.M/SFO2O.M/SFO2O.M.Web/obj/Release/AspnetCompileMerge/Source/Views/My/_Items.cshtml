@@ -1,0 +1,152 @@
+﻿@using SFO2O.M.Controllers
+@{
+    Layout = null;
+    MyController mycontro = new MyController();
+     string PinHuoLiStartTime = System.Web.Configuration.WebConfigurationManager.AppSettings["PinHuoLiStartTime"].ToString();
+     string PinHuoLiEndTime = System.Web.Configuration.WebConfigurationManager.AppSettings["PinHuoLiEndTime"].ToString();
+    bool istrue = mycontro.getOrderInfoCount();
+}
+
+@using SFO2O.Model.Enum
+@using SFO2O.Model.My
+@using SFO2O.Utility.Extensions
+@using SFO2O.Utility.Uitl
+@model IEnumerable<SFO2O.Model.My.MyOrderInfoDto>
+
+@foreach (var m in Model)
+{
+    if (!string.IsNullOrEmpty(m.OrderCode))
+    {
+        var skus = m.SkuInfos ?? new List<MyOrderSkuInfoDto>();
+        int skucount = skus.Count;
+        <li class="boxShadow">
+            <p class="orderNum f28" data-time="@m.CreateTime">订单编号：@m.OrderCode  <span class="fr FontColor6">@(m.OrderStatus.ToString().ToEnum<OrderStatusEnum>().GetDisplayString())</span></p>
+            <div class="proList">
+
+                @foreach (var s in skus)
+                {
+                    <a href="@Url.Action("Detail", new { orderCode = m.OrderCode })" class="proItem displayBox w100 pr">
+                        <!--20160425 新增内容 组团失败标识-->
+                        @if (m.TeamStatus ==2)
+                        {
+                            <img src="/Content/Images/order/pinFailIcon.png?v=2016041200001" class="pinFailIcon pa">
+                        }
+                        <!--20160425 新增内容 END-->
+                        <div class="proImgWrap grayOnLine">
+                            <img src="@s.ImagePath.GetImageSmallUrl()" class="whiteOnLine">
+                        </div>
+                        <div class="boxflex1 cartProInf ">
+                            <p class="proName f24 mb5">@s.Name</p>
+                            <p class="selectedSku f20 FontColor4">
+                                @if (!string.IsNullOrEmpty(s.MainDicValue))
+                                {
+                                    @(s.MainDicValue)<text>：</text>@(s.MainValue)
+
+                                    if (!string.IsNullOrEmpty(s.SubDicValue))
+                                    {
+                                        <text> ,@s.SubDicValue：@s.SubValue</text>
+                                    }
+                                    if (s.MainDicValue.Equals("净重") || s.MainDicValue.Equals("淨重"))
+                                    {
+                                        @(s.NetWeightUnit)
+                                    }
+
+                                    if (s.MainDicValue.Equals("净含量") || s.MainDicValue.Equals("淨含量"))
+                                    {
+                                        @(s.NetContentUnit)
+                                    }
+                                }
+                            </p>
+                        </div>
+                        <div class="proPrice tr">
+                            <p class="f24 proName">￥@s.PayUnitPrice.ToString("f2")</p>
+                            <p class="f20 selectedSku FontColor4">×@s.Quantity</p>
+                        </div>
+                    </a>
+                }
+                @if (m.SkuInfos.Count > 2)//超过2件折叠提示
+                {
+                    <p class="more f24 FontColor4 tc whiteOnLine borderBottom">
+                        展示其余@(m.SkuInfos.Count - 2)件<span></span>
+                    </p>
+                }
+                else
+                {
+                    <p class="more f24 FontColor4 tc whiteOnLine borderBottom hide">
+                        展示其余@(m.SkuInfos.Count - 2)件<span></span>
+                    </p>
+                }
+            </div>
+            <p class="orderPrice whiteOnLine borderBottom tr f24">共@(m.SkuInfos.Sum(n => n.Quantity))件商品，合计<span class="FontColor6">￥@((m.TotalAmount).ToNumberRoundStringWithPoint())</span></p>
+
+            @switch (m.OrderStatus.ToString().ToEnum<OrderStatusEnum>())
+            {
+                case OrderStatusEnum.NonPayment:
+                    {
+
+            <!--待付款-->
+                        <p class="orderBtnWrap tr">
+                            <a class="btn normalBtn cancelBtn" data-ordercode="@m.OrderCode" href="@Url.Action("Cancel")" target="_self">取消订单</a><a class="btn gotoPay" href="@Url.Action("Index", "Pay", new { id = m.OrderCode })" target="_self" data-ordercode="@m.OrderCode">支付</a>
+                        </p>
+            <!--待付款 END-->
+
+                        @*<a class="btn normalBtn" href="@Url.Action("LogisticsInfo", new { orderCode = m.OrderCode })" target="_self">查看物流</a><a class="btn confirmReceiptBtn" data-ordercode="@m.OrderCode" href="@Url.Action("ConfirmOrder")" target="_self">确认收货</a>*@
+                        break;
+                    }
+                case OrderStatusEnum.Shipped:
+                    {
+
+            <!--已发货-->
+                        <p class="orderBtnWrap tr">
+                            <a class="btn confirmReceiptBtn" data-ordercode="@m.OrderCode" data-num="" href="@Url.Action("ConfirmOrder")" target="_self">确认收货</a>
+                            <a class="btn" name="chakanwuliu" wlype="@m.ExpressCompany" wlcode="@m.ExpressList" ordercode="@m.OrderCode">查看物流</a>
+                        </p>
+            <!--已发货 END-->
+                        break;
+                    }
+
+                case OrderStatusEnum.UnDelivered:
+                    {
+
+            <!--待付款-->
+                        @*<a class="btn normalBtn cancelBtn" data-ordercode="@m.OrderCode" href="@Url.Action("Cancel")" target="_self">取消订单</a><a class="btn gotoPay" href="#" target="_self" data-ordercode="@m.OrderCode">支付</a>*@
+                        break;
+                    }
+                case OrderStatusEnum.Received:
+                    {
+                        if (m.SkuInfos.Any(n => n.RefundQuantity > 0))
+                        {
+
+            <!--退货-->
+                            <p class="orderBtnWrap tr">
+                                <span class="f24">该订单发生申诉</span>
+                            </p>
+            <!--退货 end-->
+                        }
+                        else
+                        {
+            <!--已送达-->
+                            <p class="orderBtnWrap tr">
+                                <a class="btn normalBtn" href="@Url.Action("LogisticsInfo", new { orderCode = m.OrderCode })" target="_self">查看物流</a>
+                                @if (m.TeamUserId == m.UserId && !istrue && m.TeamStartTime >= Convert.ToDateTime(PinHuoLiStartTime) && m.TeamStartTime <= Convert.ToDateTime(PinHuoLiEndTime))
+                                {
+                                <a class="btn confirmReceiptBtn" data-ordercode="@m.OrderCode" data-num="@((m.ProductTotalAmount*100).ToString("#.##"))" href="@Url.Action("ConfirmOrder")" target="_self">确认收货</a>
+                                }
+                                else
+                                {
+                                <a class="btn confirmReceiptBtn" data-ordercode="@m.OrderCode" data-num="" href="@Url.Action("ConfirmOrder")" target="_self">确认收货</a>
+                                }
+                            </p>
+            <!--已送达 END-->
+                        }
+
+                        break;
+                    }
+                default:
+                    break;
+            }
+
+        </li>
+
+    }
+}

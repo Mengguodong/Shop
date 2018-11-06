@@ -1,0 +1,20 @@
+﻿@{
+    Layout = null;
+    int i = 0;
+}
+@using SFO2O.M.Controllers.Common
+@using SFO2O.Utility.Uitl
+@model List<SFO2O.Model.Index.IndexModulesEntity> 
+@if(Model.Count>0){
+
+    foreach(var m in Model){
+        
+        string name = "category1.jpg";
+        if(m.Sort == 1){
+            <a href="@m.LinkUrl" target="_self" >
+                <img src="../../Content/Images/index/@name" alt="@m.Title" class="w100 show lazyloadImg">
+            </a>
+        }
+    }
+}
+

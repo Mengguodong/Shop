@@ -25,6 +25,11 @@ namespace SFO2O.Admin.Businesses.Order
             return orderDao.getOrderInfo(orderCode);
         }
 
+        public bool UpdateOrderStatus(int orderStatus, string ordercode)
+        {
+            return orderDao.UpdateOrderStatus(orderStatus, ordercode);
+        }
+
         public OrderModel GetOrderDetailInfo(string orderCode)
         {
             var order = new OrderModel();

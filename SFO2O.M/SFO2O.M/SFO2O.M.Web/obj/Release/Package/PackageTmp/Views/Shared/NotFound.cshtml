@@ -1,0 +1,23 @@
+﻿@using System.Web.UI.HtmlControls
+@using SFO2O.BLL.Common
+@using SFO2O.M.Controllers
+@using SFO2O.M.Controllers.Common
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.ViewModel.Product
+@using SFO2O.Utility.Extensions
+@using SFO2O.Utility.Uitl
+@model SFO2O.M.Controllers.Common.Message
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "出错了"; 
+} 
+<!--正文-->
+<div class=" sf-pop payStatusWrap tc ">
+    <img src="@Url.Content("~/Content/images/404.png")">
+    <p class="conent tip">糟糕，访问的页面不在地球上了...</p>
+    <p class="btn-box">
+        <a class="closeBtn m-btn" href="@DomainHelper.MUrl" target="_self">返回首页</a> 
+    </p>
+</div>
+<!--正文 END-->

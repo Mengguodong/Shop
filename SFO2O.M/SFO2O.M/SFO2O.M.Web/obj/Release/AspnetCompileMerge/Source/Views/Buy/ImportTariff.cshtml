@@ -1,0 +1,127 @@
+﻿@using SFO2O.Utility.Uitl
+@using SFO2O.Utility.Extensions
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.Controllers;
+@model SFO2O.Model.Product.ProductSkuEntity
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "进口商品税";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = false;
+}
+@section scripts{
+     @Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJsImportTariff))
+}
+@section styles{
+    <link href="../Content/css/importTariff.css?v=201512150001" rel="stylesheet">
+}
+<!-- 页头 -->
+	<header class="pageHeader w100 pr tc">
+        <a class="returnBtn" id="customReturn"></a>
+        <b class="f36 FontColor1">进口商品税</b>
+		<a class="introLink" href="/buy/taxDescription">商品税说明</a>
+    </header>
+    <!-- 页头 end -->
+    <!-- 商品税列表 -->
+	<ul class="fshList tariffList boxShadow mb8">
+		<li>
+			<div class="info">
+				<img src="@Model.ImagePath.GetImageSmallUrl()" />
+				<div>
+					<p class="mb20">单价：<span>￥@Model.ProductPrice.ToNumberStringIntelligent()</span></p>
+				
+					<p>数量：<span>×@ViewBag.BuyQty</span></p>
+				</div>
+			</div>
+			<div class="price">
+                 @{
+                     
+                     int realTaxType = TotalTaxHelper.GetRealTaxType(Model.ReportStatus,
+                                        Model.IsCrossBorderEBTax, Model.ProductPrice * ViewBag.BuyQty);
+
+                     decimal taxValue =  Convert.ToDecimal((TotalTaxHelper.GetTotalTaxAmount(realTaxType, Model.ProductPrice, Model.CBEBTaxRate/100,
+                                                            Model.ConsumerTaxRate / 100, Model.VATTaxRate / 100, Model.PPATaxRate / 100).ToNumberRoundStringWithPoint())) * ViewBag.BuyQty;
+                                        
+                }
+				<p>￥@taxValue.ToNumberStringIntelligent()</p>
+                @if (Model.IsDutyOnSeller == 1)
+                {
+                <span>（商家承担）</span>
+                }
+			</div>
+		</li>
+		
+	</ul>
+    <!-- 商品税列表end -->
+    <!-- 商品税总计 -->
+    <div class="total boxShadow mb8">
+    	<div class="detail w95p whiteOnLine">
+    		<div>
+                @{
+               /// decimal totalTaxPrice = Model.ProductPrice * Model.TaxRate*ViewBag.BuyQty;
+                }
+    			<span>商品税总计</span>
+				￥@taxValue.ToNumberStringIntelligent()
+    		</div>
+           
+
+            @{
+                /// 显示的商品税值
+                decimal taxValueShow = 0.00M;
+                
+                /// 行邮税
+                if (realTaxType == 2)
+                {
+                    <!-- 不用交商品税 -->
+                    if (taxValue < 50)
+                    {
+                        <p class="tip">
+    			            （商品税总计不超过50元免征，故无需支付商品税）
+    		            </p>
+                    }else{
+                         /// 商品税显示赋值
+                         taxValueShow = taxValue;
+                        
+                         if(Model.IsDutyOnSeller==1){
+    		            <div>
+    			            <span>商家承担商品税</span>
+    			            - ￥@taxValue.ToNumberStringIntelligent()
+    		            </div>
+                        }else{
+                            /// 商品税显示赋值
+                            taxValueShow = taxValue;
+                             
+    		                <div>
+    			                <span>商家承担商品税</span>
+    			                - ￥0.00
+    		                </div> 
+                        }
+                    }
+                }
+                else
+                {
+                    if(Model.IsDutyOnSeller==1){
+    		            <div>
+    			            <span>商家承担商品税</span>
+    			            - ￥@taxValue.ToNumberStringIntelligent()
+    		            </div>
+                    }else{
+                        /// 商品税显示赋值
+                        taxValueShow = taxValue;
+                        
+    		            <div>
+    			            <span>商家承担商品税</span>
+    			            - ￥0.00
+    		            </div> 
+                    }
+                }
+            }
+    	</div>
+    	<div class="info w95p">
+    		共<span>@ViewBag.BuyQty</span>件，需要支付商品税
+            <span>￥@taxValueShow.ToNumberRoundStringWithPoint()</span> 
+            
+    	</div>
+    </div>
+    <!-- 商品税总计end -->

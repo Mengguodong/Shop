@@ -1,0 +1,13 @@
+﻿.intro{
+	padding-top: 12px;
+	padding-bottom: 15px;
+	line-height: 28px;
+}
+.intro .title{
+	font-size: 1.4rem;
+	color: #333;
+}
+.intro .info{
+	font-size: 1.4rem;
+	color: #bcbcbc;
+}

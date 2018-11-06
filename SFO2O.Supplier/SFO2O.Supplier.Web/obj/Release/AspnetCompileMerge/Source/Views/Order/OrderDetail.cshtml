@@ -1,0 +1,325 @@
+﻿@using SFO2O.Supplier.Models;
+@using SFO2O.Supplier.Common;
+@model SFO2O.Supplier.Models.OrderViewModel
+@{
+    ViewBag.Title = "订单详情";
+    ViewBag.PageName = "OrderList";
+    Layout = "~/Views/Shared/_LayoutNoMenu.cshtml";
+
+    decimal TotalAmountRMB = 0;
+    decimal TotalAmountHK = 0;
+    if (Model.orderProducts != null)
+    {
+        TotalAmountRMB = Model.orderProducts.Sum(p => p.PayUnitPrice * p.Quantity);
+        TotalAmountHK = Model.orderProducts.Sum(p => p.UnitPrice * p.Quantity);
+    }
+
+
+    decimal totalAmount = 0;
+
+    Decimal.TryParse(ViewBag.TotalTaxAmount.ToString(), out totalAmount);
+
+    Model.order.PaidAmount += totalAmount;
+}
+
+<div class="center_cont w1156 clearfix">
+    <p class="color_green f24 mg_t20 mg_b20">订单详情</p>
+    <div class="bor_bg pd_t20 pd_r20 pd_l20 f15">
+        <div class="clearfix mg_l30 f17">
+            <p class="f_l w300">
+                <label>订单编号：</label>
+                <span>@Model.order.OrderCode</span>
+            </p>
+            <p class="f_l">
+                <label>状态：</label>
+                <span class="color_red">@(EnumHelper.GetDescription(Model.order.OrderStatus, typeof(OrderStatus)))</span>
+                @if (Model.order.OrderStatus == 2 || Model.order.OrderStatus == 3 || Model.order.OrderStatus == 4)
+                {
+                    double seconds = 0;
+                    if (Model.order.ArrivalTime != null)
+                    {
+                        DateTime endTime = DateTime.Parse(Model.order.ArrivalTime.ToString()).AddDays(7);
+                        seconds = endTime.Subtract(DateTime.Now).TotalSeconds;
+
+                    }
+
+                    <input type="hidden" value="seconds" id="countdown" />
+                    <span class="color_838383" id="spanCountdown"></span>
+                }
+            </p>
+            @if (Model.orderProducts.Sum(p => p.RefundQuantity) > 0)
+            {
+                <a href="/Refund/RefundList?OrderCode=@Model.order.OrderCode" class="f_r f14 btn_daochu posR" style="bottom: 7px;">查看退款单</a>
+            }
+
+        </div>
+        <div class="fff_bor mg_b20">
+            <div class="mg_b10 pildaor dingd_detail" style="height: 121px;">
+                <div class="step_wrap clearfix">
+                    <div class="step @(Model.order.CreateTime == null ? "off" : "active") firststep">
+                        <div class="detail t_c">
+                            <div class="step_part">
+                                提交订单<br />
+                                <span></span>
+                                <br>
+                                <div class="col_999 lineH22">
+                                    @if (Model.order.CreateTime != null)
+                                    {
+                                        @Model.order.CreateTime.ToString("yyyy-MM-dd")<br />
+                                        @Model.order.CreateTime.ToString("HH:mm:ss")
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @if (Model.order.PayTime != null)
+                    {
+                        <div class="step active">
+                            <div class="detail">
+                                <div class="step_part">
+                                    支付<br>
+                                    <span></span>
+                                    <br>
+                                    <div class="col_999 lineH22">
+                                        @DateTime.Parse(Model.order.PayTime.ToString()).ToString("yyyy-MM-dd")<br />
+                                        @DateTime.Parse(Model.order.PayTime.ToString()).ToString("HH:mm:ss")
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        if (Model.order.OrderStatus != 5)
+                        {
+                            <div class="step off">
+                                <div class="detail">
+                                    <div class="step_part">
+                                        支付<br>
+                                        <span></span>
+                                        <br>
+                                        <div class="col_999 lineH22">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    @if (Model.order.DeliveryTime != null)
+                    {
+                        <div class="step active">
+                            <div class="detail">
+                                <div class="step_part">
+                                    发货<br>
+                                    <span></span>
+                                    <br>
+                                    <div class="col_999 lineH22">
+                                        @DateTime.Parse(Model.order.DeliveryTime.ToString()).ToString("yyyy-MM-dd")<br />
+                                        @DateTime.Parse(Model.order.DeliveryTime.ToString()).ToString("HH:mm:ss")
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        if (Model.order.OrderStatus != 5)
+                        {
+                            <div class="step off">
+                                <div class="detail">
+                                    <div class="step_part">
+                                        发货<br>
+                                        <span></span>
+                                        <br>
+                                        <div class="col_999 lineH22">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    <div class="step @(Model.order.OrderCompletionTime == null ? "off" : "active")">
+                        <div class="detail">
+                            <div class="step_part">
+                                交易成功/交易关闭<br>
+                                <span></span>
+                                <br>
+                                <div class="col_999 lineH22">
+                                    @if (Model.order.OrderCompletionTime != null)
+                                    {
+                                        @DateTime.Parse(Model.order.OrderCompletionTime.ToString()).ToString("yyyy-MM-dd")<br />
+                                        @DateTime.Parse(Model.order.OrderCompletionTime.ToString()).ToString("HH:mm:ss")
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fff_bor mg_b20">
+            <p class="f17 pd_t15 pd_b10 pd_l30"><span class="bor_b_2green lineH22">买家信息</span></p>
+            <table class="f15 lineH30 mg_l60 mg_b20">
+                <tr>
+                    <td class="vtop" width="370">
+                        <span class="f_l">买家账户：</span>
+                        <p class="f_l w250">@(StringHelper.replace(Model.order.UserName, 2, Model.order.UserName.Length - 1))</p>
+                    </td>
+                    <td class="vtop" width="370">
+                        <span class="f_l">电子邮件：</span>
+                        @{
+                            string email = Model.order.Email;
+                            string prefix = email.Substring(0, email.IndexOf("@"));
+                            string result = StringHelper.replace(prefix, 2, prefix.Length) + email.Substring(email.IndexOf("@"), email.Length - email.IndexOf("@"));
+                        }
+                        <p class="f_l w250">@result</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="vtop" width="370">
+                        <span class="f_l">收货人：</span>
+                        <p class="f_l w250">@(StringHelper.replace(Model.order.Receiver, 2, Model.order.Receiver.Length))</p>
+                    </td>
+                    <td class="vtop" width="370">
+                        <span class="f_l">电话：</span>
+                        <p class="f_l w250">@(StringHelper.replace(Model.order.Phone, 2, Model.order.Phone.Length - 1))</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="vtop" colspan="2">
+                        <span class="f_l">收货人地址：</span>
+                        <p class="f_l">@(Model.order.ProvinceName + Model.order.CityName + Model.order.AreaName)</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="fff_bor mg_b20">
+            <p class="f17 pd_t15 pd_b10 pd_l30"><span class="bor_b_2green lineH22">支付信息</span></p>
+            <table class="f15 lineH30 mg_l60 mg_b20">
+                <tr>
+                    <td width="370">
+                        <span class="f_l">支付方式：</span>
+                        <p class="f_l">@Model.order.PayPlatform</p>
+                    </td>
+                    <td width="370">
+                        <span class="f_l">支付编号：</span>
+                        <p class="f_l">@Model.order.PayCode</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="370">
+                        <span class="f_l">商品总金额：</span>
+                        <p class="f_l">￥@Model.order.TotalAmount.ToString("N2") 元</p>
+                    </td>
+                    @*<td width="370">
+                        <span class="f_l">商品关税：</span>
+                        <p class="f_l">￥@totalAmount.ToString("N2") 元<span class="color_838383">（$ @((totalAmount / Model.order.ExchangeRate).ToString("N2"))）</span></p>
+                    </td>*@
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <span class="f_l">实付金额：</span>
+                        <p class="f_l">￥ @Model.order.PaidAmount.ToString("N2") 元</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="fff_bor mg_b20">
+            <p class="f17 pd_t15 pd_b10 pd_l30"><span class="bor_b_2green lineH22">物流信息</span></p>
+            <table class="f15 lineH30 mg_l60 mg_b20">
+                <tr>
+                    <td width="370">
+                        <span class="f_l">配送方式：</span>
+                        <p class="f_l">@Model.order.ExpressCompany</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="370">
+                        <span class="f_l">物流单号：</span><p>
+                            （@Model.order.ExpressList）<a href="javascript:void(0)" onclick="ShowLogistics('@Model.order.ExpressList','@Model.order.ExpressCompany')" id="showlogistics" class="col_link udline">查看物流信息</a>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="fff_bor mg_b20">
+            <div class="dingdglist">
+                <p class="f17 pd_t15 pd_b10 pd_l30"><span class="bor_b_2green lineH22">商品信息</span></p>
+                <table class="f15 t_c table_bor vtop fff_bor mg_t10 mg_b20 mg_l30 mg_r30" width="1051px;">
+                    <tbody>
+                        <tr class="t_c bg_ebebeb table_lineH43">
+                            <th width="321">商品名称</th>
+                            <th width="135">条形码</th>
+                            <th width="135">SKU</th>
+                            <th width="94">单价</th>
+                            <th width="60">数量</th>
+                            <th width="100">小计</th>
+                            <th width="100">商品优惠</th>
+                            <th width="112">商品总金额</th>
+                        </tr>
+                        @{
+                            int i = 0;
+                            foreach (var orderproduct in Model.orderProducts)
+                            {
+                                i = i + 1;
+                                <tr class="lineH22">
+                                    <td class="t_l bor_none_r bor_none_l">
+                                        <div class="clearfix">
+                                            <a href="#">
+                                                <img src="@(SFO2O.Supplier.Common.ConfigHelper.ImageServer + orderproduct.ProductImagePath.Replace(".jpg", "_180.jpg"))" class="f_l mg10">
+                                            </a>
+                                            <div class="f_l w240">
+                                                <p class="pd_t10 mg_b5 substr"><a href="@Url.Action("PublishedList", "Product", new { Sku = orderproduct.Sku })" class="hover_color">@(orderproduct.Name.Length > 15 ? orderproduct.Name.Substring(0, 15) + "..." : orderproduct.Name)</a></p>
+                                                @if (!string.IsNullOrEmpty(orderproduct.MainDicValue))
+                                                {
+                                                    <p class="f14 col_999">@orderproduct.MainDicValue：@orderproduct.MainValue</p>
+                                                }
+                                                @if (!string.IsNullOrEmpty(orderproduct.SubDicValue))
+                                                {
+                                                    <p class="f14 col_999 mg_b10">@orderproduct.SubDicValue：@orderproduct.SubValue</p>
+                                                }
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="bor_none_r bor_none_l">
+                                        <p class="pd10">@orderproduct.BarCode</p>
+                                    </td>
+                                    <td class="bor_none_r bor_none_l">
+                                        <p class="pd10">@orderproduct.Sku</p>
+                                    </td>
+                                    <td class="bor_none_r bor_none_l">
+                                        <p class="pd10">￥@orderproduct.PayUnitPrice.ToString("N2")</p>
+                                    </td>
+                                    <td class="bor_none_r bor_none_l">
+                                        <p class="pd10">@orderproduct.Quantity</p>
+                                    </td>
+                                    <td class="bor_none_r bor_none_l">
+                                        <p class="pd10">￥@((orderproduct.PayUnitPrice * orderproduct.Quantity).ToString("N2"))</p>
+                                    </td>
+                                    <td class="bor_none_r bor_none_l">
+                                        @if (orderproduct.PromotionPrice != 0)
+                                        {
+                                            <p class="pd10">￥@((orderproduct.PromotionPrice * Model.order.ExchangeRate).ToString("N2"))</p>
+                                        }
+                                    </td>
+                                    @if (i == 1)
+                                    {
+                                        <td rowspan="@Model.orderProducts.Count()">
+                                            <p class="pd_l10 pd_r10 pd_t10 color_red">￥@TotalAmountRMB.ToString("N2")</p>
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Scripts/Order/OrderDetail.js"></script>

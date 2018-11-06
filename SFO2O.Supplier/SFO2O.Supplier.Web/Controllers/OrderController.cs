@@ -110,7 +110,7 @@ namespace SFO2O.Supplier.Web.Controllers
 
             if (string.IsNullOrEmpty(startTime) || string.IsNullOrEmpty(endTime))
             {
-                queryInfo.startTime = DateTime.Parse("2017-07-16");
+                queryInfo.startTime = DateTime.Now.AddMonths(-3);
                 queryInfo.endTime = DateTime.Now;
             }
             else

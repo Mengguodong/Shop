@@ -1,0 +1,75 @@
+﻿
+@using SFO2O.M.Controllers;
+@using SFO2O.Utility.Uitl
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    this.ViewBag.Title = "支付";
+    ViewBag.ShowFooter = false;
+    
+}
+
+@section styles{
+    <link href="@BundleConfig.BuildCss("Content/css/payType.css")" type="text/css" rel="stylesheet" />
+}
+
+@if(ViewBag.Falg == true)
+{
+    if (ViewBag.parentOrderCode != null)
+    {
+        <!-- 支付成功 -->
+	    <div class="sf-pop payStatusWrap">
+		    <p class="content title"><span class="successIcon"></span>支付成功！</p>
+		    <p class="conent tip">支付成功，可以去查看订单。</p>
+		    <p class="btn-box">
+			    <a class="closeBtn m-btn hover" href="@string.Format("{0}/my/detail?orderCode={1}",DomainHelper.MUrl,ViewBag.OrderCode)" target="_self">查看订单</a>
+                <a class="closeBtn m-btn" href="PayPage.html?id=@ViewBag.NextOrderCode&package=@ViewBag.package" target="_self">支付下一单</a>
+		    </p>
+	    </div>
+	    <!-- 支付成功end -->
+    }
+    else
+    {
+        <!-- 支付成功 -->
+	    <div class="sf-pop payStatusWrap">
+		    <p class="content title"><span class="successIcon"></span>支付成功！</p>
+		    <p class="conent tip">支付成功，可以去查看订单。</p>
+		    <p class="btn-box" style="width:100%; padding:0px;">
+                <a class="closeBtn m-btn" href="/shoppingcart" target="_self">回购物车</a>
+			    <a class="closeBtn m-btn" href="@DomainHelper.MUrl" target="_self" style="margin-left:0px;">去首页</a>
+			    <a class="closeBtn m-btn hover" href="@string.Format("{0}/my/detail?orderCode={1}",DomainHelper.MUrl,ViewBag.OrderCode)" target="_self">查看订单</a>
+		    </p>
+	    </div>
+	    <!-- 支付成功end -->
+    }
+   
+}
+else
+{
+    if (ViewBag.parentOrderCode != null)
+    {
+        <!-- 支付失败 -->
+	    <div class="sf-pop payStatusWrap">
+		    <p class="content title"><span class="failIcon"></span>支付失败！</p>
+		    <p class="conent tip">支付失败，请稍后再试。</p>
+		    <p class="btn-box">
+                <a class="closeBtn m-btn hover" href="@string.Format("{0}/my/list?status=0",DomainHelper.MUrl)" target="_self" style="width:40%">查看待支付订单</a>
+                <a class="closeBtn m-btn" href="PayPage.html?id=@ViewBag.orderCode&package=@ViewBag.package" target="_self">支付下一单</a>
+		    </p>
+	    </div>
+	    <!-- 支付失败end -->
+    }
+    else
+    {
+        <!-- 支付失败 -->
+	    <div class="sf-pop payStatusWrap">
+		    <p class="content title"><span class="failIcon"></span>支付失败！</p>
+		    <p class="conent tip">支付失败，请稍后再试。</p>
+		    <p class="btn-box">
+			    <a class="closeBtn m-btn hover" href="@string.Format("{0}/my/list?status=0",DomainHelper.MUrl)" target="_self" style="width:40%">查看待支付订单</a>
+		    </p>
+	    </div>
+	    <!-- 支付失败end -->
+    }
+	
+}
+

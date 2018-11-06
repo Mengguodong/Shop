@@ -1,0 +1,76 @@
+﻿@using SFO2O.M.Controllers
+@using SFO2O.Utility.Uitl
+@model SFO2O.M.ViewModel.Supplier.StoreInfoModel
+@{
+    Layout="~/Views/Shared/_Layout_Common.cshtml";
+}
+
+@section styles{
+    <link href="@BundleConfig.BuildCss("Content/css/shop.css")" type="text/css" rel="stylesheet" />
+    }
+@section scripts{
+    @Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJsStore))
+<script src="~/Scripts/jquery/jsrender-v1.0.0-beta.js?v=@ConfigHelper.JsVersion"></script>
+  <script src="~/Scripts/selectSKU.js?v=@ConfigHelper.JsVersion"></script>
+    }
+
+<!-- 页头 -->
+	<header class="pageHeader w100 pr tc">
+        <a class="returnBtn" id="returnBtn"></a>
+        <b class="f36 FontColor1">商家店铺</b>
+
+        @{string numString = Html.Action("MiniCart", "ShoppingCart").ToHtmlString();
+                }
+		<a href="/shoppingcart"><div class="headerCart cartPos">@if (numString!="0"){<span>@(numString)</span>}</div></a>
+		<div class="moreMenu menuPos" id="moreMenu">
+			<ul>
+				<li class="goIndex">
+					<a href="@DomainHelper.MUrl">
+						<i></i>首页
+					</a>
+				</li>
+				@*<li class="goHelp">
+					<a href="@DomainHelper.CustomerServicesUrl" target="_blank" class="linkToService">
+						<i></i>联系客服
+					</a>
+				</li>*@
+			</ul>
+		</div>
+    </header>
+    <!-- 页头 end -->
+    <!-- 店铺头部 -->
+    <div class="shopHeader mb8">
+    	<img class="banner" id="banner" src="@Model.StoreBannerPath" alt="" title="" />
+    	<a href="StoreIntro.html?id=@Model.SupplierID">
+	    	<div class="shopName" id="shopName">@Model.StoreName</div>
+	    	<div class="shopInfo boxShadow">
+	    		<div class="logo" id="logo">
+	    			<img src="@Model.StoreLogoPath" alt="" title="">
+	    		</div>
+	    		<div class="rightContent">
+	    			<div class="intro"> @Model.StorePageDesc </div>
+	    		</div>
+	    	</div>
+    	</a>
+    </div>
+    <!-- 店铺头部end -->
+    <!-- 商品列表 -->
+	<div class="products whiteOnLine">
+		<div class="screen clearfix">
+			<span class="allCounts">全部商品<span id="totalCount"></span></span>
+			<div class="screenBox" id="sortType">
+				<div class="active" id="new">
+					<a href="javascript:;">新品</a>
+				</div>
+				<div class="price" id="price">
+					<a href="javascript:;">价格<i></i></a>
+				</div>
+			</div>
+		</div>
+		<div class="list productList" id="productList">
+		    <div class=" w95p clearfix">
+		    </div>
+            <div id="loadMore" class="loadMore"></div>
+	    </div>
+	</div>
+    <!-- 商品列表end -->

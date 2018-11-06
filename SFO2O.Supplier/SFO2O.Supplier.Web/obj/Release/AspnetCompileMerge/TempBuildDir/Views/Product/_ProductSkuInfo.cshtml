@@ -1,0 +1,872 @@
+﻿@using SFO2O.Supplier.Models.Category
+@using SFO2O.Supplier.Businesses
+@using SFO2O.Supplier.Common
+@using SFO2O.Supplier.Models.Product
+@model IList<SFO2O.Supplier.Models.Category.CategoryAttrModel>
+
+@{
+    var productModel = ViewBag.ProductModel;
+
+    var mainAddType = "1";
+    var skuAddType = "1";
+
+    List<Dictionary<string, string>> sku_T = productModel.SkuInfo_T ?? new List<Dictionary<string, string>>();
+    List<Dictionary<string, string>> sku_S = productModel.SkuInfo_S ?? new List<Dictionary<string, string>>();
+    List<Dictionary<string, string>> sku_E = productModel.SkuInfo_E ?? new List<Dictionary<string, string>>();
+
+    var thMainName = string.Empty;
+    var skuName = string.Empty;
+    var mainSku = Model.Where(u => u.IsSkuMainAttr == 1);
+    var thSkuName = string.Empty;
+    var skuCount = Model.Where(u => u.IsSkuAttr == 1).Count();
+    var skus = Model.Where(u => u.IsSkuMainAttr < 1 && u.IsSkuAttr == 1);
+    if (mainSku != null && mainSku.Count() > 0)
+    {
+        thMainName = mainSku.First<CategoryAttrModel>().KeyValue;
+    }
+
+    if (skus != null && skus.Count() > 0)
+    {
+        thSkuName = skus.First<CategoryAttrModel>().KeyValue;
+    }
+
+    var skuType = 0;
+    if (mainSku.Count() < 1 && skus.Count() < 1)
+    {
+        skuType = 0;
+    }
+    else if (mainSku.Count() > 0 && skus.Count() > 0)
+    {
+        skuType = 1;
+    }
+    else
+    {
+        skuName = Model.Where(u => u.IsSkuAttr == 1).First<CategoryAttrModel>().KeyValue;
+        skuType = 2;
+    }
+
+    var attrarray = new[] { "Weight", "Volume", "Length", "Width", "Height" };
+    var categoryAttrs = Model.Where(x => !attrarray.Contains(x.KeyName));
+
+    var skuAttr = categoryAttrs.Where(u => u.IsSkuAttr > 0);
+
+    var notSkuAttr = categoryAttrs.Where(u => u.IsSkuAttr < 1);
+}
+
+<input value="@skuType" id="skuInfoType" type="hidden" />
+<table class="mg_t5">
+    <tr>
+        <th class="product_title" rowspan="@(categoryAttrs.Count() + 6)">
+            <p class="pd_t15">商品属性</p>
+        </th>
+        <td class="w3"></td>
+        <td colspan="2" height="18"></td>
+    </tr>
+    <!--  拼接SKU主属性  -->
+    @foreach (CategoryAttrModel attr in skuAttr)
+    {
+        var addAmount = 1;
+        var addType = attr.IsUnitAttr > 0 ? "2" : "1";
+
+        var units = CommonBLL.GetDicsInfoByKey(attr.KeyName);
+
+        var value = CommonBLL.GetDicsInfoByKey(attr.KeyName);
+
+        var className = "";
+        if (attr.IsSkuMainAttr > 0)
+        {
+            mainAddType = addType;
+            className += "main";
+        }
+        else if (attr.IsSkuAttr > 0)
+        {
+            skuAddType = addType;
+            className += "sku";
+        }
+
+        if (attr.IsRequire > 0)
+        {
+            className += " Require";
+        }
+
+        string customer_T = string.Empty;
+        for (int i = 0; i < sku_T.Count; i++)
+        {
+            var keyName = ConvertHelper.GetDictionaryValueByKey(sku_T[i], attr.KeyName);
+            var result = value.Where(p => p.KeyValue == keyName);
+            if (result.Count() < 1 && !customer_T.Contains(keyName))
+            {
+                customer_T += keyName + ",";
+            }
+        }
+        customer_T = customer_T.TrimEnd(',');
+
+        int customerCount = customer_T.Split(',').Count();
+
+
+        <tr>
+            <td class="w3"></td>
+            <td class="t_r vtop" width="150"><i class="color_red vmiddle bitian">@(attr.IsRequire == 1 ? "*" : "")</i><span class="tdspan">@attr.KeyValue：</span></td>
+            <td id="@attr.KeyName" class="@className" data-value="@attr.KeyValue">
+                @if (attr.IsUnitAttr > 0)
+                {
+                    var unitValue = string.Empty;
+                    if (attr.KeyName == "NetWeight" || attr.KeyName == "NetContent")
+                    {
+                        unitValue = ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfo_T, attr.KeyName + "Unit");
+                    }
+                    else
+                    {
+                        unitValue = ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfoExpand_T, attr.KeyName + "Unit");
+                    }
+                    <div class="select_pinpai f_l w122 unit">
+                        @Html.Partial("_DropDownList", new SFO2O.Supplier.Models.DropDownList { Id = attr.KeyName + "Unit", KeyName = attr.KeyName, SelectList = units.ToDictionary(i => i.KeyName, i => i.KeyValue), Type = 1, SelectedValue = unitValue })
+                    </div>
+                    <div class="add_success_label f_l RequireValue">
+
+                        @if (sku_T != null)
+                        {
+                            foreach (var dic in sku_T)
+                            {
+                                var val = ConvertHelper.GetDictionaryValueByKey(dic, attr.KeyName);
+                                var id = string.Empty;
+                                if (attr.IsSkuMainAttr > 0)
+                                {
+                                    id = "main-" + attr.KeyName + "-" + val + "-" + addType;
+                                }
+                                else if (attr.IsSkuAttr > 0)
+                                {
+                                    id = "sku-" + attr.KeyName + "-" + val + "-" + addType;
+                                }
+                                <label class="add_success f_l" id="@id">
+                                    <span class="block bor f_l fff_bor mg_l20 h25">@val</span>
+                                    @if (ViewBag.Action != "edit")
+                                    {
+                                        <a href="javascript:void(0)" class="close f_l" onclick="DeleteValue(this,@addAmount)"></a>
+                                    }
+                                </label>
+
+
+                            }
+                        }
+                    </div>
+                }
+
+                @if (attr.IsSkuAttr > 0 || attr.IsSkuMainAttr > 0 || attr.KeyName == "Tag" || attr.KeyName == "SupportedLanguage")
+                {
+                    addAmount = 2;
+                }
+
+                @if (attr.ShowType == 3)
+                {
+                    <div class="fff_bor  clearfix mg_r10 pd_t10 pd_b10 mg_b10 mg_t10 RequireValue">
+
+                        @foreach (var item in value)
+                        {
+                            if (!item.KeyValue.Contains("其它"))
+                            {
+                                var id = "";
+                                if (attr.IsSkuMainAttr > 0)
+                                {
+                                    id = "main-" + attr.KeyName + "-" + item.KeyName;
+                                }
+                                else if (attr.IsSkuAttr > 0)
+                                {
+                                    id = "sku-" + attr.KeyName + "-" + item.KeyName;
+                                }
+
+                                if (sku_T != null && sku_T.Count > 0)
+                                {
+                                    var keyname = sku_T.Where(p => p.ContainsValue(item.KeyValue));
+
+                                    if (keyname.Count() > 0)
+                                    {
+                                        var active = ViewBag.Action != "edit" ? "active" : "unactive";
+                                        <label class="chbx_wrap mg_l5 w90 @active" id="@id" data-value="@item.Id"><em></em><span>@item.KeyValue</span></label>
+                                    }
+                                    else
+                                    {
+                                        <label class="chbx_wrap mg_l5 w90" id="@id" data-value="@item.Id"><em></em><span>@item.KeyValue</span></label>
+                                    }
+
+                                }
+                                else
+                                {
+                                    <label class="chbx_wrap mg_l5 w90" id="@id" data-value="@item.Id"><em></em><span>@item.KeyValue</span></label>
+                                }
+                            }
+                        }
+
+                        <div class="add_wrap f_l" style="@(customerCount < attr.MaxItems ? "" : "display:none")">
+                            <a href="javascript:void(0)" class="color_green add_btn mg_l10" onclick="ShowAddTips(this,'@addType','@attr.KeyName','@addAmount','@(attr.IsSkuMainAttr > 0 ? "main" : (attr.IsSkuAttr > 0 ? "sku" : "0"))',@attr.MaxInput,@attr.MaxItems)">+添加</a>
+                        </div>
+                    </div>
+
+                    if (addType == "1")
+                    {
+                        <div class="add_success_list f_l RequireValue">
+
+                            @if (sku_T != null)
+                            {
+                                string keyNames = string.Empty;
+                                for (int i = 0; i < sku_T.Count; i++)
+                                {
+                                    Dictionary<string, string> dic = sku_T[i];
+                                    var keyName = ConvertHelper.GetDictionaryValueByKey(sku_T[i], attr.KeyName);
+                                    var result = value.Where(p => p.KeyValue == keyName);
+                                    var id = string.Empty;
+
+                                    if (result.Count() < 1 && !keyNames.Contains(keyName))
+                                    {
+                                        keyNames += keyName + ",";
+                                        if (attr.IsSkuMainAttr > 0)
+                                        {
+                                            id = "main-" + attr.KeyName + "-" + keyName + "-" + addType;
+                                        }
+                                        else if (attr.IsSkuAttr > 0)
+                                        {
+                                            id = "sku-" + attr.KeyName + "-" + keyName + "-" + addType;
+                                        }
+
+                                        <div class="f_l add_success_li mg_r20" id="@id">
+                                            <ul class="add_success_wrap f_l fff_bor mg_t5">
+                                                <li class=" clearfix icon_f">
+                                                    <span class="f_l left"></span>
+                                                    <p class="f_l right traditional">@ConvertHelper.GetDictionaryValueByKey(sku_T[i], attr.KeyName)</p>
+                                                </li>
+                                                <li class=" clearfix icon_j">
+                                                    <span class="f_l left"></span>
+                                                    <p class="f_l right simplified">@ConvertHelper.GetDictionaryValueByKey(sku_S[i], attr.KeyName)</p>
+                                                </li>
+                                                <li class=" clearfix icon_e">
+                                                    <span class="f_l left"></span>
+                                                    <p class="f_l right english">@ConvertHelper.GetDictionaryValueByKey(sku_E[i], attr.KeyName)</p>
+                                                </li>
+                                            </ul>
+                                            @if (ViewBag.Action != "edit")
+                                            {
+                                                <a href="javascript:void(0)" class="close" onclick="DeleteValue(this,@addAmount)"></a>
+                                            }
+                                        </div>
+                                    }
+                                }
+                            }
+
+                        </div>
+                    }
+
+                }
+                else if (attr.ShowType == 2)
+                {
+                    <div class="select_pinpai f_l w122 RequireValue" data-value="@attr.IsSkuAttr">
+                        @Html.Partial("_DropDownList", new SFO2O.Supplier.Models.DropDownList { Id = attr.KeyName + "Sel", KeyName = attr.KeyName, SelectList = value.ToDictionary(i => i.KeyName, i => i.KeyValue), Type = 1, SelectedValue = ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfo_T, attr.KeyName) })
+                    </div>
+                    <div class="add_wrap f_l" style="@(customerCount < attr.MaxItems ? "" : "display:none")">
+                        <a href="javascript:void(0)" class="color_green add_btn mg_l10" onclick="ShowAddTips(this,'@addType','@attr.KeyName','@addAmount','@(attr.IsSkuMainAttr > 0 ? "main" : (attr.IsSkuAttr > 0 ? "sku" : "0"))',,@attr.MaxInput,@attr.MaxItems)">+添加</a>
+                    </div>
+                    if (addType == "1")
+                    {
+                        <div class="add_success_list f_l RequireValue">
+
+                            @if (sku_T != null)
+                            {
+                                for (int i = 0; i < sku_T.Count; i++)
+                                {
+                                    var name_T = ConvertHelper.GetDictionaryValueByKey(sku_T[i], attr.KeyName);
+                                    var name_S = ConvertHelper.GetDictionaryValueByKey(sku_S[i], attr.KeyName);
+                                    var name_E = ConvertHelper.GetDictionaryValueByKey(sku_E[i], attr.KeyName);
+                                    var id = string.Empty;
+                                    if (attr.IsSkuMainAttr > 0)
+                                    {
+                                        id = "main-" + attr.KeyName + "-" + name_T + "-" + addType;
+                                    }
+                                    else if (attr.IsSkuAttr > 0)
+                                    {
+                                        id = "sku-" + attr.KeyName + "-" + name_T + "-" + addType;
+                                    }
+                                    <div class="f_l add_success_li mg_r20" id="@id">
+                                        <ul class="add_success_wrap f_l fff_bor mg_t5">
+                                            <li class=" clearfix icon_f">
+                                                <span class="f_l left"></span>
+                                                <p class="f_l right traditional">@name_T</p>
+                                            </li>
+                                            <li class=" clearfix icon_j">
+                                                <span class="f_l left"></span>
+                                                <p class="f_l right simplified">@name_S</p>
+                                            </li>
+                                            <li class=" clearfix icon_e">
+                                                <span class="f_l left"></span>
+                                                <p class="f_l right english">@name_E</p>
+                                            </li>
+                                        </ul>
+                                        @if (ViewBag.Action != "edit")
+                                        {
+                                            <a href="javascript:void(0)" class="close" onclick="DeleteValue(this,@addAmount)"></a>
+                                        }
+                                    </div>
+                                }
+                            }
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="add_wrap f_l" style="@(customerCount < attr.MaxItems ? "" : "display:none")">
+                        <a href="javascript:void(0)" class="color_green add_btn mg_l10" onclick="ShowAddTips(this,'@addType','@attr.KeyName','@addAmount','@(attr.IsSkuMainAttr > 0 ? "main" : (attr.IsSkuAttr > 0 ? "sku" : "0"))',@attr.MaxInput,@attr.MaxItems)">+添加</a>
+                    </div>
+                    if (addType == "1")
+                    {
+                        <div class="add_success_list f_l RequireValue">
+
+                            @if (sku_T != null)
+                            {
+                                string tempName = string.Empty;
+                                for (int i = 0; i < sku_T.Count; i++)
+                                {
+                                    var name_T = ConvertHelper.GetDictionaryValueByKey(sku_T[i], attr.KeyName);
+                                    var name_S = ConvertHelper.GetDictionaryValueByKey(sku_S[i], attr.KeyName);
+                                    var name_E = ConvertHelper.GetDictionaryValueByKey(sku_E[i], attr.KeyName);
+
+                                    if (!tempName.Contains(name_T))
+                                    {
+                                        tempName += name_T + ",";
+                                        var id = string.Empty;
+                                        if (attr.IsSkuMainAttr > 0)
+                                        {
+                                            id = "main-" + attr.KeyName + "-" + name_T + "-" + addType;
+                                        }
+                                        else if (attr.IsSkuAttr > 0)
+                                        {
+                                            id = "sku-" + attr.KeyName + "-" + name_T + "-" + addType;
+                                        }
+
+                                        <div class="f_l add_success_li mg_r20" id="@id">
+                                            <ul class="add_success_wrap f_l fff_bor mg_t5">
+                                                <li class=" clearfix icon_f">
+                                                    <span class="f_l left"></span>
+                                                    <p class="f_l right traditional">@name_T</p>
+                                                </li>
+                                                <li class=" clearfix icon_j">
+                                                    <span class="f_l left"></span>
+                                                    <p class="f_l right simplified">@name_S</p>
+                                                </li>
+                                                <li class=" clearfix icon_e">
+                                                    <span class="f_l left"></span>
+                                                    <p class="f_l right english">@name_E</p>
+                                                </li>
+                                            </ul>
+                                            @if (ViewBag.Action != "edit")
+                                            {
+                                                <a href="javascript:void(0)" class="close" onclick="DeleteValue(this,@addAmount)"></a>
+                                            }
+
+                                        </div>
+                                    }
+                                }
+                            }
+                        </div>
+                    }
+
+                }
+
+                <p class="wrong_tips color_red">请填写 @attr.KeyValue</p>
+            </td>
+        </tr>
+
+    }
+    @if (skuCount == 0)
+    {
+        var BarCode = "";
+        var Price = "";
+        var AlarmStockQty = "";
+        var Sku = "";
+        if (sku_T != null && sku_T.Count > 0)
+        {
+            BarCode = ConvertHelper.GetDictionaryValueByKey(sku_T[0], "BarCode");
+            Price = ConvertHelper.GetDictionaryValueByKey(sku_T[0], "Price");
+            AlarmStockQty = ConvertHelper.GetDictionaryValueByKey(sku_T[0], "AlarmStockQty");
+            Sku = ConvertHelper.GetDictionaryValueByKey(sku_T[0], "Sku");
+        }
+
+        <tr>
+            <td class="w3">
+                <input type="hidden" name="Sku" id="Sku" value="@Sku" />
+            </td>
+            <td class="t_r vtop"><i class="color_red vmiddle bitian">*</i><span class="tdspan">条形码：</span></td>
+            <td class="Require">
+                <input type="text" class="fff_bor ipt_text" name="BarCode" id="BarCode" value="@BarCode" />
+                <p class="wrong_tips color_red">请填写商品条形码</p>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="w3"></td>
+            <td class="t_r vtop"><i class="color_red vmiddle bitian">*</i><span class="tdspan">库存预警：</span></td>
+            <td class="Require">
+                @*<input type="text" class="fff_bor ipt_text" name="AlarmStockQty" id="AlarmStockQty" value="@AlarmStockQty" />*@
+                <input type="text" class="fff_bor ipt_text" name="AlarmStockQty" id="AlarmStockQty" value=0 readonly="readonly"/>
+                <p class="wrong_tips color_red">请填写库存预警</p>
+            </td>
+        </tr>
+    }
+    else
+    {
+        if (skuType == 1)
+        {
+            <tr>
+                <td class="w3"></td>
+                <td class="t_r vtop" width="130"></td>
+                <td>
+                    <div class="table_fuhe_wrap  mg_r10 mg_b10 mg_t10" id="skuInfo" style="@(sku_T != null && sku_T.Count > 0 ? "" : "display:none")">
+                        <table class="table_fuhe bg_fff t_c fff_bor">
+                            <thead>
+                                <tr>
+                                    <th width="52" class="bor_r">@thMainName</th>
+                                    <th width="52">@thSkuName</th>
+                                    <th width="150"><i class="color_red vmiddle bitian">*</i>条形码</th>
+                                    <th width="150"><i class="color_red vmiddle bitian">*</i>价格（$）</th>
+                                    <th width="150"><i class="color_red vmiddle bitian">*</i>库存预警</th>
+                                    <th width="26"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (sku_T != null)
+                                {
+                                    Dictionary<string, string> mainKeys = new Dictionary<string, string>();
+
+                                    int i = 0;
+                                    foreach (var dic in sku_T)
+                                    {
+                                        var mainValue = ConvertHelper.GetDictionaryValueByKey(dic, "MainValue");
+                                        var mainKey = ConvertHelper.GetDictionaryValueByKey(dic, "MainKey");
+
+                                        if (!mainKeys.ContainsValue(mainValue))
+                                        {
+                                            mainKeys.Add(mainKey + i, mainValue);
+                                        }
+                                        i = i + 1;
+                                    }
+
+                                    foreach (var main in mainKeys)
+                                    {
+                                        var skuinfos = sku_T.Where(p => p.ContainsValue(main.Value)).ToList<Dictionary<string, string>>();
+
+                                        var titleM = ConvertHelper.GetDictionaryValueByKey(skuinfos[0], "MainValue");
+                                        var MainDicKey = ConvertHelper.GetDictionaryValueByKey(skuinfos[0], "MainDicKey");
+                                        var MainKey = ConvertHelper.GetDictionaryValueByKey(skuinfos[0], "MainKey");
+                                        var dicsValue = CommonBLL.GetDicsInfoByKey(MainDicKey);
+                                        var result = dicsValue.Where(p => p.KeyValue == titleM);
+                                        var mainId = string.Empty;
+                                        if (result.Count() > 0)
+                                        {
+                                            mainId = "main-" + MainDicKey + "-" + MainKey;
+                                        }
+                                        else
+                                        {
+                                            mainId = "main-" + MainDicKey + "-" + titleM + "-" + mainAddType;
+                                        }
+
+                                        <tr name="@mainId" data-value="@mainId">
+                                            <td>@titleM</td>
+                                            <td colspan="5">
+
+                                                @foreach (var sku in skuinfos)
+                                                {
+                                                    var SkuDicKey = ConvertHelper.GetDictionaryValueByKey(sku, "SubDicKey");
+                                                    var SkuKey = ConvertHelper.GetDictionaryValueByKey(sku, "SubKey");
+                                                    var titleS = ConvertHelper.GetDictionaryValueByKey(sku, "SubValue");
+                                                    var Sku = ConvertHelper.GetDictionaryValueByKey(sku, "Sku");
+                                                    var BarCode = ConvertHelper.GetDictionaryValueByKey(sku, "BarCode");
+                                                    var Price = ConvertHelper.GetDictionaryValueByKey(sku, "Price");
+                                                    var AlarmStockQty = ConvertHelper.GetDictionaryValueByKey(sku, "AlarmStockQty");
+                                                    var dicsSkuValue = CommonBLL.GetDicsInfoByKey(SkuDicKey);
+
+                                                    var resultSku = dicsSkuValue.Where(p => p.KeyValue == titleS);
+                                                    var skuId = string.Empty;
+                                                    if (resultSku.Count() > 0)
+                                                    {
+                                                        skuId = "sku-" + SkuDicKey + "-" + SkuKey;
+                                                    }
+                                                    else
+                                                    {
+                                                        skuId = "sku-" + SkuDicKey + "-" + titleS + "-" + skuAddType;
+                                                    }
+
+                                                    <div class="fuhe_color clearfix" name="@skuId" data-value="@skuId">
+                                                        <span class="f_l w58">@titleS</span>
+                                                        <input type="hidden" name="Sku" class="bor f_l" value="@Sku" />
+                                                        <input type="text" name="BarCode" class="bor f_l" value="@BarCode" />
+                                                        <input type="text" name="Price" class="bor f_l" value="@Price" />
+                                                        <input type="text" name="AlarmStockQty" class="bor f_l" value="@AlarmStockQty" />
+                                                        @if (ViewBag.Action != "edit")
+                                                        {
+                                                            <a href="javascript:void(0)" class="close" onclick="DeleteSku(this,'@mainId','@skuId')"></a>
+                                                        }
+                                                        <p class="wrong_tips_h0 w58" style="margin-left: -10px; height: 1px;"></p>
+                                                        <p class="wrong_tips_h0 color_red t_l BarCode"></p>
+                                                        <p class="wrong_tips_h0 color_red t_l Price"></p>
+                                                        <p class="wrong_tips_h0 color_red t_l AlarmStockQty"></p>
+                                                    </div>
+
+                                                }
+                                            </td>
+                                        </tr>
+
+                                    }
+
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <p class="wrong_tips color_red">请完善SKU相关信息</p>
+                </td>
+            </tr>
+        }
+        else if (skuType == 2)
+        {
+            <tr>
+                <td class="w3"></td>
+                <td class="t_r vtop" width="130"></td>
+                <td>
+                    <div class="table_fuhe_wrap mg_r10 mg_b10 mg_t10" id="skuInfo" style="@(sku_T != null && sku_T.Count > 0 ? "" : "display:none")">
+                        <table class="table_fuhe bg_fff t_c fff_bor">
+                            <thead>
+                                <tr>
+                                    <th width="104" class="bor_r">@skuName</th>
+                                    <th width="150"><i class="color_red vmiddle bitian">*</i>条形码</th>
+                                    <th width="150"><i class="color_red vmiddle bitian">*</i>价格（$）</th>
+                                    <th width="150"><i class="color_red vmiddle bitian">*</i>库存预警</th>
+                                    <th width="26"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (sku_T != null)
+                                {
+                                    int i = 0;
+                                    foreach (var sku in sku_T)
+                                    {
+                                        i = i++;
+                                        var titleM = ConvertHelper.GetDictionaryValueByKey(sku, "MainValue");
+                                        var MainDicKey = ConvertHelper.GetDictionaryValueByKey(sku, "MainDicKey");
+                                        var MainKey = ConvertHelper.GetDictionaryValueByKey(sku, "MainKey");
+                                        var Sku = ConvertHelper.GetDictionaryValueByKey(sku, "Sku");
+                                        var BarCode = ConvertHelper.GetDictionaryValueByKey(sku, "BarCode");
+                                        var Price = ConvertHelper.GetDictionaryValueByKey(sku, "Price");
+                                        var AlarmStockQty = ConvertHelper.GetDictionaryValueByKey(sku, "AlarmStockQty");
+
+                                        IList<SFO2O.Supplier.Models.DicsModel> dicsSkuValue = CommonBLL.GetDicsInfoByKey(MainDicKey);
+
+                                        var resultSku = dicsSkuValue.Where(p => p.KeyValue == titleM);
+
+                                        var mainId = string.Empty;
+
+                                        if (resultSku.Count() > 0)
+                                        {
+                                            mainId = "main-" + MainDicKey + "-" + MainKey;
+                                        }
+                                        else
+                                        {
+                                            mainId = "main-" + MainDicKey + "-" + titleM + "-" + mainAddType;
+                                        }
+
+                                        <tr name="@mainId" data-value="@mainId">
+                                            <td>@titleM</td>
+                                            <td colspan="4">
+                                                <div class="fuhe_color clearfix" name="@mainId" data-value="@mainId">
+                                                    <input type="hidden" name="Sku" class="bor f_l" value="@Sku" />
+                                                    <input type="text" name="BarCode" class="bor f_l" value="@BarCode" />
+                                                    <input type="text" name="Price" class="bor f_l" value="@Price" />
+                                                    <input type="text" name="AlarmStockQty" class="bor f_l" value="@AlarmStockQty" />
+                                                    @if (ViewBag.Action != "edit")
+                                                    {
+                                                        <a href="javascript:void(0)" class="close" onclick="DeleteSku(this,'@mainId','@mainId')"></a>
+                                                    }
+                                                    <p class="wrong_tips_h0 color_red t_l BarCode"></p>
+                                                    <p class="wrong_tips_h0 color_red t_l Price"></p>
+                                                    <p class="wrong_tips_h0 color_red t_l AlarmStockQty"></p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="wrong_tips color_red">请完善SKU相关信息</p>
+                </td>
+            </tr>
+        }
+
+    }
+    <!--  拼接Spu 其他属性  -->
+    @foreach (CategoryAttrModel attr in notSkuAttr)
+    {
+        var addAmount = 1;
+        var addType = attr.IsUnitAttr > 0 ? "2" : "1";
+        string attrValue_T = string.Empty;
+        string attrValue_E = string.Empty;
+        string attrValue_S = string.Empty;
+        if (attr.KeyName == "NetWeight" || attr.KeyName == "NetContent" || attr.KeyName == "Specifications" || attr.KeyName == "Size"
+            || attr.KeyName == "Color" || attr.KeyName == "AlcoholPercentage" || attr.KeyName == "Smell" || attr.KeyName == "CapacityRestriction")
+        {
+            if (productModel.SkuInfo_T != null && productModel.SkuInfo_T.Count > 0)
+            {
+                attrValue_T = ConvertHelper.GetDictionaryValueByKey(productModel.SkuInfo_T[0], attr.KeyName);
+                attrValue_E = ConvertHelper.GetDictionaryValueByKey(productModel.SkuInfo_E[0], attr.KeyName);
+                attrValue_S = ConvertHelper.GetDictionaryValueByKey(productModel.SkuInfo_S[0], attr.KeyName);
+            }
+        }
+        else if (attr.KeyName == "CountryOfManufacture" || attr.KeyName == "Tag")
+        {
+            attrValue_T = ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfo_T, attr.KeyName);
+            attrValue_E = ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfo_E, attr.KeyName);
+            attrValue_S = ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfo_S, attr.KeyName);
+        }
+        else
+        {
+            attrValue_T = ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfoExpand_T, attr.KeyName);
+            attrValue_E = ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfoExpand_E, attr.KeyName);
+            attrValue_S = ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfoExpand_S, attr.KeyName);
+        }
+
+        List<string> stand_T = new List<string>();
+        List<string> stand_E = new List<string>();
+        List<string> stand_S = new List<string>();
+
+        List<string> customer_T = new List<string>();
+        List<string> customer_E = new List<string>();
+        List<string> customer_S = new List<string>();
+
+        var valueItem = CommonBLL.GetDicsInfoByKey(attr.KeyName);
+
+        if (!string.IsNullOrEmpty(attrValue_T))
+        {
+            string[] temp_T = attrValue_T.Split('$');
+            string[] temp_S = attrValue_S.Split('$');
+            string[] temp_E = attrValue_E.Split('$');
+            for (int i = 0; i < temp_T.Length; i++)
+            {
+                if (!string.IsNullOrEmpty(temp_T[i]))
+                {
+                    if (valueItem.Where(p => p.KeyValue == temp_T[i]).Count() > 0)
+                    {
+                        stand_T.Add(temp_T[i]);
+                        stand_E.Add(temp_E[i]);
+                        stand_S.Add(temp_S[i]);
+                    }
+                    else
+                    {
+                        if (i < temp_T.Length)
+                        {
+                            customer_T.Add(temp_T[i]);
+                        }
+                        else
+                        {
+                            customer_T.Add("");
+                        }
+
+                        if (i < temp_E.Length)
+                        {
+                            customer_E.Add(temp_E[i]);
+                        }
+                        else
+                        {
+                            customer_E.Add("");
+                        }
+                        if (i < temp_S.Length)
+                        {
+                            customer_S.Add(temp_S[i]);
+                        }
+                        else
+                        {
+                            customer_S.Add("");
+                        }
+                    }
+                }
+            }
+        }
+
+        <tr>
+            <td class="w3"></td>
+            <td class="t_r vtop" width="150"><i class="color_red vmiddle bitian">@(attr.IsRequire == 1 ? "*" : "")</i><span class="tdspan">@attr.KeyValue：</span></td>
+            <td id="@attr.KeyName" class="@(attr.IsRequire > 0 ? "Require" : "")" data-value="@attr.KeyValue">
+                @if (attr.KeyName == "Tag" || attr.KeyName == "SupportedLanguage")
+                {
+                    addAmount = 2;
+                }
+                @if (attr.IsUnitAttr > 0)
+                {
+                    <div class="select_pinpai f_l w122 unit">
+                        @{
+                    var units = CommonBLL.GetDicsInfoByKey(attr.KeyName);
+
+                    var unitValue = string.Empty;
+                    if (attr.KeyName == "NetWeight" || attr.KeyName == "NetContent")
+                    {
+                        unitValue = ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfo_T, attr.KeyName + "Unit");
+                    }
+                    else
+                    {
+                        unitValue = ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfoExpand_T, attr.KeyName + "Unit");
+                    }
+
+                        }
+                        @Html.Partial("_DropDownList", new SFO2O.Supplier.Models.DropDownList { Id = attr.KeyName + "Unit", KeyName = attr.KeyName, SelectList = units.ToDictionary(i => i.KeyName, i => i.KeyValue), Type = 1, SelectedValue = unitValue })
+                    </div>
+                    <div class="add_success_label f_l RequireValue">
+
+                        @for (int i = 0; i < customer_T.Count; i++)
+                        {
+                            var id = "0-" + attr.KeyName + "-" + addAmount + "-" + 1001 + i;
+                            <label class="add_success f_l" id="@id">
+                                <span class="block bor f_l fff_bor mg_l20 h25">@customer_T[i]</span>
+                                <a href="javascript:void(0)" class="close f_l" onclick="DeleteValue(this,@addAmount)"></a>
+                            </label>
+                        }
+                    </div>
+                }
+                @if (attr.ShowType == 3)
+                {
+                    var style = string.Empty;
+                    if (customer_T.Count > 0 && !"Tag,SupportedLanguage".Contains(attr.KeyName)
+                        || customer_T.Count >= attr.MaxItems)
+                    {
+                        style = "display:none";
+                    }
+                    <div class="fff_bor  clearfix mg_r10 pd_t10 pd_b10 mg_b10 mg_t10 RequireValue">
+                        @foreach (var item in valueItem)
+                        {
+                            if (!item.KeyValue.Contains("其它"))
+                            {
+                                bool ischecked = stand_T.Contains(item.KeyValue);
+                                var id = "0-" + attr.KeyName + "-" + item.KeyName + "-" + addType;
+                                if (ischecked)
+                                {
+                                    <label class="chbx_wrap mg_l5 w90 active" id="@id" data-value="@id"><em></em><span>@item.KeyValue</span></label>
+                                }
+                                else
+                                {
+                                    <label class="chbx_wrap mg_l5 w90" id="@id" data-value="@id"><em></em><span>@item.KeyValue</span></label>
+                                }
+                            }
+                        }
+                        <div class="add_wrap f_l" style="@style">
+                            <a href="javascript:void(0)" class="color_green add_btn mg_l10" onclick="ShowAddTips(this,'@addType','@attr.KeyName','@addAmount','0',@attr.MaxInput,@attr.MaxItems)">+添加</a>
+                        </div>
+                    </div>
+                    if (addType == "1")
+                    {
+                        <div class="add_success_list f_l RequireValue">
+
+                            @for (int i = 0; i < customer_T.Count; i++)
+                            {
+                                var id = "0-" + attr.KeyName + "-" + addAmount + "-" + 1001 + i;
+                                <div class="f_l add_success_li mg_r20" id="@id">
+                                    <ul class="add_success_wrap f_l fff_bor mg_t5">
+                                        <li class=" clearfix icon_f">
+                                            <span class="f_l left"></span>
+                                            <p class="f_l right traditional">@customer_T[i]</p>
+                                        </li>
+                                        <li class=" clearfix icon_j">
+                                            <span class="f_l left"></span>
+                                            <p class="f_l right simplified">@customer_S[i]</p>
+                                        </li>
+                                        <li class=" clearfix icon_e">
+                                            <span class="f_l left"></span>
+                                            <p class="f_l right english">@customer_E[i]</p>
+                                        </li>
+                                    </ul>
+                                    <a href="javascript:void(0)" class="close" onclick="DeleteValue(this,@addAmount)"></a>
+                                </div>
+                            }
+                        </div>
+                    }
+                }
+                else if (attr.ShowType == 2)
+                {
+                    <div class="select_pinpai f_l w122 RequireValue" data-value="@attr.IsSkuAttr">
+                        @Html.Partial("_DropDownList", new SFO2O.Supplier.Models.DropDownList { Id = attr.KeyName + "Sel", KeyName = attr.KeyName, SelectList = valueItem.ToDictionary(i => i.KeyName, i => i.KeyValue), Type = 1, SelectedValue = attrValue_T })
+                    </div>
+                    <div class="add_wrap f_l" style="display:@(@attr.IsSkuAttr > 0 || attrValue_T.Contains("其它") ? "" : "none")">
+                        <a href="javascript:void(0)" class="color_green add_btn mg_l10" onclick="ShowAddTips(this,'@addType','@attr.KeyName','@addAmount','0',@attr.MaxInput,@attr.MaxItems)">+添加</a>
+                    </div>
+                    if (addType == "1")
+                    {
+                        <div class="add_success_list f_l RequireValue">
+
+                            @for (int i = 0; i < customer_T.Count; i++)
+                            {
+                                var id = "0-" + attr.KeyName + "-" + addAmount + "-" + 1001 + i;
+                                <div class="f_l add_success_li mg_r20" id="@id">
+                                    <ul class="add_success_wrap f_l fff_bor mg_t5">
+                                        <li class=" clearfix icon_f">
+                                            <span class="f_l left"></span>
+                                            <p class="f_l right traditional">@customer_T[i]</p>
+                                        </li>
+                                        <li class=" clearfix icon_j">
+                                            <span class="f_l left"></span>
+                                            <p class="f_l right simplified">@customer_S[i]</p>
+                                        </li>
+                                        <li class=" clearfix icon_e">
+                                            <span class="f_l left"></span>
+                                            <p class="f_l right english">@customer_E[i]</p>
+                                        </li>
+                                    </ul>
+                                    <a href="javascript:void(0)" class="close" onclick="DeleteValue(this,@addAmount)"></a>
+                                </div>
+                            }
+                        </div>
+                    }
+                }
+                else
+                {
+                    var style = string.Empty;
+                    if (customer_T.Count > 0 && !"Tag,SupportedLanguage".Contains(attr.KeyName)
+                        || customer_T.Count >= attr.MaxItems)
+                    {
+                        style = "display:none";
+                    }
+
+                    <div class="add_wrap f_l" style="@style">
+                        <a href="javascript:void(0)" class="color_green add_btn mg_l10" onclick="ShowAddTips(this,'@addType','@attr.KeyName','@addAmount','0',@attr.MaxInput,@attr.MaxItems)">+添加</a>
+                    </div>
+
+                    if (addType == "1")
+                    {
+                        <div class="add_success_list f_l RequireValue">
+
+                            @for (int i = 0; i < customer_T.Count; i++)
+                            {
+                                var id = "0-" + attr.KeyName + "-" + addAmount + "-" + 1001 + i;
+                                <div class="f_l add_success_li mg_r20" id="@id">
+                                    <ul class="add_success_wrap f_l fff_bor mg_t5">
+                                        <li class=" clearfix icon_f">
+                                            <span class="f_l left"></span>
+                                            <p class="f_l right traditional">@customer_T[i]</p>
+                                        </li>
+                                        <li class=" clearfix icon_j">
+                                            <span class="f_l left"></span>
+                                            <p class="f_l right simplified">@customer_S[i]</p>
+                                        </li>
+                                        <li class=" clearfix icon_e">
+                                            <span class="f_l left"></span>
+                                            <p class="f_l right english">@customer_E[i]</p>
+                                        </li>
+                                    </ul>
+                                    <a href="javascript:void(0)" class="close" onclick="DeleteValue(this,@addAmount)"></a>
+                                </div>
+                            }
+                        </div>
+                    }
+                }
+
+                <p class="wrong_tips color_red">请填写 @attr.KeyValue</p>
+            </td>
+        </tr>
+    }
+    <tr>
+        <td class="w3"></td>
+        <td colspan="2" height="18"></td>
+    </tr>
+</table>

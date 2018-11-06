@@ -68,7 +68,7 @@ namespace SFO2O.Supplier.Common
             try
             {
                 MailMessage myMail = new MailMessage();
-                myMail.From = new MailAddress("support@sf-o2o.com", "村村通", Encoding.UTF8);
+                myMail.From = new MailAddress("support@sf-o2o.com", "健康绿氧", Encoding.UTF8);
 
                 string[] arrAddress = arrAddress = mailAddress.Split(';');
 

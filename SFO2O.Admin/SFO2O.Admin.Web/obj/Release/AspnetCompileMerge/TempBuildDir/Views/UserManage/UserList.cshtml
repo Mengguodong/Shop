@@ -1,0 +1,187 @@
+﻿@model SFO2O.Admin.ViewModel.PageOf<AdminUserInfo>
+@using SFO2O.Admin.Common;
+@using SFO2O.Admin.Models;
+@using SFO2O.Admin.Models.Admin;
+@{
+    ViewBag.Title = "後台用戶";
+    ViewBag.PageName = "UserList";
+    var permissionSet = ViewData["PermissionSet"] as HashSet<EnumPermission>;
+}
+
+<div class="cont_right_crumb"><span class="homepage"></span>&gt; 賬號管理 &gt; 後台用戶</div>
+<div class="w931">
+    <div class="mg_t30">
+        <div class="tongji_title"><span class="tongji_title_l">後台用戶列表</span></div>
+        @if (permissionSet.Contains(EnumPermission.Account_UserManage_Add))
+        {
+        <div class="t_r wrap_dr_sc">
+            <div class="dr_sc"><a href="javascript:void(0)" class="addpro_btn btn_sc mg_l10" onclick="EditUser()"><i></i>添加後台用戶</a></div>
+        </div>
+        }
+        <div>
+            <table class="fff_bor t_c f15" width="930">
+                <tr class="lineH36 bg_f8f8f8">
+                    <th width="260" class="bor_b">用戶賬號</th>
+                    <th width="120" class="bor_b">姓名</th>
+                    <th width="220" class="bor_b">添加時間</th>
+                    <th width="120" class="bor_b">狀態</th>
+                    <th width="180" class="bor_b">操作</th>
+                </tr>
+            @if (Model != null && Model.Items != null && Model.Items.Count > 0)
+            {
+                foreach (var user in Model.Items)
+                {
+                <tr class="lineH54">
+                    <td class="bor_b">@user.UserName</td>
+                    <td class="bor_b">@user.TrueName</td>
+                    <td class="bor_b">@user.CreateTime.ToDateTimeString()</td>
+                    <td class="bor_b">@(user.Status == 1 ? "啟用" : "禁用")</td>
+                    <td class="bor_b">
+                        @if (permissionSet.Contains(EnumPermission.Account_UserManage_Edit))
+                        {
+                        <a href="javascript:void(0)" class="col_link" onclick="EditUser(@user.id)">修改</a>
+                        }
+                        @if (permissionSet.Contains(EnumPermission.Account_UserManage_ChangeStatus))
+                        {
+                        <a href="javascript:void(0)" class="col_link mg_l20" onclick="ChangeUserStatus(@user.id,@(user.Status == 1 ? "2" : "1"))">@(user.Status == 1 ? "禁用" : "啟用")</a>
+                        }
+                    </td>
+                </tr>
+                }
+            }
+            else
+            {
+                <tr class="lineH54">
+                    <td class="bor_b" colspan="5"><p class="pd_l30 t_l color_green">您還沒有創建後台用戶</p></td>
+                </tr>
+            }
+            </table>
+        </div>
+    @if (Model != null && Model.Items != null && Model.Items.Count > 0)
+    {
+        <div class="page" id="userpage">
+            @Html.ShowFPage(Url.Action(null
+                , new
+                {
+                    PageIndex = "{0}"
+                })
+                , Model.PageIndex
+                , Model.Total)
+                 <p class="f14 mg_l20 mg_b5 inline">
+                    共<em class="color_green pd_l10 pd_r10"> @(Model.Total) </em>條數據
+                </p>
+        </div>
+    }
+    </div>
+</div>
+
+@Html.Script("/Scripts/Dialog.js")
+<script type="text/javascript">
+    function EditUser(id) {
+        id = id | 0;
+        var handle;
+        $.post("EditUser", { id: id }, function (html) {
+            handle = $.dialog({
+                title: id == 0 ? "添加後台用戶" : "修改後台用戶",
+                content: html,
+                init: function ($dom) {
+                    if (id == 0) {
+                        var field1 = $dom.find(".username");
+                        var wrong1 = field1.next();
+                        field1.change(function () {
+                            if (field1.val() && !wrong1.is(":hidden")) {
+                                wrong1.hide();
+                            }
+                            else if (!field1.val() && wrong1.is(":hidden")) {
+                                wrong1.show();
+                            }
+                        });
+                    }
+                    var field2 = $dom.find(".password");
+                    var wrong2 = field2.next();
+                    field2.change(function () {
+                        if (field2.val() && !wrong2.is(":hidden")) {
+                            wrong2.hide();
+                        }
+                        else if (!field2.val() && wrong2.is(":hidden")) {
+                            wrong2.show();
+                        }
+                    });
+                    $dom.find(".chbx_wrap").click(function () {
+                        $(this).toggleClass("active");
+                    })
+                },
+                onConfirm: function ($dom) {
+                    var flag = true;
+                    if (id == 0) {
+                        if (!$dom.find(".username").val()) {
+                            $dom.find(".username").next().show();
+                            flag = false;
+                        }
+                    }
+                    if (!$dom.find(".password").val()) {
+                        $dom.find(".password").next().show();
+                        flag = false;
+                    }
+                    if (!flag) {
+                        return false;
+                    }
+                    if ($dom.find(".chbx_wrap.active").length == 0) {
+                        $.dialog("請選擇用戶分組!");
+                        return false;
+                    }
+                    var data = { id: id, username: $dom.find(".username").val(), password: $dom.find(".password").val(), truename: $dom.find(".truename").val() };
+                    $dom.find(".chbx_wrap.active").each(function (i, item) {
+                        data["RoleIDList[" + i + "]"] = $(item).data("id");
+                    });
+                    $.ajax({
+                        url: "SaveUser",
+                        type: "post",
+                        data: data,
+                        success: function (res) {
+                            if (!res.Error) {
+                                handle.close();
+                                $.dialog({
+                                    content: "保存成功！",
+                                    onConfirm: function () {
+                                        window.location.reload();
+                                    }
+                                });
+                            } else {
+                                if (res.Message) {
+                                    $.dialog(res.Message);
+                                } else {
+                                    $.dialog("保存失敗！");
+                                }
+                            }
+                        }
+                    });
+                    return false;
+                }
+            });
+        });
+    };
+
+    function ChangeUserStatus(userId, status) {
+        $.ajax({
+            url: "ChangeUserStatus",
+            type: "post",
+            data: { userId: userId, status: status },
+            success: function (res) {
+                if (!res.Error) {
+                    window.location.reload();
+                } else {
+                    if (res.Message) {
+                        $.dialog(res.Message);
+                    } else {
+                        if (res.Message) {
+                            $.dialog(res.Message);
+                        } else {
+                            $.dialog((status == 1 ? "啟用" : "禁用") + "失敗！");
+                        }
+                    }
+                }
+            }
+        });
+    }
+</script>

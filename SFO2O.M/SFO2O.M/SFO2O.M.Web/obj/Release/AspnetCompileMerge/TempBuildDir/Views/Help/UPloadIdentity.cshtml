@@ -1,0 +1,60 @@
+﻿@using SFO2O.M.Controllers
+@using SFO2O.M.Controllers.Common
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.ViewModel.Product
+@using SFO2O.Utility.Extensions
+@using SFO2O.Utility.Uitl;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "上传证件照片";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = false;
+}
+@section scripts{
+    <script type="text/javascript" src="~/Scripts/uploadPhotoSteps.js?v=@ConfigHelper.JsVersion"></script>
+}
+@section styles {
+    <link href="~/Content/css/order.css" type="text/css" rel="stylesheet" />
+}
+<div class="MContainer" id="MContainer">
+	<!-- 页头 -->
+	<header class="pageHeader w100 pr tc overflowH">
+      <a class="returnBtn" id="returnBtn"></a>
+      <b class="f36 FontColor1">上传证件照片</b>
+  </header>
+  <div class="stepsTabs boxShadow bgColor3 w100 overflowH " id="stepsTabs">
+  	<a class="fl cur"><span class="boxSizingB">方法1、官网上传</span><b></b></a>
+    <a class="fl"><span>方法2、微信上传</span><b></b></a>
+  </div>
+  <div class="stepsContent w95p bgColor3 boxShadow mt8 f28 FontColor3 mb20" id="stepsContent0">
+  	<b class="FontColor1">第一步：</b><br>
+  	登录第三方物流快递官网：<a href="http://www.sf-express.com/cn/sc/" target="_blank" style="color:#98ca35">http://www.sf-express.com</a><br>
+  	<img src="../Content/Images/my/img1.jpg">
+		<b class="FontColor1">第二步：</b><br>
+		找到&nbsp;“客户专区”&nbsp;-&nbsp;“客户服务”&nbsp;-&nbsp;“清关图片上传”&nbsp;，详见下图：<br>
+		<img src="../Content/Images/my/img2.jpg">
+		<b class="FontColor1">第三步：</b><br>
+		点击&nbsp;“清关图片上传”&nbsp;，输入运单号&nbsp;-&nbsp;选择&nbsp;“证件类型”&nbsp;-&nbsp;“上传证件正面图片”&nbsp;-&nbsp;“上传证件反面图片”&nbsp;-&nbsp;“提交通关证件” &nbsp;即可。<br>
+		<img src="../Content/Images/my/img3.jpg">
+  </div>
+  <div class="stepsContent w95p bgColor3 boxShadow mt8 f28 FontColor3 hide" id="stepsContent1">
+  	<b class="FontColor1">第一步：</b><br>
+  	微信中关注第三方物流快递官网公众号（SF_FWRX400
+8111111）<br>
+  	<img src="../Content/Images/my/img4.jpg">
+		<b class="FontColor1">第二步：</b><br>
+		关注成功后，在&nbsp;“通讯录”&nbsp;-&nbsp;“公众号”&nbsp;中找到&nbsp;“
+第三方物流快递”&nbsp;的LOGO图标，点击图标开始对话，可见到如下图几个选项，选择&nbsp;“热门”&nbsp;，再选择&nbsp;“我的物流”&nbsp;，如下图：<br>
+		<img src="../Content/Images/my/img5.jpg">
+		<b class="FontColor1">第三步：</b><br>
+		选择&nbsp;“我的物流”&nbsp;后，进入&nbsp;“我的物流”&nbsp;界面，
+再选择&nbsp;“通关服务”&nbsp;，如下图：<br>
+		<img src="../Content/Images/my/img6.jpg">
+		<b class="FontColor1">第四步：</b><br>
+		选择&nbsp;“通关服务”&nbsp;，进入&nbsp;“通关服务”&nbsp;界面，输入物流&nbsp;“运单号”&nbsp;、选择&nbsp;“证件类型”&nbsp;、上传&nbsp;“对应证件正面”&nbsp;图片、&nbsp;“对应证件反面”&nbsp;图片、再点击&nbsp;“提交”&nbsp;即可。<br>
+		<img src="../Content/Images/my/img7.jpg">
+  </div>
+</div>
+
+

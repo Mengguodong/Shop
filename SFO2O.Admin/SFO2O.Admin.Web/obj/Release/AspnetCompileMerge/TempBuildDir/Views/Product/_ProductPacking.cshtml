@@ -1,0 +1,37 @@
+﻿@model SFO2O.Admin.ViewModel.Product.ProductPackingModel
+@{
+    var weight = Decimal.Zero;
+    var volume = Decimal.Zero;
+    var length = Decimal.Zero;
+    var width = Decimal.Zero;
+    var height = Decimal.Zero;
+
+    if (Model != null )
+    {
+        weight = Model.Weight;
+        volume = Model.Volume;
+        length = Model.Length;
+        width = Model.Width;
+        height = Model.Height;
+    }
+
+
+    <table class="fff_bor mg_t10">
+        <tr>
+            <th rowspan="5" width="140" class="vtop"><span class="f_l pd_l10 mg_t40">物流包裝</span></th>
+            <td><span class="f_l pd_l10 w105">重量：</span><span class="f_l pd_l10">@weight<text>千克</text></span></td>
+        </tr>
+        <tr>
+            <td><span class="f_l pd_l10 w105">體積：</span><span class="f_l pd_l10">@volume<text>立方厘米</text></span></td>
+        </tr>
+        <tr>
+            <td><span class="f_l pd_l10 w105">長：</span><span class="f_l pd_l10">@length<text>厘米</text></span></td>
+        </tr>
+        <tr>
+            <td><span class="f_l pd_l10 w105">寬：</span><span class="f_l pd_l10">@width<text>厘米</text></span></td>
+        </tr>
+        <tr>
+            <td><span class="f_l pd_l10 w105">高：</span><span class="f_l pd_l10">@height<text>厘米</text></span></td>
+        </tr>
+    </table>
+}

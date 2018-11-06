@@ -1,0 +1,133 @@
+﻿@model PageOf<SupplierRoleInfo>
+@using SFO2O.Supplier.Models;
+@using SFO2O.Supplier.Common;
+@using SFO2O.Supplier.Models.Account;
+@{
+    ViewBag.Title = "用户分组";
+    ViewBag.PageName = "GroupList";
+    var permissionSet = ViewData["PermissionSet"] as HashSet<EnumPermission>;
+}
+
+<div class="cont_right_crumb"><span class="homepage"></span>&gt; 账号管理 &gt; 用户分组</div>
+<div class="w931">
+    <div class="mg_t30">
+        <div class="tongji_title"><span class="tongji_title_l">用户分组列表</span></div>
+        @if (permissionSet.Contains(EnumPermission.Account_RoleManage_Add))
+        {
+            <div class="t_r wrap_dr_sc">
+                <div class="dr_sc"><a href="@Url.Action("EditGroup")" class="addpro_btn btn_sc mg_l10"><i></i>添加分组</a></div>
+            </div>
+        }
+        <div class="bor_bg">
+            <table class="fff_bor t_c f15" style="margin:20px 15px;" width="900">
+                <tr class="lineH36 bg_f8f8f8">
+                    <th width="360" class="bor_b">分组名称</th>
+                    <th width="540" class="bor_b">操作</th>
+                </tr>
+                @if (Model != null && Model.Items != null && Model.Items.Count > 0)
+                {
+                    foreach (var role in Model.Items)
+                    {
+                        <tr class="lineH54">
+                            <td class="bor_b">@role.RoleName</td>
+                            <td class="bor_b">
+                                @if (permissionSet.Contains(EnumPermission.Account_RoleManage_ViewUser))
+                                {
+                                    <a href="javascript:void(0)" class="col_link mg_r30" onclick="ViewGroupUsers('@role.RoleName',@role.RoleID)">查看分组用户</a>
+                                }
+                                @if (permissionSet.Contains(EnumPermission.Account_RoleManage_Edit))
+                                {
+                                    <a href="@Url.Action("EditGroup", new { id = @role.RoleID })" class="col_link mg_l30 mg_r30">修改</a>
+                                }
+                                @if (permissionSet.Contains(EnumPermission.Account_RoleManage_Delete))
+                                {
+                                    <a href="javascript:void(0)" class="col_link mg_l30" onclick="DeleteGroup(@role.RoleID,@role.UserCount)">删除</a>
+                                }
+                            </td>
+                        </tr>
+                    }
+
+                }
+                else
+                {
+                    <tr class="lineH54">
+                        <td class="bor_b" colspan="2">
+                            <p class="pd_l30 t_l color_green">您还没有设置用户分组</p>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+        @if (Model != null && Model.Items != null && Model.Items.Count > 0)
+        {
+            <div class="page">
+                @Html.ShowFPage(Url.Action(null
+                , new
+                {
+                    PageIndex = "{0}"
+                })
+                , Model.PageIndex
+                , Model.Total)
+                <p class="f14 mg_l20 mg_b5 inline">
+                    共<em class="color_green pd_l10 pd_r10"> @(Model.Total) </em>条数据
+                </p>
+            </div>
+        }
+    </div>
+</div>
+<script type="text/javascript">
+    function ViewGroupUsers(roleName,roleID) {
+        id = roleID | 0;
+        $.post("ViewGroupUsers", { id: id }, function (html) {
+            $.dialog({
+                title: roleName + "分组成员",
+                content: html
+            });
+        });
+    }
+    function DeleteGroup(id,userCount) {
+        if(userCount){
+            $.dialog({
+                title: "警告",
+                width: 470,
+                content: '<p class="pd_t20 pd_b5"><span>由于部分后台用户隶属于该分组，因此不能删除。 请点击“查看分组用户”，查看用户情况。</span></p><p class="pd_t10 pd_b30"><span>如需删除该分组，请在“后台用户”菜单中将对应的用户分组取消后，再进行删除操作。</span></p>',
+                buttons:{text:"知道了"}
+            });
+            return;
+        }
+        $.dialog({
+            width:470,
+            title: "提示",
+            content: "您确认要删除该分组吗？",
+            buttons:[{text:"取消",isWhite:true},
+                {
+                    text:"确认",
+                    onClick:function () {
+                        $.ajax({
+                            url:"DeleteGroup",
+                            type:"post",
+                            data:{id:id},
+                            success:function (res) {
+                                if (!res.Error) {
+                                    $.dialog({
+                                        content: "删除成功！",
+                                        onConfirm: function () {
+                                            window.location.reload();
+                                        }
+                                    });
+                                } else {
+                                    if (res.Message){
+                                        $.dialog(res.Message);
+                                    }
+                                    else {
+                                        $.dialog("删除失败！");
+                                    }
+                                }
+                            }
+                        });
+                        return true;
+                    }
+                }]
+        });
+    };
+</script>

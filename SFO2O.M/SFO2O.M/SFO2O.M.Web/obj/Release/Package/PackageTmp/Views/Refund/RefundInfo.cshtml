@@ -1,0 +1,236 @@
+﻿@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.Controllers;
+@using SFO2O.Model.Enum;
+@using SFO2O.Utility.Extensions;
+@using SFO2O.Model.Refund;
+@using SFO2O.Utility.Uitl;
+@model SFO2O.Model.Refund.RefundInfoModel
+
+@{
+    ViewBag.Title = "退款单详请";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = true;
+
+    var imgList = ViewBag.RefundImages;
+    List<RefundProductEntity> refundProduct = ViewBag.RefundProduct;
+}
+@section scripts{
+    @Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJsRefundDetail))
+}
+@section styles{
+    <link href="../Content/css/refundDetail.css?v=201512150001" rel="stylesheet">
+}
+<style type="text/css">
+    #footerWrap {
+        margin-bottom:61px;
+    }
+</style>
+<header class="pageHeader w100 pr tc">
+        <a class="returnBtn" id="returnBtn"></a>
+        <b class="f36 FontColor1">退款单详情</b>
+        <a class="flowerMenu" onclick="FSH.menuDialog()"></a>
+    </header>
+
+<div class="warning w95p mb8 f24">
+    办理退款后的到账时间一般需要三到五天，请耐心等候。
+    </div>
+    <div class="refundInfo boxShadow f28 bgColor3 mb8">
+        <div class="whiteOnLine w95p">
+            <span class="FontColor4">退款单号：</span>@Model.RefundCode
+        </div>
+        <div class="whiteOnLine w95p">
+            <span class="FontColor4">退款单状态：</span>
+            <span class="orangeText">@if (Model.RefundStatus == (int)RefundStatus.WaitAudit)
+                                     {
+                                         <text>待审核</text>
+                                     }
+                                     else if (Model.RefundStatus == (int)RefundStatus.Pickup)
+                                     {
+                                         <text>上门取件</text>
+                                     }
+                                    else if (Model.RefundStatus == (int)RefundStatus.WaitRefund)
+                                     {
+                                         <text>待退款</text>
+                                     }
+                                    else if (Model.RefundStatus == (int)RefundStatus.RefundSuccess)
+                                     {
+                                         <text>退款成功</text>
+                                     }
+                                    else if (Model.RefundStatus == (int)RefundStatus.CancelRefund||Model.RefundStatus == (int)RefundStatus.DenyRefund)
+                                     {
+                                         <text>退款关闭</text>
+                                     }
+            </span>
+            @if (Model.RefundStatus == (int)RefundStatus.Pickup){
+                string time = (Model.ToBePickUpTime != null ? Convert.ToDateTime(Model.ToBePickUpTime).ToString("yyyy-MM-dd") : "").Replace("0001-01-01", "");
+                if(!string.IsNullOrEmpty(time)){
+            <span class="f24 FontColor4">（预约时间 @time)</span>
+            }
+            }
+        </div>
+        @if (Model.RefundStatus == (int)RefundStatus.RefundSuccess || Model.RefundStatus == (int)RefundStatus.WaitRefund||Model.RefundStatus == (int)RefundStatus.Pickup)
+        {
+        <div class="whiteOnLine w95p">
+            <span class="FontColor4">退款金额：</span><span class="orangeText">￥@Model.RMBRefundTotalAmount.ToNumberRoundStringWithPoint() </span>
+        </div>
+        }
+
+        @if (Model.HuoLi > 0 && Model.RefundStatus==4)
+        {
+        <div class="whiteOnLine w95p">
+            <span class="FontColor4">退回酒豆：</span><span class="orangeText">@(Model.HuoLi.ToString("#.##"))</span>
+        </div>
+        }
+        
+        @if(Model.RefundStatus == (int)RefundStatus.DenyRefund){
+        <div class="whiteOnLine w95p displayTable">
+            <span class="FontColor4 displayCell">拒绝原因：</span><span class="displayCell">@Model.NoPassReason</span>
+        </div>
+        }
+    </div>
+    <div class="productInfo bgColor3 boxShadow mb8">
+        <p class="f28 w95p">退款商品</p>
+        @if (refundProduct!=null && refundProduct.Any())
+        {
+        <div class="proInfo displayBox w95p">
+            <div class="imgBox mr10">
+                <a href="/item.html?productCode=@refundProduct.First().Spu"><img src="@refundProduct.First().ImagePath.GetImageSmallUrl()"></a>
+            </div>
+            <div class="boxflex1" >
+                <div class="f24 " style="margin-top:2px;">@refundProduct.First().Name</div>
+                <div class="FontColor4 f20 " style="margin-top:2px;">
+                    @if (!string.IsNullOrEmpty(refundProduct.First().MainDicValue)){
+                        @refundProduct.First().MainDicValue<text>：</text>@refundProduct.First().MainValue
+                        if (!string.IsNullOrEmpty(refundProduct.First().SubDicValue))
+                        {
+                            <text>，</text>@refundProduct.First().SubDicValue<text>：</text>@refundProduct.First().SubValue
+                            
+                        }
+                        if (refundProduct.First().MainDicValue.Equals("净重") || refundProduct.First().MainDicValue.Equals("淨重"))
+                                {
+                                    @(refundProduct.First().NetWeightUnit)
+                                }
+
+                            if (refundProduct.First().MainDicValue.Equals("净含量") || refundProduct.First().MainDicValue.Equals("淨含量"))
+                                {
+                                    @(refundProduct.First().NetContentUnit)
+                                }
+                    }
+                   </div>
+                <div style="margin-top:2px;">
+                    <span class="fr f24">x1</span>
+                    <span class="f30">￥@refundProduct.First().RMBUnitPrice.ToNumberRoundStringWithPoint()</span>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+    <div class="refundInfo boxShadow f28 bgColor3 mb8">
+        @if(Model.RefundStatus!=(int)RefundStatus.WaitAudit){
+        <div class="whiteOnLine w95p">
+            <span class="FontColor4">退款类型：</span>@if (Model.RefundType == (int)RefundType.ReturnMoney)
+                                                 {
+                                                     <text>仅退款</text>
+                                                 }
+                                                 else
+                                                 {
+                                                     <text>退款退货</text>
+                                                 }
+                                               
+        </div>
+        }
+        <div class="whiteOnLine w95p">
+            <span class="FontColor4">申诉原因：</span>@if (Model.RefundReason == (int)RefundReason.ColorOrderNoMatch)
+                                                 {
+                                                     <text>商品颜色与订单不符</text>
+                                                 }
+                                                 else if (Model.RefundReason == (int)RefundReason.OtherProductQuality)
+                                                 {
+                                                     <text>其他商品品质问题</text>
+                                                 }
+                                                else if (Model.RefundReason == (int)RefundReason.OtherReason)
+                                                 {
+                                                     <text>其他原因</text>
+                                                 }
+                                                else if (Model.RefundReason == (int)RefundReason.ProductBad)
+                                                 {
+                                                     <text>商品已破损</text>
+                                                 }
+                                                else if (Model.RefundReason == (int)RefundReason.ProductNoWork)
+                                                 {
+                                                     <text>商品不能正常运作</text>
+                                                 }
+                                                else if (Model.RefundReason == (int)RefundReason.ProductOverdue)
+                                                 {
+                                                     <text>商品已超过使用期限</text>
+                                                 }
+                                                else if (Model.RefundReason == (int)RefundReason.ReceiveProductNoMath)
+                                                 {
+                                                     <text>送达的商品与订单商品不符</text>
+                                                 }
+                                                else if (Model.RefundReason == (int)RefundReason.SizeOrderNoMath)
+                                                 {
+                                                     <text>商品尺寸与订单不符</text>
+                                                 }
+        </div>
+        <div class="whiteOnLine w95p displayTable">
+            <span class="FontColor4 displayCell">详细理由：</span><span class="displayCell">@Model.RefundDescription</span>
+        </div>
+        <div class="whiteOnLine w95p">
+            <span class="FontColor4">商品状态：</span>@if (Model.ProductStatus == (int)RefundProductStatus.UnOpen)
+                                                 {
+                                                     <text>未开封</text>
+                                                 }
+                                                else if (Model.ProductStatus == (int)RefundProductStatus.OpendUnUse)
+                                                 {
+                                                     <text>已开封未使用</text>
+                                                 }
+                                                else if (Model.ProductStatus == (int)RefundProductStatus.OpendUsed)
+                                                 {
+                                                     <text>已开封已使用</text>
+                                                 }
+        </div>
+    </div>
+    <div class="refundDetail boxShadow f28 bgColor3 mb8">
+        <p class="title f28 FontColor4 w95p">退款凭证：</p>
+        <div class="imgBox whiteOnLine clearfix w95p" id="imgBox">
+            @if (imgList!=null)
+            {
+            foreach(string img in imgList){
+            <div>
+                <a href="/refund/refundimage/?path=@img.GetImageUrl()" target="_self"><img src="@img.GetImageUrl().Replace("_180","")" /></a>
+            </div>
+            }
+                }
+        </div>
+        <div class="whiteOnLine time w95p">
+            <span class="FontColor4">申请退款时间：</span>@Model.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")
+        </div>
+        @if (Model.RefundStatus == (int)RefundStatus.RefundSuccess){
+            if (Model.CompletionTime.ToString("yyyy-MM-dd HH:mm:ss")!="0001-01-01")
+            {
+            <div class=" time w95p">
+                <span class="FontColor4">退款成功时间：</span>@Model.CompletionTime.ToString("yyyy-MM-dd HH:mm:ss")
+            </div>
+            }
+        }
+        @if (Model.RefundStatus == (int)RefundStatus.CancelRefund||Model.RefundStatus == (int)RefundStatus.DenyRefund){
+            if (Model.CompletionTime.ToString("yyyy-MM-dd HH:mm:ss")!="0001-01-01")
+            {
+            <div class=" time w95p">
+                <span class="FontColor4">退款关闭时间：</span>@Model.CompletionTime.ToString("yyyy-MM-dd HH:mm:ss")
+            </div>
+            }
+        }
+    </div>
+    <div class="fixedBottomDiv w100 overflowH">
+        <div class="fixedBottomDivCon w95p">
+            <a href="@SFO2O.Utility.Uitl.DomainHelper.CustomerServicesUrl" class="btn normalBtn linkToService" target="_blank">联系客服</a>
+            @if(Model.RefundStatus==(int)RefundStatus.WaitAudit){
+            <a href="/refund/editComplain?refundCode=@Model.RefundCode" class="btn normalBtn ">修改申诉</a>
+            <a id="cancelRefund" class="btn ">取消申诉</a>
+            }
+        </div>
+    </div>
+

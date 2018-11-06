@@ -1,0 +1,50 @@
+﻿@model string
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+@*<style>
+    img {
+        width: 600px;
+        height: 600px;
+    }
+</style>*@
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>詳情頁</title>
+    <link href="../Content/CSS/common.css?@ViewBag.JsAndCssVersion" rel="stylesheet" />
+    <link href="../Content/CSS/supplier.css?@ViewBag.JsAndCssVersion" rel="stylesheet" />
+    <script type="text/javascript" src="~/Content/Js/jquery-1.8.3.js"></script>
+</head>
+
+<body class="bg_f8f8f8">
+    <div class="img_xq_wrap">
+        <p class="t_c img_xq_title">商品詳情</p>
+        <div class="img_xq pd20">
+            @Html.Raw(ViewBag.Des)
+        </div>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+    $(function () {
+        var maxWidth = 600;
+
+        var zoomTimes;
+        $("img").each(function () {
+            var curWidth = $(this).width();
+            var curHeight = $(this).height();
+           
+            if (curWidth > maxWidth) {
+
+                $(this).width(maxWidth);
+                zoomTimes = curWidth / maxWidth;
+                $(this).height(curHeight / zoomTimes);
+            }
+        })
+    });
+</script>

@@ -1,0 +1,35 @@
+﻿@using SFO2O.M.Controllers
+@model SFO2O.M.ViewModel.Supplier.StoreIntroModel
+@{
+    Layout="~/Views/Shared/_Layout_Common.cshtml";
+}
+
+@section styles{
+    <link href="@BundleConfig.BuildCss("Content/css/shopIntro.css")" type="text/css" rel="stylesheet" />
+    }
+@section scripts{
+    @Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJsStore))
+    }
+
+<div class="MContainer">
+	<!-- 页头 -->
+	<header class="pageHeader w100 pr tc">
+        <a class="returnBtn" id="returnBtn"></a>
+        <b class="f36 FontColor1">商家简介</b>
+    </header>
+    <!-- 页头 end -->
+    <div class="intro w95p bgColor3 boxShadow">
+    	<div class="title"> @Model.StoreName</div>
+    	<div class="info">  @Model.StoreIntro</div>
+        @if (@Model.StoreAddress.Count > 0)
+        {
+            <div class="title">门店地址：</div>
+            foreach (var item in Model.StoreAddress)
+            {
+                <div class="info">@item</div>
+            }
+        }
+
+    </div>
+
+</div>

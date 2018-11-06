@@ -1,0 +1,3 @@
+﻿$(function(){
+	FSH.fixedFooter();
+})

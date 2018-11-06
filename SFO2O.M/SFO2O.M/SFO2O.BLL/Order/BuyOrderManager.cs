@@ -624,7 +624,16 @@ namespace SFO2O.BLL.Order
 
         }
 
-
+      /// <summary>
+      /// 孙健   大礼包订单
+      /// </summary>
+      /// <param name="model"></param>
+      /// <param name="productItems"></param>
+      /// <param name="code"></param>
+      /// <param name="giftType"></param>
+      /// <param name="ParentOrderCode"></param>
+      /// <param name="gatewayType"></param>
+      /// <returns></returns>
         public bool SaveGift(OrderProductInfoModel model, IEnumerable<ProductItem> productItems, ref string code, int giftType, string ParentOrderCode = "0", int gatewayType = 0)
         {
             ReturnValue returnValue = new ReturnValue();
@@ -729,29 +738,34 @@ namespace SFO2O.BLL.Order
             {
                 throw new SFO2OException("单个订单金额不可超过" + ConfigHelper.ConsolidatedPrice + "元人民币。");
             }
-            
 
-
+           decimal totalAmountOne = Convert.ToDecimal(ConfigHelper.GetAppSetting<string>("libao_totalAmountOne"));
+            decimal totalAmountTwo = Convert.ToDecimal(ConfigHelper.GetAppSetting<string>("libao_totalAmountTwo"));
             OrderInfoEntity orderInfoEntity = new OrderInfoEntity();
             switch (giftType)
             {
-                case 1: orderInfoEntity.TotalAmount = 6250;
-                    orderInfoEntity.ProductTotalAmount = 6250;
-                    orderInfoEntity.Huoli = 6250;
+                case 1: orderInfoEntity.TotalAmount = totalAmountTwo;
+                    orderInfoEntity.ProductTotalAmount = totalAmountTwo;
+                    //orderInfoEntity.Huoli = totalAmountTwo;
+                    break;
+                case 2: orderInfoEntity.TotalAmount = totalAmountTwo;
+                    orderInfoEntity.ProductTotalAmount = totalAmountTwo;
+                    //orderInfoEntity.Huoli = totalAmountTwo;
+                    break;
+                case 3: orderInfoEntity.TotalAmount = totalAmountTwo;
+                    orderInfoEntity.ProductTotalAmount = totalAmountTwo;
+                    //orderInfoEntity.Huoli = totalAmountTwo;
+                    break;
+                case 4: orderInfoEntity.TotalAmount = totalAmountOne;
+                    orderInfoEntity.ProductTotalAmount = totalAmountOne;
+                    //orderInfoEntity.Huoli = totalAmountOne;
                     break;
 
-                case 2: orderInfoEntity.TotalAmount = 5000;
-                    orderInfoEntity.ProductTotalAmount = 5000;
-                    orderInfoEntity.Huoli = 5000;
+                case 5: orderInfoEntity.TotalAmount = totalAmountOne;
+                    orderInfoEntity.ProductTotalAmount = totalAmountOne;
+                    //orderInfoEntity.Huoli = totalAmountOne;
                     break;
-                case 3: orderInfoEntity.TotalAmount = 2000;
-                    orderInfoEntity.ProductTotalAmount = 2000;
-                    orderInfoEntity.Huoli = 2000;
-                    break;
-                case 4: orderInfoEntity.TotalAmount = 350;
-                    orderInfoEntity.ProductTotalAmount = 350;
-                    orderInfoEntity.Huoli = 350;
-                    break;
+             
                 default:
                     break;
             }

@@ -1,0 +1,176 @@
+﻿@using SFO2O.M.Controllers
+@using SFO2O.Utility.Uitl
+@using SFO2O.Utility.Extensions
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    this.ViewBag.Title = "拆单";
+    ViewBag.ShowFooter = false;
+    int i = 1;
+}
+@model List<SFO2O.Model.My.MyOrderInfoDto>
+@section styles {
+    <link href="../../Content/css/base.css?v=201512150001" rel="stylesheet">
+    <!--页面独有样式-->
+    <link href="../../Content/css/refundList.css?v=201512150001" rel="stylesheet">
+    <link href="../../Content/css/split.css?v=201512150001" rel="stylesheet">
+}
+@section scripts {
+    <script src="../Scripts/jquery/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../../Scripts/common/common.js?v=201512160001"></script>
+    <script type="text/javascript" src="../../Scripts/jquery/jquery.dialog.js"></script>
+    <script type="text/javascript" src="../../Scripts/jquery/iscroll.js"></script>
+    <!--页面独有脚本-->
+    <script type="text/javascript" src="../../Scripts/split.js?v=20160406"></script>
+    <!--页面独有脚本 END-->
+}
+@section pageHeader {
+    <!-- 页头 -->
+    <header class="pageHeader w100 pr tc">
+        <a class="returnBtn" id="returnBtn"></a>
+        <b class="f36 FontColor1">支付</b>
+    </header>
+    <!-- 页头 end -->
+}
+<!-- 2个以上sku -->
+@if (Model != null && Model.Count() >= 0)
+{
+    foreach (var order in Model)
+    {
+        if (order.SkuInfos.Count() == 1)
+        {
+            <div class=" boxShadow mb8 bgColor3">
+                <div class="title f24 w95p bgColor3">
+                    <a class="fr FontColor4">共<span class="FontColor6">@order.SkuInfos.Count()</span>件</a>
+                    @if (i++ == 1)
+                    {
+                        <span>包裹一（@order.OrderCode)</span>
+                    }
+                    else
+                    {
+                        <span>包裹二（@order.OrderCode)</span>
+                    }
+                </div>
+                @foreach (var orderInfo in order.SkuInfos)
+                {
+                    <div class="proInfo displayBox w95p single">
+                        <div class="imgBox mr10">
+                            <img src="@orderInfo.ImagePath.GetImageSmallUrl()" />
+                        </div>
+                        <div class="boxflex1 displayBox horizontal">
+                            <div class="boxflex1">
+                                <p class="mb10">@orderInfo.Name</p>
+                                <p class="FontColor4 f20 mb10"></p>
+                                <div class="f30 FontColor1">
+                                    <span class="fr f24">×@orderInfo.Quantity</span>
+                                    ￥@orderInfo.PayUnitPrice.ToString("f2")
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="orderInfo f28 whiteOnLine FontColor4 w95p">
+                        <p>
+                            <span class="fr FontColor1">￥@order.ProductTotalAmount.ToString("f2")</span>商品总价
+                        </p>
+                        <p>
+                            <span class="fr FontColor1">全场包邮</span>运费
+                        </p>
+                        <p>
+                            <a href="/OrderTariff.html?id=@order.OrderCode"><span class="fr FontColor1">￥@order.CustomsDuties.ToString("f2")<i class="rightArrow" style="margin-left: 8px; position: relative; top: 1px;"></i></span>商品税</a>
+                        </p>
+                        <!--20160601 新增内容 优惠券-->
+                        @if (order.Coupon > 0)
+                        {
+                            <p>
+                                <span class="fr FontColor1">-￥@order.Coupon</span><span class="fr FontColor1"></span>使用优惠券
+                            </p>
+                        <!--20160601 新增内容 优惠券 End-->
+                        }
+                        @if (order.HuoLi > 0)
+                        {
+                        <p>
+                            <span class="fr FontColor1">（抵￥@((order.HuoLi / 100).ToNumberRoundStringWithPoint())）</span><span class="fr FontColor1">-@(order.HuoLi.ToString("#.##"))</span>使用酒豆
+                        </p>
+                        }
+                    </div>
+                    
+                    <div class="btn-box w95p f28 FontColor1">
+                        <a class="btn fr" href="PayPage.html?id=@order.OrderCode&package=@(i-1)">去支付</a>
+                        总金额:<span class="FontColor6">￥@((order.TotalAmount - (order.HuoLi / 100) - order.Coupon).ToString("f2"))</span>
+                    </div>
+
+                }
+            </div>
+        }
+        else
+        {
+            <div class=" boxShadow mb8 bgColor3">
+                <div class="title f24 w95p bgColor3">
+                    <a class="fr FontColor4">共<span class="FontColor6">@order.SkuInfos.Count()</span>件</a>
+                    @if (i++ == 1)
+                    {
+                        <span>包裹一（@order.OrderCode)</span>
+                    }
+                    else
+                    {
+                        <span>包裹二（@order.OrderCode)</span>
+                    }
+                </div>
+                <div class="indexHotPro w95p" id="hotPro">
+                    <div class="itemBox clearfix" id="itemBox">
+                        @foreach (var orderInfo in order.SkuInfos)
+                        {
+
+                            <div class="item">
+                                <div class="imgBox mb5"><img src="@orderInfo.ImagePath.GetImageSmallUrl()"></div>
+                                <div class="f24 FontColor1 mb5">
+                                    @if (order.SkuInfos.Count() == 1)
+                                    {
+                                        @orderInfo.Name
+                                    }
+                                    else
+                                    {
+                                        @orderInfo.PayUnitPrice.ToString("f2")
+                                    }
+                                </div>
+                                <div class="f20 FontColor4">×@orderInfo.Quantity</div>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+                <div class="orderInfo f28 whiteOnLine FontColor4 w95p">
+                    <p>
+                        <span class="fr FontColor1">￥@order.ProductTotalAmount.ToString("f2")</span>商品总价
+                    </p>
+                    <p>
+                        <span class="fr FontColor1">全场包邮</span>运费
+                    </p>
+                    <p>
+                        <a href="/OrderTariff.html?id=@order.OrderCode"><span class="fr FontColor1">￥@order.CustomsDuties.ToString("f2")<i class="rightArrow" style="margin-left: 8px; position: relative; top: 1px;"></i></span>商品税</a>
+                    </p>
+                    <!--20160601 新增内容 优惠券-->
+                    @if (order.Coupon > 0)
+                    {
+                        <p>
+                            <span class="fr FontColor1">-￥@order.Coupon</span><span class="fr FontColor1"></span>使用优惠券
+                        </p>
+                        <!--20160601 新增内容 优惠券 End-->
+                    }
+                    @if (order.HuoLi > 0)
+                    {
+                        <p>
+                            <span class="fr FontColor1">（抵￥@((order.HuoLi / 100).ToNumberRoundStringWithPoint())）</span><span class="fr FontColor1">-@(order.HuoLi.ToString("#.##"))</span>使用酒豆
+                        </p>
+
+                    }
+                </div>
+               
+                <div class="btn-box w95p f28 FontColor1">
+                    <a class="btn fr" href="PayPage.html?id=@order.OrderCode&package=@(i-1)">去支付</a>
+                    总金额:<span class="FontColor6">￥@((order.TotalAmount - (order.HuoLi / 100) - order.Coupon).ToNumberRoundStringWithPoint())</span>
+                </div>
+            </div>
+        }
+
+    }
+}

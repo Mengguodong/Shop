@@ -38,6 +38,10 @@ using SFO2O.BLL.Information;
 using SFO2O.BLL.Common;
 using WxPayAPI;
 using SFO2O.BLL.Pay;
+using SFO2O.BLL.GreenBll;
+using SFO2O.Model;
+using SFO2O.Model.Account;
+using SFO2O.BLL.Account;
 
 //易宝
 
@@ -52,6 +56,7 @@ namespace SFO2O.M.Controllers
         private readonly MyBll Bll = new MyBll();
         private static readonly InformationBll InformationBll = new InformationBll();
         private readonly PayBll payBll = new PayBll();
+        private readonly AccountBll accountBll = new AccountBll();
         /// <summary>
         /// 获取支付二维码
         /// </summary>
@@ -180,9 +185,14 @@ namespace SFO2O.M.Controllers
             return RedirectToAction("ZFBReturnPage");
         }
 
-
+        /// <summary>
+        /// 支付界面
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="package"></param>
+        /// <returns></returns>
         [Login]
-        public ActionResult Index(string id, string package)
+        public ActionResult Index(string id, string package,int isScore=1)
         {
             PayOrderModel model = new PayOrderModel();
             if (string.IsNullOrWhiteSpace(id))
@@ -226,6 +236,7 @@ namespace SFO2O.M.Controllers
 
                 }
             }
+            ViewBag.IsScore = isScore;
             return View(model);
         }
 
@@ -337,7 +348,7 @@ namespace SFO2O.M.Controllers
         {
             Session["payorderCode"] = id;
 
-            string type = "0", message = "支付失败。", url = "www.wdnzmt9.com";
+            string type = "0", message = "支付失败。", url = "www.discountmassworld.com";
             if (!string.IsNullOrWhiteSpace(id))
             {
                 var entity = buyOrderManager.GetOrderInfoByCode(id, this.LoginUser.UserID);
@@ -856,7 +867,7 @@ namespace SFO2O.M.Controllers
             //transtime.Value = DateUtil.GetTimeStamp().ToString();
             //amount.Value = "1";//金额
             //productcatalog.Value = "7"; //商品类别码   ----7:实物电商
-            //productname.Value = "易宝支付测试商品-易宝收银台Demo";//商品名称  爱玖网-(商品名称)
+            //productname.Value = "易宝支付测试商品-易宝收银台Demo";//商品名称  健康绿氧-(商品名称)
             //identitytype.Value = "2";//用户标识类型    2:用户 ID
             //identityid.Value = "test-" + "fengke";
             //terminaltype.Value = "1";
@@ -917,7 +928,7 @@ namespace SFO2O.M.Controllers
                     data_request.Add("transtime", Int32.Parse(DateUtil.GetTimeStamp().ToString()));
                     data_request.Add("amount", amount);
                     data_request.Add("productcatalog", "7");//商品类别码   ----7:实物电商
-                    data_request.Add("productname", "爱玖网-茅台酒");
+                    data_request.Add("productname", "健康绿氧-茅台酒");
                     data_request.Add("identitytype", Convert.ToInt32(2));
                     data_request.Add("identityid", entity.UserId.ToString());
                     data_request.Add("terminaltype", Convert.ToInt32(1));
@@ -1080,6 +1091,9 @@ namespace SFO2O.M.Controllers
             return Json(new { Type = 1, Content = msg, Url = faildcallbackurl }, JsonRequestBehavior.AllowGet);
         }
 
+
+
+
         /// <summary>
         /// 易宝回掉
         /// </summary>
@@ -1212,6 +1226,55 @@ namespace SFO2O.M.Controllers
             }
 
 
+        }
+
+
+        /// <summary>
+        /// 积分支付
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult ScorePay(string orderCode, int payType = 1) 
+        {
+
+            string mServer = ConfigurationManager.AppSettings["MServer"].ToString();
+
+            string msg = "支付失败";
+
+            JuHeFuResponseModel model = new JuHeFuResponseModel();
+            model.channeltradeid = "ccc_"+DateTime.Now.ToString("yyyyMMdd HH:mm:ss:fff");
+            model.tradeid = orderCode;
+            OrderPaymentEntity orderPayment = buyOrderManager.GetOrderPaymentByTradeCode(model.tradeid);
+            OrderInfoEntity orderInfo = orderManager.GetOrderInfoByCodeAndStatus(orderPayment.OrderCode);
+            model.userid = orderInfo.UserId.ToString();
+            model.successmoney = orderInfo.PaidAmount;
+            model.success = Convert.ToString(1);
+            CustomerEntity userInfo = accountBll.GetUserById(ConvertHelper.ZParseInt32(model.userid, 0));
+            //查询用户积分信息
+            ReturnModel returnModel = GreenGetApiBll.GetUserScore(userInfo.UserName);
+       
+            //判断积分是否够用
+         if (returnModel != null & returnModel.IsTrue & returnModel.ScoreData.Score >= orderInfo.PaidAmount) 
+            {
+                  //扣减积分流程   1：增加 ，2:扣减
+                ReturnModel greenUpdateModel = GreenGetApiBll.UpdateUserScore(userInfo.UserName, orderInfo.PaidAmount, 2);
+              if (greenUpdateModel.IsTrue)
+              {
+                 
+                  bool isTrue = payBll.OrderReturn(model);
+                  if (isTrue)
+                  {
+                      msg = "成功！";
+                  }
+                  else {
+                      msg = "订单回写失败！";
+                  }
+              }
+              else { msg = "积分扣减失败"; }
+            }
+         else { msg = "积分数量不足！"; }
+
+            string faildcallbackurl = mServer + "/Pay/ZFBReturnPage";
+            return Json(new { Type = 1, Content = msg, Url = faildcallbackurl }, JsonRequestBehavior.AllowGet);
         }
 
         //================================
@@ -1347,7 +1410,7 @@ namespace SFO2O.M.Controllers
         {
             string isOnline = System.Web.Configuration.WebConfigurationManager.AppSettings["isOnline"].ToString();
             string hosts = System.Web.HttpContext.Current.Request.Url.Host;
-            if (isOnline.Equals("0") && (hosts.Equals("mdemo.sfo2o.com") || hosts.Equals("www.wdnzmt9.c1om") || hosts.Equals("www.wdnzmt9.net") || hosts.Equals("www.wdnzmt9.com")))
+            if (isOnline.Equals("0") && (hosts.Equals("mdemo.sfo2o.com") || hosts.Equals("www.wdnzmt9.c1om") || hosts.Equals("www.wdnzmt9.net") || hosts.Equals("www.discountmassworld.com")))
             {
                 return true;
             }

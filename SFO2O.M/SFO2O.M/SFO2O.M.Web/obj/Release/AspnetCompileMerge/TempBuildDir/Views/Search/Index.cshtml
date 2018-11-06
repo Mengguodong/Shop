@@ -1,0 +1,60 @@
+﻿@using SFO2O.Utility.Uitl
+@{
+    ViewBag.Title = "搜索页";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string ImgVersion = ConfigHelper.ImgVersion;
+    string CssVersion = ConfigHelper.CssVersion;
+    string JSVersion = ConfigHelper.JsVersion;
+}
+
+@section styles{
+    <!--页面独有样式-->
+    <link href="~/Content/css/search.css?v=@CssVersion" rel="stylesheet">
+    <!--页面独有样式 END-->
+}
+
+<!-- 页头 -->
+
+<form method="get" id="postKeyword">
+<header class="pageHeader w100 pr">
+    <a class="returnBtn" id="returnBtn"></a>
+    <div class="searchBox">
+        <i></i>
+            <input type="search" name="keyword" id="search" placeholder="@ViewBag.PlaceHolder" autofocus="" />
+        
+        
+        <!-- <input type="text" id="saveInfo" name=""> -->
+        <em class="hide" id="delete"></em>
+    </div>
+    <a class="headerRightText FontColor6" id="searchBtn">搜索</a>
+</header>
+</form>
+<!-- 页头 end -->
+<div class="hot hide" id="hot">
+
+    @if (ViewBag.HotWords.Count > 0)
+    {
+        var words = ViewBag.HotWords;
+        <p class="FontColor3 f24 w95m mt5 mb5">大家都在搜</p>
+        <div class="boxShadow bgColor3 w95p hotSearch mb8">
+            @foreach (var word in words)
+            {
+                <a @(word.IsRed == true ? "class=FontColor6" : "")>@word.Content</a>
+            }
+        </div>
+    }
+
+    <p class="FontColor3 f24 w95m mt5 mb5">热门类目搜索</p>
+    <div class="boxShadow bgColor3 w95p hotSearch mb8">
+        <a href="~/product/index?level=0&c=1">保健品</a>
+        <a href="~/product/index?level=0&c=2">母婴产品</a>
+        <a href="~/product/index?level=0&c=3">个护化妆</a>
+        <a id="more">更多类目</a>
+    </div>
+</div>
+
+@section scripts{
+    <!--页面独有脚本-->
+    <script type="text/javascript" src="~/Scripts/search.js?v=@JSVersion"></script>
+    <!--页面独有脚本 END-->
+}

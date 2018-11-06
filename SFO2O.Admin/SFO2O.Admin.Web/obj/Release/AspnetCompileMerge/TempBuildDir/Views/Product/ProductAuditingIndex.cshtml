@@ -1,0 +1,159 @@
+﻿@model SFO2O.Admin.ViewModel.Product.ProductAuditingQuyModel
+@{
+    ViewBag.Title = "商品審核";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var supplierNames = (Dictionary<int, string>)ViewBag.SupplierNames;
+}
+
+<div class="cont_right_crumb">
+    <span class="homepage"></span>&gt; 商品管理 &gt; 商品審核
+</div>
+<div class="w931">
+    <div class="upload_edit">
+        <div style="border-top:none;" class="wrap_yisc pd_t15">
+            <form id="queryForm">
+                <div style="margin-left:0; margin-right:0;" class="list_yisc bor clearfix">
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">提交時間：</span>
+                        <div style="width:123px; height:29px;overflow:hidden" class="bor f_l fff_bor">
+                            <input id="CreateTimeStart" name="CreateTimeStart" class="inputdp w70 Wdate f15" type="text" value="@Model.CreateTimeStart.ToString("yyyy-MM-dd")"
+                                   onfocus="WdatePicker({ maxDate: '%y-%M-%d', vel: 'StartTime', isShowClear: true, isShowOK: true, isShowToday: true })" />
+                            <input id="startTime" name="StartTime" type="hidden" value="@Model.CreateTimeStart" />
+                        </div>
+                        <em class="f_l mg_l5 mg_r5 lineH30">至</em>
+                        <div style="width:123px; height:29px;overflow:hidden" class="bor f_l fff_bor">
+                            <input id="CreateTimeEnd" name="CreateTimeEnd" class="inputdp w70 Wdate f15" type="text" value="@Model.CreateTimeEnd.ToString("yyyy-MM-dd")"
+                                   onfocus="WdatePicker({ maxDate: '%y-%M-%d', vel: 'EndTime', isShowClear: true, isShowOK: true, isShowToday: true })" />
+                            <input id="endTime" name="EndTime" type="hidden" value="@Model.CreateTimeEnd" />
+                        </div>
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">SPU編號：</span>
+                        <input type="text" style="width: 136px;" class="f_l bor f15" name="Spu" id="spuNo" value="@Model.Spu">
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">SKU編號：</span>
+                        <input type="text" style="width:136px;" class="f_l bor f15" name="Sku" id="skuNo" value="@Model.Sku">
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">商品名稱：</span>
+                        <input type="text" style="width:262px;" class="f_l bor f15" name="ProductName" id="ProductName" value="@Model.ProductName">
+                    </div>
+
+                    @{
+                        var editType0 = Model.EditType == 0 ? "selected=\"selected\"" : String.Empty;
+                        var editType1 = Model.EditType == 1 ? "selected=\"selected\"" : String.Empty;
+                        var editType2 = Model.EditType == 2 ? "selected=\"selected\"" : String.Empty;
+                    }
+
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">編輯類型：</span>
+                        <select name="EditType" style="width:150px;" id="editType">
+                            <option value="0" @editType0>全部</option>
+                            <option value="1" @editType1>新上傳</option>
+                            <option value="2" @editType2>修改</option>
+                        </select>
+                    </div>
+                    @{
+                        var reportStatus_2 = Model.ReportStatus == -2 ? "selected=\"selected\"" : String.Empty;
+                        var reportStatus_1 = Model.ReportStatus == -1 ? "selected=\"selected\"" : String.Empty;
+                        var reportStatus0 = Model.ReportStatus == 0 ? "selected=\"selected\"" : String.Empty;
+                        var reportStatus1 = Model.ReportStatus == 1 ? "selected=\"selected\"" : String.Empty;
+                    }
+
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">報備狀態：</span>
+                        <select name="ReportStatus" style="width:150px;" id="reportStatus">
+                            <option value="-2" @reportStatus_2>全部</option>
+                            <option value="1" @reportStatus1>已報備</option>
+                            <option value="0" @reportStatus0>未報備</option>
+                            <option value="-1" @reportStatus_1>不報備</option>
+                        </select>
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">商家名稱：</span>
+                        <select name="SupplierId" style="width:276px;" id="supplierNames">
+                            <option value="0">全部</option>
+                            @foreach (var name in supplierNames.Keys)
+                            {
+                                var select = String.Empty;
+                                if (name == Model.SupplierId)
+                                {
+                                    select = "selected=\"selected\"";
+                                }
+
+                                <option value="@name" @select>@supplierNames[name]</option>
+                            }
+                        </select>
+                    </div>
+                    @{
+                        var salesTerritory0 = Model.ReportStatus == 0 ? "selected=\"selected\"" : String.Empty;
+                        var salesTerritory1 = Model.ReportStatus == 1 ? "selected=\"selected\"" : String.Empty;
+                        var salesTerritory2 = Model.ReportStatus == 2 ? "selected=\"selected\"" : String.Empty;
+                        var salesTerritory3 = Model.ReportStatus == 3 ? "selected=\"selected\"" : String.Empty;
+                        var salesTerritory4 = Model.ReportStatus == 4 ? "selected=\"selected\"" : String.Empty;
+                        var salesTerritory5 = Model.ReportStatus == 5 ? "selected=\"selected\"" : String.Empty;
+                    }
+
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">銷售區域：</span>
+                        <select name="SalesTerritory" style="width:150px;" id="salesTerritory">
+                            <option value="0" @salesTerritory0>不限</option>
+                            <option value="1" @salesTerritory1>僅中國大陸</option>
+                            <option value="2" @salesTerritory2>僅香港地區</option>
+                            <option value="3" @salesTerritory3>含中國大陸</option>
+                            <option value="4" @salesTerritory4>含香港地區</option>
+                            <option value="5" @salesTerritory5>中國大陸及香港地區</option>
+                            
+                        </select>
+                    </div>
+                    <div class="f_l">
+                        <a class="btn_green w160 mg_l20 mg_r20 mg_t10" href="javascript:void(0)" id="search">搜 尋</a> <a class="btn_white w160 mg_r30 mg_t10" onclick="Export();" href="javascript:void(0)">導 出</a>
+                    </div>
+                </div>
+            </form>
+            <div class="tongji_title mg_t30"><span class="tongji_title_l">待審核商品列表</span></div>
+            <div class="t_r wrap_dr_sc">
+                <div class="dr_sc">
+                    <a class="addpro_btn btn_dr" href="..\InputExcel\商品报备信息导入模板.xls">下载商品报备信息模板</a>
+                    <a class="addpro_btn btn_sc mg_l10 posR" href="#">
+                        <input id="updateFile" type="file" style="width:162px; height:36px; position:absolute; left:0; opacity:0.01; filter:alpha(opacity=1); cursor:pointer;" value="">
+                        批量导入报备信息
+                    </a>
+                </div>
+            </div>
+
+            <!-- 待審核商品列表 表格 -->
+            <div id="products">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="left: 560px; top: 400px; display: none; z-index: 9999; " class="win_wrap f16" id="importSuccess">
+    <div class="win_top clearfix"> <span class="f_l mg_l20">導入報告</span><a class="win_close f_r" title="關閉" href="javascript:void(0);"></a> </div>
+    <div class="win_cont pd_l20 pd_r20">
+        <p class="pd_t20 pd_b5 w200 mg_l60 pd_l40">批量導入報備信息已完成！</p>
+        <p class="pd_b5 w200 mg_l60 pd_l40">成功導入：<span id="success"></span></p>
+        <p class="pd_b30 w200 mg_l60 pd_l40">失敗：<span id="fail"></span></p>
+    </div>
+    <div class="win_btm f18 t_c pd_b20">
+        <a class="win_btn btn_white w135" href="" id="showErrors" style="display:none;">查看失敗詳情</a>
+        <a class="win_btn btn_green mg_l40 w135" href="javascript:void(0);" id="importSuccessBtn">確 定</a></div>
+</div>
+<div style="left: 50px; top: 50px; display: none; z-index: 9999; position: absolute" class="win_wrap f16" id="importError">
+    <div class="win_top clearfix"> <span class="f_l mg_l20">導入失敗</span></div>
+    <div class="win_cont pd_l20 pd_r20">
+        <p class="t_c pd_t40 pd_b30"><span id="errorMessage"></span></p>
+    </div>
+    <div class="win_btm f18 t_c pd_b20"><a class="win_btn btn_green w135" href="javascript:void(0);" id="errorBtn">確 定</a></div>
+</div>
+
+<script src="~/Scripts/common.js?@ViewBag.JsAndCssVersion"></script>
+<script src="~/Scripts/jquerypager/jquery.pager.latest.js"></script>
+<script src="~/Scripts/my97/WdatePicker.js"></script>
+<script src="~/Scripts/ajaxupload.3.5.js"></script>
+<script src="~/Scripts/chosen/chosen.jquery.js"></script>
+<script src="~/Scripts/Product/ProductAuditingIndex.js?@ViewBag.JsAndCssVersion"></script>
+<link href="~/Scripts/chosen/chosen.css" type="text/css" rel="stylesheet" />

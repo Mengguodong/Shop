@@ -1,0 +1,170 @@
+﻿@model SFO2O.Supplier.Models.Promotion.PromotionMainInfoModel
+@{
+    ViewBag.Title = "查看促销价";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.PageName = "PromotionList";
+
+    var dateTime = DateTime.Now.AddDays(3);
+
+    var skus = (List<SFO2O.Supplier.Models.Promotion.PromotionSkuListModel>)ViewBag.Skus;
+}
+
+<div class="cont_right_crumb"><span class="homepage"></span>&gt; 市场营销 &gt; 促销价</div>
+<div class="w931">
+    <div class="mg_t20 bor">
+        <div class="action_basic">
+            <div class="bg_f8f8f8 f18 color_green table_lineH43 pd_l20 bor_b">活动基本信息</div>
+            <table class="f15 mg_t20 mg_b10">
+                <tbody>
+                    <tr>
+                        <th class="pd_l40 pd_r20 vtop lineH36 t_r"><i class="color_red vmiddle bitian">*</i>活动名称：</th>
+                        <td>
+                            <div class="mg_b20 clearfix">
+                                <input disabled="disabled" id="promotionName" class="fff_bor f_l h19 mg_r10 f15" type="text" value="@Model.PromotionName" style="width: 440px; height: 24px;" maxlength="10" placeholder="活动名称" />
+                                <p class="wrong_tips color_red" style="display:none;">请输入活动名称</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="pd_l40 pd_r20 vtop lineH36 t_r"><i class="color_red vmiddle bitian">*</i>活动时间：</th>
+                        <td class="">
+                            <div class="mg_b20 clearfix">
+                                <div class="bor f_l fff_bor f15" style="width:200px; height:36px; overflow: hidden;">
+                                    <input disabled="disabled" type="text" style="width: 175px; background-position: 171px 9px;" id="StartTime" class="Wdate" name="StartTime"
+                                           onclick="WdatePicker({ isShowClear: true, isShowOK: true, isShowToday: true, dateFmt: 'yyyy-MM-dd HH:00:00', maxDate: '#F{$dp.$D(\'EndTime\')}' })"
+                                           value="@Model.StartTime.ToString("yyyy-MM-dd HH:00:00")" />
+                                </div>
+                                <em class="f_l mg_l20 mg_r20 lineH36">至</em>
+                                <div class="bor f_l fff_bor f15" style="width: 200px; height:36px; overflow: hidden;">
+                                    <input disabled="disabled" type="text" style="width: 175px; background-position: 171px 9px;" id="EndTime" class="Wdate" name="EndTime"
+                                           onclick="WdatePicker({ isShowClear: true, isShowOK: true, isShowToday: true, dateFmt: 'yyyy-MM-dd HH:00:00', minDate: '#F{$dp.$D(\'StartTime\')}' })"
+                                           value="@Model.EndTime.ToString("yyyy-MM-dd HH:00:00")" />
+                                </div>
+                                <p class="wrong_tips color_red" style="display:none;">错误提示</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="pd_l40 pd_r20 vtop lineH36 t_r">活动标籤：</th>
+                        <td class="">
+                            <div class="mg_b20 clearfix">
+                                <input disabled="disabled" id="lable" class="fff_bor f_l h19 mg_r10 f15" type="text" value="@Model.PromotionLable" style="width:182px;height:24px;" placeholder="促销价" maxlength="5" />
+                                <div class="f_l" style="font-size:13px;width:100%;">
+                                    <span class="f_l">活动期间展示与商品详情的价格旁边，2-5个字。</span>
+                                </div>
+                            </div>
+                            <p class="wrong_tips color_red" style="display:none;"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="pd_l40 pd_r20 vtop lineH36 t_r"><i class="color_red vmiddle bitian">*</i>活动费用：</th>
+                        <td class="">
+                            <div class="mg_b20 clearfix">
+                                <div class="posR" style="width:200px;height:36px;">
+                                    <input disabled="disabled" id="promotionPercent" class="fff_bor mg_r10 f_l h19 f15" type="text" value="@Model.PromotionCost" style="width:182px;height:24px;" placeholder="请填入费用承担比例" />
+                                    <em class="posA f15" style="right:10px; top:6px;">%</em>
+                                </div>
+                                <p class="wrong_tips color_red" style="display:none;">错误提示</p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class=" action_set">
+            <div class="bg_f8f8f8 f18 color_green table_lineH43 pd_l20 bor_b bor_t">
+                @*<div class="f_r clearfix mg_r10 check_search bor" style="width:310px; background-color:#fff; height:33px; margin-top:4px;">
+                        <input class="h19 f_l f15" value="" style="width:254px;height:23px;" id="querySkuName" />
+                        <a href="javascript:void(0);" class="icon_search" style="float:right; margin:9px 20px 0 0;" id="search"></a>
+                    </div>*@
+                促销商品
+            </div>
+            <div class="mg_t20 dingdglist mg_l10 mg_r10 mg_b20" style="position:relative;">
+                <div class="wrap_yisc mg_r10" style="margin-bottom:0; border-bottom:none;" id="skuList">
+                    <div>
+                        <table style="position:relative; width:900px;" class="bg_fff bor f15 t_c table_bor vtop">
+                            <tbody>
+                                <tr class="t_c bg_f8f8f8 table_lineH43">
+                                    <th width="280">商品名称</th>
+                                    <th width="102">属性1</th>
+                                    <th width="102">属性2</th>
+                                    <th width="112">价格</th>
+                                    <th width="112">促销价格</th>
+                                    <th width="100">促销折扣</th>
+                                </tr>
+                                @if (skus != null && skus.Count > 0)
+                                {
+                                    var spus = skus.GroupBy(p => p.spu);
+
+                                    foreach (var spu in spus)
+                                    {
+                                        var rowSpan = spu.Count();
+                                        var skuFirst = spu.First();
+                                        var imgUrl = String.IsNullOrWhiteSpace(skuFirst.ImagePath) == true ? "" : skuFirst.ImagePath.Replace('\\', '/');
+                                        imgUrl = String.IsNullOrWhiteSpace(imgUrl) ? "" : imgUrl.Insert(imgUrl.LastIndexOf('.'), "_180");
+
+                                        <tr class="lineH22">
+                                            <td class="t_l bor_none_r" rowspan="@rowSpan">
+                                                <div class="clearfix">
+                                                    <a href="#"><img src="@SFO2O.Supplier.Common.ConfigHelper.ImageServer@(imgUrl)" class="f_l mg10"></a>
+                                                    <div class="f_l w200">
+                                                        <p class="pd_t10 mg_b5"><a target="_blank" href="/Product/ViewProduct?spu=@skuFirst.spu" class="hover_color">@skuFirst.Name</a></p>
+                                                        <input type="hidden" value="@skuFirst.spu" id="spu_@skuFirst.Sku" />
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="bor_none_r"><p class="pd10">@skuFirst.MainValue</p></td>
+                                            <td class="bor_none_r bor_none_l"><p class="pd10">@skuFirst.SubValue</p></td>
+                                            <td class="bor_none_r bor_none_l"><p class="pd10" id="sp_@skuFirst.Sku">￥@skuFirst.Price</p></td>
+                                            <td class="bor_none_r bor_none_l">
+                                                <p class="pd10" id="pp_@skuFirst.Sku">
+                                                    @if (skuFirst.PromotionPrice != -1)
+                                                    {
+                                                        <text>$</text>@skuFirst.PromotionPrice
+                                                    }
+                                                </p>
+                                            </td>
+                                            <td class="bor_none_r bor_none_l">
+                                                <p class="pd10" id="pr_@skuFirst.Sku">
+                                                    @if (skuFirst.PromotionRate != -1)
+                                                    {
+                                                        @skuFirst.PromotionRate<text>折</text>
+                                                    }
+                                                </p>
+                                            </td>
+                                        </tr>
+
+                                        foreach (var sku in spu.Skip(1))
+                                        {
+                                            <tr class="lineH22">
+                                                <td class="bor_none_r"><p class="pd10">@sku.MainValue</p></td>
+                                                <td class="bor_none_r bor_none_l"><p class="pd10">@sku.SubValue</p></td>
+                                                <td class="bor_none_r bor_none_l"><p class="pd10" id="sp_@sku.Sku">￥@sku.Price</p></td>
+                                                <td class="bor_none_r bor_none_l">
+                                                    <p class="pd10" id="pp_@sku.Sku">
+                                                        @if (sku.PromotionPrice != -1)
+                                                        {
+                                                            <text>$</text>@sku.PromotionPrice
+                                                        }
+                                                    </p>
+                                                </td>
+                                                <td class="bor_none_r bor_none_l">
+                                                    <p class="pd10" id="pr_@sku.Sku">
+                                                        @if (sku.PromotionRate != -1)
+                                                        {
+                                                            @sku.PromotionRate<text>折</text>
+                                                        }
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

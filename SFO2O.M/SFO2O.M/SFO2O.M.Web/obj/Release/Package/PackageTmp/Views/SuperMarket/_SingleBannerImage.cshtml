@@ -1,0 +1,15 @@
+﻿@{
+    Layout = null;
+}
+@using SFO2O.M.Controllers.Common
+@using SFO2O.Utility.Uitl
+@model SFO2O.Model.Supermarket.SingleBannerImagesEntity
+@if (!string.IsNullOrEmpty(Model.ImageUrl))
+{ 
+<div class="banner1">
+    <a href="@Model.LinkUrl">
+        <img data-original="@Model.ImageUrl.GetImageUrl()" class="lazyloadImg_rm banner_n"/>
+    </a>
+</div>
+<div id="placeholder" class="placeholder"></div>
+}

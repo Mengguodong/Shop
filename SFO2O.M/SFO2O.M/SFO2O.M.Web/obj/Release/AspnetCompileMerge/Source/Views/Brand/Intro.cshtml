@@ -1,0 +1,78 @@
+﻿@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.Controllers;
+@using SFO2O.Utility.Uitl
+@model SFO2O.Model.Supplier.BrandEntity
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    this.ViewBag.Title = "品牌介绍页";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = true;
+    ViewBag.ShowFastShoppingCart = false;
+
+    IList<SFO2O.Model.Supplier.StoreEntity> storeList = ViewBag.StoreList;
+
+    string brandName =  Model.NameCN;
+    if (Model.NameEN == Model.NameCN)
+    {
+        brandName = Model.NameEN;
+    }
+    Model.IntroductionCN = Model.IntroductionCN == null ? "" : Model.IntroductionCN;
+}
+@section scripts{
+    @Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJsBrandIntro))
+}
+@section styles{
+    <link href="../Content/css/brandIntro.css?v=@ConfigHelper.CssVersion" rel="stylesheet">
+}
+<!-- 页头 -->
+<header class="pageHeader w100 pr tc">
+    <a class="returnBtn" id="returnBtn"></a>
+    <b class="f36 FontColor1">品牌介绍</b>
+</header>
+<!-- 页头 end -->
+<div class="bgColor3 w95p boxShadow pt10 pb10 mb15 tc FontColor3">
+    <div class="imgBox mb8">
+        <img src="@Model.Logo.GetImageUrl()" />
+    </div>
+    <div class="boxflex1">
+        <p class="f28 mt5 mb10">@brandName</p>
+        @*<p class="f24 mb8">@Model.CountryName</p>*@
+        @if (!string.IsNullOrEmpty(Model.Slogan))
+        {
+            <div class="intro f24">@Model.Slogan</div>
+        }
+    </div>
+</div>
+<div class="w95p f24 FontColor3 mb8">品牌简介</div>
+<div class="bgColor3 w95p boxShadow pt10 pb10 mb15 FontColor3 lh24 f28 introInfo">@Html.Raw(Model.IntroductionCN.Replace(" ", "&nbsp;").Replace("\n", "</br>"))</div>
+@*@if (storeList != null && storeList.Any())
+        {
+            var areaList = storeList.GroupBy(y => y.AreaId).Select(x => x.First()).ToList();
+            <div class="w95p f24 FontColor3 mb8">门店地址</div>
+            <div class="bgColor3 boxShadow pt10 pb10 FontColor3 lh24">
+                @foreach (var a in areaList)
+                {
+                    string aName = a.AreaName;
+                    if (a.Equals("中华人民共和国大陆地区"))
+                    {
+                        aName = a + "岛";
+                    }
+                    var aList = storeList.ToList().FindAll(s => s.AreaId == a.AreaId);
+                    if (aList != null && aList.Any())
+                    {
+                        <div class="item">
+                            <div class="name">@aName</div>
+                            <ul class="detail">
+                                @foreach (var b in aList)
+                                {
+                                    <li>
+                                        <span>·</span>
+                                        <div class="f28 FontColor3">@b.AddressCN</div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                }
+            </div>
+    }*@

@@ -1,0 +1,4 @@
+﻿@charset "UTF-8";
+.paramTable th,.paramTable td{ padding:16px 0px; background: #fff; text-align: left; border-bottom:1px solid #e0e0e0;}
+.paramTable th{ color:#bcbcbc; padding-right:10px; padding-left:12px; width:10%; white-space: nowrap; vertical-align: top; font-weight: normal;}
+.paramTable td{ padding-left:10px; padding-right:12px;}

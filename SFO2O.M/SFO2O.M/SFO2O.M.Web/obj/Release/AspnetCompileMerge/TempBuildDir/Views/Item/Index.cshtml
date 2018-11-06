@@ -1,0 +1,38 @@
+﻿@using System.Web.UI.HtmlControls
+@using SFO2O.BLL.Common
+@using SFO2O.M.Controllers
+@using SFO2O.M.Controllers.Common
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.ViewModel.Product
+@using SFO2O.Utility.Extensions
+@using SFO2O.Utility.Uitl
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    bool IsHolidayView = ViewBag.isHolidayGoods;
+}
+@section styles {
+    <link href="@BundleConfig.BuildCss("Content/css/search.css")" rel="stylesheet">
+    <link href="@BundleConfig.BuildCss("Content/css/item.css")" rel="stylesheet">
+}
+@section scripts {
+    <script type="text/javascript" language="javascript" src="@BundleConfig.BuildCss("Scripts/jquery/jsrender-v1.0.0-beta.js")"></script>
+    <script type="text/javascript" language="javascript" src="@BundleConfig.BuildCss("Scripts/jquery/TouchSlide.1.1.js")"></script>
+    <script type="text/javascript" language="javascript" src="@BundleConfig.BuildCss("Scripts/jquery/iscroll.js")"></script>
+    <script type="text/javascript" language="javascript" src="@BundleConfig.BuildCss("Scripts/jquery/fly/jquery.fly.min.js")"></script>
+    <script type="text/javascript" language="javascript" src="@BundleConfig.BuildCss("Scripts/jquery/jquery.showSearch.js")"></script>
+    <script type="text/javascript" language="javascript" src="@BundleConfig.BuildCss("Scripts/selectSKU.js")"></script>
+    <script type="text/javascript" language="javascript" src="@BundleConfig.BuildCss("Scripts/item.js")"></script>
+    @*@Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJsItem))*@
+}
+@section pageHeader {
+    @Html.Partial("~/Views/Shared/_HeaderItem.cshtml")
+}
+
+@if (!IsHolidayView)
+{
+    @Html.Action("Item", "Item", new { productCode = ViewBag.productCode, selectedSku = ViewBag.selectedSku });
+}
+else
+{
+    @Html.Action("Item", "Holiday", new { productCode = ViewBag.productCode, selectedSku = ViewBag.selectedSku });
+}

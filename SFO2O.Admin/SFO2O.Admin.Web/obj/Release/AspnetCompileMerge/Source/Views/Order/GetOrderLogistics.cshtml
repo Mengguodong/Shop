@@ -1,0 +1,57 @@
+﻿@model List<SFO2O.Admin.Models.Order.OrderLogisticsModel>
+@{
+    Layout = null;
+    var _model = Model ?? new List<SFO2O.Admin.Models.Order.OrderLogisticsModel>();
+    var logistics = _model.GroupBy(p => p.LogisticsTime.ToString("yyyy-MM-dd")).ToList();
+}
+
+<div class="pd_t20">
+    @if (_model.Count() > 0)
+    {
+        <ul class="clearfix pd_b20">
+            <li class="f_l w200"><span>快遞公司：</span><em>@_model[0].ExpressCompany</em></li>
+            <li class="f_l"><span>運單號：</span><em>@_model[0].ExpressList</em></li>
+        </ul>
+        <div class="div_express">
+            <ul class="sf_express mg_b40 mg_l20">
+                @for (int j = 0; j < logistics.Count; j++)
+                {
+                    var log = logistics[j];
+                    if (j == 0)
+                    {
+                        var first = log.First();
+                        <li>
+                            <dl>
+                                <dt class="current clearfix"><i class="f_l"></i><span class="f_l">@log.Key</span></dt>
+                                <dd class="current"><span class="pd_r20">@first.LogisticsTime.ToString("HH:mm:ss")</span><span>@first.Remark</span></dd>
+                                @foreach (var l in log.Skip(1))
+                                {
+                                    <dd><span class="pd_r20">@l.LogisticsTime.ToString("HH:mm:ss")</span><span>@l.Remark</span></dd>
+                                }
+                            </dl>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <dl>
+                                <dt class="clearfix"><i class="f_l"></i><span class="f_l">@log.Key</span></dt>
+                                @foreach (var l in log.Skip(1))
+                                {
+                                    <dd><span class="pd_r20">@l.LogisticsTime.ToString("HH:mm:ss")</span><span>@l.Remark</span></dd>
+                                }
+                            </dl>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+    }
+    else
+    {
+        <div class="pd_b30">
+            <span>抱歉，暂时无法获取物流信息，请稍后再试。</span>
+        </div>
+    }
+</div>
+

@@ -1,0 +1,112 @@
+﻿@model List<SFO2O.Admin.Models.Product.ProductSkuCustomInfoModel>
+@if (Model != null && Model.Count > 0)
+{
+    <table class="fff_bor mg_t10">
+        <tr>
+            <th width="140" class="vtop">
+                <span class="f_l pd_l10 mg_t40">商品SKU報備信息</span>
+            </th>
+            @{
+                var length = Model.Count;
+                var i = 1;
+            }
+            <td style="background: #f1f1f1;">
+                @foreach (var pcInfo in Model)
+                {
+                    var mb = "15px";
+                    var borderClass = "bor_b_e5e5e5";
+                    
+                    if (i == length)
+                    {
+                        mb = "0px";
+                        borderClass = "";
+                    }
+                    
+                    <table width="757" class="bg_f1f1f1" style="margin-bottom:@mb;background:#fff !important;">
+                        <tr>
+                            <th width="88" class="t_r bor_b_e5e5e5">SKU編號：</th>
+                            <td width="160" class="bor_b_e5e5e5">@pcInfo.Sku</td>
+                            <th width="130" class="t_r bor_b_e5e5e5">條形碼：</th>
+                            <td width="160" class="bor_b_e5e5e5">@pcInfo.BarCode</td>
+                            <th width="82" class="t_r bor_b_e5e5e5">價格：</th>
+                            <td width="160" class="bor_b_e5e5e5">$@pcInfo.Price</td>
+
+                        </tr>
+                        <tr>
+                            <th width="88" class="t_r bor_b_e5e5e5">庫存預警：</th>
+                            <td width="160" class="bor_b_e5e5e5">@pcInfo.AlarmStockQty</td>
+                            @if (String.IsNullOrWhiteSpace(pcInfo.MainDicValue))
+                            {
+                                <th width="130" class="t_r bor_b_e5e5e5"></th>
+                            }
+                            else
+                            {
+                                <th width="130" class="t_r bor_b_e5e5e5">@pcInfo.MainDicValue：</th>
+                            }
+
+                            @if (String.IsNullOrWhiteSpace(pcInfo.MainValue))
+                            {
+                                <td width="160" class="bor_b_e5e5e5"></td>
+                            }
+                            else
+                            {
+                                <td width="160" class="bor_b_e5e5e5">@pcInfo.MainValue</td>
+                            }
+
+                            @if (String.IsNullOrWhiteSpace(pcInfo.SubDicValue))
+                            {
+                                <th width="82" class="t_r bor_b_e5e5e5"></th>
+                            }
+                            else
+                            {
+                                <th width="82" class="t_r bor_b_e5e5e5">@pcInfo.SubDicValue：</th>
+                            }
+
+                            @if (String.IsNullOrWhiteSpace(pcInfo.SubValue))
+                            {
+                                <td width="160" class="bor_b_e5e5e5"></td>
+                            }
+                            else
+                            {
+                                <td width="160" class="bor_b_e5e5e5">@pcInfo.SubValue</td>
+                            }
+                        </tr>
+                        <tr>
+                            <th width="88" class="t_r bor_b_e5e5e5">海關單位：</th>
+                            <td width="160" class="bor_b_e5e5e5">@pcInfo.CustomsUnit</td>
+                            <th width="130" class="t_r bor_b_e5e5e5">產品國檢編號：</th>
+                            <td width="160" class="bor_b_e5e5e5">@pcInfo.InspectionNo</td>
+                            <th width="82" class="t_r bor_b_e5e5e5">HS編碼：</th>
+                            <td width="160" class="bor_b_e5e5e5">@pcInfo.HSCode</td>
+                        </tr>
+                        <tr>
+                            <th width="88" class="t_r bor_b_e5e5e5">計量單位：</th>
+                            <td width="160" class="bor_b_e5e5e5">@pcInfo.UOM</td>
+                            <th width="130" class="t_r bor_b_e5e5e5">商品備案編號：</th>
+                            <td width="160" class="bor_b_e5e5e5">@pcInfo.PrepardNo</td>
+                            <th width="82" class="t_r bor_b_e5e5e5">國條碼：</th>
+                            <td width="160" class="bor_b_e5e5e5">@pcInfo.GnoCode</td>
+                        </tr>
+                        <tr>
+                            <th width="88" class="t_r bor_b_e5e5e5">稅率：</th>
+                            <td width="160" class="bor_b_e5e5e5">@pcInfo.TaxRate%</td>
+                            <th width="130" class="t_r bor_b_e5e5e5">行郵稅號：</th>
+                            <td width="160" class="bor_b_e5e5e5">@pcInfo.TaxCode</td>
+                            <th width="82" class="t_r bor_b_e5e5e5"></th>
+                            <td width="160" class="bor_b_e5e5e5"></td>
+                        </tr>
+                        <tr>
+                            <th width="88" class="t_r @borderClass">海關型號：</th>
+                            <td width="450" colspan="3" class="@borderClass">@pcInfo.ModelForCustoms</td>
+                            <th width="82" class="t_r @borderClass"></th>
+                            <td width="160" class="@borderClass"></td>
+                        </tr>
+                    </table>
+                    
+                    i++;
+                }
+            </td>
+        </tr>
+    </table>
+}
+

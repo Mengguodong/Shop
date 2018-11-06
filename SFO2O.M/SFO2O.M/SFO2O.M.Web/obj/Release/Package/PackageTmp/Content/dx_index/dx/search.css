@@ -1,0 +1,128 @@
+﻿.so_wrapper{
+	position: fixed;
+	max-width: 640px;
+	min-width: 320px;
+	top: 0;
+	left: 0;
+}
+
+.searchHeader{
+	padding: 5px 0;
+}
+.FontColor6{
+	color: #f75e26;
+}
+.searchBox{
+	margin-left: 32px;
+	margin-right: 50px;
+	height: 36px;
+	background: #eee;
+	border-radius:6px;
+	position: relative;
+}
+.searchBox input{
+	border: none;
+	width: 78%;
+	height: 80%;
+	margin-top: 3px;
+	display: inline-block;
+	background: no-repeat;
+	font-family: 'microsoft yahei';
+	font-size: 1.4rem;
+	position: relative;
+	top: -13px;
+}
+.searchBox i{
+	background: url(../Images/search/icon_search.png?v=20160621) no-repeat;
+	display: inline-block;
+	width: 10%;
+	height: 100%;
+	background-size: 16px;
+	background-position: center;
+	position: relative;
+	top: 0;
+}
+.searchBox em{
+	background: url(../Images/search/icon_delete.png?v=20160622) no-repeat;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 10%;
+	height: 100%;
+	background-size: 18px;
+	background-position: center;
+}
+
+.hotSearch{
+	padding-top: 12px;
+}
+.hotSearch a{
+	display: inline-block;
+	padding: 6px 10px;
+	font-size: 1.2rem;
+	color: #333;
+	border: 1px solid #dedede;
+	margin-right: 16px;
+	margin-bottom: 12px;
+	border-radius: 4px;
+}
+.hotSearch a:active{
+	background: #f4f4f4;
+}
+.hotSearch .FontColor6{
+	color: #f75e26;
+}
+
+/* 搜索结果页 */
+.cartPos{
+	width: 10%;
+	height: 100%;
+	right: 12px;
+	top: 0;
+}
+input::-webkit-search-cancel-button {
+display: none;
+}
+
+.searchHeader .headerCart span{
+	top: 10px;
+}
+
+#brands .pageHeader{
+	padding: 15px 0;
+}
+.so_wrapper .pageHeader {
+	position: relative;
+}
+.so_wrapper .returnBtn{
+	display:block; 
+	width:27px; 
+	height:27px; 
+	overflow: hidden; 
+	background:url("../Images/closeBtn.png?v=20160331") no-repeat;
+	background-size:17px auto; 
+	-moz-background-size:17px auto; 
+	-webkit-background-size:17px auto; 
+	left: 3px;
+	top: 9px;
+	background-position: center;
+}
+.gotoSearch{  
+    display: block;
+    height: 35px;
+    position: absolute;
+    right: 3px;
+    top: 5px;
+    width: 35px;
+    background:url("../Images/categoryList/searchIco.png?v=20160331") no-repeat scroll center center; 
+    background-size:20px auto;-moz-background-size:20px auto;
+    -webkit-background-size:20px auto;
+}
+
+
+/* 头部有购物车和搜索按钮，并且购物车在左侧时 */
+.specialPos{
+	right: 40px;
+	height: 35px;
+	top: 3px;
+}

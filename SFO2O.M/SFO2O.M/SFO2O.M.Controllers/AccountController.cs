@@ -43,9 +43,9 @@ namespace SFO2O.M.Controllers
         /// <summary>
         /// 注册 手机验证码，发送短信
         /// </summary>
-        //private string SMSRegistTip = @"【爱玖网】您正在注册爱玖网会员，校验码为:{0}，请于10分钟内输入。";
+        //private string SMSRegistTip = @"【健康绿氧】您正在注册健康绿氧会员，校验码为:{0}，请于10分钟内输入。";
 
-        //private string SMSFindPasswordTip = @"【爱玖网】您正在找回密码，校验码为:{0}，请于10分钟内输入。";
+        //private string SMSFindPasswordTip = @"【健康绿氧】您正在找回密码，校验码为:{0}，请于10分钟内输入。";
 
 
         #region 用户注册

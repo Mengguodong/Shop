@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "_skulist";
+}
+@model SFO2O.Model.Product.ProductDto
+@using SFO2O.Utility.Extensions
+@using SFO2O.Utility.Uitl
+<div class="item pr">
+    <a href="/item.html?productCode=@Model.Spu">
+        <div class="imgBox" style="width: 279.5px; height: 279.5px; line-height: 328.824px;">
+            <img src="@Model.Images.FirstOrDefault().ImagePath.GetImageSmallUrl(640)">
+        </div>
+        <div class="title">
+        
+             @if (Model.Promotion != null)
+             { 
+             <span class='account'>@(Model.Promotion.DiscountRate.ToNumberStringNoZero())折</span>
+             }@Model.Name</div>
+
+        
+        <div class="price">￥@(Model.Promotion == null ? Model.PromotionDiscountPrice.ToNumberRoundStringWithPoint() : Model.PromotionDiscountPrice.ToNumberRoundStringWithPoint())
+            <span class="originalPrice f20 FontColor4">￥@Model.ProductPrice.ToNumberRoundStringWithPoint()</span>
+        </div>
+        <span class="freeSign"></span>
+    </a>
+</div>

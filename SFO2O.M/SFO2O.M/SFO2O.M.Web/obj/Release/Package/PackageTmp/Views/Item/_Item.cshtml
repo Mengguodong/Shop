@@ -1,0 +1,243 @@
+﻿@using System.Web.UI.HtmlControls
+@using SFO2O.BLL.Common
+@using SFO2O.M.Controllers
+@using SFO2O.M.Controllers.Common
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.ViewModel.Product
+@using SFO2O.Utility.Extensions
+@using SFO2O.Utility.Uitl
+@model SFO2O.Model.Product.ItemViewSupporter
+@{
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = Model.Name;
+    SkuAttributeViewModel skuMetaViewModel = ViewBag.SkuMetaViewModel;
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+}
+
+@if (Model == null || Model.SkuDtos == null || !Model.SkuDtos.Any(n => n.IsOnSaled))
+{
+     <!--商品下架-->
+    <div class=" sf-pop payStatusWrap tc ">
+        <img src="@Url.Content("~/Content/images/proError.png")" style="width:50%; min-width:133px;">
+        <p class="content title">商品卖的太火爆，被外星人抢空了</p>
+        <p class="conent tip" style="color:#bcbcbc">去看看其他商品吧</p>
+        <p class="btn-box">
+            <a class="closeBtn m-btn" href="@DomainHelper.MUrl" target="_self">返回首页</a>
+        </p>
+    </div>
+  <!--商品下架 END-->
+}
+else
+{
+    <!--第一部分-->
+    <div class="itemCon w100 boxShadow bgColor3 mb8">
+        <!--轮播图-->
+        <div class=" banner pr  mc clearfix hide" id="mySwipe">
+            <div class="bannerIndex clearfix hd" id="mySwipeLiItems">
+                <ul></ul>
+            </div>
+            <div class="swipe focusBox f0 bd">
+                @if (Model.Images != null && Model.Images.Any())
+                {
+                    int i = 0;
+                    foreach (var m in Model.Images.OrderBy(n => n.SortValue))
+                    {
+                        <ul class="swipe-wrap focusBoxIn">
+                            <li><a target="_self" href="@Url.Action("ProductPicture", new {productCode = m.SPU, index = i})"><img src="@m.ImagePath.GetImageSmallUrl(640)" /></a></li>
+                        </ul>
+                        i++;
+                    }
+
+                }
+            </div>
+        </div>
+        <!--轮播图 END-->
+        <!--20160331 新增内容 品牌区域-->
+        @*@if (Model.NameCN == Model.NameEN)
+        {
+            if (string.IsNullOrEmpty(Model.NationalFlag))
+            {
+                <p class="w95p brandArea mt15 f24 FontColor3">@Model.CountryName @Model.NameEN</p>
+            }
+            else
+            {
+                <p class="w95p brandArea mt15 f24 FontColor3"><img src="@PathHelper.GetNationalFlagImageUrl(@Model.NationalFlag)" class="nationImg" /> @Model.CountryName @Model.NameEN</p>
+            }
+        }
+        else
+        {
+            if (string.IsNullOrEmpty(Model.NationalFlag))
+            {
+                <p class="w95p brandArea mt15 f24 FontColor3">@Model.CountryName @(Model.NameEN)(@(Model.NameCN))</p>
+            }
+            else
+            {
+                <p class="w95p brandArea mt15 f24 FontColor3"><img src="@PathHelper.GetNationalFlagImageUrl(@Model.NationalFlag)" class="nationImg" /> @Model.CountryName @(Model.NameEN)(@(Model.NameCN))</p>
+            }
+        }*@
+
+        <!--20160331 新增内容 品牌区域END-->
+        <p class="w95p itemProName f28 mt8 mb8">@Model.Name</p>
+        <div class="w95m itemProPrice mb8 f30 FontColor6" id="itemProPrice">
+            @if (Model.Promotion != null)
+            {
+                 <!--20160331 新增内容 促销标识-->
+                <div class="promotionIcon FontColor6"><span></span>@Model.Promotion.PromotionLable</div>
+
+                <!--20160331 新增内容 促销标识end-->
+                <text>￥</text>@(Model.PromotionDiscountPrice.ToNumberRoundStringWithPoint())
+                <!--20160331 新增内容 原始价格-->
+                <span class="originalPrice f20 FontColor4">￥@Model.MinPrice.ToNumberRoundStringWithPoint()</span>
+                <!--20160331 新增内容 原始价格end-->
+            }
+            else
+            {
+                <text>￥</text>@Model.MinPrice.ToNumberRoundStringWithPoint()
+            }
+        </div>
+
+
+        <ul class="w95p itemFeature f24 FontColor3 overflowH ">
+            <li><span class="itemIcon_r"></span>酒厂直发</li>
+            <li><span class="itemIcon_r"></span>全场包邮</li>
+            <li><span class="itemIcon_r"></span>正品保证</li>
+
+        </ul>
+        @if (Model.isTrue == 1)
+        {
+        <!--20160412 新增内容-->
+            <div class="gotoPinItem w95p pt17 pb17 f28">
+                <a href="/product/FightIndex?spu=@(Model.Spu)" target="_self">
+                    <span class="pinIcon"></span>
+                    该商品正在进行拼团活动
+                    <i class="itemIcon_jt"></i>
+                    <span class="FontColor4 f24 fr mr5" style="padding-top:3px;">查看</span>
+                </a>
+            </div>
+        <!--20160412 新增内容 End-->
+        }
+
+    </div>
+    <!--第一部分 END-->
+    <!--尺码/颜色-->
+    if (string.IsNullOrEmpty(skuMetaViewModel.MainCode))
+    {
+        //没有SKU属性时
+        <p id="skuSelectA" data-json='@JsonHelper.ToJson(skuMetaViewModel)'></p>
+    }
+    else if (string.IsNullOrEmpty(skuMetaViewModel.SubCode))
+    {
+        //有一个SKU属性时
+        <p class="itemCon w95p mb8 boxShadow bgColor3 f28 pt17 pb17" id="skuSelectA" data-json="@JsonHelper.ToJson(skuMetaViewModel)"  data-init="选择：@skuMetaViewModel.MainName">
+            选择：@skuMetaViewModel.MainName<i class="itemIcon_jt"></i>
+        </p>
+    }
+    else
+    {
+        //有两个个SKU属性时
+        <p class="itemCon w95p mb8 boxShadow bgColor3 f28 pt17 pb17" data-json="@JsonHelper.ToJson(skuMetaViewModel)" id="skuSelectA" data-init="请选择：@skuMetaViewModel.MainName/@skuMetaViewModel.SubName">选择：@skuMetaViewModel.MainName/@skuMetaViewModel.SubName<i class="itemIcon_jt"></i></p>
+    }
+
+    <!--尺码/颜色 END-->
+    <!--跳转区域-->
+    <div class="itemCon w100 mb8 boxShadow bgColor3 f28">
+        <p class="w95p pt17 pb17 whiteOnLine borderBottom"><a href="@Url.Action("Param", new {ProductCode = Model.Spu})" target="_self" class="show w100">产品参数<i class="itemIcon_jt"></i></a></p>
+        <p class="w95p pt17 pb17 "><a href="@Url.Action("Detail", new { ProductCode = Model.Spu })" target="_self" class="show w100">商品详情<i class="itemIcon_jt"></i></a></p>
+        @*<p class="w95p pt17 pb17 whiteOnLine borderBottom"><a href="@Url.Action("Detail", new { ProductCode = Model.Spu })" target="_self" class="show w100">商品详情<i class="itemIcon_jt"></i></a></p>*@
+        @*<p class="w95p pt17 pb17">*@
+        @*{
+                 var commentCount = Html.Action("CommentCount", new {ProductCode = Model.Spu }); }
+            @if (commentCount.ToHtmlString() == "0") {
+             <a href="javascript:void(0);" target="_self" class="show w100">累计评价<span class="FontColor4">（@(commentCount)条）</span><i class="itemIcon_jt"></i></a>
+             }
+             else {
+             <a href="@Url.Action("Comment", new {ProductCode = Model.Spu})" target="_self" class="show w100">累计评价<span class="FontColor4">（@(commentCount)条）</span><i class="itemIcon_jt"></i></a>
+             }
+        *@
+
+        @*</p>*@
+    </div>
+    <!--跳转区域 END-->
+    <!--
+    <p class="itemCon w95p mb8 boxShadow bgColor3 f28 pt17 pb17"><a href="@Url.Action("Index", "Store", new { id = Model.SupplierId })" target="_self" class="show w100">进入商家店铺<i class="itemIcon_jt"></i></a></p>
+    -->
+    <!--20160331 新增内容 品牌模块-->
+    if (Model.BrandId > 0)
+    {
+        <div class="brandInf w95p mb8 boxShadow bgColor3 pt17 pb17">
+            <a href="@Url.Action("Index", "Brand", new {id = Model.BrandId})" target="_self">
+                <div class="brandDiv">
+                    <img src="@Model.Logo.GetImageUrl()" class="brandLogo">
+                    <p>
+                        @if (Model.NameCN == Model.NameEN)
+                        {
+                            <b class="f24 FontColor1">@Model.NameEN</b>
+                        }
+                        else
+                        {
+                            <b class="f24 FontColor1">@(Model.NameEN)(@(Model.NameCN))</b>
+                        }
+
+                        @*@if (string.IsNullOrEmpty(Model.NationalFlag))
+                        {
+                            <span class="f24 FontColor3">@Model.CountryName</span>
+                        }
+                        else
+                        {
+                            <span class="f24 FontColor3"><img src="@PathHelper.GetNationalFlagImageUrl(Model.NationalFlag)"  class="nationImg" /> @Model.CountryName</span>
+                        }*@
+                    </p>
+                </div>
+                <div class="brandIntro f24 FontColor3">@Html.Raw(Model.IntroductionCN)</div>
+            </a>
+        </div>
+    }
+    <!--20160331 新增内容 品牌模块 END-->
+    <!--同店推荐-->
+    @Html.Action("Recommended", new { brandId = Model.BrandId, spu = Model.Spu })
+    <!--同店推荐 END-->
+    <!--20160331 新增内容 相似品牌-->
+
+    @Html.Action("SimilarBrand", new { supplierId = Model.SupplierId, brandId = Model.BrandId, categoryId = Model.CategoryId })
+
+    <!--20160331 新增内容 相似品牌END-->
+    <!--吸底-->
+    <div class="fixedBottomDiv w100 overflowH ">
+        <div class="fixedBottomDivCon">
+            <div class="w100 boxFlexWrap">
+                @*@if (Model.isflag&&user!=null)
+                {
+                    <a class="fixedBottom_collection FontColor4 f18 tc " id="collectionBtn">
+                    <span class="Icon_collection selected"></span><br><b>已收藏</b>
+                </a>
+                }
+                else
+                {
+                    <a class="fixedBottom_collection FontColor4 f18 tc " id="collectionBtn">
+                        <span class="Icon_collection"></span><br><b>收　藏</b>
+                    </a>
+
+                }*@
+                <span class="line"></span>
+                @{
+    string numString = Html.Action("MiniCart", "ShoppingCart").ToHtmlString();
+                }
+                <a class="fixedBottom_gwc FontColor4 f18 " href="@Url.Action("Index", "ShoppingCart")" target="_self">
+                    <div class="headerCart" id="headerCart"><span id="cartNum" @(numString == "0" ? "style=display:none" : "")>@(numString)</span></div><br>购物车
+                </a>
+                @if (Model.SkuForOrder - Model.MinForOrder <= 0)
+                {
+                    <a class="nobuyBtn  boxFlex tc f28">已售罄</a>
+                }
+                else
+                {
+                <!--购买按钮-->
+                    <a class="addToCarBtn tc f28 boxFlex" id="addToCarBtn">加入购物车</a>
+                    <a class="buyNowBtn tc f28 boxFlex" id="buyNowBtn">立即购买</a>
+                    <!--购买按钮END-->
+                }
+            </div>
+        </div>
+    </div>
+    <!--吸底 END-->
+}

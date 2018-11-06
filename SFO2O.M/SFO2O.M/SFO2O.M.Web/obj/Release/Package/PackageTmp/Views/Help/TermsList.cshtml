@@ -1,0 +1,33 @@
+﻿@using SFO2O.M.Controllers
+@using SFO2O.M.Controllers.Common
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.ViewModel.Product
+@using SFO2O.Utility.Extensions
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "条款 ";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = false;
+}
+@section styles {
+}
+@section scripts {
+}
+@section pageHeader {
+    <!-- 页头 -->
+    <header class="pageHeader w100 pr tc overflowH">
+        <a class="returnBtn" id="returnBtn"></a>
+        <b class="f36 FontColor1">条款</b>
+    </header>
+}
+<!-- 页头 end -->
+<div class="footerList w100 mt8 boxShadow bgColor3 f28">
+    <p class="w95p pt17 pb17 whiteOnLine borderBottom"><a href="@Url.Action("Terms",new{id=1})" target="_self" class="show w100">使用条款及细则<i class="itemIcon_jt"></i></a></p>
+    <p class="w95p pt17 pb17 whiteOnLine borderBottom"><a href="@Url.Action("Terms",new{id=2})" target="_self" class="show w100">隐私政策声明<i class="itemIcon_jt"></i></a></p>
+    <p class="w95p pt17 pb17 whiteOnLine borderBottom"><a href="@Url.Action("Terms",new{id=3})" target="_self" class="show w100">会员计划条款及细则<i class="itemIcon_jt"></i></a></p>
+    @*<p class="w95p pt17 pb17 whiteOnLine borderBottom"><a href="@Url.Action("Terms",new{id=4})" target="_self" class="show w100">中国境内配送条款及细则<i class="itemIcon_jt"></i></a></p>
+    <p class="w95p pt17 pb17 whiteOnLine borderBottom"><a href="@Url.Action("Terms",new{id=5})" target="_self" class="show w100">中国境内退货条款及细则<i class="itemIcon_jt"></i></a></p>
+    <p class="w95p pt17 pb17 whiteOnLine borderBottom"><a href="@Url.Action("Terms",new{id=8})" target="_self" class="show w100">「拼生活」条款及细则<i class="itemIcon_jt"></i></a></p>*@
+    <p class="w95p pt17 pb17 whiteOnLine borderBottom"><a href="@Url.Action("Terms",new{id=9})" target="_self" class="show w100">「酒豆」条款及细则<i class="itemIcon_jt"></i></a></p>
+</div>

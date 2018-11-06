@@ -1,0 +1,29 @@
+﻿@model SFO2O.Admin.ViewModel.Product.ProductAuditingViewModel
+@{
+    Layout = null;
+}
+@using SFO2O.Admin.Models.Enums;
+@{
+    var salesTerritory = 1;
+
+    if (Model != null && Model.SpuBaseInfo != null && Model.SpuBaseInfo.Count > 0)
+    {
+        var bInfo_T = Model.SpuBaseInfo[LanguageEnum.TraditionalChinese];
+        salesTerritory = bInfo_T.SalesTerritory;
+    }
+}
+
+@Html.Partial("_ProductBaseInfo", Model.SpuBaseInfo)
+@Html.Partial("_ProductProperties", Model)
+@Html.Partial("_ProductPacking", Model.PackingInfo)
+@Html.Partial("_ProductSysProperties", Model.SysInfo)
+@if (salesTerritory != 2)//新建
+{
+    @Html.Partial("_ProductCustomEditCHINA", Model.ProductCustomInfos)
+}
+else
+{
+
+    @Html.Partial("_ProductCustomShowHK", Model.ProductCustomInfos)
+}
+

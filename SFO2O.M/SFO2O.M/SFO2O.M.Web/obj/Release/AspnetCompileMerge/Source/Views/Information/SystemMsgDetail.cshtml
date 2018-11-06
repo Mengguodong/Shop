@@ -1,0 +1,41 @@
+﻿@using SFO2O.Utility.Uitl
+@using SFO2O.BLL.Information
+
+@model SFO2O.Model.Information.InformationEntity
+@{
+    ViewBag.Title = "系统消息详情页";
+    ViewBag.HeaderTitle = "系统消息";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string CssVersion = ConfigHelper.CssVersion;
+    ViewBag.ShowFooter = true;
+    string Content = Model.InfoContent.Replace(" ","&nbsp;").Replace("\n","</br>");
+}
+@section styles {
+    <!--页面独有样式-->
+    <link href="~/Content/css/msgCenter.css?v=@CssVersion" rel="stylesheet">
+    <!--页面独有样式 END-->
+}
+<div class="MContainer" id="MContainer">
+    @section pageHeader {
+        @Html.Partial("~/Views/Shared/_HeaderTop.cshtml")
+    }
+    @if (Model != null)
+    {
+        if (Model.SendUserId == 0 || Model.SendUserId == ViewBag.LoginUser.UserID)
+        {
+             <!--系统消息-->
+            <div class="n_msgCenter">
+                <div class="n_systemMsg">
+                    <div class="boxShadow bgColor3 n_sysTxtCon clearfix">
+                        <div class="f28 lh24">@Model.Title</div>
+                        <div class="f24 lh24 FontColor3">@Html.Raw(Content)</div>
+                        <div class="FontColor4 f24 lh24 fr">@Model.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")</div>
+                    </div>
+                </div>
+            </div>
+            InformationBll bll = new InformationBll();
+            bll.ReadMessage(ViewBag.LoginUser.UserID, ViewBag.infoid);
+        }
+    }
+    <!--系统消息 end-->
+</div>

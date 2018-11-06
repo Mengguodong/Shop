@@ -1,0 +1,73 @@
+﻿.payMoney{
+	margin-top: 8px;
+	font-size: 1.4rem;
+	color: #bcbcbc;
+	line-height: 45px;
+	margin: 8px 0 20px 0;
+}
+.rightArrow{
+	display: inline-block;
+	width: 7px;
+	height: 12px;
+	background: url(../../Content/Images/rightArrow.png?v=20160331) no-repeat;
+	background-size: 7px 12px;
+	margin-left: 30px;
+}
+.payMentListWrap .payMentList:last-child{ border:none;}
+.payMentList{
+	border-bottom:1px solid #e0e0e0;
+	display: -webkit-box;
+	-webkit-box-orient: horizontal;
+  	-webkit-box-pack: center;
+  	-webkit-box-align: center;
+  	border-bottom: 1px solid #e0e0e0;
+}
+.payMentList:last-child{
+	border-bottom: none;
+}
+.payMentList>div{
+	-webkit-box-flex:1;
+	line-height: 45px;
+	font-size: 1.4rem;
+}
+.payMentList>div span{
+	color: #bcbcbc;
+	font-size: 1.2rem;
+}
+.payMentList img{
+	width: 16px;
+	height: 16px;
+	margin-right: 7px;
+	vertical-align: -2px;
+}
+/*
+.sf-pop img{
+	width: 16px;
+	height: 16px;
+	margin-right: 5px;
+}
+*/
+.more{
+	display: inline-block; 
+	width:13px; 
+	height: 7px; 
+	overflow: hidden;
+	background:url(../Images/downJT.png?v=20160331) no-repeat; 
+	background-size:13px auto; 
+	-moz-background-size:13px auto; 
+	-webkit-background-size:13px auto; 
+}
+.hide{
+	display: none !important;
+}
+.submitBtn{
+	display: inline-block;
+	width: 115px;
+	height: 41px;
+	background: #99cb34;
+	border: 1px solid #90c22b;
+	line-height: 41px;
+	text-align: center;
+	font-size: 1.5rem;
+	color: #fff;
+}

@@ -1,0 +1,15 @@
+﻿@{
+    Layout = null;
+}
+@model List<SFO2O.Model.Index.BulletinEntity>
+<div class="indexNotice mb8 swipe boxShadow">
+    <div id="leftTabBox" class="hide">
+		<div class="bd swipe-wrap">
+             @foreach(var n in Model){
+                 <ul>
+	                <li><div><i class="sun"></i>@n.Content</div></li>
+	            </ul>
+                }
+		</div>
+	</div>
+</div>

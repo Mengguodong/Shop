@@ -1,0 +1,252 @@
+﻿/* 店铺banner及介绍部分 */
+.shopHeader .banner{
+	width: 100%;
+	display: block;
+}
+.shopHeader .shopInfo{
+	position: relative;
+	margin-top: -29px;
+	display: -webkit-box;
+	display: -moz-box;
+	display: box;
+	background: #fff;
+	padding-bottom: 10px;
+}
+.shopHeader .shopInfo .logo{
+	width: 110px;
+	height: 110px;
+	text-align: center;
+	margin-top: -23px;
+	margin-left: 10px;
+	border: 1px solid #e9e9e9;
+}
+.shopHeader .shopInfo img{
+	width: 100%;
+}
+.shopHeader .shopInfo .rightContent{
+	width: 1px;
+	-webkit-box-flex:1;
+	margin-left: 8px;
+}
+.shopHeader .shopName{
+	position: relative;
+	top: -29px;
+	background: rgba(0,0,0,0.6);
+	color: #fff;
+	font-size: 1.4rem;
+	height: 29px;
+	line-height: 29px;
+	white-space: nowrap;
+	overflow: hidden;
+	padding-right: 2.5%;
+	padding-left: 128px;
+}
+.shopHeader .shopInfo .intro{
+	line-height: 19px;
+	height: 38px;
+	padding-top: 5px;
+	-webkit-line-clamp:2; /* 两行显示不开显示... */
+	display:-webkit-box;
+	-webkit-box-orient: vertical;
+	text-overflow:ellipsis ;
+	 overflow: hidden; 
+	 word-wrap: break-word;
+	 word-break: break-all;
+}
+/* 店铺banner及介绍部分 end */
+
+/* 筛选框 */
+.screenBox{
+	float: right;
+	display: -webkit-box;
+	display: -moz-box;
+	display: box;
+	width: 40%;
+	background: #fff;
+	font-size: 1.2rem;
+	color: #333;
+}
+.screenBox div{
+	width: 0;
+	-webkit-box-flex:1;
+	-moz-box-flex:1;
+	box-flex:1;
+	text-align: center;
+	padding:12px 0;
+}
+.screenBox div a{
+	display: block;
+	width: 100%;
+	border-right: 1px solid #e0e0e0;
+}
+.screenBox div:nth-last a{
+	border-right: none;
+}
+.screenBox div.active a{
+	color:#98ca35;
+}
+.screenBox i{
+	display: inline-block;
+	margin-left: 5px;
+	background: url(../Images/shop/screen.png?v=20160331) no-repeat;
+	background-size: 40px 25px;
+}
+.screenBox .price i{
+	position: relative;
+	top: 1px;
+	width: 9px;
+	height: 11px;
+}
+.screenBox .price.asc i{
+	background-position: -15px top;
+}
+.screenBox .price.desc i{
+	background-position: -31px top;
+}
+/* 筛选框end */
+.products{
+	
+}
+.screen{
+	width: 100%;
+	background: #fff;
+}
+.screen .allCounts{
+	display: inline-block;
+	color: #313131;
+	font-size: 1.4rem;
+	padding: 12px 0 12px 12px;
+}
+.screen .allCounts span{
+	color: #bcbcbc;
+}
+.productList .w95p{
+	background: #fff;
+}
+
+
+.pageHeader{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 1000;
+}
+.shopHeader{
+	margin-top: 48px;
+}
+.cartPos{
+    position: absolute;
+    right: 40px;
+    top: 0px;
+}
+.cartPos a{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.rightContent{
+	margin-top: 
+}
+.shopInfo:last-of-type{
+	margin-top: -10px;
+}
+.shopInfo .rightArrow{
+	margin-left: 12px;
+}
+.screenBox{
+	width: 100%;
+}
+.productList .item{
+	text-align: left;
+}
+
+
+
+/* 0726版本新增 */
+.module_title{
+	text-align: center;
+}
+.module_title i{
+	display: inline-block;
+	width: 12px;
+	height: 15px;
+	background: url(../Images/starPro.png?v=20160623);
+	background-size: 100%;
+	position: relative;
+	top: 2px;
+}
+.starProList .item{
+	padding: 10px 0;
+	border-bottom: 1px solid #e0e0e0;
+}
+.starProList .item:last-child{
+	border-bottom: none;
+}
+.starProList .item .title{
+	line-height: 16px;
+	margin-bottom: 15px;
+}
+.starProList .item .detail{
+	line-height: 20px;
+	margin-bottom: 15px;
+	word-wrap: break-word;
+	word-break: break-all;
+	border-radius:4px;
+	background: #f2f2f2;
+	padding: 5px;
+	color: #696969;
+	position: relative;
+}
+.starProList .item .detail::before{
+	position: absolute;
+	top: -10px;
+	left: 15px;
+	content: "";
+	width: 0px;
+	height: 0px;
+	border-left:10px solid transparent;   
+	border-right:10px solid transparent;   
+	border-bottom:20px solid #f2f2f2;
+}
+.starProList .item .imgBox{
+	width: 95%;
+	margin: 0 2.5% 15px;
+}
+.starProList .saleOut{
+	width: 22%;
+	height: 22%;
+	margin-left: -11%;
+	margin-top: -11%;
+}
+.starProList .saleOut span{
+	font-size: 1.4rem;
+}
+
+.collect{
+	width: 84px;
+	border: 1px solid #f75e26;
+	border-radius:4px;
+	text-align: center;
+	line-height: 28px;
+}
+.collect i{
+	display: inline-block;
+	background: url(../Images/icon_collect.png?v=20160623) no-repeat;
+	width: 20px;
+	height: 20px;
+	background-size: 20px;
+	margin-right: 5px;
+	position: relative;
+	top: 5px;
+	background-position: center top;
+}
+.collect.active i{
+	background-position: center -27px;
+}
+
+.menuPos{
+	padding-right: 0;
+	background-position: center top;
+}
+

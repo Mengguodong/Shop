@@ -1,0 +1,55 @@
+﻿@using SFO2O.M.Controllers
+@using SFO2O.M.Controllers.Common
+@model SFO2O.M.ViewModel.Product.ProductListModel
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+}
+@using SFO2O.Utility.Uitl
+@section styles{
+    <link href="@BundleConfig.BuildCss("Content/css/producList.css")" type="text/css" rel="stylesheet" />
+}
+@section scripts{
+    @Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJsProductList))
+<script src="~/Scripts/jquery/jsrender-v1.0.0-beta.js?v=@ConfigHelper.JsVersion"></script>
+  <script src="~/Scripts/selectSKU.js?v=@ConfigHelper.JsVersion"></script>
+    <script src="../../Scripts/productList2.js"></script>
+}
+@if (Model.CategoryLevel == 2)
+{
+    @section pageHeader{
+        <!-- 页头 -->
+        <header class="pageHeader w100 pr tc overflowH">
+            <a class="returnBtn" id="returnBtn"></a>
+            <b class="f36 FontColor1">@Model.CategoryName</b>
+            @{
+                string numString = Html.Action("MiniCart", "ShoppingCart").ToHtmlString();
+                }
+            <div class="headerCart cartPos" id="headerCart"><a href="/shoppingcart">@if (numString!="0"){<span>@(numString)</span>}</a></div>
+            <div class="flowerMenu" onclick="FSH.menuDialog()"></div>
+        </header>
+        <!-- 页头 end -->
+    }
+    <!-- 筛选 -->
+    <div class="screenBox whiteOnLine mb8 hide" id="sortType">
+        <div class="active" id="new">
+            <a>新品</a>
+        </div>
+        <div class="price" id="price">
+            <a>价格<i></i></a>
+        </div>
+        <div class="select" id="select">
+            <a href="javascript:;">筛选<i></i></a>
+        </div>
+    </div>
+    <!-- 筛选 end -->
+    <!-- 商品列表 -->
+    <div class="list productList" id="productList">
+        <div class="w100 clearfix">
+        </div>
+        <div id="loadMore" class="loadMore"></div>
+    </div>
+   
+}

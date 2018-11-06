@@ -1,0 +1,181 @@
+﻿@model SFO2O.Supplier.Models.Product.ProductTempModel
+@using System.Globalization;
+@using SFO2O.Supplier.Common;
+@using SFO2O.Supplier.Models;
+@using SFO2O.Supplier.Models.Product;
+@using SFO2O.Supplier.ViewModels.Product;
+@{
+    IViewProductDisplayText DisplayText = ViewData["DisplayText"] as IViewProductDisplayText;
+    IList<ProductTempImageModel> ImageList = Model.ImageList;
+    Dictionary<Int32, String> dicSalesTerritory = ViewData["SalesTerritory"] as Dictionary<Int32, String>;
+    KeyValuePair<String, String> firstKeyValue;
+    SkuTempModel skuHeader, skuFirst;
+    bool hasSku = Model.SkuInfoList != null && Model.SkuInfoList.Count > 0;
+}
+<table class="fff_bor">
+    <tr>
+        <th rowspan="4" width="140"><span class="f_l pd_l20">@DisplayText.BasicInfo</span></th>
+        <td><span class="f_l pd_l10 w105">@DisplayText.Brand@DisplayText.Risk</span><span class="f_l pd_l10">@Model.Brand</span></td>
+    </tr>
+    <tr>
+        <td><span class="f_l pd_l10 w105">@DisplayText.Name@DisplayText.Risk</span><span class="f_l pd_l10">@Model.Name</span></td>
+    </tr>
+    <tr>
+        <td><span class="f_l pd_l10 w105">@DisplayText.Price@DisplayText.Risk</span><span class="f_l pd_l10">@Model.Price.ToString("C", CultureInfo.GetCultureInfo("zh-CHS"))</span></td>
+    </tr>
+    <tr>
+        <td>
+            <span class="f_l pd_l10 w105">@DisplayText.Unit@DisplayText.Risk</span><span class="f_l pd_l10">@Model.Unit</span>
+        </td>
+    </tr>
+</table>
+<table class="fff_bor mg_t10">
+@if (Model.ExpandDic != null && Model.ExpandDic.Count > 0)
+{
+    firstKeyValue = Model.ExpandDic.First();
+    <tr>
+        <th rowspan="@(Model.ExpandDic.Count + (hasSku ? 3 : 2))" width="140"><span class="f_l pd_l20">@DisplayText.Attributes</span></th>
+        <td><span class="f_l pd_l10 w105">@firstKeyValue.Key@DisplayText.Risk</span><span class="f_l pd_l10">@firstKeyValue.Value</span></td>
+    </tr>
+    foreach (var KeyValue in Model.ExpandDic.Skip(1))
+    {
+        <tr>
+            <td><span class="f_l pd_l10 w105">@KeyValue.Key@DisplayText.Risk</span><span class="f_l pd_l10">@KeyValue.Value.Replace("$", " ; ")</span></td>
+        </tr>
+    }
+    <tr>
+        <td>
+            <span class="f_l pd_l10 w105">@DisplayText.Description@DisplayText.Risk</span>
+            <span class="f_l pd_l10"><a href="javascript:void(0)" onclick="ViewDescription(@Model.LanguageVersion)" class="col_link">@DisplayText.ClickToView</a></span>
+            <div id="Description@(@Model.LanguageVersion)" class="none">@Html.Raw(Model.Description)</div>
+        </td>
+    </tr>
+}
+else
+{
+    <tr>
+        <th rowspan="@(hasSku ? 3 : 2)" width="140"><span class="f_l pd_l20">@DisplayText.Attributes</span></th>
+        <td>
+            <span class="f_l pd_l10 w105">@DisplayText.Description@DisplayText.Risk</span>
+            <span class="f_l pd_l10"><a href="javascript:void(0)" onclick="ViewDescription(@Model.LanguageVersion)" class="col_link">@DisplayText.ClickToView</a></span>
+            <div id="Description@(@Model.LanguageVersion)" class="none">@Html.Raw(Model.Description)</div>
+        </td>
+    </tr>
+}
+    <tr>
+        <td>
+            <span class="f_l pd_l10 w105 mg_t30">@DisplayText.Images@DisplayText.Risk</span>
+            <div class="img_wrap f_l pd_l10">
+                <ul class="clearfix">
+                    @foreach (var img in ImageList)
+                    {
+                        var url = img.ImagePath.Replace('\\','/');
+                    <li class="bor f_l mg_t10 mg_b10 mg_r10" style="overflow:hidden">
+                        <a href="@(ConfigHelper.ImageServer + url)" target="_blank">
+                            <img src="@(ConfigHelper.ImageServer + url)">
+                        </a>
+                    </li>
+                    }
+                </ul>
+            </div>
+        </td>
+    </tr>
+@if (hasSku)
+{
+    <tr>
+        <td>
+            @{
+                skuHeader = Model.SkuInfoList[0];
+                var skusGroups = Model.SkuInfoList.GroupBy(p => p.MainValue);
+            }
+            <table class="color_table">
+                <tr>
+                @if (!String.IsNullOrEmpty(skuHeader.MainDicValue))
+                {
+                    <th width="80">@skuHeader.MainDicValue</th>
+                }
+                @if (!String.IsNullOrEmpty(skuHeader.SubDicValue))
+                {
+                    <th>@skuHeader.SubDicValue</th>
+                }
+                    <th>@DisplayText.SkuBarCode</th><th>SKU</th><th>@DisplayText.SkuPrice</th><th>@DisplayText.SkuAlarmStockQty</th>
+                </tr>
+                @foreach (var group in skusGroups)
+                {
+                    skuFirst = group.First();
+                    <tr>
+                    @if (!String.IsNullOrEmpty(group.Key))
+                    {
+                        <td rowspan="@group.Count()" class="bor_none_l bor_none_b">@group.Key</td>
+                    }
+                        <td colspan="5" class="bor_none_b">
+                            <div class="f_l">
+                            @if (!String.IsNullOrEmpty(skuHeader.SubDicValue))
+                            {
+                                <span class="f_l w135">@Html.Raw(String.IsNullOrEmpty(skuFirst.SubValue) ? "&nbsp;" : skuFirst.SubValue)</span>
+                            }
+                                <span class="f_l w150">@Html.Raw(String.IsNullOrEmpty(skuFirst.BarCode) ? "&nbsp;" : skuFirst.BarCode)</span>
+                                <span class="f_l w135">@skuFirst.Sku</span>
+                                <span class="f_l w135">@skuFirst.Price.ToString("C", CultureInfo.GetCultureInfo("zh-CHS"))</span>
+                                <span class="f_l w110">@skuFirst.AlarmStockQty</span>
+                            </div>
+                        </td>
+                    </tr>
+                    foreach (var sku in group.Skip(1))
+                    {
+                        <tr>
+                            <td colspan="5" class="bor_none_b">
+                                <div class="f_l">
+                                @if (!String.IsNullOrEmpty(sku.SubDicValue))
+                                {
+                                    <span class="f_l w135">@Html.Raw(String.IsNullOrEmpty(sku.SubValue) ? "&nbsp;" : sku.SubValue)</span>
+                                }
+                                    <span class="f_l w150">@Html.Raw(String.IsNullOrEmpty(sku.BarCode) ? "&nbsp;" : sku.BarCode)</span>
+                                    <span class="f_l w135">@sku.Sku</span>
+                                    <span class="f_l w135">@sku.Price.ToString("C", CultureInfo.GetCultureInfo("zh-CHS"))</span>
+                                    <span class="f_l w110">@sku.AlarmStockQty</span>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </table>
+        </td>
+    </tr>
+}
+</table>
+@if (Model.DeliveryDic != null && Model.DeliveryDic.Count > 0)
+{
+<table class="fff_bor mg_t10">
+    @{firstKeyValue = Model.DeliveryDic.First();}
+    <tr>
+        <th rowspan="@Model.DeliveryDic.Count" width="140"><span class="f_l pd_l20">@DisplayText.DeliveryPack</span></th>
+        <td><span class="f_l pd_l10 w105">@firstKeyValue.Key@DisplayText.Risk</span><span class="f_l pd_l10">@firstKeyValue.Value</span></td>
+    </tr>
+    @foreach (var KeyValue in Model.DeliveryDic.Skip(1))
+    {
+        <tr>
+            <td><span class="f_l pd_l10 w105">@KeyValue.Key@DisplayText.Risk</span><span class="f_l pd_l10">@KeyValue.Value</span></td>
+        </tr>
+    }
+</table>
+}
+<table class="fff_bor mg_t10">
+    <tr>
+        <th rowspan="5" width="140"><span class="f_l pd_l20">@DisplayText.SystemProperties</span></th>
+        <td><span class="f_l pd_l10 w105">SPU ID@(DisplayText.Risk)</span><span class="f_l pd_l10">@Model.Spu</span></td>
+    </tr>
+
+    <tr>
+        <td><span class="f_l pd_l10 w105">@DisplayText.Category@DisplayText.Risk</span><span class="f_l pd_l10">@Model.CategoryName</span></td>
+    </tr>
+    <tr>
+        <td><span class="f_l pd_l10 w105">@DisplayText.SaleRegion@DisplayText.Risk</span><span class="f_l pd_l10">@dicSalesTerritory[Model.SalesTerritory]</span></td>
+    </tr>
+    <tr>
+        <td><span class="f_l pd_l10 w105">@DisplayText.Commission@DisplayText.Risk</span><span class="f_l pd_l10">@DisplayText.ChinaMainland@DisplayText.Risk@Model.CommissionInCHINA%</span>
+    </tr>
+    <tr>
+        <td><span class="f_l pd_l10 w105">@DisplayText.OnSaleTime@DisplayText.Risk</span><span class="f_l pd_l10">@Model.PreOnSaleTime.ToDateString()</span></td>
+    </tr>
+</table>

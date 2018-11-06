@@ -10,3 +10,15 @@ D:\LoveWine\SFO2O.Admin\SFO2O.Admin.Models\bin\Release\Common.EntLib.DataExtensi
 D:\LoveWine\SFO2O.Admin\SFO2O.Admin.Models\obj\Release\SFO2O.Admin.Models.csprojResolveAssemblyReference.cache
 D:\LoveWine\SFO2O.Admin\SFO2O.Admin.Models\obj\Release\SFO2O.Admin.Models.dll
 D:\LoveWine\SFO2O.Admin\SFO2O.Admin.Models\obj\Release\SFO2O.Admin.Models.pdb
+F:\git\shop\SFO2O.Admin\SFO2O.Admin.Models\bin\Release\SFO2O.Admin.Models.dll
+F:\git\shop\SFO2O.Admin\SFO2O.Admin.Models\bin\Release\SFO2O.Admin.Models.pdb
+F:\git\shop\SFO2O.Admin\SFO2O.Admin.Models\bin\Release\Common.EntLib.DataExtensions.dll
+F:\git\shop\SFO2O.Admin\SFO2O.Admin.Models\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+F:\git\shop\SFO2O.Admin\SFO2O.Admin.Models\bin\Release\Microsoft.Practices.ServiceLocation.dll
+F:\git\shop\SFO2O.Admin\SFO2O.Admin.Models\bin\Release\Microsoft.Practices.Unity.dll
+F:\git\shop\SFO2O.Admin\SFO2O.Admin.Models\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+F:\git\shop\SFO2O.Admin\SFO2O.Admin.Models\bin\Release\Microsoft.Practices.Unity.Interception.dll
+F:\git\shop\SFO2O.Admin\SFO2O.Admin.Models\bin\Release\Common.EntLib.DataExtensions.pdb
+F:\git\shop\SFO2O.Admin\SFO2O.Admin.Models\obj\Release\SFO2O.Admin.Models.csprojResolveAssemblyReference.cache
+F:\git\shop\SFO2O.Admin\SFO2O.Admin.Models\obj\Release\SFO2O.Admin.Models.dll
+F:\git\shop\SFO2O.Admin\SFO2O.Admin.Models\obj\Release\SFO2O.Admin.Models.pdb

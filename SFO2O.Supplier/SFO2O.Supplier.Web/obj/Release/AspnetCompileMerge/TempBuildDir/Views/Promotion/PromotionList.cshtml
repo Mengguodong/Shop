@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "促销价";
+    ViewBag.PageName = "PromotionList";
+
+    var promotionstatus = SFO2O.Supplier.Common.EnumHelper.ConvertToDict<SFO2O.Supplier.Models.PromotionStatus>();
+    var pQuery = (SFO2O.Supplier.ViewModels.Promotion.PromotionQuery)ViewBag.PromotionQuery;
+}
+
+<div class="cont_right_crumb"><span class="homepage"></span>&gt; 市场营销 &gt; 促销价</div>
+<div class="w931">
+
+    <div class="mg_t20 bor_bg">
+        <div class="list_yisc bor clearfix f15" style="margin-left:15px; margin-right:15px; margin-top:15px;">
+            <form id="promotionQuery">
+                <div class="box_choose f_l">
+                    <span class="choose_left f_l">活动时间：</span>
+                    <div class="bor f_l fff_bor" style="width:200px; height:29px;">
+                        <input type="text" style="width: 175px; background-position: 171px 4px;" id="StartTime" class="Wdate" name="StartTime"
+                               onclick="WdatePicker({ isShowClear: true, isShowOK: true, isShowToday: true, dateFmt: 'yyyy-MM-dd HH:00:00', maxDate: '#F{$dp.$D(\'EndTime\')}' })"
+                               value="@pQuery.StartTime.ToString("yyyy-MM-dd HH:00:00")" />
+                    </div>
+                    <em class="f_l mg_l10 mg_r10 lineH30">至</em>
+                    <div class="bor f_l fff_bor" style="width: 200px; height: 29px; margin-right:100px;">
+                        <input type="text" style="width: 175px; background-position: 171px 4px;" id="EndTime" class="Wdate" name="EndTime"
+                               onclick="WdatePicker({ isShowClear: true, isShowOK: true, isShowToday: true, dateFmt: 'yyyy-MM-dd HH:00:00', minDate: '#F{$dp.$D(\'StartTime\')}' })"
+                               value="@pQuery.EndTime.ToString("yyyy-MM-dd HH:00:00")" />
+                    </div>
+                </div>
+
+                <div class="box_choose f_l">
+                    <span class="choose_left f_l">活动名称：</span>
+                    <input type="text" class="f_l bor" style="width: 188px;" id="PromotionName" name="PromotionName" value="@pQuery.PromotionName" />
+                </div>
+                <div class="box_choose f_l">
+                    <span class="choose_left f_l" style="width: 84px;">活动状态：</span>
+                    <div class="f_l" style="width:110px;">
+                        <select id="PromotionStatus" name="PromotionStatus" style="display: none; width: 180px;">
+                            <option value="-1" selected="selected">请选择</option>
+                            @foreach (var item in promotionstatus)
+                            {
+                                if (item.Key == pQuery.PromotionStatus)
+                                {
+                                    <option value="@item.Key" selected="selected">@item.Value</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Key">@item.Value</option>
+                                }
+                            }
+
+                        </select>
+                    </div>
+                </div>
+                <div class="f_l" style="width:100%;"> <a href="javascript:void(0);" class="btn_green w160 mg_l20 mg_r20 mg_t10" id="promotionSearch">搜 寻</a> </div>
+            </form>
+        </div>
+        <div class="tongji_title mg_t30 mg_l10 clearfix"><span class="tongji_title_l mg_l5">活动列表</span></div>
+        <div class="t_r wrap_dr_sc">
+            <div class="dr_sc pd_r5"><a href="/Promotion/CreatePromotion" class="addpro_btn btn_sc mg_l10 mg_r10">新建促销价</a></div>
+        </div>
+        <div class="" id="promotionList">
+        </div>
+
+    </div>
+</div>
+@Html.Script("~/Scripts/Promotion/PromotionList.js")
+@Html.Script("~/Scripts/jquerypager/jquery.pager.latest.js")
+@Html.Script("~/Scripts/PageCommon.js")

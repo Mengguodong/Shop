@@ -4,3 +4,9 @@ D:\LoveWine\SFO2O.Admin\SFO2O.Admin.Service\bin\Release\SFO2O.Admin.Service.pdb
 D:\LoveWine\SFO2O.Admin\SFO2O.Admin.Service\obj\Release\SFO2O.Admin.Service.csprojResolveAssemblyReference.cache
 D:\LoveWine\SFO2O.Admin\SFO2O.Admin.Service\obj\Release\SFO2O.Admin.Service.dll
 D:\LoveWine\SFO2O.Admin\SFO2O.Admin.Service\obj\Release\SFO2O.Admin.Service.pdb
+F:\git\shop\SFO2O.Admin\SFO2O.Admin.Service\bin\Release\SFO2O.Admin.Service.dll.config
+F:\git\shop\SFO2O.Admin\SFO2O.Admin.Service\bin\Release\SFO2O.Admin.Service.dll
+F:\git\shop\SFO2O.Admin\SFO2O.Admin.Service\bin\Release\SFO2O.Admin.Service.pdb
+F:\git\shop\SFO2O.Admin\SFO2O.Admin.Service\obj\Release\SFO2O.Admin.Service.csprojResolveAssemblyReference.cache
+F:\git\shop\SFO2O.Admin\SFO2O.Admin.Service\obj\Release\SFO2O.Admin.Service.dll
+F:\git\shop\SFO2O.Admin\SFO2O.Admin.Service\obj\Release\SFO2O.Admin.Service.pdb

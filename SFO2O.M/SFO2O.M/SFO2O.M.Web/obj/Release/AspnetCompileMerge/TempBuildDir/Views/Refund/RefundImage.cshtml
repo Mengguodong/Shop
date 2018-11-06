@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "查看退款凭证";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    ViewBag.ShowFooter = false;
+}
+<header class="pageHeader w100 pr tc">
+        <a class="returnBtn" id="returnBtn"></a>
+        <b class="f36 FontColor1">查看退款凭证</b>
+    </header>
+<div class="itemCon w100 boxShadow bgColor3 pt8 mb8">
+    <img src="@ViewBag.Path.Replace("_180","")" style="width:100%"/>
+</div>

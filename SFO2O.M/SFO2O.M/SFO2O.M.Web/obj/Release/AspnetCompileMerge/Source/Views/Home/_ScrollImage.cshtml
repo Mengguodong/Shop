@@ -1,0 +1,49 @@
+﻿@{
+    Layout = null;
+}
+@using SFO2O.M.Controllers.Common
+@using SFO2O.Utility.Uitl
+@model List<SFO2O.Model.Index.BannerImagesEntity> 
+<div class="indexSlideWrap w100">
+	<div class="banner pr hide" id="mySwipe">
+
+        <div class="bannerIndex clearfix hd" id="mySwipeLiItems">
+		        <ul>
+		           
+		        </ul>
+		    </div>
+		    <div class="swipe focusBox f0 bd">
+                <!--首页有轮播焦点图-->
+                @if (Model != null && Model.Count != 0)
+                {
+                    foreach (var p in Model) { 
+                    <ul class="swipe-wrap focusBoxIn">
+	                    <li>
+                            @if (string.IsNullOrEmpty(p.LinkUrl))
+                            {
+                                <a>
+                                    <img src="@p.ImageUrl.GetImageUrl()" class="banner_n" />
+                                </a>
+                            }else{
+                                <a target="_self" href="@p.LinkUrl">
+                                    <img src="@p.ImageUrl.GetImageUrl()" class="banner_n" />
+                                </a>
+                            }
+	                    </li>
+	                </ul>
+                    }
+                }
+                else
+                {
+                    <ul class="swipe-wrap focusBoxIn">
+	                    <li>
+                            <a target="_self" href="javascript:void(0)">
+                                <img src="@System.Web.Configuration.WebConfigurationManager.AppSettings["IndexBannerImageDefault"].ToString().GetImageUrl()" />
+                            </a>
+
+	                    </li>
+	                </ul>
+                }
+		    </div>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+﻿@{
+    Layout = null;
+}
+@using SFO2O.M.Controllers.Common
+@using SFO2O.Utility.Uitl
+@using SFO2O.Utility.Extensions
+
+@model IEnumerable<SFO2O.Model.Index.IndexModulesEntity>
+<h2 class="indexTitle tc w100"><b class="f30 FontColor1">新品推荐</b><span class="f22 FontColor4">助/力/嗨</span></h2>
+<div class="indexHotPro mb8" id="hotPro" style="-webkit-transform:translate3d(0,0,0);">
+    <div class="itemBox clearfix" id="itemBox">
+        @foreach (var m in Model)
+        {
+            bool isPromotionPrice = false;
+            decimal temprice = m.MinPrice * ViewBag.ExchangeRate;
+            if (temprice > m.DiscountPrice * ViewBag.ExchangeRate && m.DiscountPrice * ViewBag.ExchangeRate > 0)
+            {
+                temprice = m.DiscountPrice * ViewBag.ExchangeRate;
+                isPromotionPrice = true;
+            }
+            string discountStr = string.Empty;
+            if (m.DiscountRate > 0)
+            {
+                discountStr = m.DiscountRate.ToNumberStringFloat() + "折";
+            }
+            <div class="item">
+                <a href="item.html?productCode=@m.Spu">
+                    <div class="imgBox">
+                        <img data-original="@m.ImagePath.GetImageUrl().Replace(".jpg", "_640.jpg").Replace(".JPG", "_640.jpg").Replace(".png", "_640.png").Replace(".PNG", "_640.png").Replace(".bmp", "_640.bmp").Replace(".BMP", "_640.bmp")" class="lazyloadImg">
+
+                        @if (isPromotionPrice)
+                        {
+                            <span class="account">@discountStr</span>
+                        }
+                        
+                        @if (m.ForOrderQty - m.MinForOrder <= 0)
+                        {
+                            <div class="saleOut"><span>已售罄</span></div>
+                        }
+
+                    </div>
+                    <div class="title">@m.Title</div>
+                    <div class="price">￥@temprice.ToNumberStringIntelligent()</div>
+                </a>
+            </div>
+        }
+    </div>
+</div>

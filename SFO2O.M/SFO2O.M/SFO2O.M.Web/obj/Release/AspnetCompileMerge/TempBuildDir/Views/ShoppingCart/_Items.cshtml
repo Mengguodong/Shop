@@ -1,0 +1,69 @@
+﻿@using SFO2O.Utility.Extensions
+@using SFO2O.Utility.Uitl
+@{
+    Layout = null;
+    var bindSku = ViewBag.sku ?? "";
+}
+@model IEnumerable<SFO2O.M.ViewModel.ShoppingCart.ProductItem>
+
+@foreach (var m in Model)
+{
+    <li class="w100 boxSizingB " data-isdutyonseller="@m.IsDutyOnSeller" data-spu="@m.Spu" @(bindSku == m.Sku ? "data-anchor=1" : "")>
+        <div class="displayBox w100">
+            <div class="cartCheckBoxWrap">
+                <b class="cartCheckBox @(m.IsChecked ? "checked":"") "></b>
+            </div>
+            <div class="cartProImgWrap">
+                <a href="@Url.Action("Index","Item",new{ productCode = m.Spu })" target="_self">
+                    <img src="@m.ImagePath.GetImageSmallUrl()" class="whiteOnLine">
+                </a>
+            </div>
+            <div class="boxflex1 cartProInf pr">
+                <a href="@Url.Action("Index", "Item", new { productCode = m.Spu })" target="_self">
+                    <div class=" skuNum whiteOnLine">
+                        <b class="reduceBtn boxSizingB whiteOnLine @(m.CartQuantity<=1?"disable":"")">－</b>
+                        <input class="numTxt boxSizingB tc" type="number" value="@m.CartQuantity" name="num">
+                        <b class="addBtn boxSizingB whiteOnLine">＋</b>
+                    </div>
+                    <p class="cartProName f24 mb5 displayBox"><span class="boxflex1 show overflowH cartProNameFont" style="white-space:nowrap;">@m.Name</span><b class=" proNum f24 ">×@m.CartQuantity</b></p>
+
+                    <p _selectedsku="@m.Sku" class="cartSelectedSku f20 FontColor4">
+                        @if (!m.MainDicValue.IsNullOrEmpty())
+                        {
+                            @(m.MainDicValue + "：" + m.MainValue)
+                            if (!m.SubDicValue.IsNullOrEmpty())
+                            {
+                                @(" , " + m.SubDicValue + "：" + m.SubValue)
+                            }
+                            if (m.MainDicValue.Equals("净重") || m.MainDicValue.Equals("淨重"))
+                            {
+                                @(m.NetWeightUnit)
+                            }
+
+                            if (m.MainDicValue.Equals("净含量") || m.MainDicValue.Equals("淨含量"))
+                            {
+                                @(m.NetContentUnit)
+                            }
+                        }
+                    </p>
+
+
+                    <p class="cartProPriceP mt5">
+                        <b class="proPrice f28 FontColor6" data-price="@m.SalePriceExchanged">￥@m.SalePriceExchanged.ToNumberString(true)</b>
+                        <span class="f20 FontColor4 ml5">商品税@(m.IsDutyOnSeller == 1 ? "：卖家承担" : "：")</span>@if(m.IsDutyOnSeller != 1)
+                        {<b class="proTax f20 FontColor4" data-price="@m.TaxAmountExchanged">￥@m.TaxAmountExchanged.ToNumberString(true)</b>
+                        }
+                    </p>
+                    @if (!m.MainDicValue.IsNullOrEmpty())
+                    {
+                        <span class="cartSelectSkuIco"></span>
+                    }
+                </a>
+            </div>
+        </div>
+        @if (m.DifferencePrice>0)
+        {
+            <p class="cartTip f20 FontColor6">已降￥@m.DifferencePrice.ToNumberString(true)</p>
+        }
+    </li>
+}

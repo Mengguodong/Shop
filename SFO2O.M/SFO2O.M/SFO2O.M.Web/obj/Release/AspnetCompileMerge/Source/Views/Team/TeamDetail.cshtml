@@ -1,0 +1,392 @@
+﻿@using SFO2O.Utility.Uitl
+@using SFO2O.Model.Product
+@using SFO2O.Utility.Extensions
+
+@model IEnumerable<SFO2O.Model.Team.TeamDetailEntity>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    this.ViewBag.Title = "拼团详情";
+    ViewBag.ShowFooter = true;
+}
+@section styles {
+    <link href="../../Content/css/groupon/detail.css?v=20160412" rel="stylesheet">
+}
+
+@section scripts {
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="../../Scripts/jquery/jquery.dialog.js?v=20160418"></script>
+    <!--页面独有脚本-->
+    <script type="text/javascript" src="../../Scripts/groupon/detail.js?v=20160421"></script>
+    <!--页面独有脚本 END-->
+}
+
+@section pageHeader {
+    <!-- 页头 -->
+    <header class="pageHeader w100 pr tc">
+        <!--<a class="returnBtn" id="returnBtn"></a>-->
+        <a class="returnBtn" id="pageReturn"></a>
+        <b class="f36 FontColor1">拼生活</b>
+    </header>
+    <!-- 页头 end -->
+}
+
+
+<div class="MContainer" id="MContainer">
+
+    <!-- 页头提示 -->
+    <!-- 组团不成功 -->
+    @if (ViewBag.TeamStatus == 1)
+    {
+        ////////////////////////////////////
+        
+        /// 用户已经登录
+        if (ViewBag.LoginUserId != 0)
+        {
+            /// 判断是否是团长
+            if (ViewBag.LoginUserId == ViewBag.TeamHead)
+            {
+                <!-- 如果是团长 -->
+                <div class="tips fontWhite w95p f24">
+                    <i class="success mr5"></i>开团成功！快去邀请好友加入吧。
+                </div>
+                <!-- 如果是团长end -->
+            }
+            /// 判断用户是否是团成员
+            else if (Model.Where(d => d.UserId == ViewBag.LoginUserId).Count() > 0)
+            {
+                <!-- 如果是团员 -->
+                <div class="tips fontWhite w95p f24">
+                    <i class="success mr5"></i>入团成功！快去邀请好友加入吧
+                </div>
+                <!-- 如果是团员end -->
+            }
+            else
+            {
+                <!--未参团或未登录-->
+                <div class="tips fontWhite w95p f24">
+                    <i class="success mr5"></i>快来入团吧！就差你了
+                </div>
+                <!--未参团或未登录end-->
+            }
+        }
+        /// 用户没有登录
+        else
+        {
+            <!--未参团或未登录-->
+            <div class="tips fontWhite w95p f24">
+                <i class="success mr5"></i>快来入团吧！就差你了
+            </div>
+            <!--未参团或未登录end-->
+        }
+        
+        /////////////////////////////////////
+            
+    }
+
+    <!-- 页头提示end -->
+    <!-- 商品详情 -->
+    <div class=" bgColor3 boxShadow product w95p pt10 pb10 mb5 pr" id="product">
+        <a class="displayBox w100" href="../product/FightDetail?sku=@Model.First().Sku&pid=@Model.First().PromotionId">
+            <div class="imgBox mr7">
+                <img src="@Model.First().ImagePath.GetImageSmallUrl()" />
+            </div>
+            <div class="boxflex1">
+                <div class="f24 FontColor1 title">@Model.First().ProductName <span>&nbsp;</span>@Model.First().MainValue<span>&nbsp;</span>@Model.First().SubValue @Model.First().NetWeightUnit×1</div>
+                <div class=" fontWhite info" id="info">
+                    <span class="f24 mr8">@Model.First().TeamNumbers 人团</span>
+                    <span class="f30">￥@ViewBag.productPrice</span>
+                </div>
+            </div>
+
+            <div class="status">
+                <!-- 组团成功 -->
+                @if (ViewBag.TeamStatus == 3)
+                {
+                    <!-- 组团成功 -->
+                    <img src="../../Content/Images/groupon/success.png?v=20160413" />
+                    <!-- 组团成功end -->
+                }
+                else if (ViewBag.TeamStatus == 2)
+                {
+                    <!-- 组团失败 -->
+                    <img src="../../Content/Images/groupon/fail.png?v=20160413" />
+                    <!-- 组团失败end -->
+                }
+
+            </div>
+        </a>
+    </div>
+    <!-- 商品详情 end -->
+    @if (ViewBag.TeamStatus == 1)
+    {
+        <!-- 剩余时间 如果成功或已失败则不显示-->
+        <div class="duration w95m f24 FontColor3 tc mb30 hide" id="duration" data-time="@ViewBag.restTime">
+            <div class="">
+                <span>剩余</span>
+                <span class="time">
+                    <span class="displayBox">
+                        <!--<b id="day"> </b>-->
+                        <b id="hour"> </b>
+                        <b id="minite"> </b>
+                        <b id="second"> </b>
+                    </span>
+                </span>
+                <span>结束</span>
+            </div>
+        </div>
+        <!-- 剩余时间 end -->
+    }
+
+    <!-- 剩余人数 -->
+    <div class=" mb8 people boxShadow bgColor3 pt17" id="people">
+        <ul class="w95m">
+
+            @foreach (var item in Model)
+            {
+
+                if (string.IsNullOrEmpty(item.ImageUrl))
+                {
+                    ViewBag.ImageUrl = "../../Content/Images/groupon/avastar.png?v =20160412";
+                }
+                else
+                {
+                    ViewBag.ImageUrl = item.ImageUrl;
+                }
+                
+                /// 判断是否是团长
+                if (item.UserId == item.TeamHead)
+                {
+                    <li>
+                        <img src="@ViewBag.ImageUrl" />
+                        <span class="head"></span>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <img src="@ViewBag.ImageUrl" />
+                    </li>
+                }
+            }
+
+            @if (Model.Count() < Model.First().TeamNumbers)
+            {
+                for (int i = 0; i < Model.First().TeamNumbers - Model.Count(); i++)
+                {
+                    <li>
+                        <img src="../../Content/Images/groupon/avastar_default.png?v=20160412" />
+                    </li>
+                }
+            }
+
+        </ul>
+
+        <!-- 参团中状态 -->
+        @if (ViewBag.TeamStatus == 1)
+        {
+            /// OrderCode有值
+            if (ViewBag.IsOrderCodeInput == 1)
+            {
+                /// 组团还缺少人数
+                if (ViewBag.ListLength < ViewBag.TeamNumbers)
+                {
+                    <!-- 团长或团员 -->
+                    <p class="f24 tc mb17">
+                        还差<span class="FontColor6 f30">@ViewBag.RestNumber</span>人，赶快邀请小伙伴们来组团吧
+                    </p>
+                    <!-- 团长或团员end -->
+                }
+            }
+            else
+            {
+                <!-- 未参团或未登录 -->
+                <p class="f24 tc mb17">
+                    还差<span class="FontColor6">@ViewBag.RestNumber</span>人，赶快加入吧
+                </p>
+                <!-- 未参团或未登录end -->
+            }
+        }
+
+        @foreach (var item in Model)
+        {
+            /// 判断是否是团长
+            if (item.UserId == item.TeamHead)
+            {
+                <div class="partner f20 FontColor3 w95p">
+                    <span class="fr FontColor4 ">@item.PayTime 开团</span>
+                    <i>
+                        <img src="../../Content/Images/groupon/avastar.png?v=20160412" />
+                    </i>@item.Mobile
+                </div>
+            }
+            else
+            {
+                <div class="partner f20 FontColor3 w95p">
+                    <span class="fr FontColor4 ">@item.PayTime 参团</span>
+                    <i>
+                        <img src="../../Content/Images/groupon/avastar.png?v=20160412" />
+                    </i>@item.Mobile
+                </div>
+            }
+        }
+
+
+    </div>
+    <!-- 剩余人数 end -->
+    <!--20160425 修改内容-->
+    <div class="pinRule w95p boxShadow bgColor3 mb8 ">
+       <a href="../product/pinRule" target="_self">
+            <p class="title w100 f28">拼生活规则 <i class="itemIcon_jt"></i></p>
+            <ul class="w100 overflowH pinRule f20 FontColor4 displayBox">
+                <li class=" tc">
+                    <p class="stepNum mc">1</p>
+                    <p class="stepName">选择<br>心仪商品</p>
+                </li>
+                <li class="tc">
+                    <p class="stepNum mc">2</p>
+                    <p class="stepName">支付开团<br>或参团</p>
+                </li>
+
+
+                @if (ViewBag.TeamStatus == 3)
+                {
+                    <li class="tc">
+                        <p class="stepNum mc">3</p>
+                        <p class="stepName">等待好友<br>参团支付</p>
+                    </li>
+
+                    <!-- 如果组团成功的话，则第四个li加上cur -->
+                    <li class="tc cur">
+                        <p class="stepNum mc">4</p>
+                        <p class="stepName">达到人数<br>团购成功</p>
+                    </li>
+                }
+                else
+                {
+                    <li class="tc cur">
+                        <p class="stepNum mc">3</p>
+                        <p class="stepName">等待好友<br>参团支付</p>
+                    </li>
+
+                    <!-- 如果组团成功的话，则第四个li加上cur -->
+                    <li class="tc">
+                        <p class="stepNum mc">4</p>
+                        <p class="stepName">达到人数<br>团购成功</p>
+                    </li>
+                }
+
+            </ul>
+        </a>
+    </div>
+    <!--20160425 修改内容 END-->
+    <!--吸底-->
+    <!--组团成功或组团失败-->
+    @if (ViewBag.TeamStatus == 3 || ViewBag.TeamStatus == 2)
+    {
+        <!-- 如果已经组团成功或失败end -->
+        <div class="fixedBottomDiv w100 overflowH ">
+            <div class="fixedBottomDivCon">
+                <div class="w100">
+                    <a href="../product/FightIndex"><div class="btn">我也要开团，点此回到商品列表</div></a>
+                </div>
+            </div>
+        </div>
+        <!-- 如果已经组团成功或失败end -->
+    }
+    else
+    {
+        /// 用户已经登录
+        if (ViewBag.LoginUserId != 0)
+        {
+            //// 用户是团成员
+            if (Model.Where(d => d.UserId == ViewBag.LoginUserId).Count() > 0)
+            {
+                <!-- 如果是团长或团员 -->
+                <div class="fixedBottomDiv w100 overflowH ">
+                    <div class="fixedBottomDivCon">
+                        <div class="w100 displayBox">
+                            <div class="morePro tc f18 FontColor4">
+                                <a href="../product/FightIndex">
+                                    <i></i><br>
+                                    更多商品
+                                </a>
+                            </div>
+                            <div class="btn f28 boxflex1" id="share">
+                                还差<span>@ViewBag.RestNumber</span>人组团成功，邀请小伙伴
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 如果是团长或团员end -->
+            }
+            else
+            {
+                <!-- 未参团或未登录 -->
+                <div class="fixedBottomDiv w100 overflowH ">
+                    <div class="fixedBottomDivCon">
+                        <div class="w100 displayBox">
+                            <div class="morePro tc f18 FontColor4">
+                                <a href="../product/FightIndex">
+                                    <i></i><br>
+                                    更多商品
+                                </a>
+                            </div>
+                            <div class="share tc f18 FontColor4" id="share">
+                                <i></i><br>
+                                分享
+                            </div>
+                            <div class="btn f28 boxflex1">
+                                <a href="../buy/buynow?sku=@Model.First().Sku&qty=1&teamcode=@Model.First().TeamCode">
+                                    我也要参团
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 未参团或未登录end -->
+            }
+        }
+        else
+        {
+            <!-- 未参团或未登录 -->
+            <div class="fixedBottomDiv w100 overflowH ">
+                <div class="fixedBottomDivCon">
+                    <div class="w100 displayBox">
+                        <div class="morePro tc f18 FontColor4">
+                            <a href="../product/FightIndex">
+                                <i></i><br>
+                                更多商品
+                            </a>
+                        </div>
+                        <div class="share tc f18 FontColor4" id="share">
+                            <i></i><br>
+                            分享
+                        </div>
+                        <div class="btn f28 boxflex1">
+                            <a href="../buy/buynow?sku=@Model.First().Sku&qty=1&teamcode=@Model.First().TeamCode">
+                                我也要参团
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 未参团或未登录end -->
+        }
+        
+    }
+    <input id="TeamCode" type="hidden" value="@Model.First().TeamCode" />
+    <input id="Flag" type="hidden" value="@ViewBag.Flag" />
+    <input type="hidden" name="RestTeamMemberNum" value="@ViewBag.RestNumber" />
+    <!--吸底 END-->
+</div>
+<!-- 如果是微信内部点击“分享” -->
+<!-- <div class="shadow shareInWX">
+    <div class="guide">
+        <img src="../../Content/Images/groupon/shareInWX.png?v=20160414" />
+    </div>
+    <div class="content f30 fontWhite tc">
+        还差 1 人就组团成功啦~<br>赶快呼唤小伙伴们参加吧！
+    </div>
+</div> -->
+<!-- 如果是微信内部点击“分享” end -->

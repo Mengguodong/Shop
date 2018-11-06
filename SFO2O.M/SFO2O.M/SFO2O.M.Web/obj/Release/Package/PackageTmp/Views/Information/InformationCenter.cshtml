@@ -1,0 +1,244 @@
+﻿@using SFO2O.Utility.Uitl
+@using SFO2O.Utility.Extensions
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.Controllers;
+@model SFO2O.M.ViewModel.Information.InformationViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    this.ViewBag.Title = "消息中心";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = true;
+}
+
+@section scripts{
+   
+}
+
+@section styles{
+    <link href="@BundleConfig.BuildCss("Content/css/msgCenter.css")" type="text/css" rel="stylesheet" />
+}
+
+<!-- 页头 -->
+<header class="pageHeader w100 pr tc overflowH">
+    <a class="returnBtn" id="returnBtn"></a>
+    <b class="f36 FontColor1">消息中心</b>
+    <div class="flowerMenu" id="flowerMenu"></div>
+</header>
+<!-- 页头 end -->
+
+@if(@Model.InformationLast == 0){
+    <!--20160510 新增内容 无消息时-->
+    <div class="n_msgCenter ">
+      <div class="n_noMsg">
+        <div class="n_noMsgBg"></div>
+        <div class="n_noMsgTxt f24 FontColor3">您还没有收到任何消息</div>
+      </div>
+    </div>
+    <!--20160510 新增内容 无消息时 End-->
+}
+else
+{
+    <!--20160510 新增内容 有消息时-->
+    <div class="n_msgCenter">
+
+        <!--系统消息有数据-->
+        @if(@Model.SystemInformationLast != 0){
+            <!--系统消息-->
+            <a href="/sysmsglist.html" class="boxShadow bgColor3 mb8 n_msgOne displayBox">
+
+                <!--所有消息全部已读-->
+                @if(@Model.InformationRead == 1){
+                    <!--未读条数-->
+                    <div class="n_imgBox mr10">
+                        <div class="bg1 pr">
+                            <span class=""></span>
+                        </div>
+                    </div>
+                    <!--未读条数 End-->
+                }
+                else
+                {
+                    <!--系统消息已读-->
+                    if(@Model.SystemInfoTotalNotReadCount == 0){
+                        <!--未读条数-->
+                        <div class="n_imgBox mr10">
+                            <div class="bg1 pr">
+                                <span class=""></span>
+                            </div>
+                        </div>
+                        <!--未读条数 End-->
+                    }
+                    else
+                    {
+                        if (@Model.SystemInfoTotalNotReadCount > 99)
+                        {
+                            <!--未读条数-->
+                            <div class="n_imgBox mr10">
+                                <div class="bg1 pr">
+                                    <span class="n_msgNum f18">9+</span>
+                                </div>
+                            </div>
+                            <!--未读条数 End-->
+                        }
+                        else
+                        {
+                            <!--未读条数-->
+                            <div class="n_imgBox mr10">
+                                <div class="bg1 pr">
+                                    <span class="n_msgNum f18">@Model.SystemInfoTotalNotReadCount</span>
+                                </div>
+                            </div>
+                            <!--未读条数 End-->
+                        }
+                    }
+                }
+
+                <div class="n_msgBox boxflex1">
+                    <div class="n_msgType f28">
+                        系统消息
+                        <span class="fr f24 FontColor4">@Model.SystemInfoLastCreateTime</span>
+                    </div>
+                    <div class="n_msgTypeTit inaline f24 FontColor3">@Model.SystemInfoLastTitle</div>
+                </div>
+            </a>
+            <!--系统消息 End-->
+        }
+        
+        <!--活动消息有数据-->
+        @if (@Model.ActivityInformationLast != 0) {
+            <!--活动消息-->
+            <a href="/activitymsglist.html" class="boxShadow bgColor3 mb8 n_msgOne displayBox">
+
+                <!--所有消息全部已读-->
+                @if (@Model.InformationRead == 1)
+                {
+                                    <!--未读条数-->
+                    <div class="n_imgBox mr10">
+                        <div class="bg2 pr">
+                            <span class=""></span>
+                        </div>
+                    </div>
+                                    <!--未读条数 End-->
+                }
+                else
+                {
+                                    <!--系统消息已读-->
+                    if (@Model.ActivityInfoNotReadCount == 0)
+                    {
+                                        <!--未读条数-->
+                        <div class="n_imgBox mr10">
+                            <div class="bg2 pr">
+                                <span class=""></span>
+                            </div>
+                        </div>
+                                        <!--未读条数 End-->
+                    }
+                    else
+                    {
+                        if (@Model.ActivityInfoNotReadCount > 99)
+                        {
+                                            <!--未读条数-->
+                            <div class="n_imgBox mr10">
+                                <div class="bg2 pr">
+                                    <span class="n_msgNum f18">9+</span>
+                                </div>
+                            </div>
+                                            <!--未读条数 End-->
+                        }
+                        else
+                        {
+                                            <!--未读条数-->
+                            <div class="n_imgBox mr10">
+                                <div class="bg2 pr">
+                                    <span class="n_msgNum f18">@Model.ActivityInfoNotReadCount</span>
+                                </div>
+                            </div>
+                                            <!--未读条数 End-->
+                        }
+                    }
+                }
+
+                <div class="n_msgBox boxflex1">
+                    <div class="n_msgType f28">
+                        活动消息
+                        <span class="fr f24 FontColor4">@Model.ActivityInfoLastCreateTime</span>
+                    </div>
+                    <div class="n_msgTypeTit inaline f24 FontColor3">@Model.ActivityInfoLastTitle</div>
+                </div>
+            </a>
+            <!--活动消息 End-->
+        }
+        
+        <!--订单消息有数据-->
+        @if (@Model.OrderInformationLast != 0) {
+            <!--订单消息-->
+            <a href="/ordermsglist.html" class="boxShadow bgColor3 mb8 n_msgOne displayBox">
+
+                <!--所有消息全部已读-->
+                @if (@Model.InformationRead == 1)
+                {
+                                    <!--未读条数-->
+                    <div class="n_imgBox mr10">
+                        <div class="bg3 pr">
+                            <span class=""></span>
+                        </div>
+                    </div>
+                                    <!--未读条数 End-->
+                }
+                else
+                {
+                                    <!--系统消息已读-->
+                    if (@Model.OrderInfoNotReadCount == 0)
+                    {
+                                        <!--未读条数-->
+                        <div class="n_imgBox mr10">
+                            <div class="bg3 pr">
+                                <span class=""></span>
+                            </div>
+                        </div>
+                                        <!--未读条数 End-->
+                    }
+                    else
+                    {
+                        if (@Model.OrderInfoNotReadCount > 99)
+                        {
+                                            <!--未读条数-->
+                            <div class="n_imgBox mr10">
+                                <div class="bg3 pr">
+                                    <span class="n_msgNum f18">9+</span>
+                                </div>
+                            </div>
+                                            <!--未读条数 End-->
+                        }
+                        else
+                        {
+                                            <!--未读条数-->
+                            <div class="n_imgBox mr10">
+                                <div class="bg3 pr">
+                                    <span class="n_msgNum f18">@Model.OrderInfoNotReadCount</span>
+                                </div>
+                            </div>
+                                            <!--未读条数 End-->
+                        }
+                    }
+                }
+
+                <div class="n_msgBox boxflex1">
+                    <div class="n_msgType f28">
+                        订单消息
+                        <span class="fr f24 FontColor4">@Model.OrderInfoLastCreateTime</span>
+                    </div>
+                    <div class="n_msgTypeTit inaline f24 FontColor3">@Model.OrderInfoLastTitle</div>
+                </div>
+            </a>
+            <!--订单消息 End-->
+        }
+
+    </div>
+    <!--20160510 新增内容 有消息时 End-->
+}
+
+
+
+
+

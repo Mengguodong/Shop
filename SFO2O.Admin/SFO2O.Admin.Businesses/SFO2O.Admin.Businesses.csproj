@@ -50,6 +50,7 @@
     <Compile Include="ConfigHelper.cs" />
     <Compile Include="Customer\CustomerBll.cs" />
     <Compile Include="DicsBLL.cs" />
+    <Compile Include="GreenBll\GreenGetApiBll.cs" />
     <Compile Include="HomeBLL.cs" />
     <Compile Include="Order\OrderBll.cs" />
     <Compile Include="Product\CategoryBLL.cs" />

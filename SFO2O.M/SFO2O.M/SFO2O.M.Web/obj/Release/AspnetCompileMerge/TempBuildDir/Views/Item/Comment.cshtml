@@ -1,0 +1,44 @@
+﻿@using SFO2O.M.Controllers
+@using SFO2O.M.Controllers.Common
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.ViewModel.Product
+@using SFO2O.Utility.Extensions
+@using SFO2O.Utility.Uitl
+@model IList<SFO2O.Model.Common.CommentEntity>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "商品参数";
+    SkuAttributeViewModel skuMetaViewModel = ViewBag.SkuMetaViewModel;
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+}
+@section styles {
+    <link href="@BundleConfig.BuildCss("Content/css/evaluate.css")" rel="stylesheet">
+}
+@section scripts {
+    <script type="text/javascript" language="javascript" src="@BundleConfig.BuildCss("Scripts/comment.js")"></script>
+}
+@section pageHeader {
+    <header class="pageHeader w100 pr tc overflowH">
+        <a class="returnBtn" id="returnBtn"></a>
+        <b class="f36 FontColor1">商品评价</b>
+    </header>
+}
+
+<ul class="w100 evaluateList boxShadow bgColor3">
+    @foreach (var m in Model)
+    {
+        <li class="w95p whiteOnLine borderBottom">
+            <p class="userInf mb10 f24 FontColor5">
+                <img src="@(string.IsNullOrEmpty(m.ImageUrl) ? Url.Content("~/Content/Images/userImg.jpg") : m.ImageUrl.GetImageUrl())">@m.UserName.GetSafePhone(2, 2)
+            </p>
+            <p class="evaluateTxt mb10 f24">
+                @m.Comment
+            </p>
+            <p class="f20 FontColor4">
+                <span class="date mr5">@m.CreateTime.ToString("yyyy-MM-dd")</span> @m.MainDicValue：@m.MainValue
+            </p>
+        </li>
+    }
+
+</ul> 

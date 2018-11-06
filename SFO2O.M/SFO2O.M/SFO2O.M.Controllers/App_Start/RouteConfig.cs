@@ -118,6 +118,14 @@ namespace SFO2O.M.Controllers
                 name: "YOrderPay",
                 url: "YOrderPay.html",
                 defaults: new { controller = "Pay", action = "YeePay", SEOKey = "YOrderPay" });
+
+            //积分支付
+            routes.MapRoute(
+                name: "ScoreOrderPay",
+                url: "ScoreOrderPay.html",
+                defaults: new { controller = "Pay", action = "ScorePay", SEOKey = "ScoreOrderPay" });
+
+
             //支付结果同步
             routes.MapRoute(
                 name: "ReturnPage",

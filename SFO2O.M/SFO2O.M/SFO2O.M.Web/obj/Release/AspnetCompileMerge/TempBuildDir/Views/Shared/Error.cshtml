@@ -1,0 +1,28 @@
+﻿@using System.Web.UI.HtmlControls
+@using SFO2O.BLL.Common
+@using SFO2O.M.Controllers
+@using SFO2O.M.Controllers.Common
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.ViewModel.Product
+@using SFO2O.Utility.Extensions
+@using SFO2O.Utility.Uitl
+@model SFO2O.M.Controllers.Common.Message
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "出错了";
+    SkuAttributeViewModel skuMetaViewModel = ViewBag.SkuMetaViewModel; 
+    LoginUserModel user = ViewBag.LoginUser ?? null; 
+} 
+<div class=" sf-pop payStatusWrap tc ">
+    <img src="@Url.Content("~/Content/images/sorry.png")" style="width:50%; min-width:180px;">
+    <p class="content title">Sorry，程序出错了！</p>
+    <p class="conent tip" style="color:#bcbcbc">您可以通过以下方式继续访问...</p>
+    <p class="btn-box">
+        <a class="closeBtn m-btn" href="@DomainHelper.MUrl" target="_self">返回首页</a>
+    </p>
+    @if (Model != null)
+    {
+        <input type="hidden" title="@Model.Title" data-content="@Model.Content" />
+    }
+</div>

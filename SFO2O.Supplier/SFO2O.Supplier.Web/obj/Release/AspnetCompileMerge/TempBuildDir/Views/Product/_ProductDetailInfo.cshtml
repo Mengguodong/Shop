@@ -1,0 +1,230 @@
+﻿@using SFO2O.Supplier.Common
+@{
+    var productModel = ViewBag.ProductModel;
+    List<SFO2O.Supplier.Models.Product.ProductImgModel> imageList = ViewBag.ProductModel.Imgs;
+
+}
+
+<meta charset="utf-8" />
+<link rel="stylesheet" href="~/Plugins/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="~/Plugins/kindeditor/plugins/code/prettify.css" />
+<script charset="utf-8" src="~/Plugins/kindeditor/kindeditor-all.js"></script>
+<script charset="utf-8" src="~/Plugins/kindeditor/lang/zh-TW.js"></script>
+<script charset="utf-8" src="~/Plugins/kindeditor/plugins/code/prettify.js"></script>
+预警
+<script>
+    var editor1;
+    var editor2;
+    var editor3;
+
+    KindEditor.ready(function (K) {
+        editor1 = K.create('#content1', {
+            cssPath: '../Plugins/kindeditor/plugins/code/prettify.css',
+            uploadJson: '/Utility/UploadProductDescribeImage',
+            items: [
+                'undo', 'redo', '|', 'preview', 'template', 'cut', 'copy', 'paste',
+                'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+                'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'clearhtml',
+                'selectall', '|', '/',
+                'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+                'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image',
+                'table', 'hr', 'anchor', 'link', 'unlink'
+            ],
+            allowFileManager: false,
+            allowFileUpload: false,
+            allowImageRemote: false,
+            resizeType: 0,
+            afterBlur: function () { this.sync() },
+            afterCreate: function () {
+                var self = this;
+                self.sync();
+            }
+        });
+
+        editor2 = K.create('#content2', {
+            cssPath: '../Plugins/kindeditor/plugins/code/prettify.css',
+            uploadJson: '/Utility/UploadProductDescribeImage',
+            items: [
+                'undo', 'redo', '|', 'preview', 'template', 'cut', 'copy', 'paste',
+                'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+                'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'clearhtml',
+                'selectall', '|', '/',
+                'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+                'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image',
+                'table', 'hr', 'anchor', 'link', 'unlink'
+            ],
+            allowFileManager: false,
+            allowFileUpload: false,
+            allowImageRemote: false,
+            resizeType: 0,
+            afterBlur: function () { this.sync() },
+            afterCreate: function () {
+                var self = this;
+                self.sync();
+            }
+        });
+
+        editor3 = K.create('#content3', {
+            cssPath: '../Plugins/kindeditor/plugins/code/prettify.css',
+            uploadJson: '/Utility/UploadProductDescribeImage',
+            items: [
+                'undo', 'redo', '|', 'preview', 'template', 'cut', 'copy', 'paste',
+                'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+                'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'clearhtml',
+                'selectall', '|', '/',
+                'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+                'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image',
+                'table', 'hr', 'anchor', 'link', 'unlink'
+            ],
+            allowFileManager: false,
+            allowFileUpload: false,
+            allowImageRemote: false,
+            resizeType: 0,
+            afterBlur: function () { this.sync() },
+            afterCreate: function () {
+                var self = this;
+                self.sync();
+            }
+        });
+        prettyPrint();
+    });
+
+
+    function CopyEditInfo(copyto, copyfrom) {
+        var info = $("#" + copyfrom).val();
+
+        if (copyto == "content2") {
+            editor3.sync();
+            $("#" + copyto).val(info);
+            editor2.html(info);
+        }
+        else if (copyto == "content3") {
+            editor3.sync();
+            $("#" + copyto).val(info);
+            editor3.html(info);
+        }
+    }
+
+    function ShowDes(contentId) {
+        var info = $("#" + contentId).val();
+        var newWindow = window.open("", "")
+        //makeNewWindow()
+        // bring subwindow to front
+        // assemble content for new window
+        var newContent = '<!DOCTYPE html>'
+                        + '<html>'
+                        + '<head>'
+                        + '    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />'
+                        + '    <title>详情页</title>'
+                        + '    <link href="../Content/CSS/common.css" rel="stylesheet" /> '
+                        + '    <link href="../Content/CSS/supplier.css" rel="stylesheet" />'
+                        + '</head>'
+                        + '<body class="bg_f8f8f8">'
+                        + '    <div class="img_xq_wrap">'
+                        + '   <p class="t_c img_xq_title">商品详情</p>'
+                        + '   <div class="img_xq pd20">' + info + '   </div>'
+                        + '    </div>'
+                        + '</body>'
+                        + '</html>'
+
+        newWindow.document.write(newContent)
+        newWindow.document.close()    // close layout stream
+    }
+
+
+</script>
+
+<table class="mg_t5">
+    <tr>
+        <th class="product_title" rowspan="4">
+            <p class="pd_t15">商品图片详情</p>
+        </th>
+        <td class="w3"></td>
+        <td colspan="2" height="18"></td>
+    </tr>
+    <tr>
+        <td class="w3"></td>
+        <td class="t_r vtop" width="150"><i class="color_red vmiddle bitian">*</i><span class="tdspan">商品图片：</span></td>
+        <td>
+            <p class="tips">
+                您可以上传5张图片，大小不超过500K，支持png、jpg、jpeg图片格式。<br />
+                建议图片尺寸宽高不要低于300像素。
+            </p>
+            <div class="img_wrap" id="images">
+                <ul class="clearfix">
+                    @if (imageList != null && imageList.Count() > 0)
+                    {
+                        foreach (var image in imageList)
+                        {
+                            var url = image.ImagePath.Replace('\\', '/');
+                            url = url.Insert(url.LastIndexOf('.'), "_180");
+                            <li class="bor f_l mg_r20 mg_b10">
+                                <input name="file" type="hidden" value="@image.ImagePath">
+                                <div style="line-height: 75px; overflow: hidden;">
+                                    <img src="@(SFO2O.Supplier.Common.ConfigHelper.ImageServer + url)" style="display: inline;" />
+                                </div>
+                                <a href="javascript:void(0)" class="close"></a>
+                            </li>
+                        }
+
+                        if (imageList.Count() < 5)
+                        {
+                            <li class="bor f_l mg_r20 mg_b10" id="addimage"><a href="javascript:void(0)" class="color_green">+添加</a></li>
+                        }
+                        else
+                        {
+                            <li class="bor f_l mg_r20 mg_b10" id="addimage" style="display: none"><a href="javascript:void(0)" class="color_green">+添加</a></li>
+                        }
+                    }
+                    else
+                    {
+                        <li class="bor f_l mg_r20 mg_b10" id="addimage"><a href="javascript:void(0)" class="color_green">+添加</a></li>
+                    }
+                </ul>
+            </div>
+            <p class="wrong_tips color_red">请上传商品图片</p>
+        </td>
+    </tr>
+    <tr>
+        <td class="w3"></td>
+        <td class="t_r vtop"><i class="color_red vmiddle bitian">*</i><span class="tdspan">商品描述：</span></td>
+        <td>
+            <span class="f_l color_green f12">温馨提示：</span>
+            <p class="tips">
+                1、产品详细说明不能为空，填写说明能有效的提升客户对您产品的关注度。<br />
+                2、详情中可插入图片，图片最佳显示宽度 600 像素，高度不限
+            </p>
+            <div class="fuwb_wrap" style="position: relative">
+                <ul class="check_title clearfix" id="ulDetail">
+                    @*<li data-for="liDiv1" class="current"><a href="javascript:void(0);" class="clearfix"><span>中文繁体版</span><i></i></a></li>*@
+                    <li data-for="liDiv2"><a href="javascript:void(0);" class="clearfix"><span>中文简体版</span><i></i></a></li>
+                    @*<li data-for="liDiv3"><a href="javascript:void(0);" class="clearfix"><span class="fuwb_english">英文版</span><i></i></a></li>*@
+                </ul>
+                <div id="liDiv1" class="fuwb" style="display:none">
+                    <textarea id="content1" cols="100" rows="8" style="width: 582px; height: 310px; visibility: hidden; resize: none;display:none">@ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfo_T, "Description")</textarea>
+                    <div class="wrap_preview t_r"><a href="javascript:void(0);" onclick="ShowDes('content1');" class="fff_bor mg_l20 yulan color_green mg_r10">预览</a></div>
+                </div>
+                <div id="liDiv2" class="fuwb">
+                    <textarea id="content2" cols="100" rows="8" style="width: 582px; height: 310px; visibility: hidden; resize: none;">@ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfo_S, "Description")</textarea>
+                    <div class="wrap_preview t_r">
+                        @*<a href="javascript:void(0);" onclick="CopyEditInfo('content2','content1')" class="fff_bor color_green">复制中文繁体版编辑内容</a>*@
+                        <a href="javascript:void(0);" onclick="ShowDes('content2');" class="fff_bor mg_l20 yulan color_green  mg_r10">预览</a>
+                    </div>
+                </div>
+                <div id="liDiv3" class="fuwb" style="display: none">
+                    <textarea id="content3" cols="100" rows="8" style="width: 582px; height: 310px; visibility: hidden; resize: none;">@ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfo_E, "Description")</textarea>
+                    <div class="wrap_preview t_r">
+                        @*<a href="javascript:void(0);" onclick="CopyEditInfo('content3','content1')" class="fff_bor color_green">复制中文繁体版编辑内容</a>*@
+                        @*<a href="javascript:void(0);" onclick="ShowDes('content3');" class="fff_bor mg_l20 yulan color_green  mg_r10">预览</a>*@
+                    </div>
+                </div>
+
+                <p class="wrong_tips color_red" style="position: absolute; width: 200px; bottom: 20px;">请填写商品详情</p>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="w3"></td>
+        <td colspan="2" height="18"></td>
+    </tr>
+</table>

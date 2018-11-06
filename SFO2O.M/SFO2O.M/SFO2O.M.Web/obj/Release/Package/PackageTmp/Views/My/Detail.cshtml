@@ -1,0 +1,274 @@
+﻿@using System.Net.Http.Headers
+@using System.Web.UI.HtmlControls
+@using ServiceStack.Text
+@using SFO2O.BLL.Common
+@using SFO2O.M.Controllers
+@using SFO2O.M.Controllers.Common
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.ViewModel.Product
+@using SFO2O.Model.Enum
+@using SFO2O.Utility.Extensions
+@using SFO2O.Utility.Uitl
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "我的";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = false;
+    MyController mycontro = new MyController();
+    bool istrue = mycontro.getOrderInfoCount();
+    string PinHuoLiStartTime = System.Web.Configuration.WebConfigurationManager.AppSettings["PinHuoLiStartTime"].ToString();
+    string PinHuoLiEndTime = System.Web.Configuration.WebConfigurationManager.AppSettings["PinHuoLiEndTime"].ToString();
+}
+@model SFO2O.Model.My.MyOrderInfoDto
+@section styles {
+    <link href="@BundleConfig.BuildCss("Content/css/order.css")" rel="stylesheet">
+}
+@section scripts {
+    @Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJsMyOrderDetail))
+}
+@section pageHeader {
+    <!-- 页头 -->
+    <header class="pageHeader w100 pr tc overflowH">
+        <a class="returnBtn" id="returnBtn"></a>
+        <b class="f36 FontColor1">订单详情</b>
+        <div class="flowerMenu" id="flowerMenu"></div>
+    </header>
+    <!-- 页头 end -->
+}
+@if (Model != null && !string.IsNullOrEmpty(Model.OrderCode))
+{
+    <table class="detailTable w100 boxShadow bgColor3 mt8">
+        <tr class="f28">
+            <th class="whiteOnLine FontColor4">订单编号：</th>
+            <td class="whiteOnLine">@Model.OrderCode</td>
+        </tr>
+        <tr class="f28">
+            <th class="whiteOnLine FontColor4">订单状态：</th>
+            <td class="whiteOnLine pr">
+                @if (Model.TeamStatus == 2)
+                { 
+                <!--20160425 新增内容 组团失败标识-->
+                <img src="/Content/Images/order/pinFailIcon.png?v=2016041200001" class="pinFailIcon pa">
+                <!--20160425 新增内容 组团失败标识 End-->
+                }
+                @if (@ViewBag.RefundStatus)
+                {
+                    @*<p class="FontColor6 mb5">该订单发生申诉</p>*@
+                    @*<p class="FontColor6 mb5">交易关闭</p><p class="f20 FontColor1">该订单发生申诉</p>*@
+
+                    <p class="FontColor6 mb5">@(Model.OrderStatus.ToString().ToEnum<OrderStatusEnum>().GetDisplayString())</p>
+                    <p class="f20 FontColor1">该订单发生申诉</p>
+
+                }
+                else
+                {
+                    <!--待付款状态-->
+                    <p class="FontColor6 mb5">@(Model.OrderStatus.ToString().ToEnum<OrderStatusEnum>().GetDisplayString())</p>
+                    <!--待付款状态 END-->
+                    <!--待发货状态-->
+                    <!--<p class="FontColor6 mb5">待发货</p>-->
+                    <!--待发货状态 END-->
+                    <!--已发货状态-->
+                    <!--<p class="FontColor6 mb5">已发货</p>-->
+                    <!--已发货状态 END-->
+                    if (Model.OrderStatus == OrderStatusEnum.Received.ToInt())
+                    {
+
+                        var leaveTs = (Model.ArrivalTime.AddDays(ConfigHelper.GetAppSetting("AutoReceivedDay", 7))) - DateTime.Now;
+
+                    <!--已送达状态-->
+
+                        <p class="f20 FontColor4" id="countdown" data-time="@leaveTs.TotalSeconds"></p>
+
+                    <!--已送达状态 END-->
+
+                    }
+                }
+            </td>
+        </tr>
+        
+   
+        <tr class="f28">
+            <th class="whiteOnLine FontColor4"><span style="letter-spacing:4px;">收件人</span>：</th>
+            <td class="whiteOnLine">
+                <p class="mb5">@Model.Receiver @Model.Phone</p>
+                @if (Model.ReceiptCity == Model.ReceiptProvince)
+                {
+
+                    <p class="f24 FontColor3">@Model.ReceiptProvince  @Model.ReceiptRegion @Model.ReceiptAddress</p>
+                }
+                else
+                {
+                    <p class="f24 FontColor3">@Model.ReceiptProvince @Model.ReceiptCity @Model.ReceiptRegion @Model.ReceiptAddress</p>
+                }
+            </td>
+        </tr>
+        @if (Model.TaxType == 2 && Model.OrderStatus == OrderStatusEnum.Shipped.ToInt())
+        {
+            @*<tr class="f28">
+                <th class="whiteOnLine FontColor4">提　　示：</th>
+                <td class="whiteOnLine tipTd">
+                    <a href="http://www.sf-express.com/cn/sc/custom_functions/service/clearance/" target="_blank">
+                        <div class="" style="width:90%">
+                            <p>您的快件已发货，为保证快件顺利通关，请上传真实有效的证件正反面图片。请到第三方物流快递官网上传。</p>
+                        </div>
+                        <i class="itemIcon_jt"></i>
+                    </a>
+                </td>
+            </tr>*@
+        }
+    </table>
+
+    <!--商品信息-->
+    <div class="detailProInf bgColor3 w100 mt8 boxShadow">
+        <p class="orderNum f28">商品信息</p>
+        <ul class="proList">
+            @foreach (var s in Model.SkuInfos)
+            {
+                <li class="w100 pr mb">
+                    <a href="@Url.Action("Index", "Item", new { productCode = s.Spu })" class="proItem displayBox w100">
+                        <div class="proImgWrap grayOnLine">
+                            <img src="@s.ImagePath.GetImageSmallUrl()" class="whiteOnLine">
+                        </div>
+                        <div class="boxflex1 cartProInf ">
+                            <p class="proName f24">@s.Name</p>
+                            <p class="selectedSku f20 FontColor4" style="margin-top: 3px;">
+
+                                @if (!string.IsNullOrEmpty(s.MainDicValue))
+                                {
+                                    @(s.MainDicValue)<text>：</text>@(s.MainValue)
+
+
+
+                                    if (!string.IsNullOrEmpty(s.SubDicValue))
+                                    {
+                                        <text> ,@s.SubDicValue：@s.SubValue</text>
+                                    }
+                                    if (s.MainDicValue.Equals("净重") || s.MainDicValue.Equals("淨重"))
+                                    {
+                                        @(s.NetWeightUnit)
+                                    }
+
+                                    if (s.MainDicValue.Equals("净含量") || s.MainDicValue.Equals("淨含量"))
+                                    {
+                                        @(s.NetContentUnit)
+                                    }
+                                }
+                            </p>
+                            <p class="f30 proName mt5">￥@s.PayUnitPrice.ToString("f2")</p>
+                        </div>
+                        <div class="proPrice tr " style="width: 60px">
+                            <p class="f20 proName">×@s.Quantity</p>
+                        </div>
+                    </a>
+                    @if (Model.OrderStatus == OrderStatusEnum.Received.ToInt() && (s.Quantity - s.RefundQuantity) > 0)
+                    {
+                        <!--已送达才有此按钮-->
+                        <a class="btn normalBtn smallBtn" href="/refund/Complain?orderId=@Model.OrderCode&sku=@s.Sku" target="_self">申诉</a>
+                        @*@Url.Action("", "Refund")*@
+                        <!--已送达才有此按钮 END-->
+                    }
+                </li>
+            }
+        </ul>
+        <div class="orderNum f28 FontColor4  pt0 pb0 mt10"><b class="">商品总价</b><span class="fr FontColor1">￥@Model.ProductTotalAmount.ToString("f2")</span></div>
+        <div class="orderNum f28 FontColor4  pt0 pb0 mt10"><b class="">运费</b><span class="fr FontColor1">全场包邮</span></div>
+      
+       
+        <div class=" whiteOnLine borderBottom  orderNum f28 FontColor4 " style="border-top-width:1px; border-top-style:solid; margin-top:10px"><b class="">实付款（含运费）</b><span class="fr FontColor6">￥@(Model.TotalAmount.ToNumberRoundStringWithPoint())</span></div>
+
+    </div>
+    <!--商品信息 END-->
+    <div class="bgColor3 w100 mt8 boxShadow orderDateDiv" style="margin-bottom: 80px;">
+        @if (Model.CreateTime != DateTime.MinValue)
+        {
+            <div class="orderNum f28 FontColor4 "><b class="">下单时间</b><span class="fr FontColor1">@Model.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")</span></div>
+        }
+        @if (Model.PayTime != DateTime.MinValue)
+        {
+            <div class="orderNum f28 FontColor4 "><b class="">付款时间</b><span class="fr FontColor1">@Model.PayTime.ToString("yyyy-MM-dd HH:mm:ss")</span></div>
+        }
+        @if (Model.DeliveryTime != DateTime.MinValue)
+        {
+            <div class="orderNum f28 FontColor4 "><b class="">发货时间</b><span class="fr FontColor1">@Model.DeliveryTime.ToString("yyyy-MM-dd HH:mm:ss")</span></div>
+        }
+        @if (Model.ArrivalTime != DateTime.MinValue)
+        {
+            <div class="orderNum f28 FontColor4 "><b class="">送达时间</b><span class="fr FontColor1">@Model.ArrivalTime.ToString("yyyy-MM-dd HH:mm:ss")</span></div>
+        }
+        @if (Model.OrderCompletionTime != DateTime.MinValue && Model.OrderStatus == 4)
+        {
+            <div class="orderNum f28 FontColor4 "><b class="">收货时间</b><span class="fr FontColor1">@Model.OrderCompletionTime.ToString("yyyy-MM-dd HH:mm:ss")</span></div>
+        }
+        @if (Model.OrderCompletionTime != DateTime.MinValue && Model.OrderStatus == 5)
+        {
+            <div class="orderNum f28 FontColor4 "><b class="">关闭时间</b><span class="fr FontColor1">@Model.OrderCompletionTime.ToString("yyyy-MM-dd HH:mm:ss")</span></div>
+        }
+    </div>
+    <div class="fixedBottomDiv w100 overflowH ">
+        <div class="fixedBottomDivCon">
+            <p class=" orderBtnWrap tr">
+                @switch (Model.OrderStatus.ToString().ToEnum<OrderStatusEnum>())
+                {
+
+                    case OrderStatusEnum.NonPayment:
+                        {
+                    <!--待付款状态-->
+                            <a class="btn normalBtn cancelBtn" data-ordercode="@Model.OrderCode" href="@Url.Action("Cancel")" target="_self">取消订单</a><a class="btn gotoPay" href="@Url.Action("Index", "Pay", new { id = Model.OrderCode })" target="_self"  data-ordercode="@Model.OrderCode">支付</a>
+                    <!--待付款状态 END-->
+                            break;
+                        }
+                    case OrderStatusEnum.UnDelivered:
+                        {
+                    <!--待发货状态-->
+                            
+                    <!--待发货状态 END-->
+                            break;
+                        }
+                    case OrderStatusEnum.Shipped:
+                        {
+                    <!--已发货状态-->
+                    <a class="btn normalBtn " id="chakanwuliu" wlype="@Model.ExpressCompany" wlcode="@Model.ExpressList" ordercode="@Model.OrderCode">查看物流</a>
+                    <!--已发货状态 END-->
+                            break;
+                        }
+                    case OrderStatusEnum.Received:
+                        {
+                    <!--已送达状态-->
+                    <!--判断是否是团长 -->
+                            if (Model.TeamUserId == Model.UserId && !istrue && Model.TeamStartTime >= Convert.ToDateTime(PinHuoLiStartTime) && Model.TeamStartTime <= Convert.ToDateTime(PinHuoLiEndTime))
+                    {
+                        <!--20160425 新增内容 确认收货需提示返回酒豆数 data-num属性记录需返回的酒豆数 如为空 则表示无需返还酒豆-->
+                            <a class="btn confirmReceiptBtn" data-ordercode="@Model.OrderCode" data-num="@((Model.ProductTotalAmount * 100).ToString("#.##"))" href="@Url.Action("ConfirmOrder")" target="_self">确认收货</a>
+                    <!--20160425 新增内容 确认收货需提示返回酒豆数 data-num属性记录需返回的酒豆数 如为空 则表示无需返还酒豆 End-->
+                    <!--已送达状态 END-->
+                    }
+                    else 
+                    {
+                         <!--20160425 新增内容 确认收货需提示返回酒豆数 data-num属性记录需返回的酒豆数 如为空 则表示无需返还酒豆-->
+                            <a class="btn confirmReceiptBtn" data-ordercode="@Model.OrderCode" data-num="" href="@Url.Action("ConfirmOrder")" target="_self">确认收货</a>
+                    <!--20160425 新增内容 确认收货需提示返回酒豆数 data-num属性记录需返回的酒豆数 如为空 则表示无需返还酒豆 End-->
+                    <!--已送达状态 END-->
+                    }
+                    
+                            break;
+                        }
+                    case OrderStatusEnum.Closed:
+                    case OrderStatusEnum.Complete:
+                        {
+                    <!--交易成功状态 交易关闭状态-->
+                            
+                    <!--交易成功状态 交易关闭状态 END-->
+                            break;
+                        }
+
+                }
+            </p>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+
+</script>
+

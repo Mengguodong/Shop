@@ -1,0 +1,43 @@
+﻿@model List<ProductSellRank>
+@using SFO2O.Admin.Common;
+@using SFO2O.Admin.ViewModel;
+@{
+    ViewBag.PageName = "index";
+    ViewBag.Title = "30天内商品SPU銷量排名";
+}
+<div class="w931">
+    <div class="cont_right_zongji cont_right_tongji mg_t30">
+        <div class="tongji_title"><span class="tongji_title_l">30天内商品SPU銷量排名</span></div>
+        <table class="f15">
+            <tr>
+                <th width="55" class="pd_l20 pd_r20 t_c">排名</th>
+                <th width="160" class="pd_l40 pd_r20">商品名稱</th>
+                <th width="180" class="pd_r10">所屬商家</th>
+                <th width="106" class="color_green t_r pd_r30">已售數量</th>
+                <th width="124" class="t_r pd_r30">已成交金額</th>
+                <th width="106" class="t_r pd_r30">成交訂單量</th>
+            </tr>
+            @if (Model != null && Model.Count > 0)
+            {
+                for (int i = 0; i < Model.Count; i++)
+                {
+                    var p = Model[i];
+                    <tr>
+                        <td><p class="pd_l20 pd_r20">Top@((i + 1).ToString())</p></td>
+                        <td><p class="pd_l20 pd_r20">@p.Name.Omit(56)</p></td>
+                        <td><p class="pd_r10">@p.CompanyName</p></td>
+                        <td><p class="t_r color_green pd_r30">@p.SellCount.ToString("#,0")個</p></td>
+                        <td><p class="t_r pd_r30">$ @p.SellAmount.ToString("#,0.00")</p></td>
+                        <td><p class="t_r pd_r30">@p.OrderCount.ToString("#,0")單</p></td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td class="pd_l20" colspan="6">暫無數據！</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

@@ -1,0 +1,199 @@
+﻿@using SFO2O.Utility.Uitl
+@using SFO2O.Utility.Extensions
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.Controllers;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "确认订单";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = false;
+
+}
+
+@model SFO2O.M.ViewModel.Order.OrderSubmitProductModel
+
+@section scripts{
+    @Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJsConfirmOrder))
+    <script type="text/javascript" src="../../Scripts/cartSubmit.js"></script>
+}
+@section styles{
+    <link href="@BundleConfig.BuildCss("Content/css/shoppingCart.css")" type="text/css" rel="stylesheet" />
+    <link href="@BundleConfig.BuildCss("Content/css/confirmOrder.css")" type="text/css" rel="stylesheet" />
+}
+
+<header class="pageHeader w100 pr tc">
+    <a class="returnBtn" id="returnBtn"></a>
+    <b class="f36 FontColor1">确认订单</b>
+</header>
+<!--如果有二号仓（行邮税）订单，提示用户上传身份证照片-->
+    @if (Model.Items.Count()>0)
+    {
+        if (Model.Items.FirstOrDefault().RealTaxType == 2)
+        { 
+            <p class="warning w95p f24">请您再次确认商品信息和数量，商品购买后无质量问题不予退货。</p>
+        }
+    }
+
+<!-- 物流信息 -->
+@if (Model.IsFixed)
+{
+    <div class="logisticsInfo bgColor3 boxShadow mb8">
+        <div class="bgYellow w95p content">
+            <div class="detail">
+                <div class="personalInfo f28">
+                    <i class="user icon"></i><span class="name">@Model.Receiver</span>
+                    <i class="phone icon"></i>@Model.Phone
+                </div>
+                <div class="address">@Model.Address</div>
+            </div>
+            <i class="rightArrow"></i>
+        </div>
+    </div>
+}
+else
+{
+
+    Html.RenderAction("GetDefaultAddress", "Buy", new { chooseId = Model.AddressId });
+
+}
+<!-- 物流信息end -->
+<!-- 商品信息 -->
+<div class="productInfo bgColor3 boxShadow mb8 ">
+    <ul class="cartProList " id="cartProList1">
+        @foreach (var item in Model.Items)
+        {
+            <li class="  boxSizingB ">
+                <div class="displayBox w95p">
+                    <div class="cartProImgWrap">
+                        <a href="@Url.Action("Index", "Item", new { productCode = item.Spu })" target="_self">
+                            <img src="@item.ImagePath.GetImageSmallUrl()" class="whiteOnLine">
+                        </a>
+                    </div>
+                    <div class="boxflex1 cartProInf pr">
+                        <a href="@Url.Action("Index", "Item", new { productCode = item.Spu })" target="_self">
+
+                            <p class="cartProName f24 mb5">@item.Name</p>
+                            <p class="cartSelectedSku f20 FontColor4">
+                                @if (!item.MainDicValue.IsNullOrEmpty())
+                                {
+                                    @(item.MainDicValue + "：" + item.MainValue)
+                                    if (!item.SubDicValue.IsNullOrEmpty())
+                                    {
+                                        @("," + item.SubDicValue + "：" + item.SubValue)
+                                    }
+                                    if (item.MainDicValue.Equals("净重") || item.MainDicValue.Equals("淨重"))
+                                    {
+                                        @(item.NetWeightUnit)
+                                    }
+
+                                    if (item.MainDicValue.Equals("净含量") || item.MainDicValue.Equals("淨含量"))
+                                    {
+                                        @(item.NetContentUnit)
+                                    }
+                                }
+                            </p>
+                            <p class="cartProPriceP mt5"><b class="proPrice f30 FontColor6">￥@item.SalePriceExchanged.ToNumberRoundStringWithPoint()</b><b class="fr proNum f24">×@item.CartQuantity</b></p>
+                            <span class="cartSelectSkuIco"></span>
+                        </a>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
+<div class="aboutMoney bgColor3 mb8 boxShadow">
+    <p>
+        <span>商品总价</span>
+        <b class="textOrange">￥@Model.TotalProductPrice.ToNumberRoundStringWithPoint()</b>
+    </p>
+    <p>
+        <span>运费</span>
+        <b>全场包邮</b>
+    </p>
+    @*<p>
+        <a id="goTariff" href="/OrderTariff.html?id=@Model.OrderCode">
+            <span>商品税</span>
+            <b class="textOrange">￥@Model.BuyTariff.ToNumberRoundStringWithPoint()<i class="rightArrow"></i></b>
+        </a>
+    </p>*@
+    <!-- 优惠券Start-->
+    @*@if (ViewBag.GiftCardList.Count > 0)
+    {
+        var item = ViewBag.GiftCardList[0];
+        decimal cardSum = Convert.ToDecimal(item.CardSum);
+        <p class="discount" id="discount">
+            <b class="w100 pr">
+                <span>优惠</span>
+                <em id="discountInfo" data-cid="@item.Id" style=" margin-top:6px;">@item.Name<br>立减￥<font id="dis">@cardSum.ToNumberRoundStringWithPoint()</font></em>
+                <i class="rightArrow"></i>
+            </b>
+        </p>
+    }*@
+
+    <!-- 优惠券End-->
+</div>
+@*@if (ViewBag.IsShowHuoli != true)
+{
+    <div class="mb8 boxShadow pt8 pb12 bgColor3 w95p f28" id="selectValue">
+        <i class="radio mr5"></i>可用<span id="vigor">@(Convert.ToInt32(ViewBag.Huoli))</span>酒豆抵￥<span id="vigorValue">@(ViewBag.Huoli / 100)</span>
+    </div>
+}*@
+<!-- 商品信息end -->
+<div class="fixedBottomDiv w100 overflowH">
+    <div class="fixedBottomDivCon">
+        <div class="w100" style="height:45px; line-height:45px;">
+            <a class="shoppingCartBtn f28 tc fr ml5" id="submitOrderBtn">提交订单</a>
+            <p class="tr f28">
+                共<span class="textOrange">@Model.TotaCount</span>件，总金额<span class="textOrange" data="@Model.TotalPrice" id="allMoney">￥@Model.TotalPrice.ToNumberRoundStringWithPoint()</span>
+            </p>
+
+        </div>
+    </div>
+</div>
+
+<!--优惠券列表Start-->
+<div class="selectDiscount FontColor3" id="selectDiscount">
+    <a class="closeBtn">
+        <img src="../Content/Images/closeBtn.png?v=20160519" />
+    </a>
+    <p class="f28 mb16">选择优惠券</p>
+    <ul class="discountList" id="discountList">
+        @if (ViewBag.GiftCardList.Count > 0)
+        {
+            var firstDefaultCard = ViewBag.GiftCardList[0];
+            foreach (var item in ViewBag.GiftCardList)
+            {
+                <li>
+                    <table>
+                        <tr>
+                            <td width="20%" class="tc" style="border-right:1px solid #e0e0e0; ">
+                                <span class="f34 textOrange discountNum" data-cid="@item.Id" data-discount="@item.CardSum" data-huoli="@item.Huoli" data-money="@item.Money">￥@item.CardSum</span>
+                            </td>
+                            <td>
+                                <div class="f28 title pl15">@item.Name</div>
+                                <div class="f20 pl15">@item.BeginTime-@item.EndTime</div>
+                            </td>
+                            <td width="15%" class="tc">
+                                <i class='radio @(item.Id == @firstDefaultCard.Id?"selected":"") mr5'></i>
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+            }
+            <li id="last">
+                <table>
+                    <tr>
+                        <td width="85%">
+                            <div class="f28 pl15 none discountNum" data-cid="0" data-huoli="@ViewBag.HuoliNoUseGiftCard" data-money="@ViewBag.HuoliMoneyNoUseGiftCard">有钱任性，不使用优惠券</div>
+                        </td>
+                        <td width="15%" class="tc">
+                            <i class="radio mr5"></i>
+                        </td>
+                    </tr>
+                </table>
+            </li>
+        }
+    </ul>
+</div>
+<!--优惠券列表End-->

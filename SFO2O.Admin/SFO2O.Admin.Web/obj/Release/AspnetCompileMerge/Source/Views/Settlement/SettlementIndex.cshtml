@@ -1,0 +1,109 @@
+﻿@model SFO2O.Admin.ViewModel.Settlement.SettlementQueryModel
+@{
+    ViewBag.Title = "結算單管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var navigationTitle = "訂單管理";
+    if (Convert.ToBoolean(Model.IsFinance))
+    {
+        navigationTitle = "財務管理";
+    }
+}
+<div class="cont_right_crumb">
+    <span class="homepage"></span>&gt;@navigationTitle &gt; 結算單管理
+</div>
+<div class="w931">
+    <div class="upload_edit">
+        <div style="border-top:none;" class="wrap_yisc pd_t15">
+            <form id="queryForm">
+                <input id="IsFinance" name="IsFinance" value="@Model.IsFinance" type="hidden" />
+                <div style="margin-left:0; margin-right:0;" class="list_yisc bor clearfix">
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">生成時間：</span>
+                        <div style="width:123px; height:29px;overflow:hidden;" class="bor f_l fff_bor">
+                            <input id="CreateTimeStart" name="CreateTimeStart" class="inputdp w70 Wdate" type="text" value="@Model.StartTime.Value.ToString("yyyy-MM-dd")"
+                                   onfocus="WdatePicker({ maxDate: '%y-%M-%d', vel: 'StartTime', isShowClear: true, isShowOK: true, isShowToday: true })" />
+                            <input id="StartTime" name="StartTime" value="@Model.StartTime.Value.ToString("yyyy-MM-dd")" type="hidden" />
+                        </div>
+                        <em class="f_l mg_l5 mg_r5 lineH30">至</em>
+                        <div style="width:123px; height:29px;overflow:hidden;" class="bor f_l fff_bor">
+                            <input id="CreateTimeEnd" name="CreateTimeEnd" class="inputdp w70 Wdate" type="text" value="@Model.EndTime.Value.ToString("yyyy-MM-dd")"
+                                   onfocus="WdatePicker({ maxDate: '%y-%M-%d', vel: 'EndTime', isShowClear: true, isShowOK: true, isShowToday: true })" />
+                            <input id="EndTime" name="EndTime" value="@Model.EndTime.Value.ToString("yyyy-MM-dd")" type="hidden" />
+                        </div>
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l" style="width:160px">結算單狀態：</span>
+                        <select name="SettlementStatus" style="width: 155px;" id="SettlementStatus">
+                            @{
+                                var settlementStatusDic = SFO2O.Admin.Common.EnumUtils.ConvertToDict<SFO2O.Admin.Models.SettlementStatus>();
+                                if (!Convert.ToBoolean(Model.IsFinance))
+                                {
+                                    <option value="-1">請選擇</option>
+
+                                    foreach (var item in settlementStatusDic)
+                                    {
+
+                                        if (Model.SettlementStatus == item.Key)
+                                        {
+                                            <option value="@item.Key" selected="selected">@item.Value</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Key">@item.Value</option>
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    foreach (var item in settlementStatusDic.Where(s=>s.Key==2 || s.Key==3))
+                                    {
+                                        if (Model.SettlementStatus == item.Key)
+                                        {
+                                            <option value="@item.Key" selected="selected">@item.Value</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Key">@item.Value</option>
+                                        }
+                                    }
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">結算單號：</span>
+                        <input type="text" style="width:262px;" class="f_l bor" name="SettlementCode" id="SettlementCode" value="@Model.SettlementCode">
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l" style="width:160px">訂單號/ 退款單號：</span>
+                        <input type="text" style="width:262px;" class="f_l bor" name="OrderCode" id="OrderCode" value="@Model.OrderCode">
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">結算方：</span>
+                        <input type="text" style="width:262px;" class="f_l bor" name="CompanyName" id="CompanyName" value="@Model.CompanyName">
+                    </div>
+
+                    <div class="f_l" style="width:100%;">
+                        <a class="btn_green w160 mg_l20 mg_r20 mg_t10" href="javascript:void(0)" id="search">搜 尋</a>
+                    </div>
+                </div>
+            </form>
+            <div id="list">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/my97/WdatePicker.js"></script>
+<script src="~/Scripts/chosen/chosen.jquery.js"></script>
+<script src="~/Scripts/jquerypager/jquery.pager.latest.js"></script>
+<script src="~/Scripts/StartEndTimeInit.js?@ViewBag.JsAndCssVersion"></script>
+
+<script src="~/Scripts/Settlement/Settlement.js?@ViewBag.JsAndCssVersion"></script>
+<script src="~/Scripts/common.js?@ViewBag.JsAndCssVersion"></script>
+<link href="~/Scripts/chosen/chosen.css" type="text/css" rel="stylesheet" />
+
+
+

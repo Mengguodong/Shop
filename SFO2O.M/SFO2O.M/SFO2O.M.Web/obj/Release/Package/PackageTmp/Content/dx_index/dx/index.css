@@ -1,0 +1,146 @@
+﻿@charset "UTF-8";
+
+.banner{
+	margin:0 auto;
+	max-width:640px;
+	width:100%;
+	overflow:hidden;
+}
+.banner .focusBoxIn div{ 
+	text-align:center;
+}
+.banner .focusBoxIn a{
+	/*line-height: 0;*/
+}
+.banner .focusBoxIn div img{
+	max-width:100%;
+	display: block;
+}
+.bannerIndex{
+	height:8px;
+	position:absolute;
+	bottom:12px; 
+	right:6px;
+	text-align:center;
+	z-index:100;
+}
+.bannerIndex li{ 
+	float:left; 
+	margin-right:8px; 
+	width:8px; 
+	height:8px; 
+	background:#fff; 
+	border-radius: 4px;
+}
+.bannerIndex li.on{ 
+	background:#ffa200; 
+	opacity:1;
+}
+
+/* 轮播 */
+.swipe {
+    overflow: hidden;
+    position: relative;
+}
+.swipe-wrap {
+    overflow: hidden;
+    position: relative;
+}
+.swipe-wrap > li {
+  /*  float: left;
+    width: 100%;*/
+}
+.swipe-wrap > li img{
+	width: 100%;
+	display:block;
+}
+
+.banner .hd{
+	height:8px;
+	position:absolute;
+	bottom:12px; 
+	right:6px;
+	text-align:center;
+	z-index:100; }
+.banner .hd ul{  }
+.banner .hd ul li{ 
+	float:left; 
+	margin-right:8px; 
+	width:8px; 
+	height:8px; 
+	background:#fff; 
+	border-radius: 4px;
+}
+.banner .hd ul .on{
+	background:#ffa200; 
+	opacity:1;
+ }
+
+/* 左右滑动 */
+.indexHotPro{
+	background: #fff;
+	width: 97.5%;
+	padding-left: 2.5%;
+	overflow-x:hidden;
+}
+
+.indexHotPro .item:last-child{
+	margin-right: 0;
+}
+
+.indexSelectedPro .item .price span{
+	margin-left: 4px;
+}
+.indexHotPro .item .price,.indexHotPro .item .title{text-align: center;}
+.indexTitle{ padding:2px 0px 10px 0px;  font-weight: normal;}
+.indexTitle  b{  margin-right: 5px;}
+.indexJt{ width:4.375%; position:absolute; bottom:0px; left:50%; margin-left:-2.1875%;}
+
+/*20160726 新页头*/
+.indexHeader{ padding-top:8px;padding-bottom:8px; background:#fbfbfb; }
+.indexHeader .logo{height:40px; }
+.indexHeader .gotoSearch_index{ position:relative;display:block;margin-right:10px;margin-left:10px; background:#eeeeee;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;width:auto;height:40px;overflow:hidden;  font-size: 1.3rem; padding:0px 10px; }
+.indexHeader .gotoSearch_index span,.indexHeader .gotoMessage span,.indexNav a span{background:url(../Images/index/indexIcon_n.png?v=20160331) no-repeat; background-size:50px auto; -moz-background-size:50px auto; -webkit-background-size:50px auto; }
+.indexHeader .gotoSearch_index span{ display:block; width:12px; height:12px; overflow: hidden;  position:absolute; top:50%; margin-top:-6px; left:10px;}
+.indexHeader .gotoSearch_index b{ line-height:100%; font-weight:normal; position:absolute; top:50%;left:27px; margin-top:-6px;}
+.indexHeader .gotoMessage{ display:block; font-size:1.1rem; padding-top:3px;}
+.indexHeader .gotoMessage b{display: block; padding-top:3px;}
+.indexHeader .gotoMessage b,.indexNav a b{ font-weight: normal;}
+.indexHeader .gotoMessage span{display: block; width:24px; height:19px; overflow: hidden;}
+.indexHeader .gotoMessage span{ background-position:0px -42px;}
+.indexHeader .gotoMessage span.hasTip{ background-position:0px -20px;}
+.indexNav{ padding:14px 0px; float: left;}
+.indexNav a{ float: left; width:20%; font-size:1.1rem; color:#333333;}
+.indexNav a span{ display: block; width:32px; height:32px; overflow: hidden; margin-bottom: 8px;}
+.indexNav a span.indexNavItem1{ background-position: 0px -66px;}
+.indexNav a span.indexNavItem2{ background-position: 0px -103px;}
+.indexNav a span.indexNavItem3{ background-position: 0px -142px;}
+.indexNav a span.indexNavItem4{ background-position: 0px -182px;}
+.indexCategoryList{ height:auto; overflow: hidden;}
+.indexCategoryList  a{ display:block; width:31%; height: auto; overflow: hidden; float: left; margin-right:3.5%; }
+.indexCategoryList  a:last-child{ margin-right: 0px;}
+.indexHotPro .imgBox{ margin-top:10px;}
+/*
+.saleOut{
+  position: absolute;
+  z-index: 100;
+  width: 44%;
+  height:44%;
+  left: 50%;
+  top: 50%;
+  background: rgba(0,0,0,.6);
+  color: #fff;
+  font-size: 1.1rem;
+  text-align: center;
+  margin-left:-22%;
+  margin-top:-22%;
+  border-radius:100%;
+}
+
+.saleOut span{ display:block; position:absolute; top:50%; margin-top:-6px; width:100%; text-align:center;}
+*/
+.indexSelectedPro .item, .productList .item{ border:none;}
+
+/*横向滚动css样式控制*/
+.indexHotPro{ width:auto; white-space: nowrap; overflow-x:auto; -webkit-overflow-scrolling: touch;}
+.indexHotPro::-webkit-scrollbar{    display: none;width:1px; height:1px;}

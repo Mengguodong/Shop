@@ -1,0 +1,59 @@
+﻿@using SFO2O.Utility.Uitl;
+@{
+    ViewBag.Title = ViewBag.Keyword + "搜索结果页";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string ImgVersion = ConfigHelper.ImgVersion;
+    string CssVersion = ConfigHelper.CssVersion;
+    string JSVersion = ConfigHelper.JsVersion;
+}
+@section styles{
+    <!--页面独有样式-->
+    <link rel="stylesheet" type="text/css" href="~/Content/css/producList.css?v=@CssVersion">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/search.css?v=@CssVersion">
+    <!--页面独有样式 END-->
+}
+
+<!-- 页头 -->
+<header class="pageHeader searchHeader w100 pr">
+    <a class="returnBtn" id="returnBtn"></a>
+    <div class="searchBox">
+        <i></i>
+        <input type="search" name="" id="showSearch" />
+    </div>
+    @Html.Partial("~/Views/Shared/_MiniCart.cshtml")
+</header>
+<!-- 页头 end -->
+<!-- 有商品 -->
+<!-- 筛选 -->
+<div class="screenBox whiteOnLine mb8 hide " id="sortType">
+    <div class="active" id="new">
+        <a>默认</a>
+    </div>
+    <div class="price" id="price">
+        <a>价格<i></i></a>
+    </div>
+    <div class="discount" id="discount">
+        <a>折扣<i></i></a>
+    </div>
+    <div class="select" id="select">
+        <a href="javascript:;">筛选<i></i></a>
+    </div>
+</div>
+<!-- 筛选 end -->
+<div class="list productList" id="productList">
+    <div class="w100 clearfix">
+
+    </div>
+    <div id="loadMore" class="loadMore"></div>
+</div>
+<!-- 有商品end -->
+@section scripts{
+    <!--页面独有脚本-->
+    <script type="text/javascript" src="~/Scripts/jquery/fly/jquery.fly.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.showSearch.js"></script>
+    <script type="text/javascript" src="~/Scripts/searchResult.js?v=@JSVersion"></script>
+    <script src="~/Scripts/jquery/jsrender-v1.0.0-beta.js?v=@ConfigHelper.JsVersion"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.lazyload.js?v=@JSVersion"></script>
+    <script src="~/Scripts/selectSKU.js?v=@JSVersion"></script>
+    <!--页面独有脚本 END-->
+}

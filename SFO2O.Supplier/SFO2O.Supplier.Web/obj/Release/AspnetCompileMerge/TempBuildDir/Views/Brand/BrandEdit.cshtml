@@ -1,0 +1,235 @@
+﻿@using SFO2O.Supplier.Models;
+@using SFO2O.Supplier.Common;
+
+@{
+    ViewBag.Title = "添加品牌";
+    ViewBag.PageName = "BrandList";
+    SFO2O.Supplier.Models.SupplierBrandModel brand = ViewBag.Brand;
+    List<SFO2O.Supplier.Models.Category.CategoryModel> category = ViewBag.FirstCategory;
+
+    IList<DicsModel> country = ViewBag.Country;
+    country = country.Where(n => n.Id == 501).ToList();
+}
+<div class="center_cont_right">
+    <div class="cont_right_crumb"><span class="homepage"></span>&gt; 品牌管理 &gt; 添加品牌</div>
+    <div class="w931">
+        <div class="mg_t20">
+            <div class="product_right">
+                <table class="mg_t5">
+                    <tbody>
+                        <tr>
+                            <th class="product_title" rowspan="7">
+                                <p class="pd_t15">品牌信息</p>
+                            </th>
+                            <td class="w3"></td>
+                            <td colspan="2" height="18"></td>
+                        </tr>
+                        <tr>
+                            <td class="w3"></td>
+                            <td class="t_r vtop"><i class="color_red vmiddle bitian">*</i><span class="tdspan">品牌名称：</span></td>
+                            <td>
+                                <input type="hidden" id="Id" value="@brand.Id" />
+                                <input type="hidden" id="operation" value="@ViewBag.Operation" />
+                                <div class="f_l add_success_li">
+                                    <ul class="add_success_wrap f_l fff_bor mg_t5">
+                                        @*<li class=" clearfix icon_f">
+                                            <span class="f_l left"></span>
+                                            <p class="f_l right" style="border-bottom: 1px solid #e5e5e5; width: 534px; height: 26px;">
+                                                <input id="nameHK" value="@brand.NameHK" style="width: 100%; font-size: 15px;" />
+                                            </p>
+                                        </li>*@
+                                        <li class=" clearfix icon_j">
+                                            @*<span class="f_l left" style="margin-top: 8px;"></span>*@
+                                            <p class="f_l right" style="border-bottom: 1px solid #e5e5e5; width: 534px; height: 26px; padding-top: 5px;">
+                                                <input id="nameCN" value="@brand.NameCN" style="width: 100%; font-size: 15px;" />
+                                            </p>
+                                        </li>
+                                        @*<li class=" clearfix icon_e">
+                                            <span class="f_l left"></span>
+                                            <p class="f_l right" style="width: 534px; height: 26px;">
+                                                <input id="nameEN" value="@brand.NameEN" style="width: 100%; font-size: 15px; margin-top: 5px;" />
+                                            </p>
+                                        </li>*@
+                                    </ul>
+                                </div>
+                                <p class="wrong_tips color_red">请输入品牌名称</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="w3"></td>
+                            <td class="t_r vtop" width="158"><i class="color_red vmiddle bitian">*</i><span class="">品牌LOGO：</span></td>
+                            <td>
+                                <div class="img_wrap">
+                                    <ul class="clearfix pd_t10">
+                                        @if (!String.IsNullOrWhiteSpace(brand.Logo))
+                                        {
+                                            <li class="bor f_l mg_r10 mg_b5" id="logoFileLi" style="display: none;">
+                                                <a id="logoFile" href="javascript:void(0);" class="color_green">+添加</a>
+                                            </li>
+                                            <li class="bor f_l mg_r10 mg_b5" id="logoImage">
+                                                <img src="@(SFO2O.Supplier.Common.ConfigHelper.ImageServer + brand.Logo)">
+                                            </li>
+                                            <li class="f_l mg_r10 mg_b5" id="reLogoFileLi" style="background: none;">
+                                                <a id="relogoFile" class="udline color_green f_l mgt mg_l5 lineH22" style="margin-top: 64px;" href="javascript:void(0);">重新上传</a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="bor f_l mg_r10 mg_b5" id="logoFileLi">
+                                                <a id="logoFile" href="javascript:void(0);" class="color_green">+添加</a>
+                                            </li>
+                                            <li class="bor f_l mg_r10 mg_b5" id="logoImage" style="display: none;">
+                                                <img src="">
+                                            </li>
+                                            <li class="f_l mg_r10 mg_b5" id="reLogoFileLi" style="display: none; background: none;">
+                                                <a id="relogoFile" class="udline color_green f_l mgt mg_l5 lineH22" style="margin-top: 64px;" href="javascript:void(0);">重新上传</a>
+                                            </li>
+                                        }
+                                        <p class="wrong_tips color_red">请上传品牌Logo</p>
+                                        <input type="hidden" id="logoPath" value="@brand.Logo">
+                                    </ul>
+                                    <p class="col_aaafb8 lineH36 f12 ftfml_sun">图片建议尺寸为300×300px，支持jpg、gif、png格式。大小在500KB以内。</p>
+                                </div>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="w3"></td>
+                            <td class="t_r vtop" width="158"><i class="color_red vmiddle bitian">*</i><span class="">Banner图：</span></td>
+                            <td>
+                                <div class="img_wrap banner_img_wrap">
+
+                                    <ul class="clearfix pd_t10">
+                                        @if (!String.IsNullOrWhiteSpace(brand.Banner))
+                                        {
+                                            <li class="bor f_l mg_r10 mg_b5" id="bannerFileLi" style="display: none;">
+                                                <a id="bannerFile" href="javascript:void(0);" class="color_green">+添加</a>
+                                            </li>
+                                            <li class="bor f_l mg_r10 mg_b5" id="bannerImage">
+                                                <img src="@(SFO2O.Supplier.Common.ConfigHelper.ImageServer + brand.Banner)">
+                                            </li>
+                                            <li class="f_l mg_r10 mg_b5" id="reBannerFileLi" style="background: none;">
+                                                <a id="reBannerFile" class="udline color_green f_l mgt mg_l5 lineH22 " style="margin-top: 64px;" href="javascript:void(0);">重新上传</a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="bor f_l mg_r10 mg_b5" id="bannerFileLi">
+                                                <a id="bannerFile" href="javascript:void(0);" class="color_green">+添加</a>
+                                            </li>
+                                            <li class="bor f_l mg_r10 mg_b5" id="bannerImage" style="display: none;">
+                                                <img src="">
+                                            </li>
+                                            <li class="f_l mg_r10 mg_b5" id="reBannerFileLi" style="display: none; background: none;">
+                                                <a id="reBannerFile" class="udline color_green f_l mgt mg_l5 lineH22" style="margin-top: 64px;" href="javascript:void(0);">重新上传</a>
+                                            </li>
+                                        }
+                                        <input type="hidden" id="barnnerPath" value="@brand.Banner">
+                                    </ul>
+                                    <p class="wrong_tips color_red">请上传Banner图</p>
+                                    <p class="col_aaafb8 lineH36 f12 ftfml_sun">图片建议尺寸为640×300px，支持jpg、gif、png格式。大小在2M以内。</p>
+                                </div>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="w3"></td>
+                            <td colspan="2" height="18"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="mg_t5">
+                    <tbody>
+                        <tr>
+                            <th class="product_title" rowspan="4">
+                                <p class="pd_t15">品牌介绍</p>
+                            </th>
+                            <td class="w3"></td>
+                            <td colspan="4" height="18"></td>
+                        </tr>
+                        <tr>
+                            <td class="w3"></td>
+                            <td class="t_r vtop" width="150"><i class="color_red vmiddle bitian">*</i><span class="tdspan">所属品类：</span></td>
+                            <td>
+                                <div class="f_l w150">
+                                    <select id="category">
+                                        @foreach (var item in category)
+                                        {
+                                            if (item.CategoryId == brand.CategoryId)
+                                            {
+                                                <option value="@item.CategoryId" selected="selected">@item.CategoryName</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.CategoryId">@item.CategoryName</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                            </td>
+                            <td class="t_r vtop" width="150"><i class="color_red vmiddle bitian">*</i><span class="tdspan">所属国家地区：</span></td>
+                            <td>
+                                <div class="f_l w122">
+                                    <select id="country">
+                                        @foreach (var item in country)
+                                        {
+                                            int countryId = int.Parse(item.KeyName);
+                                            if (countryId == brand.CountryId)
+                                            {
+                                                <option value="@item.KeyName" selected="selected">@item.KeyValue</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.KeyName">@item.KeyValue</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="w3"></td>
+                            <td class="t_r vtop"><i class="color_red vmiddle bitian">*</i><span class="tdspan">品牌简介：</span></td>
+                            <td colspan="3">
+                                <div class="fuwb_wrap mg_r10 mg_r10" id="ulDetail">
+                                    <ul class="check_title clearfix">
+                                        @*<li data-for="liDiv1" class="current"><a href="javascript:void(0);" class="clearfix"><span>中文繁体版</span><i></i></a></li>*@
+                                        <li data-for="liDiv2"><a href="javascript:void(0);" class="clearfix"><span>内容</span><i></i></li>
+                                        @*<li data-for="liDiv3"><a href="javascript:void(0);" class="clearfix"><span class="fuwb_english">英文版</span><i></i></a></li>*@
+
+                                    </ul>
+
+                                    <div class="fuwb" style="width: 560px; height: 360px;" id="liDiv1">
+                                        <textarea id="content1" style="width: 540px; height: 300px; padding: 5px 10px; line-height: 20px;border:1px solid #e4e5e5;">@brand.IntroductionCN</textarea>
+                                    </div>
+                                    @*<div class="fuwb" style="width: 560px; height: 360px; display: none;" id="liDiv2">
+                                        <textarea id="content2" style="width: 540px; height: 300px; padding: 5px 10px; line-height: 20px;border:1px solid #e4e5e5;">@brand.IntroductionCN</textarea>
+                                        <div class="wrap_preview t_r">
+                                            <a href="javascript:void(0);" onclick="CopyEditInfo('content2','content1')" class="fff_bor color_green">复制中文繁体版编辑内容</a>
+                                        </div>
+                                    </div>*@
+                                    @*<div class="fuwb" style="width: 560px; height: 360px; display: none;" id="liDiv3">
+                                        <textarea id="content3" style="width: 540px; height: 300px; padding: 5px 10px; line-height: 20px;border:1px solid #e4e5e5;">@brand.IntroductionEN</textarea>
+                                        <div class="wrap_preview t_r">
+                                            <a href="javascript:void(0);" onclick="CopyEditInfo('content3','content1')" class="fff_bor color_green">复制中文繁体版编辑内容</a>
+                                        </div>
+                                    </div>*@
+
+                                </div>
+                                <p class="wrong_tips color_red"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="w3"></td>
+                            <td colspan="2" height="18"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="zanc_shangc t_c pd_t20 pd_b20"><a href="javascript:void(0)" id="savebrand" class="btn_green btn_w240">完 成</a> </div>
+        </div>
+    </div>
+</div>
+
+@Html.Script("~/Scripts/ajaxupload.3.5.js")
+@Html.Script("~/Scripts/Brand/BrandEdit.js")

@@ -4,8 +4,10 @@ using SFO2O.Admin.Businesses.Order;
 using SFO2O.Admin.Businesses.Supplier;
 using SFO2O.Admin.Common;
 using SFO2O.Admin.Models.Enums;
+using SFO2O.Admin.Models.GreenModel;
 using SFO2O.Admin.Models.Order;
 using SFO2O.Admin.ViewModel.Order;
+using SFO2O.BLL.GreenBll;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,6 +20,48 @@ namespace SFO2O.Admin.Web.Controllers
     public class OrderController : BaseController
     {
         private OrderBll orderBll = new OrderBll();
+
+        public ActionResult UpdateOrderStatus(int orderStatus,string ordercode,string userName,decimal successMoney)
+        {
+           bool isTrue=   orderBll.UpdateOrderStatus(orderStatus,ordercode);
+
+            if (isTrue)
+            {
+                //调用健康绿氧接口
+                int count = 1;
+                if (successMoney > 330)
+                {
+                    count = 2;
+                }
+
+
+                ReturnModel returnModel = GreenGetApiBll.OrderOverApi(userName, count);
+                
+                if (!returnModel.IsTrue &returnModel==null)
+                {
+                    LogHelper.Info(string.Format("admin管理后天UpdateOrderStatus方法调用OrderOverApi健康绿氧订单流程接口运行失败-----参数：userName=" + userName + "&successMoney=" + successMoney));
+                }
+            }
+
+
+            //OrderListQueryModel query = new OrderListQueryModel();
+            //query.BuyerAccount = null;
+            //query.CountryCode = 1;
+            //query.CreateTimeEnd = DateTime.Now;
+            //query.CreateTimeStart = DateTime.Now.AddMonths(-3);
+            //query.IsExcludeCloseOrder = 1;
+            //query.OrderStatus = -2;
+            //query.OrderCode = null;
+            //query.SellerId = 0;
+            //query.SKU = null;
+
+            //int pageSize = 20;
+            //int pageIndex = 1;
+            //int isPaging=1;
+
+            return RedirectToAction("OrderList", "Order");
+        }
+
 
         public ActionResult OrderList()
         {
@@ -37,7 +81,7 @@ namespace SFO2O.Admin.Web.Controllers
         public ActionResult GetOrderList(OrderListQueryModel query, int pageSize, int pageIndex, int isPaging)
         {
             OrderListAndCountModel result = new OrderListAndCountModel();
-
+            query.CountryCode = 1;
             try
             {
                 result.Total = orderBll.GetOrderCount(query);

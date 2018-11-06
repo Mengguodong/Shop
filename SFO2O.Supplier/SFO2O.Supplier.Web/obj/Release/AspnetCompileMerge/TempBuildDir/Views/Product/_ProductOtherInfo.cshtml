@@ -1,0 +1,217 @@
+﻿@using SFO2O.Supplier.Models.Category
+@using SFO2O.Supplier.Businesses
+@using SFO2O.Supplier.Common
+@model IList<SFO2O.Supplier.Models.Category.CategoryAttrModel>
+
+@{
+    var attrarray = new[] { "Weight", "Volume", "Length", "Width", "Height" };
+    var categoryAttrs = Model.Where(x => attrarray.Contains(x.KeyName));
+
+    var productModel = ViewBag.ProductModel;
+    string preOnSaleTime = ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfo_T, "PreOnSaleTime");
+    var salesTerritory = ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfo_T, "SalesTerritory");
+    if (string.IsNullOrEmpty(preOnSaleTime))
+    {
+        preOnSaleTime = DateTime.Now.ToString("yyyy-MM-dd");
+    }
+    else
+    {
+        preOnSaleTime = DateTime.Parse(preOnSaleTime).ToString("yyyy-MM-dd");
+    }
+}
+
+
+@if (categoryAttrs.Count() > 0)
+{
+    <table class="mg_t5">
+        <tbody>
+            <tr>
+                <th class="product_title" rowspan="@(categoryAttrs.Count() + 3)">
+                    <p class="pd_t15">物流包装</p>
+                </th>
+                <td class="w3"></td>
+                <td colspan="2" height="18"></td>
+            </tr>
+            @foreach (CategoryAttrModel attr in categoryAttrs)
+            {
+                <tr>
+                    <td class="w3"></td>
+                    <td class="t_r vtop" width="150"><i class="color_red vmiddle bitian">@(attr.IsRequire == 1 ? "*" : "")</i><span class="tdspan">@attr.KeyValue：</span></td>
+                    <td id="@attr.KeyName" class="@(attr.IsRequire > 0 ? "Require" : "")" data-value="@attr.KeyValue">
+                        <input class="fff_bor f_l h19 mg_r10 mg_t5" type="text" value="@ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfoExpand_T, attr.KeyName)">
+                        <div class="lineH36 f_l w122">
+                            @if (attr.KeyName == "Weight")
+                            {
+                                <span>千克</span>
+                                <input type="hidden" value="2" id="WeightUnit" />
+                            }
+                            else if (attr.KeyName == "Volume")
+                            {
+                                <span>立方厘米</span>
+                                <input type="hidden" value="3" id="VolumeUnit" />
+                            }
+                            else
+                            {
+                                <input type="hidden" value="2" id="@(attr.KeyName + "Unit")" />
+                                <span>厘米</span>
+                            }
+                        </div>
+                        <p class="wrong_tips color_red">请填写商品@(attr.KeyValue)</p>
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td class="w3"></td>
+                <td colspan="2" height="18"></td>
+            </tr>
+        </tbody>
+    </table>
+}
+<!--  -->
+<table class="mg_t5">
+    <tbody>
+        <tr>
+            <th class="product_title" rowspan="7">
+                <p class="pd_t15">其他设置</p>
+            </th>
+            <td class="w3"></td>
+            <td colspan="2" height="18"></td>
+        </tr>
+        <tr>
+            <td class="w3"></td>
+            <td class="t_r vtop" width="150"><i class="color_red vmiddle bitian">*</i><span class="tdspan">佣金：</span></td>
+            <td id="Commission">
+                <div class="clearfix f_l mg_r40 Require" style="width: 197px; @( string.IsNullOrEmpty(salesTerritory) || salesTerritory == "1" || salesTerritory == "3" ? "" : "display:none")" id="commissionCHINA">
+                    <span class="f_l">中国大陆</span>
+                    <div class="price_pinpai normal_bor mg_t5 f_l mg_l5" style="width: auto">
+                        @*<input type="text" id="CommissionInCHINA" class="right f_l w60 bor_none" value="@ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfo_T, "CommissionInCHINA")">*@
+                        <input type="text" id="CommissionInCHINA" class="right f_l w60 bor_none" value="0" readonly="readonly">
+                        <span class="left f_r">%</span>
+                    </div>
+                    <p class="wrong_tips color_red" style="text-indent: 65px; width: 197px; float: left;">请填写佣金</p>
+                </div>
+                @*<div class="clearfix f_l  Require" style="width: 197px; @( string.IsNullOrEmpty(salesTerritory) || salesTerritory == "2" || salesTerritory == "3" ? "" : "display:none")" id="commissionHK">
+                    <span class="f_l">香港地区</span>
+                    <div class="price_pinpai normal_bor mg_t5 f_l mg_l5" style="width: auto">
+                        <input type="text" id="CommissionInHK" class="right f_l w60 bor_none" value="@ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfo_T, "CommissionInHK")">
+                        <span class="left f_r">%</span>
+                    </div>
+                    <p class="wrong_tips color_red" style="text-indent: 65px; width: 197px; float: left;">请填写佣金</p>
+
+                </div>*@
+            </td>
+
+        </tr>
+        <tr>
+            <td class="w3"></td>
+            <td class="t_r  vtop" width="150"><i class="color_red vmiddle bitian">*</i><span class="tdspan">库存最小数量：</span></td>
+            <td class="Require">
+                @*<input type="text" id="MinForOrder" class="fff_bor f_l h19 mg_r10 mg_t5" value="@ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfo_T, "MinForOrder")" />*@
+                <input type="text" id="MinForOrder" class="fff_bor f_l h19 mg_r10 mg_t5" value="0" readonly="readonly" />
+                <p class="wrong_tips color_red">请填写库存最小数量</p>
+            </td>
+        </tr>
+        @if (ViewBag.Action != "edit")
+        {
+            <tr>
+                <td class="w3"></td>
+                <td class="t_r" width="150"><i class="color_red vmiddle bitian">*</i><span class="tdspan">设定上架日期：</span></td>
+                <td>
+                    <div class="select_pinpai f_l w122 bor box_choose" style="overflow: hidden; margin: 5px 0 0 0;">
+                        <input type="text" id="PreOnSaleTime" name="PreOnSaleTime" class="Wdate" onclick="WdatePicker({minDate:'@(DateTime.Now.ToString("yyyy-MM-dd"))'})" value="@preOnSaleTime" />
+                    </div>
+
+                </td>
+            </tr>
+        }
+        <tr>
+            <td class="w3"></td>
+            <td class="t_r" width="150"><i class="color_red vmiddle bitian">*</i><span class="tdspan">换货：</span></td>
+            <td>
+                <div class="clearfix f_l mg_r40" id="exchangeInCHINA" style=" @( string.IsNullOrEmpty(salesTerritory) || salesTerritory == "1" || salesTerritory == "3" ? "" : "display:none") ">
+                    <span class=" f_l mg_r5">
+                    中国大陆</span>
+                    <div class="select_pinpai f_l w122">
+                        <select id="IsExchangeInCHINA" name="IsExchangeInCHINA" style="display: none;">
+                            @{
+
+                                var IsExchangeInCHINA = ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfo_T, "IsExchangeInCHINA");
+
+                                if (IsExchangeInCHINA == "1")
+                                {
+                                    @*<option value="1" selected="selected">支持</option>*@
+    <option value="0" selected="selected">不支持</option>
+                                }
+                                else
+                                {
+                                    @*<option value="1">支持</option>*@
+                                    <option value="0" selected="selected">不支持</option>
+                                }
+
+
+                            }
+
+                        </select>
+                    </div>
+                </div>
+                @*<div class="clearfix f_l" id="exchangeInHK" style=" @( string.IsNullOrEmpty(salesTerritory) || salesTerritory == "2" || salesTerritory == "3" ? "" : "display:none") ">
+                    <span class=" f_l mg_r5">
+                    香港地区</span>
+                    <div class="select_pinpai f_l w122">
+                        <select id="IsExchangeInHK" name="IsExchangeInHK" style="display: none;">
+                            @{
+
+                                var IsExchangeInHK = ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfo_T, "IsExchangeInHK");
+
+                                if (IsExchangeInHK == "1")
+                                {
+                                    <option value="1" selected="selected">支持</option>
+                                    <option value="0">不支持</option>
+                                }
+                                else
+                                {
+                                    <option value="1">支持</option>
+                                    <option value="0" selected="selected">不支持</option>
+                                }
+                            }
+
+                        </select>
+                    </div>
+                </div>*@
+            </td>
+        </tr>
+        <tr>
+            <td class="w3"></td>
+            <td class="t_r  vtop" width="150"><i class="color_red vmiddle bitian">*</i><span class="tdspan">退货：</span></td>
+            <td>
+                @{
+
+                    var IsReturn = ConvertHelper.GetDictionaryValueByKey(productModel.ProductInfo_T, "IsReturn");
+
+                    if (IsReturn == "1")
+                    {
+                        @*<label>
+                            <input name="IsReturn" type="radio" checked="checked" class="mg_r5" value="1" />允许
+                        </label>*@
+                        <label>
+                            <input name="IsReturn" type="radio" checked="checked" class="mg_r5 mg_l40" value="0" />不允许
+                        </label>
+                    }
+                    else
+                    {
+                        @*<label>
+                            <input name="IsReturn" type="radio" class="mg_r5" value="1" />允许
+                        </label>*@
+                        <label>
+                            <input name="IsReturn" type="radio" checked="checked" class="mg_r5 mg_l40" value="0" />不允许
+                        </label>
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="w3"></td>
+            <td colspan="2" height="18"></td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,159 @@
+﻿@model SFO2O.Supplier.ViewModels.InventoryListModel
+@using SFO2O.Supplier.Common;
+@using SFO2O.Supplier.Models;
+@using SFO2O.Supplier.Models.Product;
+@{
+    ViewBag.Title = "查看库存";
+    ViewBag.PageName = "ProductInventory";
+    var list = ViewBag.DataList as PageOf<SkuTempModel>;
+    var permissionSet = ViewData["PermissionSet"] as HashSet<EnumPermission>;
+
+    var spuStatus = new Dictionary<int, string>
+    {
+        {1,"待上架"},
+        {3,"已上架"},
+        {4,"已下架"},
+        {5,"系统下架"},
+    };
+    var boolStatus = new Dictionary<bool, string>
+    {
+        {true,"是"},
+        {false,"否"},
+    };
+}
+
+<div class="cont_right_crumb"><span class="homepage"></span>&gt; 商品管理 &gt; 查看库存</div>
+<div class="w931">
+    <div class="upload_edit">
+        <div class="wrap_yisc bor_bg pd_t15" style="border-top: none;">
+            @using (Html.BeginForm(null, null, FormMethod.Get, new { @class = "list_yisc bor clearfix" }))
+            {
+                <div class="clearfix">
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">@Html.LabelFor(p => p.ProductName)：</span>
+                        @Html.TextBoxFor(p => p.ProductName, new { @class = "f_l bor w240" })
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">@Html.LabelFor(p => p.Spu)：</span>
+                        @Html.TextBoxFor(p => p.Spu, new { @class = "f_l bor w150" })
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l" style="width:90px;">@Html.LabelFor(p => p.Sku)：</span>
+                        @Html.TextBoxFor(p => p.Sku, new { @class = "f_l bor w150" })
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">@Html.LabelFor(p => p.BarCode)：</span>
+                        @Html.TextBoxFor(p => p.BarCode, new { @class = "f_l bor w240" })
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">@Html.LabelFor(p => p.SkuStatus)：</span>
+                        @Html.DropDownListFor(p => p.SkuStatus, new SelectList(spuStatus, "Key", "Value"), "全部")
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l" style="width:90px;">@Html.LabelFor(p => p.IsLowStockAlarm)：</span>
+                        @Html.DropDownListFor(p => p.IsLowStockAlarm, new SelectList(boolStatus, "Key", "Value"), "全部")
+                    </div>
+                </div>
+                <div class="f_l" style="width: 100%">
+                    <a href="javascript:void(0)" class="btn_green w160 mg_l20 mg_r20 mg_t10" id="search">搜 寻</a>
+                    @if (permissionSet.Contains(EnumPermission.Product_InventoryList_Export))
+                    {
+                        @Html.ActionLink("导 出", "ExportInventoryListToExcel",
+                        new
+                        {
+                            ProductName = Model.ProductName,
+                            Spu = Model.Spu,
+                            Sku = Model.Sku,
+                            BarCode = Model.BarCode,
+                            SkuStatus = Model.SkuStatus,
+                            IsLowStockAlarm = Model.IsLowStockAlarm
+                        }, new { @class = "btn_white w160 mg_r30 mg_t10" })
+                    }
+
+                </div>
+            }
+            <div class="tongji_title mg_t30 mg_r10 clearfix">
+                <span style="color:#ccc;float:right">当前库存量最后更新时间：@DateTime.Now.ToDateString() 00:00:00</span>
+            </div>
+            <div class="table_yifb mg_l10 mg_r10">
+                <table style="width: 960px;" class="bg_fff f16 t_c mg_b10 bor">
+                    <tr class="bg_ebebeb h40 t_c">
+                        <th width="155">商品SPU编号</th>
+                        <th width="155">商品名称</th>
+                        <th width="170">条形码</th>
+                        <th width="160">商品SKU编号</th>
+                        <th width="80">属性1</th>
+                        <th width="80">属性2</th>
+                        <th width="90">当前库存量</th>
+                        <th width="90">库存预警值</th>
+                        <th width="90">低库存预警</th>
+                        <th width="80">商品状态</th>
+                    </tr>
+                    @if (list != null && list.Items != null && list.Items.Count > 0)
+                    {
+                        string _spu = null;
+                        foreach (var sku in list.Items)
+                        {
+                            <tr>
+                                @if (_spu != sku.Spu)
+                                {
+                                    var skuCount = list.Items.Count(p => p.Spu == sku.Spu);
+                                    <td class="vtop" rowspan="@skuCount" style="line-height:initial;"><span class="f_l t_l mg10">@sku.Spu</span></td>
+                                    <td class="t_l vtop" rowspan="@skuCount"><span class="f_l t_l mg10" style="line-height: initial;">@sku.ProductName</span></td>
+                                    _spu = sku.Spu;
+                                }
+                                <td class="bor_l">
+                                    <p class="pd10">@sku.BarCode</p>
+                                </td>
+                                <td>@sku.Sku</td>
+                                <td>@sku.MainValue</td>
+                                <td>@sku.SubValue</td>
+                                <td class="t_c">@sku.Qty</td>
+                                <td class="t_c">@sku.AlarmStockQty</td>
+                                <td class="t_c">@sku.IsLowStockAlarm</td>
+                                <td class="bor_r">@(spuStatus[sku.Status])</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td class="t_l" colspan="7">
+                                <p class="color_green pd_l20 t_l mg_t20 mg_b20">没有符合条件的库存信息！</p>
+                            </td>
+                        </tr>
+                    }
+                </table>
+                @if (list != null && list.Items != null && list.Items.Count > 0)
+                {
+                    <div class="page">
+                        @Html.ShowFPage(Url.Action(null
+                    , new
+                    {
+                        PageIndex = "{0}",
+                        ProductName = Model.ProductName,
+                        Sku = Model.Sku,
+                        BarCode = Model.BarCode,
+                        SkuStatus = Model.SkuStatus
+                    })
+                    , Model.PageIndex
+                    , 50
+                    , list.Total)
+                        <p class="f14 mg_l20 mg_b5 inline">
+                            共<em class="color_green pd_l10 pd_r10">@list.RowCount</em>条数据
+                        </p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Style("~/Scripts/Plugins/chosen/chosen.css")
+@Html.Script("~/Scripts/Plugins/chosen/chosen.jquery.js")
+<script type="text/javascript">
+    $("#SkuStatus").chosen({ disable_search: true, width: "163px" });
+    $("#IsLowStockAlarm").chosen({ disable_search: true, width: "163px" });
+    $("#search").click(function () { $(this).closest("form").submit() });
+</script>

@@ -1,0 +1,51 @@
+﻿@using SFO2O.M.Controllers
+@{
+    ViewBag.Title = "登录";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFooter = false;
+}
+@section styles {
+    <link href="@BundleConfig.BuildCss("Content/css/login.css")" rel="stylesheet">
+
+}
+@section scripts {
+    @Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJsLogin))
+}
+<div class="linkWrap pa">
+<a class="loginReturnBtn" id="loginReturnBtn"></a>
+<a class="gotoHome fr" href="/" target="_parent"></a>
+</div>
+<div class="logo">
+    <a href="/" target="_self"><img src="../Content/Images/login/logo.png" alt="logo" /></a>
+</div>
+<div class="loginBox" id="login">
+    <p>
+        <span class="select" id="select">
+            <span>+86&nbsp;&nbsp;</span>
+            @*<img src="@Url.Content("~/Content/Images/login/down.png")">*@
+        </span>
+        <input type="tel" id="tel" placeholder="请您输入手机号" maxlength="11" />
+    </p>
+    <p>
+        <input type="password" maxlength="32"  id="psw" placeholder="请输入密码" />
+    </p>
+</div>
+<div class="btnBox">
+    <a class="btn" id="loginBtn">登&nbsp;录</a>
+    <p class="tc links">
+        @Html.ActionLink("我要注册", "Register") <span>|</span>
+        @Html.ActionLink("忘记密码", "Register", new { t = 1 })
+    </p>  
+</div>
+
+
+@*<div class="sf-pop selectAreaCode bottomShow" id="areaCode">
+        <ul class="content">
+            <li class="current" data-code="86"><i class="radio checked fr"></i>中国大陆（+86）</li>
+        <li data-code="852"><i class="radio fr"></i>中华人民共和国大陆地区（+852）</li>
+        </ul>
+        <div class="btn-box">
+            <a class="cancel" id="cancel">取消</a>
+            <a class="hover m-btn sure" id="sure">完成</a>
+        </div>
+    </div>*@

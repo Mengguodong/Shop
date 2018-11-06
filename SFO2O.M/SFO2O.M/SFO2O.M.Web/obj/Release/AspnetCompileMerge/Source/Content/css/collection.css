@@ -1,0 +1,19 @@
+﻿.pt15{ padding-top:15px;}
+.pb15{ padding-bottom:15px;}
+.collectionListImg{ width:68px; height:68px; margin-right:5px; border:1px solid #e0e0e0;}
+.collectionListName{  height:3em; overflow:hidden;-webkit-line-clamp:2;display:-webkit-box;-webkit-box-orient: vertical;text-overflow:ellipsis ;line-height:150%;}
+.collectionListTip{ line-height:100%;  font-size:10px; margin-top:3px; margin-bottom:3px;}
+.collectionListTip span{ display:inline-block;border-radius:3px;  -moz-border-radius:3px; -webkit-border-radius:3px; color:#fff; margin-right:5px; background:#f75e26; padding:2px 4px; }
+.failure .collectionListTip span{ background:#bcbcbc;}
+.setBtn{ display:block; width:27px;  bottom:0px; right:2px; padding:10px;}
+.setBtn img{width:100%;  }
+.collectionList li.failure,.collectionList li.failure .FontColor6,.collectionList li.failure a{ color:#bcbcbc;}
+
+.emptyTip{ padding:70px 0px;}
+.emptyTip img{ width:34.375%;}
+#collectionDialog{ height:auto;}
+.collectionDiaCon{ padding:60px 0px 40px;}
+.collectionDiaCon a{ display: inline-block; }
+.collectionDiaCon a:first-child{margin-right:20%;}
+.collectionIcon1,.collectionIcon2{ display: inline-block; width:38px; height:36px; overflow: hidden; background:url("../Images/collection/icon2.png?v=201605100001") no-repeat; background-size:38px auto; -moz-background-size:38px auto;  -webkit-background-size:38px auto; margin-bottom:5px;}
+.collectionIcon2{ background-position:0px -46px; }

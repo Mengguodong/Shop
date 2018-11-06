@@ -1,0 +1,43 @@
+﻿@using SFO2O.M.Controllers
+@{
+    this.ViewBag.Title = "填写校验码"; 
+    Layout = "~/Views/Shared/_Layout_login.cshtml";
+}
+@section styles{
+    <link href="@BundleConfig.BuildCss("Content/css/register.css")" rel="stylesheet">
+    }
+@section scripts{
+    <script type="text/javascript">
+        var source = '@ViewBag.Type';
+	</script>
+    @Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJsRegister))
+    }
+	<!--页头-->
+  <header class="pageHeader w100 pr tc overflowH">
+      <a class="returnBtn" id="returnBtn"></a>
+      <b class="f36 FontColor1">填写校验码</b>
+      <a href="/" target="_self" class="gotoHomeBtn"></a>
+  </header>
+  <!--页头 END-->
+  <!--表单内容-->
+  <div class="regForm w100 boxSizingB">
+		<form>
+
+            <input type="hidden" id="mobilePhone" value="@ViewBag.mobilePhone" />
+            <input type="hidden" id="token" value="@ViewBag.token" />
+		<!--填写校验码-->
+			<div class="w100 displayBox mt15">
+				<div class="regWrap regWrapP whiteOnLine f30 FontColor3  bgColor3 displayBox  mr7 boxflex1">
+						<label>短信校验码</label>
+						<div class="regTxtWrap boxflex1 pr10"><input type="text" name="code" id="code" class="regTxt" maxlength="6"></div>
+				</div>
+				<a class="btn defaultBtn codeBtn" id="getCodeBtn2">重新获取(<span id="num">180</span>)</a>
+			</div>
+		<!--填写校验码 END-->
+		<p id="telTip" class="mt10 f24 FontColor3">请输入<span id="telnum"></span>收到的短信校验码</p>
+		<!--按钮-->
+		<a class="btn defaultBtn mt20" id="checkCodeBtn">下一步</a>
+		<!--按钮 END-->
+		</form>
+  </div>
+  <!--表单内容END-->

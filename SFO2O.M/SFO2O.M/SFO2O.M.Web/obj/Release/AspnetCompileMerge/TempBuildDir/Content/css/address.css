@@ -1,0 +1,151 @@
+﻿
+.mr25{
+	margin-right: 25px;
+}
+.addressList｛
+
+.addressList .item{
+}
+.addressList .item .displayBox{
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+.addressList .info{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.addressList .info p.f24{
+	line-height: 20px;
+}
+.addressList .do{
+	line-height: 45px;
+}
+.addressList .delete{
+	background: url(../Images/address/icon_do.png?v=20160331) no-repeat;
+	background-size: 18px auto;
+	display: inline-block;
+}
+.addressList .radio{
+	position: relative;
+	top: 6px;
+}
+.addressList .do .radio{
+	margin-right: 6px;
+}
+.addressList .delete{
+	background-position: center -44px;
+	width: 16px;
+	height: 17px;
+	margin-top: 12px;
+}
+
+/* 编辑收货地址 */
+.addressEdit .item{
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	line-height: 45px;
+	font-size: 1.4rem;
+}
+.addressEdit .item>span{
+	color: #bcbcbc;
+	display: inline-block;
+	width: 90px;
+}
+.addressEdit .item>div{
+	color: #333;
+}
+.addressEdit input{
+	/*font-family: 'microsft yahei';*/
+	width: 90%;
+	font-size: 1.4rem;
+	color: #333;
+	border: none;
+}
+.addressEdit .rightArrow{
+	margin-top: 16px;
+}
+
+/* 选择证件弹框 */
+.selectAreaCode{
+	padding-left: 0;
+	padding-right: 0;
+	padding-top: 0;
+	background: #fff;
+	display: none;
+}
+.selectAreaCode .title{
+	height: 50px;
+	line-height: 50px;
+	background: #f2f2f2;
+	border-bottom: 1px solid #d5dcdd;
+}
+.selectAreaCode .title a{
+	color: #bcbcbc;
+	font-size: 1.6rem;
+}
+.selectAreaCode .title a.sure{
+	float: right;
+	color: #98ca35;
+}
+.selectAreaCode .content{
+	
+}
+.selectAreaCode .content li{
+	width: 95%;
+	padding: 15px 2.5%;
+	color: #333;
+	text-align: left;
+	font-size: 1.4rem;
+	border-bottom: 1px solid #e6ebec;
+}
+
+/* 选择送货地址 */
+.secPage{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: #eee;
+	z-index: 100;
+	overflow: scroll;
+	display: none;
+}
+.secPage ul{
+	background: #fff;
+}
+.secPage li{
+	width: 95%;
+	padding: 16px 2.5%;
+	border-bottom: 1px solid #e0e0e0;
+	font-size: 1.2rem;
+}
+.secPage li a{
+	display: block;
+}
+.secPage .pageHeader{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+.secPage .content{
+	margin-top: 56px;
+}
+
+/* 选择收货地址 */
+.orangeColor{
+	color: #f75d29;
+}
+.selectAddress .radio{
+	margin-left: 20px;
+	background-position: center 20px;
+}
+.selectAddress .radio.checked{
+  background-position: center top;
+}
+.selectAddress{
+	padding-bottom: 55px;
+}

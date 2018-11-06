@@ -1,0 +1,8 @@
+﻿@charset "UTF-8";
+.categoryListWrap img{ display: block;}
+.categoryListWrap h2 img{ width:100%;}
+.categoryListWrap h2{ margin-bottom: 13px;}
+.categoryListItem li{ width:33.333333%; height:auto; overflow: hidden; margin-bottom: 21px; /*padding-left:12px;*/}
+.categoryListItem li a{display:block; width:90%; height:auto;overflow: hidden; padding-left:5%; padding-right:5%;white-space: nowrap; }
+.otherList .categoryListItem img{ margin-bottom:6px; /*width:49.68%;*/width:52%; min-width: 53px; max-width:106px;}
+.gotoSearch{  display: block;height: 35px;position: absolute;right: 3px;top: 5px;width: 35px;background:url("../Images/categoryList/searchIco.png?v=20160331") no-repeat scroll center center; background-size:20px auto;-moz-background-size:20px auto;-webkit-background-size:20px auto;}

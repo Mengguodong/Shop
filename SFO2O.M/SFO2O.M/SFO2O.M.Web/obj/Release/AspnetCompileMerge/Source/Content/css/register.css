@@ -1,0 +1,14 @@
+﻿@charset "UTF-8";
+.regForm{ padding:0px 12px;}
+.regWrap{ border-width:1px;border-style: solid; }
+.regWrap p,.regWrapP{ width:100%;/* height:20px;*/ height:auto; padding:10px 0px; line-height: 20px;}
+.regWrap label{ display:inline-block; width:5em; white-space: nowrap; margin-right:10px; color: #696969; margin-left:17px;}
+.selectArea{ z-index: 5;}
+.selectItems p{ width:auto; border-bottom-width:1px; border-bottom-style:solid; cursor: pointer;}
+.selectItems p:hover,.selectItems p.selected{ background-color:#eeeeee;}
+.selectItems{ position: absolute; border-left-width:1px;border-right-width:1px;border-left-style:solid;border-right-style:solid;}
+.regTxtWrap{height:20px;}
+.regTxt{width:100%; height:20px; background:#fff;border:none; font-size:15px; color:#333;}
+.downJT{ display: inline-block; width:20px; height: 10px; overflow: hidden;background:url(../Images/icon.png?v=20160331) no-repeat 0px -57px; background-size:30px auto; -moz-background-size:30px auto; -webkit-background-size:30px auto; position:absolute; top:15px; right: 10px;}
+#selectedP{ cursor: pointer; border:1px solid #e0e0e0;}
+.codeBtn{  width:7em; padding:0px; height:42px; line-height: 42px;}

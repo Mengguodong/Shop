@@ -1,0 +1,157 @@
+﻿@using SFO2O.Supplier.Models;
+@using SFO2O.Supplier.Common;
+
+@{
+    ViewBag.Title = "品牌列表";
+    ViewBag.PageName = "BrandList";
+    PageOf<SFO2O.Supplier.Models.StoreModel> model = Model;
+    SupplierBrandModel brand = ViewBag.Brand;
+    IList<ProvinceModel> provinceList = ViewBag.ProvinceList;
+}
+
+<div class="center_cont_right">
+    <div class="cont_right_crumb"><span class="homepage"></span>&gt; 品牌管理 &gt; 品牌列表 &gt; @brand.NameHK</div>
+    <div class="w931">
+        <div class="mg_t20 bor_bg">
+            <div class="list_yisc bor clearfix f15" style="margin-left: 15px; margin-right: 15px; margin-top: 15px;">
+                @using (Html.BeginForm(null, null, FormMethod.Get))
+                {
+                    <input type="hidden" value=" @brand.Id " id=" brandid" name="brandId" />
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l" style="width: 80px; text-align: left; margin-top: 10px;">门店区域：</span>
+                        <div class="f_l h19 mg_t5" style="width: 140px;">
+                            <select id="areaId" name="areaId">
+                                <option value="0">全部</option>
+                                @foreach (var item in provinceList)
+                                {
+                                    var province = item.ProvinceName == "香港岛" ? "香港" : item.ProvinceName;
+                                    if (item.ProvinceId == ViewBag.AreaId)
+                                    {
+                                        <option value="@item.ProvinceId" selected="selected">@province</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.ProvinceId">@province</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <a href="javascript:void(0)" id="search" class="btn_green w160 mg_l60 mg_r20">搜 寻</a>
+
+                    </div>
+                }
+            </div>
+            <div class="tongji_title mg_t30 mg_l10 clearfix"><span class="tongji_title_l mg_l5">门店地址</span></div>
+            <div class="t_r wrap_dr_sc">
+                <div class="dr_sc pd_r5"><a href="/Brand/AddStore?brandId=@brand.Id" class="addpro_btn btn_sc mg_l10 mg_r10"><i></i>添加门店地址</a></div>
+            </div>
+            <div class="" style="margin: 0 15px;">
+                <table class="fff_bor t_c f15" style="margin: 0;" width="900">
+                    <tr class="lineH36 bg_f8f8f8">
+                        <th width="70" class="bor_b">序号</th>
+                        <th width="80" class="bor_b">门店区域</th>
+                        <th width="210" class="bor_b">门店地址（繁体版）</th>
+                        <th width="210" class="bor_b">门店地址（简体版）</th>
+                        <th width="250" class="bor_b">门店地址（英文）</th>
+                        <th width="80" class="bor_b">操作</th>
+                    </tr>
+                    @if (model != null && model.Items.Count > 0)
+                    {
+                        foreach (var item in model.Items)
+                        {
+                            <tr class="lineH22">
+                                <td class="bor_b pd10 vtop">@item.RowNum </td>
+                                <td class="bor_b pd10 vtop">@(item.AreaName == "香港岛" ? "香港" : item.AreaName)</td>
+                                <td class="bor_b pd10 vtop t_l">@item.AddressCN</td>
+                                <td class="bor_b pd10 vtop t_l">@item.AddressHK</td>
+                                <td class="bor_b pd10 vtop t_l">@item.AddressEN</td>
+                                <td class="bor_b pd_t10 pd_b10">
+                                    <a href="/Brand/AddStore?id=@item.Id&brandId=@brand.Id" class="col_link">编辑</a><br />
+                                    <a href="javascript:void(0)" onclick="DeleteComfirm(@item.Id)" class="col_link">删除</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr class="lineH36">
+                            <td colspan="6"><span>还没有添加任何门店地址，请先添加</span></td>
+                        </tr>
+                    }
+                </table>
+                <div class="page">
+                    @if (model != null && model.Items.Count > 0)
+                    {
+                        @Html.ShowFPage(Url.Action("StoreList"
+                        , new
+                        {
+                            PageNo = "{0}",
+                            BrandId = brand.Id,
+                            AreaId = ViewBag.AreaId
+
+                        })
+                        , model.PageIndex
+                        , model.PageSize
+                        , model.Total)
+                        <p class="f14 mg_l20 mg_b5 inline">
+                            共<em class="color_green pd_l10 pd_r10"> @(model.Total) </em>个地址
+                        </p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="DeleteTips" style="display: none">
+    <div class="win_cont pd_l20 pd_r20">
+        <p class="t_c pd_t40 pd_b10">你确定要删除门店地址吗？</p>
+        <p class="t_c pd_b30 f14 color_838383">删除后，品牌介绍页面将不会显示</p>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $("#areaId").chosen({ disable_search: true, width: "140px" });
+
+        $("#search").click(function () { $(this).closest("form").submit() });
+
+    })
+
+    function DeleteComfirm(id) {
+        $.dialog({
+            width: 470,
+            title: "提示",
+            content: $("#DeleteTips").html(),
+            buttons: [{
+                text: "取消",
+                isWhite: 1
+            },
+                {
+                    text: "确定",
+                    onClick: function () {
+                        DeleteAddress(id);
+                        return true;
+                    }
+                }]
+        });
+    }
+
+    function DeleteAddress(id) {
+        $.ajax({
+            type: 'POST',
+            url: "/Brand/DeleteAddress",
+            data: "id=" + id,
+            async: true,
+            success: function (data) {
+                if (data.result) {
+                    window.location.href = "/Brand/StoreList?brandId=" + $("#brandId").val() + "&areaId=" + $("#areaId").val();
+                }
+                else {
+                    $.dialog("品牌信息保存失败！");
+                }
+            }
+        });
+    }
+</script>

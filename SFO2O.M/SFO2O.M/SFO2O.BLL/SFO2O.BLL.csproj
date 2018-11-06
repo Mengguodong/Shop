@@ -62,6 +62,7 @@
     <Compile Include="Account\AccountBll.cs" />
     <Compile Include="Activity\ActivityBll.cs" />
     <Compile Include="GiftCard\GiftCardBll.cs" />
+    <Compile Include="GreenBll\GreenGetApiBll.cs" />
     <Compile Include="Holiday\HolidayBll.cs" />
     <Compile Include="Information\InformationBll.cs" />
     <Compile Include="Item\ItemBll.cs" />

@@ -1,0 +1,61 @@
+﻿.text{
+	position: absolute;
+	width: 100%;
+	bottom: 2px;
+	color: #fff;
+}
+.text .f20{
+	color: #f5df86;
+}
+.mooncakeList{
+	background: #000131;
+	padding-top: 10px;
+}
+.mooncakeList .item{
+	border:none;
+}
+.mooncakeList .more{
+	width: 49%;
+	height: auto;
+	margin-bottom: 10px;
+	float: right;
+	display: inline;
+	background: #fff;
+	overflow: hidden;
+}
+.mooncakeList .more div{
+	margin: 7px;
+	background: url(../../Images/active/moonCake/more.jpg?v=20160727) no-repeat;
+	background-size: cover;
+}
+.mooncakeList .productList .item .price{
+	overflow: visible;
+}
+.moreB{
+	width: 100%;
+	padding-bottom: 8px;
+}
+.moreB img{
+	display: block;
+	width: 100%;
+}
+.saleOut_n{
+	background:#dedede; color:#fff;
+	font-size: 1.2rem;
+	text-align: center;
+	width: 100%;
+	padding: 7px 0;
+}
+
+.mooncakeList .productList .title{
+	height: 3rem;
+	line-height: 1.5rem;
+	font-size: 1.4rem;
+	color: #313131;
+	-webkit-line-clamp:2;
+	padding-left: 2.5%;
+	padding-right: 2.5%;
+}
+.mooncakeList .original{
+	font-size: 1.2rem;
+}

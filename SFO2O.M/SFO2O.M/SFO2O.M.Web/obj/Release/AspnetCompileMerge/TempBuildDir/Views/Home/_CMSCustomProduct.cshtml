@@ -1,0 +1,122 @@
+﻿@{
+    Layout = null;
+}
+@using SFO2O.M.Controllers.Common
+@using SFO2O.Utility.Uitl
+@using SFO2O.Utility.Extensions;
+
+@model List<System.Collections.Hashtable>
+
+
+@{
+    // 获得自定义模块数据
+    System.Collections.Hashtable CustomAllDataMap = Model[0];
+
+    // 自定义模块数据有数据
+    if (CustomAllDataMap.Count != 0)
+    {
+        // 获得自定义模块Module数据集合
+        IList<SFO2O.Model.CMS.CMSCustomModuleEntity> CustomModuleList
+            = (IList<SFO2O.Model.CMS.CMSCustomModuleEntity>)CustomAllDataMap[ConfigHelper.GetAppConfigString("CustomModule")];
+        
+        // 获得自定义模块Banner数据集合
+        IList<SFO2O.Model.CMS.CMSCustomBannerEntity> CustomBannerList
+            = (IList<SFO2O.Model.CMS.CMSCustomBannerEntity>)CustomAllDataMap[ConfigHelper.GetAppConfigString("CustomBanner")];
+        
+        // 获得自定义模块Product数据集合
+        IList<SFO2O.Model.CMS.CMSCustomProductEntity> CustomProductList
+            = (IList<SFO2O.Model.CMS.CMSCustomProductEntity>)CustomAllDataMap[ConfigHelper.GetAppConfigString("CustomProduct")];
+
+        // 自定义模块Module数据集合不为空
+        if (CustomModuleList != null)
+        {
+            foreach (SFO2O.Model.CMS.CMSCustomModuleEntity CustomModule in CustomModuleList)
+            {
+                // 有相应模块则显示在首页
+                <h2 class="indexTitle tc w100"><b class="f30 FontColor1">@CustomModule.Name</b><span class="f22 FontColor4">@CustomModule.MSubTitle</span></h2>
+                
+                // 模块下有相应的Banner数据集合
+                if (CustomBannerList != null)
+                {
+                    for (int i = 0; i < CustomBannerList.Count;i++ )
+                    {
+                        // 所属模块下的Banner显示
+                        if (CustomBannerList[i].CbModuleId == CustomModule.ModuleId)
+                        {
+
+                            var BannerProductList = new List<SFO2O.Model.CMS.CMSCustomProductEntity>();
+                            if (CustomProductList != null && CustomProductList.Count() != 0)
+                            {
+                                // 获得所属Banner下的商品数据
+                                BannerProductList = CustomProductList.Where(item => item.CpBannerId == CustomBannerList[i].BannerId).ToList();
+                            }
+
+                            <div class='brandImg pr @(BannerProductList.Count == 0 ? "mb8" : "")'>
+                                <a href="@CustomBannerList[i].LinkUrl" target="_self" class="lazyloadImgWrap">
+                                    <img  data-original="@CustomBannerList[i].ImageUrl.GetImageUrl()" class="show w100 lazyloadImg banner_n">
+                                    <!--所属Banner下有商品数据，显示箭头图片-->
+                                    @if (BannerProductList != null && BannerProductList.Count() != 0)
+                                    {
+                                        <img class="indexJt" src="../Content/Images/index/jt.png">
+                                    }
+                                </a>
+                            </div>
+                            
+                            // 自定义模块的商品数据不为空
+                            if (CustomProductList != null && BannerProductList.Count() > 0)
+                            {
+                        <div class="indexHotPro mb8 bgColor3" id="scrollList_@(i)">
+                            <div class="itemBox clearfix">
+
+                                @foreach (SFO2O.Model.CMS.CMSCustomProductEntity CustomProduct in CustomProductList)
+                                {
+                                    // 所属Banner下有商品数据，显示Banner下的商品信息
+                                    if (CustomProduct.CpBannerId != 0 && CustomProduct.CpBannerId == CustomBannerList[i].BannerId)
+                                    {
+                                        // 促销和售罄信息
+                                        bool isPromotionPrice = false;
+                                        decimal temprice = CustomProduct.MinPrice * ViewBag.ExchangeRate;
+                                        if (temprice > CustomProduct.DiscountPrice * ViewBag.ExchangeRate && CustomProduct.DiscountPrice * ViewBag.ExchangeRate > 0)
+                                        {
+                                            temprice = CustomProduct.DiscountPrice * ViewBag.ExchangeRate;
+                                            isPromotionPrice = true;
+                                        }
+                                        string discountStr = string.Empty;
+                                        if (CustomProduct.DiscountRate > 0)
+                                        {
+                                            discountStr = CustomProduct.DiscountRate.ToNumberStringFloat() + "折";
+                                        }
+                                            
+                                        <div class="item">
+                                            <a href="item.html?productCode=@CustomProduct.Spu" target="_self">
+                                                <div class="imgBox">
+                                                    @if (CustomProduct.Qty - CustomProduct.MinForOrder <= 0)
+                                                    {
+                                                        <div class="saleOut"><span>已售罄</span></div>
+                                                    }
+                                                    <img data-original="@CustomProduct.ImagePath.GetImageUrl().Replace(".jpg", "_640.jpg").Replace(".JPG", "_640.jpg").Replace(".png", "_640.png").Replace(".PNG", "_640.png").Replace(".bmp", "_640.bmp").Replace(".BMP", "_640.bmp")" class="lazyloadImg">
+                                                    @if (isPromotionPrice)
+                                                    {
+                                                        <span class="account">@discountStr</span>
+                                                    }
+                                                </div>
+                                                <div class="title">@CustomProduct.Title</div>
+                                                <div class="price">￥@temprice.ToNumberStringIntelligent()</div>
+                                            </a>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                            }
+                            
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+}
+

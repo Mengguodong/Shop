@@ -1,0 +1,58 @@
+﻿@using System.Web.UI.HtmlControls
+@using SFO2O.BLL.Common
+@using SFO2O.M.Controllers
+@using SFO2O.M.Controllers.Common
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.ViewModel.Product
+@using SFO2O.Model.Enum
+@using SFO2O.Utility.Extensions
+@using SFO2O.Utility.Uitl
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "我的"+ViewBag.SubTitle ?? "";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = true;
+
+}
+@model IEnumerable<SFO2O.Model.My.MyOrderInfoDto>
+@section styles {
+    <link href="@BundleConfig.BuildCss("Content/css/order.css")" rel="stylesheet">
+}
+@section scripts {
+    @Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJsMyOrders))
+}
+@section pageHeader {
+    <!-- 页头 -->
+    <header class="pageHeader w100 pr tc overflowH">
+        <a class="returnBtn" id="returnBtn"></a>
+        <b class="f36 FontColor1">@(ViewBag.SubTitle ?? "我的")</b>
+        <div class="flowerMenu" id="flowerMenu"></div>
+    </header>
+    <!-- 页头 end -->
+}
+@if (Model != null && Model.Any())
+{
+    <!--订单列表-->
+    <ul class="orderList w100" id="orderList">
+        @Html.Partial("_Items", Model)
+    </ul>
+    if(Model.Count()>=10)
+    {
+         <p id="moreTip" class="f20 FontColor4 pt10 pb10 tc">上滑加载更多</p>
+    }
+    else
+    {
+         <p id="moreTip" class="f20 FontColor4 pt10 pb10 tc">全部加载完</p>
+    }
+    <!-- <p id="moreTip" class="f20 FontColor4 pt10 pb10 tc hide">上滑加载更多</p> -->
+    <!--订单列表 END-->
+}
+<!--订单为空-->
+<div class="empty tc @(Model != null && Model.Any() ? "hide" : "")" id="emptyDiv">
+    <img src="@Url.Content("~/Content/Images/order/null.png")">
+    <p class="f24 FontColor3">还没有相关的订单</p>
+    <p class="f20 FontColor4">可以去看看哪些想买的</p>
+    <a href="@DomainHelper.MUrl" target="_self" class="btn mc">随便逛逛</a>
+</div>
+<!--订单为空 END-->

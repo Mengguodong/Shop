@@ -1,0 +1,46 @@
+﻿@using System.Web.UI.HtmlControls
+@using SFO2O.BLL.Common
+@using SFO2O.M.Controllers
+@using SFO2O.M.Controllers.Common
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.ViewModel.Product
+@using SFO2O.Utility.Extensions
+@using SFO2O.Utility.Uitl
+@model IList<SFO2O.Model.Product.ProductImage>
+    @{
+        Layout = "~/Views/Shared/_Layout.cshtml";
+        ViewBag.ShowFastShoppingCart = false;
+        this.ViewBag.Title = "商品图片";
+        ViewBag.ShowFooter = false;
+    }
+    @section styles {
+        <link href="@BundleConfig.BuildCss("Content/css/item.css")" rel="stylesheet">
+    }
+    @section scripts { 
+         
+        @Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJsProductPicture))
+    }
+    @section pageHeader {
+        <!-- 页头 -->
+        <header class="pageHeader w100 pr tc overflowH">
+            <a class="returnBtn" id="returnBtn"></a>
+            <b class="f36 FontColor1">商品图片</b>
+        </header>
+    }
+
+    <!-- 页头 end -->
+    <!--轮播图-->
+    <div class=" banner pr  mc clearfix hide" id="mySwipe">
+        <div class="bannerIndex clearfix hd" id="mySwipeLiItems">
+            <ul></ul>
+        </div>
+        <div class="swipe focusBox f0 bd">
+            @foreach (var m in Model)
+            {
+                <ul class="swipe-wrap focusBoxIn">
+                    <li><img src="@m.ImagePath.GetImageUrl()" /></li>
+                </ul>
+            } 
+        </div>
+    </div>
+    <!--轮播图 END--> 

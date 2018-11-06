@@ -1,0 +1,167 @@
+﻿.f40{
+	font-size: 2rem;
+	letter-spacing: 0.2em;
+}
+
+.banner img{
+	display: block;
+}
+
+.extraTime{
+	color: #8782c5;
+}
+.extraTime .icon_clock{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url(../../Images/active/time.png?v=20160414);
+	background-size: 20px auto;
+	position: relative;
+	top: 4px;
+	margin-right: 8px;
+}
+.extraTime span{
+	background: #9894cd;
+	border: 1px solid #8a85c6;
+	display: inline-block;
+	width: 25px;
+	height: 20px;
+	border-radius: 4px;
+	color: #fff;
+	text-align: center;
+	line-height: 20px;
+	margin-left: 5px;
+	margin-right: 5px;
+	font-size: 1.2rem;
+}
+
+.menu{
+	position: relative;
+	top: -2px;
+}
+.menu li{
+	background: url(../../Images/active/menuBg.jpg?v=20160414);
+	background-size: 100% auto;
+	font-family: 'Microsoft yahei';
+	margin-right: 1px;
+	width:1px;
+	padding-top: 10px;
+	padding-bottom: 6px;
+}
+.menu li:last-child{
+	margin-right: 0;
+}
+.menu li.active{
+	background-image: url(../../Images/active/menuBg_a.jpg?v=20160414);
+}
+.menu a{
+	color: #fff;
+}
+.menu .active a{
+	color: #fbf9fe;
+}
+
+.tehui .title,.zhekou .title{
+	margin-bottom: 12px;
+}
+.tehui .title img,.zhekou .title img{
+	width: 100%;
+}
+.tehui .item{
+	margin-bottom: 20px;
+}
+.tehui .item img{
+	width: 100%;
+	display: block;
+}
+.tehui .imgBox{
+	width: 100%;
+	margin-bottom: 8px;
+	position: relative;
+}
+.tehui .imgBox div{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: 5px 7px;
+	background: rgba(0,0,0,.65);
+	color: #fff;
+	font-size: 1.2rem;
+}
+.tehui .item .name{
+	color: #000;
+	font-size: 1.4rem;
+}
+
+
+/*需添加到页面上*/
+.discountTabWrap{min-width: 320px;max-width: 640px; background: #f8f7f7;}
+/*.discountTab{ white-space: nowrap; width: 521px;}*/
+.discountTab div{ -webkit-box-flex:1; -moz-box-flex:1; box-flex:1; font-size:14px; border-bottom: 2px solid #f8f7f7; color:#9b9a9a; padding:10px 0px; background:#f8f7f7; text-align: center;}
+.discountTab div:last-of-type{ margin-right:0px;}
+.discountTab div.cur{ /*background:#eee;*/ color: #000; border-bottom-color:#bccb27; }
+.fixedTop{ position:fixed; top:0px; left:50%; z-index: 10000;}
+.discountTab div:nth-child(3n-0){
+	margin-right: 0;
+}
+
+.productList .item .title{
+	 font-size: 1.2rem;
+	  color: #313131;
+	  margin-top: 10px;
+	  margin-bottom: 10px;
+	  /*text-align: left;
+	  white-space: nowrap;
+	  overflow-x: hidden;*/
+	  white-space: normal;
+	  -webkit-line-clamp:2; /* 两行显示不开显示... */
+    display:-webkit-box;
+    -webkit-box-orient: vertical;
+    text-overflow:ellipsis ;
+    overflow: hidden;
+}
+
+.productList .more{
+	float: left;
+	border: 1px solid #e8edf0;
+	text-align: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	margin-bottom: 10px;
+}
+.productList .more.muying{
+	background-image: url(../../Images/active/bg1.jpg?v=20160415);
+}
+.productList .more.baojian{
+	background-image: url(../../Images/active/bg2.jpg?v=20160415);
+}
+.productList .more.gehu{
+	background-image: url(../../Images/active/bg3.jpg?v=20160415);
+}
+.productList .more.meishi{
+	background-image: url(../../Images/active/bg4.jpg?v=20160415);
+}
+.productList .more.jiaju{
+	background-image: url(../../Images/active/bg5.jpg?v=20160415);
+}
+.productList .more.dianzi{
+	background-image: url(../../Images/active/bg6.jpg?v=20160415);
+}
+.productList .more .title{
+	width: 66%;
+	margin: 70% auto 8px;
+	text-align: center;
+}
+
+.productList .more .detail{
+	font-size: 1.2rem;
+	color: #8f8c8f;
+	margin-bottom: 15px;
+}
+.productList .more .moreBtn{
+	border: 1px solid #e0e0e0;
+	padding: 5px 13px;
+	background: #fff;
+	font-size: 1.2rem;
+}

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using SFO2O.Admin.ViewModel.Order;
 using SFO2O.Admin.ViewModel;
 using SFO2O.Admin.Common;
+using System.Data;
 
 namespace SFO2O.Admin.DAO.Order
 {
@@ -65,6 +66,16 @@ WHERE	oi.OrderCode = @OrderCode
             var parameters = db.CreateParameterCollection();
             parameters.Append("@OrderCode", orderCode);
             return db.ExecuteSqlFirst<OrderInfo>(sql, parameters);
+        }
+
+        public bool UpdateOrderStatus(int orderStatus, string orderCode)
+        {
+            var sql = @"update OrderInfo set OrderStatus=@orderStatus where OrderCode=@orderCode;";
+            var db = DbSFO2OMain;
+            var parameters = db.CreateParameterCollection();
+            parameters.Append("@orderStatus", orderStatus);
+            parameters.Append("@orderCode", orderCode);
+            return db.ExecuteNonQuery(CommandType.Text,sql, parameters)>0;
         }
 
         public OrderInfoModel GetOrderMainInfo(string orderCode)
@@ -172,7 +183,7 @@ WHERE	oi.OrderCode = @OrderCode
 	                INNER JOIN OrderProducts op(NOLOCK) on o.OrderCode=op.OrderCode
 	                INNER JOIN customer c(NOLOCK) on c.ID=o.UserId
 	                INNER JOIN SkuInfo s(NOLOCK) on s.Sku= op.Sku 
-	                INNER JOIN ProductInfo p(NOLOCK) on p.Id=s.SpuId and p.LanguageVersion=2
+	                INNER JOIN ProductInfo p(NOLOCK) on p.Id=s.SpuId and p.LanguageVersion=1
                     WHERE 1=1 {0} {1}
 	                GROUP BY o.OrderCode,o.CustomsDuties,o.ExchangeRate
                 ) t";
@@ -214,7 +225,7 @@ WHERE	oi.OrderCode = @OrderCode
                             INNER JOIN OrderProducts op(NOLOCK) on o.OrderCode=op.OrderCode
                             INNER JOIN customer c(NOLOCK) on c.ID=o.UserId
                             INNER JOIN SkuInfo s(NOLOCK) on s.Sku= op.Sku 
-                            INNER JOIN ProductInfo p(NOLOCK) on p.Id=s.SpuId and p.LanguageVersion=2
+                            INNER JOIN ProductInfo p(NOLOCK) on p.Id=s.SpuId and p.LanguageVersion=1
                             WHERE 1=1 {0} {1}
                             GROUP BY o.OrderCode,o.CreateTime,c.UserName,o.OrderStatus,o.ExchangeRate,o.CustomsDuties
                     ) a)b WHERE b.RowNumber>(@PageIndex-1)*@PageSize AND b.RowNumber <= @PageIndex*@PageSize 
@@ -225,7 +236,7 @@ WHERE	oi.OrderCode = @OrderCode
                 FROM OrderProducts(NOLOCK) AS op
                 INNER JOIN orderMain AS om ON op.OrderCode = om.OrderCode
                 INNER JOIN SkuInfo si(NOLOCK) ON si.Sku= op.Sku 
-                INNER JOIN ProductInfo p(NOLOCK) ON p.Id=si.SpuId and p.LanguageVersion=2
+                INNER JOIN ProductInfo p(NOLOCK) ON p.Id=si.SpuId and p.LanguageVersion=1
                 INNER JOIN Supplier(NOLOCK) AS s ON s.SupplierID = p.SupplierId
                 LEFT JOIN IMGS ON IMGS.Spu=op.Spu
                 WHERE 1=1 {2}
@@ -237,7 +248,7 @@ WHERE	oi.OrderCode = @OrderCode
                 INNER JOIN OrderProducts op(NOLOCK) on o.OrderCode=op.OrderCode
                 INNER JOIN customer c(NOLOCK) on c.ID=o.UserId
                 INNER JOIN SkuInfo s(NOLOCK) on s.Sku= op.Sku 
-                INNER JOIN ProductInfo p(NOLOCK) on p.Id=s.SpuId and p.LanguageVersion=2
+                INNER JOIN ProductInfo p(NOLOCK) on p.Id=s.SpuId and p.LanguageVersion=1
                 WHERE 1=1 {0} {1}
                 ";
 

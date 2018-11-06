@@ -1,0 +1,164 @@
+﻿@using SFO2O.M.ViewModel.Account;
+@using SFO2O.M.Controllers;
+@using SFO2O.Model.Shopping;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = false;
+    AddressEntity entity = ViewBag.AddressModel as AddressEntity;
+    this.ViewBag.Title = entity == null ? "添加收货地址" : "编辑收货地址";
+}
+@section scripts{
+    @Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJsAddressList))
+}
+@section styles{
+
+    <link href="../Content/css/address.css?v=201512150001" rel="stylesheet">
+}
+<header class="pageHeader w100 pr tc">
+    <a class="returnBtn" id="returnBtn"></a>
+    <b class="f36 FontColor1">@ViewBag.Title.Replace("-", "")</b>
+</header>
+@if (entity == null)
+{
+    <div class="addressEdit mt10 boxShadow bgColor3 mb8">
+        <div class="item displayBox whiteOnLine w95p">
+            <span>收货人姓名</span>
+            <div class="boxflex1">
+                <input id="consigneeName" type="text" maxlength="20" placeholder="填写真实姓名" />
+            </div>
+        </div>
+        <div class="item displayBox whiteOnLine w95p">
+            <span>手机号码</span>
+            <div class="boxflex1">
+                <input id="tel" type="number" maxlength="11" value="">
+            </div>
+        </div>
+        <div class="item displayBox whiteOnLine w95p pr">
+            <span>所在地区</span>
+            <div class="boxflex1" id="selectAddress">
+                <i class="rightArrow fr"></i>
+                <span id="area"></span>
+            </div>
+        </div>
+
+        <div class="item displayBox whiteOnLine w95p">
+            <span>详细地址</span>
+            <div class="boxflex1">
+                <input id="address" type="text" maxlength="400" />
+            </div>
+        </div>
+
+        <div class="item displayBox whiteOnLine w95p" style="display:none;">
+            <span>邮政编码</span>
+            <div class="boxflex1">
+                <input type="text" id="zipCode" maxlength="6" value="100000" />
+            </div>
+        </div>
+    </div>
+    <div class="addressEdit boxShadow bgColor3 mb8" style="display:none;">
+        <div class="item displayBox whiteOnLine w95p pr">
+            <span>有效证件</span>
+            <div class="boxflex1">
+                <!--<i class="downJT"></i>-->
+                <span id="docNumberType" val="1">身份证</span>
+            </div>
+        </div>
+        <div class="item displayBox whiteOnLine w95p">
+            <span>证件号</span>
+            <div class="boxflex1">
+                <input type="text" id="docNumber" maxlength="18" trueid="230702198704041418" value="230702198704041418" />
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="addressId" value="0" />
+    <input type="hidden" id="provincename" provinceid="" />
+    <input type="hidden" id="cityname" cityid="" value="" />
+    <input type="hidden" id="areaname" areaid="" value="" />
+}
+else
+{
+    <div class="addressEdit mt10 boxShadow bgColor3 mb8">
+        <div class="item displayBox whiteOnLine w95p">
+            <span>收货人姓名</span>
+            <div class="boxflex1">
+                <input id="consigneeName" type="text" maxlength="20" placeholder="填写真实姓名，用于入境申报" value="@entity.Receiver">
+            </div>
+        </div>
+        <div class="item displayBox whiteOnLine w95p">
+            <span>手机号码</span>
+            <div class="boxflex1">
+                <input id="tel" type="text" maxlength="11" value="@entity.Phone">
+            </div>
+        </div>
+        <div class="item displayBox whiteOnLine w95p pr">
+            <span>所在地区</span>
+            <div class="boxflex1" id="selectAddress">
+                <i class="rightArrow fr"></i>
+                <span id="area">@entity.ProvinceName@entity.CityName@entity.AreaName</span>
+            </div>
+        </div>
+        <div class="item displayBox whiteOnLine w95p">
+            <span>详细地址</span>
+            <div class="boxflex1">
+                <input id="address" type="text" maxlength="400" value="@entity.Address">
+            </div>
+        </div>
+
+        <div class="item displayBox whiteOnLine w95p" style="display:none;">
+            <span>邮政编码</span>
+            <div class="boxflex1">
+                <input id="zipCode" type="text" maxlength="6" value="@entity.PostCode">
+            </div>
+        </div>
+    </div>
+    <div class="addressEdit boxShadow bgColor3 mb8" style="display:none;">
+        <div class="item displayBox whiteOnLine w95p pr">
+            <span>通关有效证件</span>
+            <div class="boxflex1">
+                <!--<i class="downJT"></i>-->
+                @{
+    string certificate = "身份证";
+    string idno = entity.PapersCode.Substring(0, 6) + "**********" + entity.PapersCode.Substring(entity.PapersCode.Length - 2);
+    if (entity.PapersType == (int)SFO2O.Model.Enum.CertificateType.Passport)
+    {
+        certificate = "护照";
+        idno = entity.PapersCode.Substring(0, 2) + "*".PadRight(entity.PapersCode.Length - 4, '*') + entity.PapersCode.Substring(entity.PapersCode.Length - 2);
+    }
+    else if (entity.PapersType == (int)SFO2O.Model.Enum.CertificateType.Other)
+    {
+        certificate = "其他";
+        idno = entity.PapersCode.Substring(0, 2) + "*".PadRight(entity.PapersCode.Length - 4, '*') + entity.PapersCode.Substring(entity.PapersCode.Length - 2);
+    }
+                }
+                <span id="docNumberType" val="@entity.PapersType">@certificate</span>
+            </div>
+        </div>
+        <div class="item displayBox whiteOnLine w95p">
+            <span>证件号</span>
+            <div class="boxflex1">
+                <input id="docNumber" maxlength="18" type="text" trueid="@entity.PapersCode" value="@idno">
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="addressId" value="@entity.Id" />
+    <input type="hidden" id="provincename" value="@entity.ProvinceName" provinceid="@entity.ProvinceId" />
+    <input type="hidden" id="cityname" cityid="@entity.CityId" value="@entity.CityName" />
+    <input type="hidden" id="areaname" areaid="@entity.AreaId" value="@entity.AreaName" />
+}
+<div class="sf-pop selectAreaCode" id="areaCode">
+    <ul class="content">
+        <li class="current" val="1">
+            <i class="radio checked fr"></i>
+            身份证
+        </li>
+    </ul>
+    <div class="btn-box">
+        <a id="cancel">取消</a>
+        <a id="sure" class="hover m-btn">完成</a>
+    </div>
+</div>
+
+<a class="btn w95m" id="saveInfo">保存并使用</a>

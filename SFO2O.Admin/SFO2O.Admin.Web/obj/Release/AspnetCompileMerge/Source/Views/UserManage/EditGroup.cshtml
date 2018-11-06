@@ -1,0 +1,306 @@
+﻿@model AdminRolePermissionTreeModel
+@using SFO2O.Admin.Models;
+@using SFO2O.Admin.ViewModel;
+@using SFO2O.Admin.Models.Admin;
+@{
+    ViewBag.Title = "用戶分組";
+    ViewBag.PageName = "GroupList";
+    var role = Model.Role;
+    var menuIDList = role.ModuleIDList ?? new List<Int32>();
+    var permissionTree = Model.PermissionTree;
+    var allclass = "";
+    if(permissionTree.All(p=>p.IsActive==true)){
+        allclass = " active";
+    }
+    else if(permissionTree.Any(p=>p.IsActive==false)){
+        allclass = " unactive";
+    }
+    Func<Tree<AdminMenuInfo>, String> funcIsActive = (node) =>
+    {
+        if (node.IsActive.HasValue)
+        {
+            return node.IsActive.Value ? " active" : " unactive";
+        }
+        return "";
+    };
+}
+
+<div class="cont_right_crumb"><span class="homepage"></span>&gt; 賬號管理 &gt; 用戶分組</div>
+<div class="w931">
+    <div class="mg_t30">
+        <div class="tongji_title"><span class="tongji_title_l">用戶分組列表</span></div>
+        <div class="user_quanx_wrap">
+            <div class="f15 mg_b20 mg_t5 clearfix">
+                <span class="f_l lineH30"><em class="color_red vmiddle">*</em>分組名稱：</span>
+                <input id="RoleName" type="text" value="@role.RoleName" class="fff_bor w250 f_l" style="height:19px; padding:5px 10px;" />
+                <p id="RoleNameError" class="f_l lineH30 color_red pd_l10"></p>
+            </div>
+            <table class="t_c f15 user_quanx bg_f8f8f8" width="100%">
+                <tr class="lineH36">@{var first1 = permissionTree[0]; var first2 = first1.SubNodeList[0];}
+                    <td width="" rowspan="@permissionTree.Sum(p=>p.SubNodeList.Count)" class="bor_r_2fff"><label class="level0 chbx_wrap@(allclass)"><em></em><span>全選</span></label></td>
+                    <td width="240" rowspan="@first1.SubNodeList.Count" class="bor_r_2fff @(permissionTree.Count > 1 ? "bor_b_10fff" : "bor_b_2fff")">
+                        <label data-id="@(first1.Node.id)" class="level1 chbx_wrap@(funcIsActive(first1))"><em></em><span>@first1.Node.ModuleName</span></label>
+                    </td>
+                    <td width="240" class="bor_r_2fff col_999 t_l @(permissionTree.Count > 1 && first1.SubNodeList.Count == 1 ? "bor_b_10fff" : "bor_b_2fff")">
+                        <label data-id="@(first2.Node.id)" class="level2 chbx_wrap mg_l60 pd_t10 pd_b10@(funcIsActive(first2))"><em></em><span>@first2.Node.ModuleName</span></label>
+                    </td>
+                    <td width="240" class="bor_b_2fff col_999 t_l @(permissionTree.Count > 1 && first1.SubNodeList.Count == 1 ? "bor_b_10fff" : "bor_b_2fff")">
+                    @for (int i = 0; i < first2.SubNodeList.Count; i++)
+                    {
+                        var level3 = first2.SubNodeList[i];
+                        <p>
+                            <label data-id="@(level3.Node.id)" class="level3 chbx_wrap mg_l50@(i == 0 ? " pd_t10":"")@(first2.SubNodeList.Count == i + 1 ? " pd_b10" : "")@(funcIsActive(level3))">
+                                <em></em><span>@level3.Node.ModuleName</span>
+                            </label>
+                        </p>
+                    }
+                    </td>
+                </tr>
+            @for (int i = 1; i < first1.SubNodeList.Count; i++)
+            {
+                var level2 = first1.SubNodeList[i];
+                <tr class="lineH36 col_999">
+                    <td width="240" class="bor_r_2fff t_l @(permissionTree.Count > 1 && first1.SubNodeList.Count == i + 1 ? "bor_b_10fff" : "bor_b_2fff")">
+                        <label data-id="@(level2.Node.id)" class="level2 chbx_wrap mg_l60 pd_t10 pd_b10@(funcIsActive(level2))"><em></em><span>@level2.Node.ModuleName</span></label>
+                    </td>
+                    <td width="240" class="bor_t_2fff t_l @(permissionTree.Count > 1 && first1.SubNodeList.Count == i + 1 ? "bor_b_10fff" : "bor_b_2fff")">
+                    @for (int j = 0; j < level2.SubNodeList.Count; j++)
+                    {
+                        var level3 = level2.SubNodeList[j];
+                        <p>
+                            <label data-id="@(level3.Node.id)" class="level3 chbx_wrap mg_l50@(j == 0 ? " pd_t10":"")@(level2.SubNodeList.Count == j + 1 ? " pd_b10" : "")@(funcIsActive(level3))">
+                                <em></em><span>@level3.Node.ModuleName</span>
+                            </label>
+                        </p>
+                    }
+                    </td>
+                </tr>
+            }
+        @for (int i = 1; i < permissionTree.Count; i++)
+        {
+            var level1 = permissionTree[i];
+            first2 = level1.SubNodeList[0];
+                <tr class="lineH36">
+                    <td width="240" rowspan="@level1.SubNodeList.Count" class="bor_r_2fff @(permissionTree.Count > i + 1 ? "bor_b_10fff" : "bor_b_2fff")">
+                        <label data-id="@(level1.Node.id)" class="level1 chbx_wrap@(funcIsActive(level1))"><em></em><span>@level1.Node.ModuleName</span></label>
+                    </td>
+                    <td width="240" class="bor_r_2fff col_999 t_l @(permissionTree.Count > i + 1 && level1.SubNodeList.Count == 1 ? "bor_b_10fff" : "bor_b_2fff")">
+                        <label data-id="@(first2.Node.id)" class="level2 chbx_wrap mg_l60 pd_t10 pd_b10@(funcIsActive(first2))"><em></em><span>@first2.Node.ModuleName</span></label>
+                    </td>
+                    <td width="240" class="col_999 t_l @(permissionTree.Count > i + 1 && level1.SubNodeList.Count == 1 ? "bor_b_10fff" : "bor_b_2fff")">
+                    @for (int j = 0; j < first2.SubNodeList.Count; j++)
+                    {
+                        var level3 = first2.SubNodeList[j];
+                        <p>
+                            <label data-id="@(level3.Node.id)" class="level3 chbx_wrap mg_l50@(j == 0 ? " pd_t10":"")@(first2.SubNodeList.Count == j + 1 ? " pd_b10" : "")@(funcIsActive(level3))">
+                                <em></em><span>@level3.Node.ModuleName</span>
+                            </label>
+                        </p>
+                    }
+                    </td>
+                </tr>
+            for (int j = 1; j < level1.SubNodeList.Count; j++)
+            {
+                var level2 = level1.SubNodeList[j];
+                <tr class="lineH36 col_999">
+                    <td width="240" class="bor_r_2fff t_l @(permissionTree.Count > i + 1 && level1.SubNodeList.Count == j + 1 ? "bor_b_10fff" : "bor_b_2fff")">
+                        <label data-id="@(level2.Node.id)" class="level2 chbx_wrap mg_l60 pd_t10 pd_b10@(funcIsActive(level2))"><em></em><span>@level2.Node.ModuleName</span></label>
+                    </td>
+                    <td width="240" class="bor_t_2fff t_l @(permissionTree.Count > i + 1 && level1.SubNodeList.Count == j + 1 ? "bor_b_10fff" : "bor_b_2fff")">
+                    @for (int k = 0; k < level2.SubNodeList.Count; k++)
+                    {
+                        var level3 = level2.SubNodeList[k];
+                        <p>
+                            <label data-id="@(level3.Node.id)" class="level3 chbx_wrap mg_l50@(k == 0 ? " pd_t10":"")@(level2.SubNodeList.Count == k + 1 ? " pd_b10" : "")@(funcIsActive(level3))">
+                                <em></em><span>@level3.Node.ModuleName</span>
+                            </label>
+                        </p>
+                    }
+                    </td>
+                </tr>
+            }
+        }
+            </table>
+        </div>
+        <div class="zanc_shangc t_c pd_t20 pd_b20">
+            <a id="cancel" href="javascript:void(0)" class="btn_white btn_w240">取 消</a>
+            <a id="submit" href="javascript:void(0)" class="btn_green btn_w240 mg_l20">保 存</a>
+        </div>
+    </div>
+</div>
+@Html.Script("/Scripts/Dialog.js")
+<script type="text/javascript">
+    var level0 = $(".level0");
+    level0.click(function () {
+        var flag = !level0.hasClass("active");
+        level0.toggleClass("active", flag).toggleClass("unactive", false);
+        $(".level1").each(function () {
+            $(this).toggleClass("active", flag).toggleClass("unactive", false);;
+        });
+        $(".level2").each(function () {
+            $(this).toggleClass("active", flag).toggleClass("unactive", false);;
+        });
+        $(".level3").each(function () {
+            $(this).toggleClass("active", flag).toggleClass("unactive", false);;
+        });
+    })
+    $(".level1").click(function () {
+        var $this = $(this);
+        var flag = !$this.hasClass("active");
+        $this.toggleClass("active", flag).toggleClass("unactive", false);
+        var rowspan = $this.closest("td").attr("rowspan") | 0 || 1;
+        var tr = $this.closest("tr");
+        for (var i = 0; i < rowspan; i++) {
+            tr.find(".level2").each(function () {
+                $(this).toggleClass("active", flag).toggleClass("unactive", false);
+            });
+            tr.find(".level3").each(function () {
+                $(this).toggleClass("active", flag);
+            });
+            tr = tr.next();
+        }
+        CheckLevel0();
+    })
+    $(".level2").click(function () {
+        var $this = $(this);
+        var flag = !$this.hasClass("active");
+        $this.toggleClass("active", flag).toggleClass("unactive", false);
+        var td = $this.closest("td");
+        td.next().find(".level3").each(function () {
+            $(this).toggleClass("active", flag);
+        });
+        var tr = td.closest("tr");
+        var level1 = tr.find(".level1");
+        while (level1.length == 0) {
+            tr = tr.prev();
+            level1 = tr.find(".level1");
+        }
+        CheckLevel1(level1);
+    })
+    $(".level3").click(function () {
+        var $this = $(this);
+        var flag = !$this.hasClass("active");
+        $this.toggleClass("active", flag);
+        var td = $this.closest("td");
+        var total, check;
+        total = td.find(".level3").length;
+        check = td.find(".level3.active").length;
+        if (check == 0) {
+            td.prev().find(".level2").toggleClass("active", false).toggleClass("unactive", false);
+        }
+        else if (check == total) {
+            td.prev().find(".level2").toggleClass("active", true).toggleClass("unactive", false);
+        }
+        else {
+            td.prev().find(".level2").toggleClass("active", false).toggleClass("unactive", true);
+        }
+
+        var tr = $this.closest("tr");
+        var level1 = tr.find(".level1");
+        while (level1.length == 0) {
+            tr = tr.prev();
+            level1 = tr.find(".level1");
+        }
+        CheckLevel1(level1);
+    })
+    function CheckLevel1(level1) {
+        var rowspan = level1.closest("td").attr("rowspan") | 0 || 1;
+        var tr = level1.closest("tr");
+        var total = 0, check = 0, uncheck = 0;
+        for (var i = 0; i < rowspan; i++) {
+            var level2 = tr.find(".level2");
+            total += level2.length;
+            check += level2.filter(".active").length;
+            uncheck += level2.filter(".unactive").length;
+            tr = tr.next();
+        }
+        if (check == 0 && uncheck == 0) {
+            level1.toggleClass("active", false).toggleClass("unactive", false);
+        }
+        else if (check == total) {
+            level1.toggleClass("active", true).toggleClass("unactive", false);
+        }
+        else {
+            level1.toggleClass("active", false).toggleClass("unactive", true);
+        }
+        CheckLevel0();
+    }
+    function CheckLevel0() {
+        var total = 0, check = 0, uncheck = 0;
+        var level1 = level0.closest("table").find(".level1");
+        total = level1.length;
+        check += level1.filter(".active").length;
+        uncheck += level1.filter(".unactive").length;
+        if (check == 0 && uncheck == 0) {
+            level0.toggleClass("active", false).toggleClass("unactive", false);
+        }
+        else if (check == total) {
+            level0.toggleClass("active", true).toggleClass("unactive", false);
+        }
+        else {
+            level0.toggleClass("active", false).toggleClass("unactive", true);
+        }
+    }
+
+    var $rolename = $("#RoleName");
+    $rolename.change(function () {
+        if ($rolename.val() == "") {
+            $("#RoleNameError").text("請輸入分組名稱")
+        }
+        else {
+            $("#RoleNameError").text("")
+        }
+    });
+
+    function SaveGroup() {
+        var rolename = $rolename.val();
+        if (rolename == "") {
+            $("#RoleNameError").text("請輸入分組名稱")
+            return;
+        }
+        var checkItems = $(".chbx_wrap.active,.chbx_wrap.unactive").not(".level0");
+        if (checkItems.length == 0) {
+            $.dialog("請勾選分組的權限");
+            return;
+        }
+        var data = { RoleName: rolename };
+        checkItems.each(function (i, item) {
+            data["ModuleIDList[" + i + "]"] = $(item).data("id");
+        });
+        $.ajax({
+            url: "@Url.Action("SaveGroup", new { id = Model.Role.id})",
+            type: "post",
+            data: data,
+            success: function (res) {
+                if (!res.Error) {
+                    $.dialog({
+                        content: "保存成功！",
+                        onConfirm: function () {
+                            if (document.referrer) {
+                                window.location.href = document.referrer;
+                            }
+                            else {
+                                window.history.back();
+                            }
+                        }
+                    });
+                } else {
+                    if (res.Message) {
+                        $.dialog(res.Message);
+                    }
+                    else {
+                        $.dialog("保存失敗！");
+                    }
+                }
+            }
+        });
+    }
+
+    $("#cancel").click(function () {
+        window.history.back();
+    })
+
+    $("#submit").click(function () {
+        SaveGroup();
+    })
+</script>

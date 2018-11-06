@@ -22,6 +22,8 @@ using SFO2O.Model.Pay;
 using SFO2O.Utility.Security;
 using SFO2O.BLL.Account;
 using SFO2O.Model.Account;
+using SFO2O.BLL.GreenBll;
+using SFO2O.Model;
 
 namespace SFO2O.BLL.Pay
 {
@@ -667,19 +669,34 @@ namespace SFO2O.BLL.Pay
 
 
 
-                        //获取订单活力
-                        decimal coinCount = orderManager.GetHuoLiByOrderId(entity.OrderCode);
+                        ////获取订单活力
+                        //decimal coinCount = orderManager.GetHuoLiByOrderId(entity.OrderCode);
 
-                          LogHelper.WriteInfo(typeof(PayBll), string.Format("调用酒币充值前记录！-----用户ID：{0}，充值金额：{1}", userInfo.UserName, coinCount));
+                        //  LogHelper.WriteInfo(typeof(PayBll), string.Format("调用酒币充值前记录！-----用户ID：{0}，充值金额：{1}", userInfo.UserName, coinCount));
 
                         #endregion
+                      
+                        #region  孙健 调用健康绿氧活动接口
+                        int count = 1;
+                        if (model.successmoney > 330) 
+                        { 
+                            count = 2; 
+                        }
 
+                       
+                       ReturnModel returnModel= GreenGetApiBll.OrderOverApi(userInfo.UserName, count);
+                       if (!returnModel.IsTrue) 
+                       {
+                           LogHelper.WriteInfo(typeof(PayBll), string.Format("OrderOverApi健康绿氧订单流程接口运行失败-----{0}", JsonHelper.ToJson(model)));
+                       }
+                        #endregion
                         
                     }
 
 
                     //订单回写
 
+                    #region 订单回写
                     OrderPaymentEntity orderPaymentEntity = BuildOrderPaymentEntity(model.tradeid, entity, null);
 
                     isOk = NomalOrderPay(entity, model.merorderid, model.tradeid, "", orderPaymentEntity, 1);
@@ -691,7 +708,8 @@ namespace SFO2O.BLL.Pay
                     else
                     {
                         LogHelper.WriteInfo(typeof(PayBll), string.Format("PayCallBackRetunResult支付回调操作成功！-----{0}", JsonHelper.ToJson(model)));
-                    }
+                    } 
+                    #endregion
 
                 }
             }

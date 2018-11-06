@@ -143,22 +143,22 @@ namespace SFO2O.Supplier.Businesses.Account
 <div style='width:720px;margin:0 auto;'>
 	<div style='padding:5px;'>
 		親愛的 {0} 管理員：<br /><br />
-您已通過村村通商家管理賬號密碼重置的匹配驗證。請點擊以下鏈接重置您的賬號密碼（鏈接60分鐘內有效)：<br />
+您已通過健康绿氧商家管理賬號密碼重置的匹配驗證。請點擊以下鏈接重置您的賬號密碼（鏈接60分鐘內有效)：<br />
 <a target='_blank' href='{1}'>{1}</a><br />
 （如果上面的鏈接無法直接點擊，可以將其復制到瀏覽器地址欄打開）<br /><br />
 ------------------------------------------------------------------------------------------<br />
 如果您錯誤的收到此郵件，可以不處理該郵件，也不要將此郵件轉發給陌生人。此為系統郵件，請勿回復。<br />
 ------------------------------------------------------------------------------------------<br />
-感謝您對村村通網站的支持與配合！
+感謝您對健康绿氧網站的支持與配合！
 		<div style='text-align:right;'>
-			村村通電子商貿有限公司<br />{2}
+			健康绿氧電子商貿有限公司<br />{2}
 		</div>
 	</div>
 </div>
 </body>
 </html>";
                 var content = string.Format(emailFormat, companyName, ConfigHelper.GetSjWebSite + "/Account/FindPassword?token=" + token.Token, DateTime.Now.ToDateTimeString());
-                var flag = Mail.SendMailToUser("村村通商家管理賬號密碼重置", content, userName);
+                var flag = Mail.SendMailToUser("健康绿氧商家管理賬號密碼重置", content, userName);
                 if (flag)
                 {
                     supplierUserDAL.IncrementSupplierCounter(supplierID, 1, countDate);

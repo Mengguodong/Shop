@@ -1,0 +1,130 @@
+﻿@model SFO2O.Supplier.ViewModels.HomePageViewModel
+@using SFO2O.Supplier.Common;
+@using SFO2O.Supplier.ViewModels;
+@{
+    ViewBag.PageName = "index";
+    ViewBag.Title = "首页";
+    var total = Model.TotalStatistics ?? new HomePageStatistics();
+    var yesterday = Model.YesterdayStatistics ?? new HomePageStatistics();
+    var pastmonth = Model.PastmonthStatistics ?? new HomePageStatistics();
+}
+<div class="w931">
+    <ul class="cont_right_zongji mg_t30 clearfix">
+        <li style="width:330px;">
+            <div class="bor pd_t15 pd_b20">
+                <p class="title_icon clearfix"><i class="right_zongji_icon"></i><span>已售商品总金额</span></p>
+                <p class="color_green t_c" style="font-size:23px;">￥@total.SellProductAmount.ToString("#,0.00")</p>
+            </div>
+            <div class="bor bg_f8f8f8 pd_t10 pd_b10 col_999" style="border-top:none;">
+                <p class="title_icon clearfix"><i class="right_zongji_icon icon_back"></i><span>已退商品总金额</span></p>
+                <em style="display:block;line-height:20px;padding-bottom:5px;">￥@total.RefundProductAmount.ToString("#,0.00")</em>
+            </div>
+        </li>
+        <li class="bor t_c" style="width:249px; height:196px; margin:0 10px;">
+            <p class="title_icon pd_t20">已成交订单总量</p>
+            <p class="color_green pd_t30" style="font-size:23px;">@total.CompleteOrderCount.ToString("#,0") 单</p>
+        </li>
+        <li style="width:330px;">
+            <div class="bor pd_t15 pd_b20">
+                <p class="title_icon clearfix"><i class="right_zongji_icon"></i><span>已售商品总数量</span></p>
+                <p class="color_green t_c" style="font-size:23px;">@total.SellSkuCount.ToString("#,0") 件</p>
+            </div>
+            <div class="bor bg_f8f8f8 pd_t10 pd_b10 col_999" style="border-top:none;">
+                <p class="title_icon clearfix"><i class="right_zongji_icon icon_back"></i><span>已退商品总数量</span></p>
+                <em style="display:block;line-height:20px;padding-bottom:5px;">@total.RefundOrderCount.ToString("#,0") 件</em>
+            </div>
+        </li>
+    </ul>
+    <ul class="cont_right_zongji cont_right_jinri bor mg_t30 clearfix">
+        <li class="pd_t15 pd_b10" style="border-right:1px solid #e9e3e7;">
+            <p class="title_icon clearfix"><i class="right_zongji_icon"></i><span>昨日销售数据</span></p>
+            <table width="282">
+                <tr>
+                    <td width="110">销售金额：</td>
+                    <td width="172" class="t_r">￥ @yesterday.SellProductAmount.ToString("#,0.00")</td>
+                </tr>
+                <tr>
+                    <td width="110">销售商品数量：</td>
+                    <td width="172" class="t_r">@yesterday.SellSkuCount.ToString("#,0")件</td>
+                </tr>
+                <tr>
+                    <td width="110">成交订单量：</td>
+                    <td width="172" class="t_r">@yesterday.CompleteOrderCount.ToString("#,0")单</td>
+                </tr>
+                <tr>
+                    <td width="110">退单量：</td>
+                    <td width="172" class="t_r">@yesterday.RefundOrderCount.ToString("#,0")单</td>
+                </tr>
+                <tr>
+                    <td width="110">退款金额：</td>
+                    <td width="172" class="t_r">￥ @yesterday.RefundProductAmount.ToString("#,0.00")</td>
+                </tr>
+            </table>
+        </li>
+        <li class="pd_t15 pd_b10">
+            <p class="title_icon clearfix"><i class="right_zongji_icon"></i><span>近一月销售数据</span></p>
+            <table width="282">
+                <tr>
+                    <td width="110">销售金额：</td>
+                    <td width="172" class="t_r">￥ @pastmonth.SellProductAmount.ToString("#,0.00")</td>
+                </tr>
+                <tr>
+                    <td width="110">销售商品数量：</td>
+                    <td width="172" class="t_r">@pastmonth.SellSkuCount.ToString("#,0")件</td>
+                </tr>
+                <tr>
+                    <td width="110">成交订单量：</td>
+                    <td width="172" class="t_r">@pastmonth.CompleteOrderCount.ToString("#,0")单</td>
+                </tr>
+                <tr>
+                    <td width="110">退单量：</td>
+                    <td width="172" class="t_r">@pastmonth.RefundOrderCount.ToString("#,0")单</td>
+                </tr>
+                <tr>
+                    <td width="110">退款金额：</td>
+                    <td width="172" class="t_r">￥ @pastmonth.RefundProductAmount.ToString("#,0.00")</td>
+                </tr>
+            </table>
+        </li>
+    </ul>
+    <div class="cont_right_zongji cont_right_tongji mg_t30">
+        <div class="tongji_title"><span class="f_r color_838383">在售商品总数：<i>@Model.OnSellProductCount.ToString("#,0")件</i></span><span class="tongji_title_l">在售商品销量排行</span></div>
+        <table>
+            <tr>
+                <th width="10%">排名</th>
+                <th width="33%">商品名称</th>
+                <th width="12%">上架日期</th>
+                <th width="10%">在售天数</th>
+                <th width="10%">成交订单量</th>
+                <th width="10%">已售数量</th>
+                <th width="15%">成交金额</th>
+            </tr>
+            @if (Model.TopSellCountProductList != null && Model.TopSellCountProductList.Count > 0)
+            {
+                for (int i = 0; i < Model.TopSellCountProductList.Count; i++)
+                {
+                    var p = Model.TopSellCountProductList[i];
+                    <tr>
+                        <td>Top@((i + 1).ToString())</td>
+                        <td><p>@p.Name.Omit(90)</p></td>
+                        <td>@p.PreOnSaleTime.ToDateString()</td>
+                        <td class="t_r pd_r20">@((p.LastSellDate - p.PreOnSaleTime).TotalDays.ToString("#,0")) 天</td>
+                        <td class="t_r pd_r20">@p.OrderCount.ToString("#,0") 单</td>
+                        <td class="t_r pd_r20">@p.SellCount.ToString("#,0") 件</td>
+                        <td class="t_r pd_r20">￥@p.SellAmount.ToString("#,0.00")</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td class="pd_l20" colspan="7">暂无数据！</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+
+
+

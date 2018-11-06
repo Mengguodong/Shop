@@ -1,0 +1,140 @@
+﻿
+.ml40{
+	margin-left: 40px;
+}
+.ptb10{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.ptb16{
+	padding-top: 16px;
+	padding-bottom: 16px;
+}
+
+.appeal .title{
+	font-size: 1.2rem;
+	color: #696969;
+	padding: 13px 2.5px 7px 2.5%;
+	width: 95%;
+}
+.appeal .refundType{
+	padding-top: 10px;
+	padding-bottom: 16px;
+}
+.icon_listener{
+	position: absolute;
+	top: 14px;
+	right: 12px;
+	width: 20px;
+	height: 19px;
+	background: url(../Images/appeal/icon_listener.png?v=20160331) no-repeat;
+	background-size: 20px auto;
+}
+.appeal .refundType .radio{
+	margin-right: 5px;
+	position: relative;
+	top: 5px;
+}
+
+.refundReason{
+}
+.select{
+	border: 1px solid #d5dcdd;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.select input{
+	/*font-family: 'microsoft yahei';*/
+	font-size: 1.4rem;
+	width: 70%;
+	border: none;
+	color: #696969;
+	text-align: left;
+}
+.refundReason textarea{
+	padding: 10px;
+	border:1px solid #d5d5d5;
+	font-size: 1.2rem;
+}
+
+.photos{
+	width: 97.5%;
+	padding-left: 2.5%;
+}
+.photos .item{
+	float: left;
+	display: inline-block;
+	width: 25%;
+	border: 1px solid #e2e2e2;
+	position: relative;
+	margin-right: 15px;
+	margin-bottom: 15px;
+	box-sizing:border-box;
+	text-align: center;
+	margin-top: 15px;
+}
+.photos .item>div{
+	overflow: hidden;
+}
+.close{
+	position: absolute;
+	top: -17px;
+	right: -17px;
+	/*width: 18px;
+	height: 18px;*/
+	width: 36px;
+	height: 36px;
+	background: url(../Images/appeal/icon_close.png?v=20160331) no-repeat center;
+	background-size: 18px auto;
+	background-position: center;
+	z-index: 11;
+}
+.photos .item>div{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+.photos .item img{
+	width: 95%;
+	vertical-align: middle;
+}
+.appeal .upload{
+	height: 34px;
+	line-height: 34px;
+}
+.title .add{
+	border: 1px solid #b1b5bb;
+	background-color: #fff;
+	font-size: 1.2rem;
+	color: #99cb34;
+	padding: 8px 5px;
+	background-image: url(../Images/appeal/add.png?v=20160331);
+	background-repeat: no-repeat;
+	background-size: 12px auto;
+	background-position: 5px 8px;
+	padding-left: 20px;
+	position: absolute;
+	right: 0;
+	line-height: 1em;
+}
+
+.reasonBox,.statusBox{
+	display: none;
+	padding-top: 0;
+}
+.sf-pop{
+	padding-left: 0;
+	padding-right: 0;
+}
+.reasonBox .content li,.statusBox .content li{
+	width: 95%;
+	padding: 15px 2.5%;
+	color: #333;
+	text-align: left;
+	font-size: 1.4rem;
+	border-bottom: 1px solid #e6ebec;
+}
+.sf-pop .content{
+	width: 95%;
+	margin-left: 2.5%;
+}

@@ -1,0 +1,153 @@
+﻿@using SFO2O.Supplier.Models;
+@using SFO2O.Supplier.Common;
+
+@{
+    ViewBag.Title = "品牌详情";
+    ViewBag.PageName = "BrandList";
+    SFO2O.Supplier.Models.SupplierBrandModel brand = ViewBag.Brand;
+    PageOf<StoreModel> storelist = ViewBag.StoreList;
+}
+
+<div class="cont_right_crumb"><span class="homepage"></span>&gt; 品牌管理 &gt; 查看详情</div>
+<div class="w931">
+    <div class="upload_edit mg_t30">
+        <div id="tabTC" class="bor_bg viewCommInfo">
+            <table class="fff_bor">
+                <tr>
+                    <th rowspan="4" width="140"><span class="f_l pd_l20">品牌基本信息</span></th>
+                    <td><span class="f_l pd_l10 w135">品牌：</span><span class="f_l pd_l10">@(brand.NameCN)</span></td>
+                </tr>
+                <tr>
+                    <td><span class="f_l pd_l10 w135">品牌状态：</span><span class="f_l pd_l10">@(brand.Status == 0 ? "下架" : "上架")</span></td>
+                </tr>
+                <tr>
+                    <td><span class="f_l pd_l10 w135">在售SKU商品数量：</span><span class="f_l pd_l10">@brand.OnSaleCount</span></td>
+                </tr>
+            </table>
+            <table class="fff_bor mg_t10">
+                <tr>
+                    <th rowspan="5" width="140"><span class="f_l pd_l20">品牌介绍</span></th>
+                    <td>
+                        <span class="f_l pd_l10 w135">品牌LOGO：</span>
+                        <div class="img_wrap f_l pd_l10">
+                            <ul class="clearfix">
+
+                                <li class="bor f_l mg_t10 mg_b10 mg_r10" style="overflow: hidden">
+                                    <a href="@(SFO2O.Supplier.Common.ConfigHelper.ImageServer + brand.Logo)" target="_blank">
+                                        <img src="@(SFO2O.Supplier.Common.ConfigHelper.ImageServer + brand.Logo)">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <span class="f_l pd_l10 w135">Barner图：</span>
+                        <div class="img_wrap f_l pd_l10 banner_img_wrap">
+                            <ul class="clearfix">
+                                <li class="bor f_l bor f_l mg_r10 mg_b5" style="overflow: hidden">
+                                    <a href="@(SFO2O.Supplier.Common.ConfigHelper.ImageServer + brand.Banner)" target="_blank">
+                                        <img src="@(SFO2O.Supplier.Common.ConfigHelper.ImageServer + brand.Banner)">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span class="f_l pd_l10 w135">所属国家地区：</span><span class="f_l pd_l10">@brand.CountryName</span></td>
+                </tr>
+                <tr>
+                    <td><span class="f_l pd_l10 w135">所属品类：</span><span class="f_l pd_l10">@brand.CategoryName</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="f_l pd_l10 w135 mg_t30">品牌简介：</span>
+                        <div class="f_l mg_t20" style="width: 592px;">
+                            <ul class="check_title clearfix" id="ulDetail">
+                                @*<li style="height:39px;" data-for="liDiv1" class="current"><a href="javascript:void(0);" class="clearfix"><span>中文繁体版</span><i></i></a></li>*@
+                                <li style="height:39px;" data-for="liDiv2"><a href="javascript:void(0);" class="clearfix"><span>中文简体版</span><i></i></a></li>
+                                @*<li style="height:39px;" data-for="liDiv3"><a href="javascript:void(0);" class="clearfix"><span class="fuwb_english">英文版</span><i></i></a></li>*@
+                            </ul>
+                            <div class="fff_bor mg_b20 pd_l10 pd_r10" id="liDiv1" style="height: 276px;">@Html.Raw(brand.IntroductionCN)</div>
+                            @*<div class="fff_bor mg_b20 pd_l10 pd_r10" id="liDiv2" style="height: 276px; display: none">@Html.Raw(brand.IntroductionCN)</div>*@
+                            @*<div class="fff_bor mg_b20 pd_l10 pd_r10" id="liDiv3" style="height: 276px; display: none">@Html.Raw(brand.IntroductionEN)</div>*@
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <table class="fff_bor mg_t10">
+                @if (storelist != null && storelist.Items.Count > 0)
+                {
+                    int i = 0;
+                    foreach (var item in storelist.Items)
+                    {
+                        @*if (i == 0)
+                        {
+                            <tr>
+                                <th rowspan="@(storelist.Items.Count)" width="140"><span class="f_l pd_l20">品牌地址</span></th>
+                                <td>
+                                    <span class="f_l pd_l10 w105 mg_t10">门店地址@(i + 1)：</span>
+                                    <div class="f_l pd_l10 mg_t10 mg_b10" style="width:610px;word-wrap:break-word;word-break:break-all;">
+                                        <span class="f_l pd_l10">@item.AddressHK</span><br />
+                                        <span class="f_l pd_l10">@item.AddressCN</span><br />
+                                        <span class="f_l pd_l10">@item.AddressEN</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <td>
+                                    <span class="f_l pd_l10 w105 mg_t10">门店地址@(i + 1)：</span>
+                                    <div class="f_l pd_l10 mg_t10 mg_b10" style="width:610px;word-wrap:break-word;word-break:break-all;">
+                                        <span class="f_l pd_l10">@item.AddressHK</span><br />
+                                        <span class="f_l pd_l10">@item.AddressCN</span><br />
+                                        <span class="f_l pd_l10">@item.AddressEN</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+
+                        i++;*@
+                    }
+                }
+                @*else
+                {
+                    <tr>
+                        <th rowspan="5" width="140"><span class="f_l pd_l20">品牌地址</span></th>
+                        <td><span class="f_l pd_l10 w105"></span><span class="f_l pd_l10">暂无门店地址</span></td>
+                    </tr>
+                }*@
+            </table>
+            <div class="zanc_shangc t_c pd_t20 pd_b20"><a href="javascript:window.history.back()" class="btn_white btn_w240">返 回</a></div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            var tabs = $("#ulDetail");
+            BindLiChange(tabs, function (li, old) {
+                $("#" + old.data("for")).hide();
+                $("#" + li.data("for")).show();
+            });
+        });
+
+        function BindLiChange(ul, func) {
+            ul.delegate("li", "click", function () {
+                var li = $(this);
+                var old;
+                if (li.hasClass("current")) {
+                    return;
+                }
+                else {
+                    old = ul.find("li.current");
+                    old.removeClass("current");
+                    li.addClass("current");
+                }
+                func(li, old);
+            });
+        }
+    </script>

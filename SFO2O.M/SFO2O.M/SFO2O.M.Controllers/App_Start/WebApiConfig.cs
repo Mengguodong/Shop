@@ -1,5 +1,6 @@
 ﻿using System.Web.Http;
 
+
 namespace SFO2O.M.Controllers
 {
     public static class WebApiConfig
@@ -9,7 +10,7 @@ namespace SFO2O.M.Controllers
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                defaults: new { id = System.Web.Http.RouteParameter.Optional }
             );
         }
     }

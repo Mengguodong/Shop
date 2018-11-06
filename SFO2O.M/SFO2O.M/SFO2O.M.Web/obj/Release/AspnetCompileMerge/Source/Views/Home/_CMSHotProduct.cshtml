@@ -1,0 +1,55 @@
+﻿@{
+    Layout = null;
+}
+@using SFO2O.M.Controllers.Common
+@using SFO2O.Utility.Uitl
+@using SFO2O.Utility.Extensions;
+@model IEnumerable<SFO2O.Model.Index.IndexModulesProductEntity>
+
+@if (Model.Count() > 0)
+{
+    <div class="indexSelectedPro w95p" id="indexSelectedPro">
+        <h2 class="indexTitle tc w100"><b class="f30 FontColor1">热门商品</b><span class="f22 FontColor4">大/搜/罗</span></h2>
+        <div class="indexSelectedProList clearfix w100">
+            @foreach (var m in Model)
+            {
+                bool isPromotionPrice = false;
+                decimal temprice = m.MinPrice * ViewBag.ExchangeRate;
+                if (temprice > m.DiscountPrice * ViewBag.ExchangeRate && m.DiscountPrice * ViewBag.ExchangeRate > 0)
+                {
+                    temprice = m.DiscountPrice * ViewBag.ExchangeRate;
+                    isPromotionPrice = true;
+                }
+                string discountStr = string.Empty;
+                if (m.DiscountRate > 0)
+                {
+                    discountStr = m.DiscountRate.ToNumberStringFloat() + "折";
+                }
+                <div class="item boxSizingB">
+                    <a href="/item.html?productCode=@m.Spu" target="_self">
+                        <div class="imgBox">
+                            <img data-original="@m.ImagePath" alt="@m.Name" class="lazyloadImg">
+                            @if (isPromotionPrice)
+                            {
+                                <span class="account">@discountStr</span>
+                            }
+                            @if (m.Qty <= 0)
+                            {
+                                <div class="saleOut"><span>已售罄</span></div>
+                            }
+                        </div>
+                        <div class="title">@m.Name</div>
+                        <div class="price">
+                            ￥@Convert.ToDecimal(temprice).ToNumberStringIntelligent()<span class="f18 FontColor1">
+                                @if (!string.IsNullOrEmpty(@m.Unit))
+                                {@("/" + m.Unit)}
+                            </span>
+                        </div>
+                    </a>
+                </div>
+            }
+
+        </div>
+
+    </div>
+}

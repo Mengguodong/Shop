@@ -1,0 +1,33 @@
+﻿@using SFO2O.M.Controllers
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.ViewModel.Product
+@using SFO2O.Utility.Extensions
+@model object
+@{
+    Layout = "~/Views/Shared/_LayoutDetail.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "商品详情";
+    SkuAttributeViewModel skuMetaViewModel = ViewBag.SkuMetaViewModel;
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+}
+@section styles {
+    <link href="@BundleConfig.BuildCss("Content/css/productDetail.css")" rel="stylesheet">
+
+}
+@section scripts {
+    <script type="text/javascript" language="javascript" src="@BundleConfig.BuildCss("Scripts/itemDetail.js")"></script>
+}
+@section pageHeader {
+    <header class="pageHeader w100 pr tc overflowH">
+        <a class="returnBtn" id="returnBtn"></a>
+        <b class="f36 FontColor1">商品详情</b>
+    </header>
+}
+<!--切换标签-->
+<div class="stepsTabs boxShadow bgColor3 w100 overflowH " id="stepsTabs">
+<a class="fl cur"><span class="boxSizingB">商品详情</span><b></b></a>
+</div>
+<!--切换标签 end-->
+<div class="detailsWrap stepsContent w95p bgColor3 boxShadow mt8 mb20 pt20 pb20" id="stepsContent0">
+    @Html.Raw(Model.As(""))
+</div>

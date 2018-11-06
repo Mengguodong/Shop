@@ -25,6 +25,7 @@ namespace SFO2O.Admin.Web.Controllers
     {
         private ProdcutBLL productBll = new ProdcutBLL();
         private SupplierBLL supplierBLL = new SupplierBLL();
+          //ProductBll bll = new ProductBll();
 
         //
         // GET: /Product/
@@ -341,6 +342,8 @@ namespace SFO2O.Admin.Web.Controllers
 
                 productBll.UpDateSpuStatus(spu, status);
                 productBll.InsertProductAuditingLog(spu, status, reason, this.UserName);
+                
+
             }
             catch (Exception ext)
             {
@@ -354,6 +357,37 @@ namespace SFO2O.Admin.Web.Controllers
             {
                 var model = JsonHelper.ToObject<CustomReportJsonModel>(json);
                 productBll.InsertTemStorageCusReports(model, isChangeRS);
+                     
+                   #region 添加库存   上架商品  孙健
+                    List<SkuInfoStcok> list = new List<SkuInfoStcok>();
+            LogHelper.Info( DateTime.Now + "开始查询所有未上架商品的列表");
+            //查询所有待上架的商品列表
+            list = productBll.GetPreShowSku();
+            foreach (var item in list)
+            {
+
+
+                //调用bll方法更改上架状态
+                if (item.PreOnSaleTime <= DateTime.Now)
+                {
+                    item.Status = 3;
+                    //上架
+                    bool result = productBll.UpdatePreShowSku(item);
+                    //更新库存
+                    if (result)
+                    {
+                        bool stockResult = productBll.InsertStock(item);
+                    }
+
+
+                    if (!result)
+                    {
+                        //LogHelper.Info("更新上架状态失败！sku："+item.Sku);
+                    }
+                }
+            }
+
+                #endregion
             }
             catch (Exception ext)
             {

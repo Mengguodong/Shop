@@ -1,0 +1,9 @@
+﻿@{
+    string numString = Html.Action("MiniCart", "ShoppingCart").ToHtmlString();
+    string className = "";
+    if (numString == "0")
+    {
+        className = "hide";
+    }
+}
+<div class="headerCart cartPos" id="headerCart"><a href="/shoppingcart"><span id="cartNum" class='@className'>@(numString)</span></a></div>

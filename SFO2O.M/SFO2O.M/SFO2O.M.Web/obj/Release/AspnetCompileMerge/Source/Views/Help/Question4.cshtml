@@ -1,0 +1,52 @@
+﻿@using SFO2O.M.Controllers
+@using SFO2O.M.Controllers.Common
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.ViewModel.Product
+@using SFO2O.Utility.Extensions 
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "配送服务问题";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = false;
+}
+@section styles { 
+}
+@section scripts {
+}
+@section pageHeader {
+  <!-- 页头 -->
+    <header class="pageHeader w100 pr tc overflowH">
+        <a class="returnBtn" id="returnBtn"></a>
+        <b class="f36 FontColor1">配送服务问题</b>
+    </header>
+}
+<!-- 页头 end -->
+<dl class="problemsWrap w100 mt8 boxShadow bgColor3 f28">
+    <dt>
+        <span class="icon">问</span>同一订单可配送至多个收货地址吗？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>我们暂不支持相关服务，如您有相关要求，建议您分开个別下单。
+    </dd>
+
+    <dt>
+        <span class="icon">问</span>用户付款，商家发货后，何时可以收到商品呢？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>订单配送至中国境内收货地址，预计配送时效为商品出库当天起计算2至9个工作天内，但或会因中国物流贸易运输条款修改或不可抗力因素（包括自然灾害、如台风、地震、洪水、冰雹；政府行为，如征收、征用；社会异常事件，如罢工、骚乱三方面。），影响商品的配送时效。
+    </dd>
+    <dt>
+        <span class="icon">问</span>如何查询商品配送状况？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>我们配备了物流实时跟踪服务，用户可在订单页一键查询最新的实时物流信息，也可到第三方物流快递的官网，输入运单号查询商品配送情况或联系物流官方客户服务代表查询。
+    </dd>
+
+    <dt>
+        <span class="icon">问</span>我可以更改商品配送时间或收货地址吗？
+    </dt>
+    <dd class="whiteOnLine borderBottom FontColor3">
+        <span class="icon">答</span>请您下单时仔细核对配送时间和收货地址，平台暂不支持修改已经下单的配送时间和收货地址。未支付的订单建议取消后重新下单。已经支付的订单如需更改配送时间或收货地址，请与物流官方客户服务代表联系。
+    </dd>
+</dl>

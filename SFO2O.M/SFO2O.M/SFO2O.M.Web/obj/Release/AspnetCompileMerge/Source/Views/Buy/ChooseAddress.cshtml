@@ -1,0 +1,64 @@
+﻿@model IList<SFO2O.Model.Shopping.AddressModel>
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.Controllers
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "选择收货地址";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = false;
+}
+@section scripts{
+    @Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJsAddressList))
+
+}
+@section styles{
+
+    <link href="../Content/css/address.css?v=201512150001" rel="stylesheet">
+    }
+<header class="pageHeader w100 pr tc">
+        <a class="returnBtn" id="returnBtn"></a>
+        <b class="f36 FontColor1">选择收货地址</b>
+        <a class="headerRightText" href="/buy/addresslist">编辑</a>
+    </header>
+   <!-- 页头 end -->
+    @if(Model==null||Model.ToList().Count==0){
+    <div class="noData">
+        <img src="../Content/Images/address/address.png?v=20160111" title="" alt="" />
+        <p class="mainTips">您还没有收获地址，可以提前添加</p>
+    </div>
+    }
+    else{
+    <!-- 有收货地址 -->
+    <div class="addressList mt10 selectAddress" id="selectAddList">
+         @foreach(var a in Model.ToList()){
+        <div class="item bgColor3 boxShadow mb8" aid="@a.Id">
+            <div class="displayBox horizontal whiteOnLine w95p">
+                <div class="info boxflex1 ">
+                    <p class="f28 FontColor1 mb10">
+                        <span class="mr25">@a.Receiver</span>@a.Phone
+                    </p>
+                    <p class="f24 FontColor3">@if(a.IsDefault==1){<span class="orangeColor">[默认]</span>}@a.ProvinceName@a.CityName@a.AreaName@a.Address</p>
+                </div>
+                @if(Model.ToList().Count==1||ViewBag.ChooseId==a.Id){
+               <a class="radio checked"></a>
+                }
+                else if (Model.ToList().Count > 0 && a.IsDefault == 1 && ViewBag.ChooseId == 0)
+                {
+                <a class="radio checked"></a>
+                }else{
+                <a class="radio"></a>
+                }
+            </div>
+         
+        </div>
+          
+         }
+    </div>
+    <!-- 有收货地址end -->
+    }
+<div class="fixedBottomDiv w100 overflowH">
+    <div class="fixedBottomDivCon">
+        <a id="addInChoose" class="f28 btn">新增收货地址</a>
+    </div>
+</div>

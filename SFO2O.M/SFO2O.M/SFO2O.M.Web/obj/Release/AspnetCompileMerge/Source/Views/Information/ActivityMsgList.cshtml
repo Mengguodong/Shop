@@ -1,0 +1,31 @@
+﻿@using SFO2O.Utility.Uitl
+@{
+    ViewBag.Title = "活动消息列表页";
+    ViewBag.HeaderTitle="活动消息";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string CssVersion = ConfigHelper.CssVersion;
+    string JSVersion = ConfigHelper.JsVersion;
+    ViewBag.ShowFooter = true;
+}
+@section styles {
+    <!--页面独有样式-->
+    <link href="~/Content/css/msgCenter.css" rel="stylesheet">
+    <!--页面独有样式 END-->
+}
+<div class="MContainer" id="MContainer">
+    @section pageHeader {
+        @Html.Partial("~/Views/Shared/_HeaderTop.cshtml")
+    }
+    <!--20160510 新增内容-->
+    <div class="n_msgCenter">
+        <div class="n_systemMsg" id="systemMsgList">
+        </div>
+        <p class="f20 FontColor4 pt10 pb10 tc" id="more">上滑加载更多</p>
+    </div>
+    <!--20160510 新增内容 END-->
+</div>
+@section scripts {
+    <!--页面独有脚本-->
+    <script type="text/javascript" src="~/Scripts/message/activityMsg.js"></script>
+    <!--页面独有脚本 END-->
+}

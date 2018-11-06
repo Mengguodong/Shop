@@ -1,0 +1,63 @@
+﻿@using SFO2O.M.Controllers
+@{
+    Layout = "~/Views/Shared/_Layout_Category.cshtml";
+    this.ViewBag.Title = "商品分类";
+}
+@section styles {
+    <link href="@BundleConfig.BuildCss("Content/css/categoryList.css")" rel="stylesheet">
+}
+@section scripts {
+
+<script type="text/javascript">
+    var str ='@ViewBag.CategoryList',
+    		json=str.replace(/&quot;/g,"\"");
+    		json=eval('(' + json + ')');
+</script>
+    <script type="text/javascript" language="javascript" src="@BundleConfig.BuildCss("Scripts/jquery/jquery.lazyload.js")"></script>
+    @Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJsCategory))
+} 
+
+    <!--页头-->
+    <header class="pageHeader w100 pr tc overflowH">
+        <a class="returnBtn" id="returnBtn"></a>
+        <b class="f36 FontColor1">商品分类</b>
+    </header>
+    <!--页头 END-->
+    <!--分类-->
+    <div class="w100 overflowH" id="categoryWrap">
+        <!--一级分类列表-->
+            <div class="categoryList1 fl pr" id="categoryList1">
+                <div class="pb">
+                <script type="text/x-jsrender" id="categoryList1Temp">
+                    {{for}}
+                    <a class="f28 FontColor2 boxSizingB" _CategoryId="{{:CategoryId}}">{{:CategoryName}}</a>
+                    
+                    {{/for}}
+                </script>
+                </div>
+            </div>
+        <!--一级分类列表 END-->
+        <!--二级分类列表-->
+            <div class="categoryList2 fl pr" id="categoryList2">
+                <div class="pb">
+                   <script type="text/x-jsrender" id="categoryList2Temp"> 
+                   {{for}}
+                        <h3 class="mc pr tc" _CategoryId="{{:CategoryId}}"><span class="f28 FontColor3">{{:CategoryName}}</span></h3>
+                        <div class="categoryList3 clearfix w100">
+                            {{for Items}}
+                                <a href="{{:~getUrl(CategoryId)}}" target="_self" class="f24 FontColor4"  _CategoryId="{{:CategoryId}}">
+                                    <img src="Content/Images/categoryList/defaultCategory.png" data-original="{{:ImgUrl}}" alt="{{:CategoryName}}" class="lazyloadImg">
+                                    <span>{{:CategoryName}}</span>
+                                </a>
+                            {{/for}}
+                        </div>
+                    {{/for}}
+                    </script>
+                </div>
+            </div>
+        <!--二级分类列表 END-->
+
+    </div>
+    <!--分类-->
+
+

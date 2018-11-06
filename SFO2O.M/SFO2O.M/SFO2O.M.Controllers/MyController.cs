@@ -426,7 +426,7 @@ namespace SFO2O.M.Controllers
 
                 //string token = MD5Hash(userInfo.UserName + Auxiliary.Md5Encrypt(Auxiliary.ConfigKey("LinkTokenKey")));
 
-                link = "http://www.wdnzmt9.com/account/register" + "?mobilePhone=" + userName + "&token=" + token;
+                link = "http://www.discountmassworld.com/account/register" + "?mobilePhone=" + userName + "&token=" + token;
 
                 result = true;
 

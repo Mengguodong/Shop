@@ -1,0 +1,75 @@
+﻿@using SFO2O.Admin.Models.Enums
+@model Dictionary<SFO2O.Admin.Models.Enums.LanguageEnum, SFO2O.Admin.Models.Product.ProductBaseInfoModel>
+@{
+    var brandName = String.Empty;
+    var name_T = String.Empty;
+    var name_S = String.Empty;
+    var name_E = String.Empty;
+    var price = Decimal.Zero;
+    var productUnit = String.Empty;
+    var dutyOnSale = "賣家承擔";
+
+    if (Model != null && Model.Count > 0)
+    {
+        if (Model.Keys.Contains(LanguageEnum.TraditionalChinese) && Model[LanguageEnum.TraditionalChinese] != null)
+        {
+            var bInfo_T = Model[LanguageEnum.TraditionalChinese];
+
+            brandName = String.IsNullOrWhiteSpace(bInfo_T.Brand) ? "" : bInfo_T.Brand;
+            name_T = String.IsNullOrWhiteSpace(bInfo_T.Name) ? "" : bInfo_T.Name;
+
+            price = bInfo_T.Price;
+            productUnit = bInfo_T.Unit;
+
+            if (bInfo_T.IsDutyOnSeller == 0)
+            {
+                dutyOnSale = "買家承擔";
+            }
+        }
+
+        if (Model.Keys.Contains(LanguageEnum.SimplifiedChinese) && Model[LanguageEnum.SimplifiedChinese] != null)
+        {
+            name_S = Model[LanguageEnum.SimplifiedChinese].Name;
+        }
+
+        if (Model.Keys.Contains(LanguageEnum.English) && Model[LanguageEnum.English] != null)
+        {
+            name_E = Model[LanguageEnum.English].Name;
+        }
+    }
+
+
+    <table class="fff_bor">
+        <tr>
+            <th rowspan="4" width="140" class="vtop"><span class="f_l pd_l10 mg_t40">商品基本信息</span></th>
+            <td>
+                <span class="f_l pd_l10 w105">品牌：</span>
+                <span class="f_l pd_l10">@brandName</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="f_l pd_l10 w105">商品名稱：</span>
+                <div class="f_l" style="width:660px;">
+                    <p class="pd_l10" id="productName">@name_T</p>
+                    <p class="pd_l10">@name_S</p>
+                    <p class="pd_l10">@name_E</p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="f_l pd_l10 w105">商品价格：</span>
+                <span class="f_l pd_l10">$@price</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span class="f_l pd_l10 w105">商品單位：</span>
+                <span class="f_l pd_l10 w250 bor_r">@productUnit</span>
+                <span class="f_l pd_l10 w105">商品關稅：</span>
+                <span class="f_l pd_l10">@dutyOnSale</span>
+            </td>
+        </tr>
+    </table>
+}

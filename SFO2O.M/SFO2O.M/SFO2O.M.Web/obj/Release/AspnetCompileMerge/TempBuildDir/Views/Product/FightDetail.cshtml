@@ -1,0 +1,294 @@
+﻿@using SFO2O.Utility.Uitl
+@using SFO2O.Model.Product
+@using SFO2O.Utility.Extensions
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    this.ViewBag.Title = Model.Name;
+    ViewBag.ShowFooter = true;
+    int i = 1;
+}
+@model SFO2O.Model.Product.ProductInfoModel
+@section styles {
+    <link href="../Content/css/search.css?v=201512150001" rel="stylesheet">
+    <link href="../Content/css/item.css?v=201512150001" rel="stylesheet">
+}
+@section scripts {
+    <!--页面独有脚本-->
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="../Scripts/jquery/TouchSlide.1.1.js?v=201509091111"></script>
+    <script>
+        function checkQty(url, sku, number,pid) {
+            FSH.Ajax({
+                url: "/product/checkQty?sku=" + sku+"&pid="+pid,
+                type: "get",
+                dataType: 'json',
+                jsonp: 'callback',
+                jsonpCallback: "success_jsonpCallback",
+                success: function (data) {
+                    if (data.ForOrderQty > 0) {
+                        window.location.href = url;
+                        return true;
+                    }
+                    else {
+                        alert("该商品库存量不足");
+                        window.location.reload();
+                        return false;
+                    }
+                }
+            })
+        }
+    </script>
+    <script src="../Scripts/jquery/jquery.dialog.js?v=201509091111"></script>
+    <script src="../Scripts/jquery/jquery.showSearch.js?v=201509091111"></script>
+    <script type="text/javascript" src="../Scripts/item_pin.js?v=201509091111"></script>
+}
+@section pageHeader {
+    <!-- 页头 -->
+    @Html.Partial("~/Views/Shared/_HeaderItem.cshtml")
+    <!-- 页头 end -->
+}
+@if (Model != null)
+{
+        <!--第一部分-->
+    <div class="itemCon w100 boxShadow bgColor3 mb8">
+        <!--轮播图-->
+        <div class=" banner pr  mc clearfix hide" id="mySwipe">
+            <div class="bannerIndex clearfix hd" id="mySwipeLiItems">
+                <ul></ul>
+            </div>
+            <div class="swipe focusBox f0 bd">
+                @foreach (var ImagePath in Model.Images)
+                {
+
+                    <ul class="swipe-wrap focusBoxIn">
+                        <li><a target="_self" href="@Url.Action("../item/ProductPicture", new { productCode = ImagePath.SPU })"><img src="@(ImagePath.ImagePath.GetImageUrl())" /></a></li>
+                    </ul>
+
+                }
+            </div>
+        </div>
+        <!--轮播图 END-->
+        <!--20160425 修改内容-->
+        <div class="w95m brandArea mt15 f24 FontColor3 displayBox overflowH">
+            @if (!string.IsNullOrEmpty(Model.Brand) && !string.IsNullOrEmpty(Model.BrandEN))
+            {
+
+                if (!Model.BrandEN.Equals(Model.Brand))
+                {
+                    if (string.IsNullOrEmpty(Model.NationalFlag))
+                    {
+                        <p class="boxflex1"><span></span>@Model.CountryName  @Model.Brand  (@Model.BrandEN)</p>
+                    }
+                    else
+                    {
+                        <p class="boxflex1"><img src="@PathHelper.GetNationalFlagImageUrl(@Model.NationalFlag)" class="nationImg" /> @Model.CountryName  @Model.Brand  (@Model.BrandEN)</p>
+                    }
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(Model.NationalFlag))
+                    {
+                        <p class="boxflex1"><span></span>@Model.CountryName  @Model.Brand</p>
+                    }
+                    else
+                    {
+                        <p class="boxflex1"><img src="@PathHelper.GetNationalFlagImageUrl(@Model.NationalFlag)" class="nationImg" /> @Model.CountryName  @Model.Brand</p>
+                    }
+                }
+            }
+            else
+            {
+                if(string.IsNullOrEmpty(Model.NationalFlag)){
+                    <p class="boxflex1">@Model.CountryName</p>
+                }
+                else
+                {
+                    <p class="boxflex1"><img src="@PathHelper.GetNationalFlagImageUrl(@Model.NationalFlag)" width="20" /> @Model.CountryName</p>
+                }
+            }
+            <a class=" FontColor4" id="taxTip_pin"><span class="taxIcon"></span><b class="underline" style="font-weight:normal;">税费</b></a>
+        </div>
+        <p class="w95p itemProName f28 mt8 mb8 pr">
+            @(Model.Name)<span>&nbsp;</span>@(Model.MainValue)<span>&nbsp;</span>@(Model.SubValue)@(Model.NetWeightUnit)
+            <!--售罄 过期图标 售罄样式名为soldOutIcon 过期样式名为overdueIcon -->
+            @if (Model.PromotionStatus == 3)
+            {
+                <span class="markIcon overdueIcon pr overdueIcon"></span>
+            }
+            else if (Model.ForOrderQty == 0||Model.compare==2)
+            {
+                <span class="markIcon soldOutIcon pr soldOutIcon"></span>
+            }
+
+
+            <!--售罄 过期图标 售罄样式名为soldOutIcon 过期样式名为overdueIcon END-->
+        </p>
+        <!--售罄状态下   下面这个div需要 soldOutStatu
+            已过期状态下 下面这个div需要 overdueStatu
+        -->
+        @if (Model.PromotionStatus == 3)
+        {
+            <div class="w95m mb8 overdueStatu clearfix">
+                <div class="gotoBuy tc boxSizingB">
+                    <a href="/buy/buynow?sku=@(Model.Sku)&qty=1" target="_self">
+                        <p class="f32 price_pin">￥@Model.MinPrice.ToNumberRoundStringWithPoint()</p>
+                        <p class="f20 gotoBuyFont">单独购买 ></p>
+                    </a>
+                </div>
+                <div class="gotoPin tc boxSizingB">
+                    <a href="/buy/buynow?sku=@(Model.Sku)&qty=1&pid=@(Model.pid)" target="_self">
+                        <p class="f32 price_pin">@(Model.TuanNumbers)人团:￥@(Model.DiscountPrice.ToNumberRoundStringWithPoint())</p>
+                        <p class="f20 gotoPinFont">去开团 ></p>
+                    </a>
+                </div>
+            </div>
+        }
+        else if (Model.ForOrderQty <= 0 || Model.compare == 2)
+        {
+            <div class="w95m mb8 soldOutStatu clearfix">
+                <div class="gotoBuy tc boxSizingB">
+                    <a href="/buy/buynow?sku=@(Model.Sku)&qty=1" target="_self">
+                        <p class="f32 price_pin">￥@Model.MinPrice.ToNumberRoundStringWithPoint()</p>
+                        <p class="f20 gotoBuyFont">单独购买 ></p>
+                    </a>
+                </div>
+                <div class="gotoPin tc boxSizingB">
+                    <a href="/buy/buynow?sku=@(Model.Sku)&qty=1&pid=@(Model.pid)" target="_self">
+                        <p class="f32 price_pin">@(Model.TuanNumbers)人团:￥@Model.DiscountPrice.ToNumberRoundStringWithPoint()</p>
+                        <p class="f20 gotoPinFont">去开团 ></p>
+                    </a>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="w95m mb8 clearfix">
+                <div class=" gotoBuy tc boxSizingB">
+                    <a href="javascript:void(0);" onclick="checkQty('/buy/buynow?sku=@(Model.Sku)&qty=1',@(Model.Sku),@(Model.TuanNumbers),@(Model.pid))" target="_self">
+                        <p class="f32 price_pin">￥@Model.MinPrice.ToNumberRoundStringWithPoint()</p>
+                        <p class="f20 gotoBuyFont">单独购买 ></p>
+                    </a>
+                </div>
+                <div class="gotoPin tc boxSizingB">
+                    <a href="javascript:void(0);" onclick="checkQty('/buy/buynow?sku=@(Model.Sku)&qty=1&pid=@(Model.pid)',@(Model.Sku),@(Model.TuanNumbers),@(Model.pid))" target="_self">
+                        <p class="f32 price_pin">@(Model.TuanNumbers)人团:￥@Model.DiscountPrice.ToNumberRoundStringWithPoint()</p>
+                        <p class="f20 gotoPinFont">去开团 ></p>
+                    </a>
+                </div>
+            </div>
+        }
+
+        <p class="w95p pinTip FontColor6 f20 mb8">
+            支持开团并邀请 @(Model.TuanNumbers - 1)人参加，人数不足自动退款；开团团长获得酒豆奖励。
+        </p>
+        <!--20160425 修改内容 END-->
+        <ul class="w95p itemFeature f24 FontColor3 overflowH ">
+            <li><span class="itemIcon_r"></span>酒厂直发</li>
+            <li><span class="itemIcon_r"></span>全场包邮</li>
+            <li><span class="itemIcon_r"></span>正品保证</li>
+        </ul>
+    </div>
+        <!--第一部分 END-->
+    if (Model.PromotionStatus != 3)
+    {
+        <!--跳转区域-->
+        <div class="itemCon w100 mb8 boxShadow bgColor3 f28">
+            <p class="w95p pt17 pb17 whiteOnLine borderBottom"><a href="/item/param?ProductCode=@(Model.SPU)" target="_self" class="show w100">产品参数<i class="itemIcon_jt"></i></a></p>
+            <p class="w95p pt17 pb17 "><a href="/item/detail?ProductCode=@(Model.SPU)" target="_self" class="show w100">商品详情<i class="itemIcon_jt"></i></a></p>
+        </div>
+    }
+    <!--跳转区域 END-->
+    <!--20160425 修改内容-->
+    <div class="pinRule w95p boxShadow bgColor3 ">
+        <a href="pinRule" target="_self">
+            <p class="title w100 f28">拼生活规则 <i class="itemIcon_jt"></i></p>
+            <ul class="w100 overflowH pinRule f20 FontColor4 displayBox">
+                <li class="cur tc">
+                    <p class="stepNum mc">1</p>
+                    <p class="stepName">选择<br>心仪商品</p>
+                </li>
+                <li class="tc">
+                    <p class="stepNum mc">2</p>
+                    <p class="stepName">支付开团<br>或参团</p>
+                </li>
+                <li class="tc">
+                    <p class="stepNum mc">3</p>
+                    <p class="stepName">等待好友<br>参团支付</p>
+                </li>
+                <li class="tc">
+                    <p class="stepNum mc">4</p>
+                    <p class="stepName">达到人数<br>团购成功</p>
+                </li>
+            </ul>
+        </a>
+    </div>
+    <!--20160425 修改内容 过期吸底-->
+    <div class="fixedBottomDiv w100 overflowH ">
+        @if (Model.PromotionStatus == 3)
+        {
+            <div class="fixedBottomDivCon tc overdueJump">
+                <a href="/product/FightIndex" target="_self" class="f28 ">该商品活动已过期，查看更多拼团活动</a>
+            </div>
+        }
+        @if (Model.PromotionStatus == 2 && Model.ForOrderQty <= 0)
+        {
+            <div class="fixedBottomDivCon tc overdueJump">
+                <a href="/product/FightIndex" target="_self" class="f28 ">该商品活动已售罄，查看更多拼团活动</a>
+            </div>
+        }
+
+    </div>
+    <!--20160425 修改内容 过期吸底 END-->
+    <!--20160425 修改内容 税费弹窗-->
+    <div class="skuMark hide" id="skuMark"></div>
+    <div class="w100 selectSKU bgColor3 hide " id="taxDialog">
+        <a class="closeA"></a>
+        <div class="title w95p f28 FontColor3">税费</div>
+        <p class="w95p f24 FontColor4 whiteOnLine borderBottom">
+            拼团税费：
+            @if (Model.IsDutyOnSeller == 1)
+            {
+                <span class="lineThrough FontColor1">￥@((Model.minRatePrice).ToNumberRoundStringWithPoint())</span>
+                <span class="FontColor1">（商家承担商品税）</span>
+            }
+            else if (Model.minRealTaxType == 2 && Model.minRatePrice <= 50)
+            {
+                <span class="lineThrough FontColor1">￥@((Model.minRatePrice).ToNumberRoundStringWithPoint())</span>
+                <span class="FontColor1">（商品税≤50元，免征）</span>
+            }
+            else
+            {
+                <span class="FontColor1">￥@((Model.minRatePrice).ToNumberRoundStringWithPoint())</span>
+            }
+        </p>
+        <p class="w95p f24 FontColor4 whiteOnLine borderBottom">
+            单独买税费：
+            @if (Model.IsDutyOnSeller == 1)
+            {
+                <span class="lineThrough FontColor1">￥@((Model.taxPrice).ToNumberRoundStringWithPoint())</span>
+                <span class="FontColor1">（商家承担商品税）</span>
+            }
+            else if (Model.realTaxType == 2 && Model.taxPrice <= 50)
+            {
+                <span class="lineThrough FontColor1">￥@((Model.taxPrice).ToNumberRoundStringWithPoint())</span>
+                <span class="FontColor1">（商品税≤50元，免征）</span>
+            }
+            else
+            {
+                <span class="FontColor1">￥@((Model.taxPrice).ToNumberRoundStringWithPoint())</span>
+            }
+        </p>
+        <p class="w95p f24 FontColor4 whiteOnLine borderBottom">
+            @if (Model.minRealTaxType == 1)
+            {
+                <span class="FontColor1">  中华人民共和国大陆地区1号仓发货</span>
+            }
+            else
+            {
+                <span class="FontColor1">  中华人民共和国大陆地区2号仓发货</span>
+            }
+        </p>
+    </div>
+    <!--20160425 修改内容 税费弹窗 END-->
+}
+

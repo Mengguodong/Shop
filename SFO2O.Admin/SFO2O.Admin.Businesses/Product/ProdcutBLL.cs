@@ -411,5 +411,53 @@ namespace SFO2O.Admin.Businesses.Product
             var ds = productDAL.GetProductInventoryList(queryModel, languageEnum, page);
             return ds.Tables[0];
         }
+
+        //添加库存，上架
+        #region 添加库存，上架   孙健
+        /// <summary>
+        /// 获取所有待上架的sku
+        /// </summary>
+        /// <returns></returns>
+        public List<SkuInfoStcok> GetPreShowSku()
+        {
+            List<SkuInfoStcok> list = new List<SkuInfoStcok>();
+
+            var result = productDAL.GetPreShowSku();
+
+            list = result.ToList();
+
+            return list;
+
+        }
+
+
+
+        /// <summary>
+        /// 更新 待上架商品为已上架
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public bool UpdatePreShowSku(SkuInfoStcok item)
+        {
+            bool result = false;
+            result = productDAL.UpdatePreShowSku(item);
+
+
+            return result;
+        }
+        /// <summary>
+        /// 更新库存
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public bool InsertStock(SkuInfoStcok item)
+        {
+
+            bool result = false;
+            result = productDAL.InsertStock(item);
+
+            return result;
+        } 
+        #endregion
     }
 }

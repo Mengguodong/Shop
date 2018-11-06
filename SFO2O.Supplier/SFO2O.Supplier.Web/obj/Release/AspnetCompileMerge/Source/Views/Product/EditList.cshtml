@@ -1,0 +1,213 @@
+﻿@model SFO2O.Supplier.ViewModels.EditListModel
+@using SFO2O.Supplier.Common;
+@using SFO2O.Supplier.Models;
+@using SFO2O.Supplier.Models.Product;
+@{
+    ViewBag.Title = "审核中商品";
+    ViewBag.PageName = "ProductManage";
+    var list = ViewBag.DataList as PageOf<ProductTempModel>;
+    var skuStatus = new Dictionary<int, string>
+    {
+        {0,"待审核"},
+        {2,"已驳回"},
+    };
+    var editType = new Dictionary<int, string>
+    {
+        {1,"新上传"},
+        {2,"修改"},
+    };
+}
+
+<div class="cont_right_crumb"><span class="homepage"></span>&gt; 商品管理 &gt; 管理商品</div>
+<div class="w931">
+    <div class="upload_edit mg_t30">
+        <ul class="check_title clearfix">
+            <li><a href="PublishedList" class="clearfix"><span style="width:86px;">已发布商品</span><i></i></a></li>
+            <li class="current"><a href="javascript:void(0)" class="clearfix"><span style="width:86px;">审核中商品</span><i></i></a></li>
+        </ul>
+        <div class="wrap_yisc bor_bg">
+            @using (Html.BeginForm(null, null, FormMethod.Get, new { @class = "list_yisc bor clearfix" }))
+            {
+                <div class="clearfix">
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">@Html.LabelFor(p => p.EditTime)：</span>
+                        @Html.TextBoxFor(p => p.EditTime, "yyyy-MM-dd", new { @class = "f_l bor Wdate", style = "background-position:132px 4px;width:150px;", onfocus = "WdatePicker({ isShowClear: true, isShowOK: true, isShowToday: true })" })
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">@Html.LabelFor(p => p.SkuStatus)：</span>
+                        @Html.DropDownListFor(p => p.SkuStatus, new SelectList(skuStatus, "Key", "Value"), "全部")
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">@Html.LabelFor(p => p.EditType)：</span>
+                        @Html.DropDownListFor(p => p.EditType, new SelectList(editType, "Key", "Value"), "全部")
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">@Html.LabelFor(p => p.Sku)：</span>
+                        @Html.TextBoxFor(p => p.Sku, new { @class = "f_l bor w150" })
+                    </div>
+
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">@Html.LabelFor(p => p.BarCode)：</span>
+                        @Html.TextBoxFor(p => p.BarCode, new { @class = "f_l bor w150" })
+                    </div>
+                    <div class="box_choose f_l">
+                        <span class="choose_left f_l">@Html.LabelFor(p => p.ProductName)：</span>
+                        @Html.TextBoxFor(p => p.ProductName, new { @class = "f_l bor w200" })
+                    </div>
+                </div>
+                <a href="javascript:void(0)" class="btn_green w160 mg_l20 mg_r30 mg_t10" id="search">搜 寻</a>
+            }
+            <div class="table_yifb mg_l10 mg_r10">
+                <table style="position:relative; width:1222px;" class="bg_fff f16  t_c">
+                    <tr class="bg_ebebeb h40 t_c" style="line-height:initial;">
+                        <th width="150">商品SPU编号</th>
+                        <th width="150">商品名称</th>
+                        <th width="100">商品分类</th>
+                        <th width="110">编辑时间</th>
+                        <th width="80">编辑类型</th>
+                        <th width="150">商品SKU编号</th>
+                        <th width="80">属性1</th>
+                        <th width="80">属性2</th>
+                        <th width="180">条形码</th>
+                        <th width="100">价格</th>
+                        <th width="80">状态</th>
+                        <th width="130">操作</th>
+                    </tr>
+                    @if (list != null && list.Items.Count > 0)
+                    {
+                        foreach (var spu in list.Items)
+                        {
+                            var skuCount = spu.SkuInfoList.Count;
+                            var firstSku = spu.SkuInfoList[0];
+                            <tr>
+                                <td class="vtop" rowspan="@skuCount">
+                                    <span class="f_l w150">
+                                        @{
+                            string imgUrl = null;
+                            if (!string.IsNullOrEmpty(spu.FirstImage))
+                            {
+                                imgUrl = spu.FirstImage.Replace('\\', '/');
+                                <img src="@ConfigHelper.ImageServer@(imgUrl.Insert(imgUrl.LastIndexOf('.'), "_180"))" class="mg_t10 pd_t5" width="80" height="80">
+                            }
+                                        }
+                                        <em class="block mg_t10 pd_t5 mg_b10">@spu.Spu</em>
+                                    </span>
+                                </td>
+                                <td class="t_l vtop" rowspan="@skuCount" style="line-height:initial;"><span class="f_l t_l mg10">@spu.Name</span></td>
+                                <td class="vtop" rowspan="@skuCount" style="line-height:initial;"><span class="f_l t_l mg10">@spu.CategoryName</span></td>
+                                <td class="vtop" rowspan="@skuCount"><span class="f_l t_c mg10" style="line-height:initial;">@spu.ModifyTime.ToDateTimeString()</span></td>
+                                <td class="vtop" rowspan="@skuCount"><span class="f_l t_l mg10">@(spu.DataSource == 1 ? "新上传" : "修改")</span></td>
+                                <td class="vtop"><span class="f_l t_l mg10">@firstSku.Sku</span></td>
+                                <td class="vtop"><span class="f_l t_l mg10">@firstSku.MainValue</span></td>
+                                <td class="vtop"><span class="f_l t_l mg10">@firstSku.SubValue</span></td>
+                                <td class="t_l vtop"><span class="f_l w160 t_l mg_t10 pd_l10 pd_b10">@firstSku.BarCode</span></td>
+                                <td class="vtop" style="line-height:initial;"><span class="f_l t_l mg10">@firstSku.Price.ToString("f2")</span></td>
+                                <td class="vtop"><span class="f_l t_l mg10">@(skuStatus[firstSku.Status])</span></td>
+                                <td class="t_l vtop" rowspan="@skuCount" style="line-height:initial;">
+                                    <a href="@Url.Action("ViewProduct", new { spu = spu.Spu, status = spu.Status, isOnline = false })" class="block t_l mg_l20 mg_t5 col_link">查看商品信息</a>
+                                    @if (spu.SkuInfoList.Any(p => p.Status == 2))
+                                    {
+                                        <a href="javascript:void(0)" onclick="$.dialog({width:470,content:'@(spu.AuditReason)'})" class="block t_l mg_l20 mg_t5 col_link">查看原因</a>
+                                    }
+                                    @if (spu.Status == 2)
+                                    {
+                                        <a href="@Url.Action("ProductUpload", new { categoryId = spu.CategoryId, spu = spu.Spu, Status = spu.Status })" class="block t_l mg_l20 mg_t5 col_link">编辑</a>
+                                        <a href="javascript:void(0)" onclick="CancelEdit('@spu.Spu')" class="block t_l mg_l20 mg_t5 col_link">放弃编辑</a>
+                                    }
+                                </td>
+                            </tr>
+                            foreach (var sku in spu.SkuInfoList.Skip(1))
+                            {
+                                <tr>
+                                    <td class="vtop"><span class="f_l t_l mg10">@sku.Sku</span></td>
+                                    <td class="vtop"><span class="f_l t_l mg10">@sku.MainValue</span></td>
+                                    <td class="vtop"><span class="f_l t_l mg10">@sku.SubValue</span></td>
+                                    <td class="t_l vtop"><span class="f_l w160 t_l mg_t10 pd_l10 pd_b10">@sku.BarCode</span></td>
+                                    <td class="vtop" style="line-height:initial;"><span class="f_l t_l mg10">@sku.Price.ToString("f2")</span></td>
+                                    <td class="vtop"><span class="f_l t_l mg10">@(skuStatus[sku.Status])</span></td>
+                                </tr>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td class="t_l" colspan="11">
+                                <p class="color_green pd_l20 t_l mg_t20 mg_b20">没有符合条件的审核中商品！</p>
+                            </td>
+                        </tr>
+                    }
+                </table>
+                @if (list != null && list.Items != null && list.Items.Count > 0)
+                {
+                    <div class="page">
+                        @Html.ShowFPage(Url.Action(null
+                        , new
+                        {
+                            PageIndex = "{0}",
+                            EditTime = Model.EditTime,
+                            SkuStatus = Model.SkuStatus,
+                            EditType = Model.EditType,
+                            Sku = Model.Sku,
+                            BarCode = Model.BarCode,
+                            ProductName = Model.ProductName
+                        })
+                        , list.PageIndex
+                        , 20
+                        , list.Total)
+                        <p class="f14 mg_l20 mg_b5 inline">
+                            共<em class="color_green pd_l10 pd_r10"> @(list.Total) </em>条数据
+                        </p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Script("~/Scripts/Plugins/my97/WdatePicker.js")
+@Html.Style("~/Scripts/Plugins/chosen/chosen.css")
+@Html.Script("~/Scripts/Plugins/chosen/chosen.jquery.js")
+<script type="text/javascript">
+    $("#EditTime").click(function () {
+        WdatePicker({ maxDate: '@DateTime.Now.ToDateString()' })
+    })
+    $("#SkuStatus").chosen({ disable_search: true, width: "163px" });
+    $("#EditType").chosen({ disable_search: true, width: "163px" });
+    $("#search").click(function () { $(this).closest("form").submit() });
+    function CancelEdit(spu) {
+        $.dialog({
+            width: 470,
+            content: "您确认要放弃编辑吗？",
+            buttons: [{ text: "取消", isWhite: true },
+                {
+                    text: "确认",
+                    onClick: function () {
+                        $.ajax({
+                            url: "CancelEdit",
+                            type: "post",
+                            data: { spu: spu },
+                            success: function (res) {
+                                if (!res.Error) {
+                                    $.dialog({
+                                        content: "放弃编辑成功",
+                                        onConfirm: function () {
+                                            window.location.reload();
+                                        }
+                                    });
+                                } else {
+                                    if (res.Message) {
+                                        $.dialog(res.Message);
+                                    } else {
+                                        $.dialog("放弃编辑失败！");
+                                    }
+                                }
+                            }
+                        });
+                        return true;
+                    }
+                }]
+        });
+    }
+</script>

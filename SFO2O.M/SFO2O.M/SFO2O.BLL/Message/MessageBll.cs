@@ -70,7 +70,7 @@ namespace SFO2O.BLL.Message
                             string username = "sf-o2o";
                             string password = "sf168";
                             string content = smsContent;
-                            //string content = System.Web.HttpUtility.UrlEncode(string.Format("爱玖网购物商城{0}", smsContent), Encoding.GetEncoding("UTF-8"));
+                            //string content = System.Web.HttpUtility.UrlEncode(string.Format("健康绿氧购物商城{0}", smsContent), Encoding.GetEncoding("UTF-8"));
 
                             string doResult = smsClient.SendMessage(username, password, string.Empty, content, regionCode + mobileNo, string.Empty);
                             if (!string.IsNullOrEmpty(doResult))
@@ -115,7 +115,7 @@ namespace SFO2O.BLL.Message
             SingleSendSmsRequest requestSms = new SingleSendSmsRequest();
             try
             {
-                requestSms.SignName = "爱玖网";
+                requestSms.SignName = "健康绿氧";
                 requestSms.TemplateCode = "SMS_70170128";
                 requestSms.RecNum = smsRequest.Phone;
                 requestSms.ParamString = "{'code':'" + smsRequest.Code + "'}";

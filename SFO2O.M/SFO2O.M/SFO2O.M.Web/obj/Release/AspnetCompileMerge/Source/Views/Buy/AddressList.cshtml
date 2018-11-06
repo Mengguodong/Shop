@@ -1,0 +1,67 @@
+﻿@model IList<SFO2O.Model.Shopping.AddressModel>
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.Controllers
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "我的收货地址";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = true;
+}
+@section scripts{
+    @Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJsAddressList))
+
+}
+@section styles{
+    <style>
+        footer {
+            margin-bottom:50px;
+        }
+    </style>
+    <link href="../Content/css/address.css?v=201512150001" rel="stylesheet">
+    }
+
+<!-- 页头 -->
+	<header class="pageHeader w100 pr tc">
+        <a class="returnBtn" id="returnBtn"></a>
+        <b class="f36 FontColor1">我的收货地址</b>
+        <!--<a class="headerRightText" id="addBtn">添加地址</a>-->
+        <a class="flowerMenu" onclick="FSH.menuDialog()"></a>
+    </header>
+    <!-- 页头 end -->
+    @if(Model==null||Model.ToList().Count==0){
+    <div class="noData">
+        <img src="../Content/Images/address/address.png?v=20160111" title="" alt="" />
+        <p class="mainTips">您还没有收获地址，可以提前添加</p>
+    </div>
+    }
+    else{
+    <!-- 有收货地址 -->
+    <div class="addressList mt10" id="addressList">
+         @foreach(var a in Model.ToList()){
+        <div class="item bgColor3 boxShadow mb8" aid="@a.Id">
+            <div class="displayBox horizontal whiteOnLine w95p">
+                <div class="info boxflex1 ">
+                    <a href="/buy/addaddress?id=@a.Id&return_url=@Request.Url.AbsoluteUri">
+                        <p class="f28 FontColor1 mb10">
+                            <span class="mr25">@a.Receiver</span>@a.Phone
+                        </p>
+                        <p class="f24 FontColor3">@a.ProvinceName@a.CityName@a.AreaName@a.Address</p>
+                    </a>
+                </div>
+                <a href="/buy/addaddress?id=@a.Id&return_url=@Request.Url.AbsoluteUri" class="rightArrow"></a>
+            </div>
+            <div class="do w95p">
+                <i class="delete fr"></i>
+                <span class="setDefault FontColor1 f28"><i class="radio @(a.IsDefault==1?"checked":"")"></i>设为默认地址</span>
+            </div>
+        </div>
+         }
+    </div>
+    <!-- 有收货地址end -->
+    }
+<div class="fixedBottomDiv w100 overflowH">
+    <div class="fixedBottomDivCon">
+        <a id="addBtn" class="f28 btn">新增收货地址</a>
+    </div>
+</div>

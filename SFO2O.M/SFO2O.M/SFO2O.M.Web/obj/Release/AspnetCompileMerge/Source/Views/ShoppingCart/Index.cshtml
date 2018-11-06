@@ -1,0 +1,207 @@
+﻿@using System.Web.UI.HtmlControls
+@using SFO2O.BLL.Common
+@using SFO2O.M.Controllers
+@using SFO2O.M.Controllers.Common
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.ViewModel.Product
+@using SFO2O.Utility.Extensions
+@using SFO2O.Utility.Uitl
+@using SFO2O.Utility.Uitl;
+@model SFO2O.M.ViewModel.ShoppingCart.CartViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "购物车";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = false;
+    bool isChechedAll = false;
+    if (Model != null && Model.Items != null && Model.Items.Any())
+    {
+        isChechedAll = Model.Items.All(n => n.IsChecked);
+    }
+
+}
+
+@section styles {
+    <link href="@BundleConfig.BuildCss("Content/css/shoppingCart.css")" rel="stylesheet">
+}
+@section scripts {
+    <script type="text/javascript" language="javascript" src="@BundleConfig.BuildCss("Scripts/jquery/jsrender-v1.0.0-beta.js")"></script>
+    <script type="text/javascript" src="~/Scripts/selectSKU.js?v=@ConfigHelper.JsVersion"></script>
+    <script type="text/javascript" src="~/Scripts/shoppingCart.js?v=@ConfigHelper.JsVersion"></script>
+    @* @Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJsShopping))*@
+}
+@section pageHeader {
+    <header class="pageHeader w100 pr tc overflowH">
+        <a class="returnBtn" id="returnBtn"></a>
+        <b class="f36 FontColor1">购物车<span>@Html.Action("MiniCartOne", "ShoppingCart")</span></b>
+        @if (Model.Items.Any() || Model.InvalidItems.Any())
+        {
+            <a id="cartHeaderBtn" class="headerRightBtnPosition f28 FontColor4 lh16">编辑</a>
+        }
+    </header>
+}
+
+@if (Model.Items.Any())
+{
+    <p class="taxTip f24 mb10" id="taxTip">温馨提示：请您再次确认商品信息和数量，商品购买后无质量问题不予退货。</p>
+    var firstRealTaxType = Model.Items.FirstOrDefault().RealTaxType;
+    if (firstRealTaxType == 1)
+    {
+        <div class="productBox bgColor3 boxShadow mb8 depot" id="depot1">
+            @if (Model.HKOneWareHouseItems.Any())
+            {
+
+                @*<div class="title FontColor1">
+                    <!--20160714 全选-->
+                    <div class="cartCheckBoxWrap allCheck" id="allCheck1">
+                        @if (Model.HKOneWareHouseItems.Count() != 0 && Model.HKOneWareHouseItems.Count() == Model.HKOneWareHouseItems.Where(d => d.IsChecked == true).Count())
+                        {
+                            <b class="cartCheckBox checked"></b>
+                        }
+                        else
+                        {
+                            <b class="cartCheckBox"></b>
+                        }
+                    </div>
+                    <!--20160714 全选 End-->
+                    <i></i>中华人民共和国大陆地区1号仓发货
+                </div>*@
+                <ul class="cartProList cartProList1">
+                    @Html.Partial("_Items", Model.HKOneWareHouseItems)
+                </ul>
+            }
+            @if (Model.HKOneWareHouseInvalidItems.Any())
+            {
+                <ul class="cartProList disabledProList cartProList2">
+                    <!--失效商品列表-->
+                    @Html.Partial("_InvalidItems", Model.HKOneWareHouseInvalidItems)
+                    <!--失效商品列表 END-->
+                </ul>
+            }
+        </div>
+        <div class="productBox bgColor3 boxShadow mb8 depot" id="depot2">
+            @if (Model.HKSecWareHouseItems.Any())
+            {
+                @*<div class="title FontColor1">
+                    <!--20160714 全选-->
+                    <div class="cartCheckBoxWrap allCheck" id="allCheck2">
+                        @if (Model.HKSecWareHouseItems.Count() != 0 && Model.HKSecWareHouseItems.Count() == Model.HKSecWareHouseItems.Where(d => d.IsChecked == true).Count())
+                        {
+                            <b class="cartCheckBox checked"></b>
+                        }
+                        else
+                        {
+                            <b class="cartCheckBox"></b>
+                        }
+                    </div>
+                    <!--20160714 全选 End-->
+                    <i></i>中华人民共和国大陆地区2号仓发货
+                </div>*@
+                <ul class="cartProList cartProList1">
+                    @Html.Partial("_Items", Model.HKSecWareHouseItems)
+                </ul>
+            }
+            @if (Model.HKSecWareHouseInvalidItems.Any())
+            {
+                <ul class="cartProList disabledProList cartProList2">
+                    <!--失效商品列表-->
+                    @Html.Partial("_InvalidItems", Model.HKSecWareHouseInvalidItems)
+                    <!--失效商品列表 END-->
+                </ul>
+            }
+        </div>
+    }
+    if (firstRealTaxType == 2)
+    {
+        <div class="productBox bgColor3 boxShadow mb8 depot" id="depot1">
+            @if (Model.HKSecWareHouseItems.Any())
+            {
+                @*<div class="title FontColor1">
+                    <!--20160714 全选-->
+                    <div class="cartCheckBoxWrap allCheck" id="allCheck1">
+                        @if (Model.HKSecWareHouseItems.Count() != 0 && Model.HKSecWareHouseItems.Count() == Model.HKSecWareHouseItems.Where(d => d.IsChecked == true).Count())
+                        {
+                            <b class="cartCheckBox checked"></b>
+                        }
+                        else
+                        {
+                            <b class="cartCheckBox"></b>
+                        }
+                    </div>
+                    <!--20160714 全选 End-->
+                    <i></i>中华人民共和国大陆地区2号仓发货
+                </div>*@
+                <ul class="cartProList cartProList1">
+                    @Html.Partial("_Items", Model.HKSecWareHouseItems)
+                </ul>
+            }
+            @if (Model.HKSecWareHouseInvalidItems.Any())
+            {
+                <ul class="cartProList disabledProList cartProList2">
+                    <!--失效商品列表-->
+                    @Html.Partial("_InvalidItems", Model.HKSecWareHouseInvalidItems)
+                    <!--失效商品列表 END-->
+                </ul>
+            }
+        </div>
+
+
+        @*<div class="productBox bgColor3 boxShadow mb8 depot" id="depot2">
+            @if (Model.HKOneWareHouseItems.Any())
+            {
+                <div class="title FontColor1">
+                    <!--20160714 全选-->
+                    <div class="cartCheckBoxWrap allCheck" id="allCheck2">
+                        @if (Model.HKOneWareHouseItems.Count() != 0 && Model.HKOneWareHouseItems.Count() == Model.HKOneWareHouseItems.Where(d => d.IsChecked == true).Count())
+                        {
+                            <b class="cartCheckBox checked"></b>
+                        }
+                        else
+                        {
+                            <b class="cartCheckBox"></b>
+                        }
+                    </div>
+                    <!--20160714 全选 End-->
+                    <i></i>中华人民共和国大陆地区1号仓发货
+                </div>
+                <ul class="cartProList cartProList1">
+                    @Html.Partial("_Items", Model.HKOneWareHouseItems)
+                </ul>
+            }
+            @if (Model.HKOneWareHouseInvalidItems.Any())
+            {
+                <ul class="cartProList disabledProList cartProList2">
+                    <!--失效商品列表-->
+                    @Html.Partial("_InvalidItems", Model.HKOneWareHouseInvalidItems)
+                    <!--失效商品列表 END-->
+                </ul>
+            }
+        </div>*@
+    }
+}
+
+@if (Model.Items.Any() || Model.InvalidItems.Any())
+{
+    <!--吸底-->
+    <div class="fixedBottomDiv w100 overflowH">
+        <div class="fixedBottomDivCon">
+            <div class="w100 overflowH pr">
+                <a class="shoppingCartBtn f28 tc fr" id="shoppingCartBtn">结算(<span>@Model.Items.AsEnumerable().Count(n => n.IsChecked == true)</span>)</a>
+                <div class="tr totalDiv f24 fr" style="padding-top:0px; padding-bottom:0px; line-height:100%">
+                    <p style="margin-top:9px;margin-bottom:3px;">商品总价：<b class="FontColor6" id="totalPrice" data-price="@Model.TotalPrice">￥@Model.TotalPrice.ToNumberString(true)</b></p>
+                    <p><span class="f20 FontColor3">不含商品税/运费</span></p>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!--吸底 END-->
+}
+<div class="empty tc" @(Model.Items.Any() || Model.InvalidItems.Any() ? "style=display:none " : "") id="emptyDiv">
+    <img src="@Url.Content("~/Content/Images/shoppingCart/null.png")">
+    <p class="f24 FontColor3">购物车还是空的</p>
+    <p class="f20 FontColor4">去挑几件中意的商品吧</p>
+    <a href="@DomainHelper.MUrl" target="_self" class="btn mc">随便逛逛</a>
+</div>

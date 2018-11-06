@@ -1,0 +1,57 @@
+﻿@model SFO2O.Admin.ViewModel.PageOf<SFO2O.Admin.Models.Supplier.SupplierAbstractModel>
+@{
+    Layout = null;
+}
+
+<div class="shangpsh">
+    <table style="width:930px;" class="f15 bor bg_fff posRT">
+        <tbody>
+            <tr class="bg_ebebeb">
+                <th width="120">商家賬號</th>
+                <th width="150">公司名稱</th>
+                <th width="130">入駐時間</th>
+                <th width="50">商家狀態</th>
+                <th width="80">在售SKU數量</th>
+                <th width="130">操作</th>
+            </tr>
+            @if (Model != null && Model.Items != null && Model.Items.Count > 0)
+            {
+                foreach (var supplier in Model.Items)
+                {
+                    <tr>
+                        <td><p class="pd_l10 pd_r10 pd_t15 pd_b10 t_l">@supplier.UserName</p></td>
+                        <td><p class="pd_l10 pd_r10 pd_t15 pd_b10 t_l">@supplier.CompanyName</p></td>
+                        <td><p class="pd_l10 pd_r10 pd_t15 pd_b10 t_c">@supplier.CreateTime.ToString("yyyy-MM-dd HH:mm:dd")</p></td>
+                        <td><p class="pd_l10 pd_r10 pd_t15 pd_b10 t_c" id="td_@supplier.SupplierID">@supplier.SupplierStatus</p></td>
+                        <td><p class="pd_l10 pd_r10 pd_t15 pd_b10 t_c">@supplier.SkuNumber</p></td>
+
+                        <td>
+                            <p class="pd_l10 pd_r10 t_c pd_t15 pd_b10">
+                                <a target="_blank" class="col_link" href="../Supplier/ShowSupplierDetail?supplierId=@supplier.SupplierID">查看詳情</a><a target="_blank" class="col_link mg_l10" href="../Supplier/EditSupplier?supplierId=@supplier.SupplierID">編輯</a>
+                                @if (supplier.SupplierStatus == "正常")
+                                {
+                                    <a class="col_link mg_l10" href="javascript:void(0);" id="action_@supplier.SupplierID" onclick="ShowActiuonAlert('action_@supplier.SupplierID')">凍結</a>
+                                }
+                                else
+                                {
+                                    <a class="col_link mg_l10" href="javascript:void(0);" id="action_@supplier.SupplierID" onclick="ShowActiuonAlert('action_@supplier.SupplierID')">解除</a>
+                                }
+                            </p>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="bor_none_l"><p class="pd_l30 t_l mg_t20 mg_b20 color_ee7a01 color_green">沒有符合條件的商家</p></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="page" id="pager">
+
+</div>
+<input type="hidden" id="pageIndex" value="@Model.PageIndex" />
+<input type="hidden" id="recordCount" value="@Model.Total" />

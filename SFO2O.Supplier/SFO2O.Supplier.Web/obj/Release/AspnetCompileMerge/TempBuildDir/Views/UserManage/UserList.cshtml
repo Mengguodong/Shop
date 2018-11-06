@@ -1,0 +1,240 @@
+﻿@model SFO2O.Supplier.Models.PageOf<SupplierUserInfo>
+@using SFO2O.Supplier.Common;
+@using SFO2O.Supplier.Models;
+@using SFO2O.Supplier.Models.Account;
+@{
+    ViewBag.Title = "后台用户";
+    ViewBag.PageName = "UserList";
+    var permissionSet = ViewData["PermissionSet"] as HashSet<EnumPermission>;
+}
+
+<div class="cont_right_crumb"><span class="homepage"></span>&gt; 账号管理 &gt; 后台用户</div>
+<div class="w931">
+    <div class="mg_t30">
+        <div class="tongji_title"><span class="tongji_title_l">后台用户列表</span></div>
+        @if (permissionSet.Contains(EnumPermission.Account_UserManage_Add))
+        {
+            <div class="t_r wrap_dr_sc">
+                <div class="dr_sc"><a href="javascript:void(0)" class="addpro_btn btn_sc mg_l10" onclick="EditUser()"><i></i>添加后台用户</a></div>
+            </div>
+        }
+        <div class="bor_bg">
+            <table class="fff_bor t_c f15" style="margin:20px 15px;" width="900">
+                <tr class="lineH36 bg_f8f8f8">
+                    <th width="260" class="bor_b">用户账号</th>
+                    <th width="120" class="bor_b">姓名</th>
+                    <th width="220" class="bor_b">添加时间</th>
+                    <th width="120" class="bor_b">状态</th>
+                    <th width="180" class="bor_b">操作</th>
+                </tr>
+                @if (Model != null && Model.Items != null && Model.Items.Count > 0)
+                {
+                    foreach (var user in Model.Items)
+                    {
+                        <tr class="lineH54">
+                            <td class="bor_b">@user.UserName</td>
+                            <td class="bor_b">@user.NickName</td>
+                            <td class="bor_b">@user.CreateTime.ToDateTimeString()</td>
+                            <td class="bor_b">@(user.Status == 1 ? "启用" : "禁用")</td>
+                            <td class="bor_b">
+                                @if (permissionSet.Contains(EnumPermission.Account_UserManage_Edit))
+                                {
+                                    <a href="javascript:void(0)" class="col_link" onclick="EditUser(@user.ID)">修改</a>
+                                }
+                                @if (permissionSet.Contains(EnumPermission.Account_UserManage_ChangeStatus))
+                                {
+                                    <a href="javascript:void(0)" class="col_link mg_l20" onclick="ChangeUserStatus(@user.ID,@(user.Status == 1 ? "2":"1"))">@(user.Status == 1 ? "禁用" : "启用")</a>
+                                }
+                            </td>
+                        </tr>
+                    }
+
+                }
+                else
+                {
+                    <tr class="lineH54">
+                        <td class="bor_b" colspan="5"><p class="class=" pd_l30 t_l color_green"">您还没有创建后台用户</p></td>
+                    </tr>
+                }
+            </table>
+        </div>
+        @if (Model != null && Model.Items != null && Model.Items.Count > 0)
+        {
+            <div class="page">
+                @Html.ShowFPage(Url.Action(null
+                , new
+                {
+                    PageIndex = "{0}"
+                })
+                , Model.PageIndex
+                , Model.Total)
+                <p class="f14 mg_l20 mg_b5 inline">
+                    共<em class="color_green pd_l10 pd_r10"> @(Model.Total) </em>条数据
+                </p>
+            </div>
+        }
+    </div>
+</div>
+<script type="text/javascript">
+    function EditUser(id) {
+        id = id | 0;
+        var handle;
+        $.post("EditUser", { id: id }, function (html) {
+            handle = $.dialog({
+                title: id == 0 ? "添加后台用户" : "修改后台用户",
+                content: html,
+                init: function ($dom) {
+                    if(id == 0){
+                        var field1 = $dom.find(".username");
+                        var wrong1 = field1.next();
+                        field1.change(function () {
+                            var username = field1.val();
+                            if (username) {
+                                if (username.length > 50) {
+                                    wrong1.text("账号名称的长度不能超过50个字符");
+                                }
+                                if (!sfo2o.IsEmail(username)) {
+                                    wrong1.text("E-mail格式不合法，请重新输入");
+                                }
+                                else {
+                                    wrong1.text("");
+                                }
+                            }
+                            else {
+                                wrong1.text("账号名称不能为空");
+                            }
+                        });
+                    }
+                    var field2 = $dom.find(".password");
+                    var wrong2 = field2.next();
+                    field2.change(function () {
+                        var password = field2.val();
+                        if (password) {
+                            if (password.length < 6 || password.length > 50 || sfo2o.GetPassLevel(password) < 2) {
+                                wrong2.text("请输入6-32位数字、字母、符号两种以上组合");
+                            }
+                            else {
+                                wrong2.text("");
+                            }
+                        }
+                        else {
+                            wrong2.text("密码不能为空");
+                        }
+                    });
+                    var field3 = $dom.find(".nickname");
+                    var wrong3 = field3.next();
+                    field3.change(function () {
+                        var password = field3.val();
+                        if (password.length < 4 || password.length > 20) {
+                            wrong3.text("请输入4-20位字符");
+                        }
+                        else {
+                            wrong3.text("");
+                        }
+                    });
+                    $dom.find(".chbx_wrap").click(function () {
+                        $(this).toggleClass("active");
+                    })
+                },
+                onConfirm: function ($dom) {
+                    var flag = true;
+                    if (id == 0) {
+                        var username = $dom.find(".username").val();
+                        if (username) {
+                            if (username.length > 50) {
+                                $dom.find(".username").next().text("账号名称的长度不能超过50个字符");
+                                flag = false;
+                            }
+                            if (!sfo2o.IsEmail(username)) {
+                                $dom.find(".username").next().text("E-mail格式不合法，请重新输入");
+                                flag = false;
+                            }
+                            else {
+                                $dom.find(".username").next().text("");
+                            }
+                        }
+                        else {
+                            $dom.find(".username").next().text("账号名称不能为空");
+                            flag = false;
+                        }
+                    }
+                    var password = $dom.find(".password").val();
+                    if (password) {
+                        if (password.length < 6 || password.length > 50 || sfo2o.GetPassLevel(password) < 2) {
+                            $dom.find(".password").next().text("请输入6-32位数字、字母、符号两种以上组合");
+                            flag = false;
+                        }
+                        else {
+                            $dom.find(".password").next().text("");
+                        }
+                    }
+                    else {
+                        $dom.find(".password").next().text("密码不能为空");
+                        flag = false;
+                    }
+                    var nickname = $dom.find(".nickname").val();
+                    if (nickname.length > 0 && (nickname.length < 4 || nickname.length > 20)) {
+                        $dom.find(".nickname").next().text("请输入4-20位字符");
+                        flag = false;
+                    }
+                    else {
+                        $dom.find(".nickname").next().text("");
+                    }
+                    if (!flag) {
+                        return false;
+                    }
+                    if ($dom.find(".chbx_wrap.active").length == 0) {
+                        $.dialog("请选择用户分组!");
+                        return false;
+                    }
+                    var data = {id:id,username:$dom.find(".username").val(),password:$dom.find(".password").val(),nickname:$dom.find(".nickname").val()};
+                    $dom.find(".chbx_wrap.active").each(function (i, item) {
+                        data["RoleIDList[" + i + "]"] = $(item).data("id");
+                    });
+                    $.ajax({
+                        url:"SaveUser",
+                        type:"post",
+                        data:data,
+                        success:function (res) {
+                            if(!res.Error){
+                                handle.close();
+                                $.dialog({
+                                    content: "保存成功！",
+                                    onConfirm: function () {
+                                        window.location.reload();
+                                    }
+                                });
+                            } else {
+                                if(res.Message) {
+                                    $.dialog(res.Message);
+                                } else {
+                                    $.dialog("保存失败！");
+                                }
+                            }
+                        }
+                    });
+                    return false;
+                }
+            });
+        });
+    };
+
+    function ChangeUserStatus(userId,status) {
+        $.ajax({
+            url: "ChangeUserStatus",
+            type: "post",
+            data: { userId: userId, status: status },
+            success: function (res) {
+                if (!res.Error) {
+                    window.location.reload();
+                } else {
+                    if(res.Message) {
+                        $.dialog(res.Message);
+                    } else {
+                        $.dialog((status == 1 ? "启用" : "禁用") + "失败！");
+                    }
+                }
+            }
+        });
+    }
+</script>

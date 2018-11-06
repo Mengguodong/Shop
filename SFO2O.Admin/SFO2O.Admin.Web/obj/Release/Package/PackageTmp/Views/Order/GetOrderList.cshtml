@@ -130,6 +130,7 @@
                                 </td>
                                 <td rowspan="@rowSpanCount">
                                     <p class="pd10 color_red">@(SFO2O.Admin.Common.EnumUtils.GetEnumDescriptionByText(typeof(SFO2O.Admin.Models.Enums.OrderStatus), first.OrderStatus.ToString()))</p>
+                                    <a target="_blank" href="../Order/UpdateOrderStatus?orderStatus=1&orderCode=@first.OrderCode&userName=@first.UserName&successMoney=@Math.Round(gd.Sum(p => p.PayUnitPrice * p.Quantity) + first.CustomsDuties, 2).ToString("f2")" class="col_link">确认订单</a>
                                 </td>
                                 <td class="bor_none_r" rowspan="@rowSpanCount">
                                     <p class="pd10">

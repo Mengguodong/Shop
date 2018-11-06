@@ -1,0 +1,76 @@
+﻿@using System.Web.UI.HtmlControls
+@using SFO2O.BLL.Common
+@using SFO2O.M.Controllers
+@using SFO2O.M.Controllers.Common
+@using SFO2O.M.ViewModel.Account
+@using SFO2O.M.ViewModel.Product
+@using SFO2O.Model.Enum
+@using SFO2O.Utility.Extensions
+@using SFO2O.Utility.Uitl
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    this.ViewBag.Title = "物流详情";
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = true;
+
+}
+@model List<SFO2O.References.SFo2oWCF.ExpressInfoEntity>
+@section styles {
+    <link href="@BundleConfig.BuildCss("Content/css/order.css")" rel="stylesheet">
+}
+@section scripts {
+    @Scripts.Render(BundleConfig.BuildSrc(BundleConfig.BundleJsMyOrders))
+}
+@section pageHeader {
+    <!-- 页头 -->
+    <header class="pageHeader w100 pr tc overflowH">
+        <a class="returnBtn" id="returnBtn"></a>
+        <b class="f36 FontColor1">物流详情</b>
+    </header>
+    <!-- 页头 end -->
+}
+@if (Model != null && Model.Any()) {
+    var expressinfo = Model.FirstOrDefault();
+
+    if (expressinfo != null) {
+        <div class="bgColor3 w100 mt8 boxShadow orderDateDiv">
+            <div class="orderNum f28 FontColor4 "><b class="">快递公司</b><span class="fr FontColor1">第三方物流快递</span></div>
+            <div class="orderNum f28 FontColor4 "><b class="">运单号</b><span class="fr FontColor1">@expressinfo.MailNo</span></div>
+            <div class="orderNum f28 FontColor4 "><b class="">预计送达日期</b><span class="fr FontColor1">@ViewBag.TransportTime</span></div>
+        </div>
+        <p class="logisticsTitle mt15 mb5 FontColor3 f24">物流跟踪</p>
+        if (Model.Count(n => !string.IsNullOrEmpty(n.Remark)) > 0) {
+            <ul class="bgColor3 boxShadow logisticsInf">
+                @foreach (var m in Model) {
+                    <li>
+                        <p class="p1 f28">@m.Remark</p>
+                        <p class="p2 f20">@m.AcceptTime.ToString("yyyy-MM-dd HH:mm:ss")</p>
+                    </li>
+                }
+            </ul>
+        }
+        else {
+            <!--物流信息获取失败-->
+            <div class="bgColor3 boxShadow logisticsInfError f28 displayBox">
+                <span></span><p class="boxflex1">抱歉，暂时无法获取物流信息，请稍后再试。</p>
+            </div>
+            <!--物流信息获取失败 END-->
+        }
+    }
+    else {
+        <!--物流信息获取失败-->
+        <div class="bgColor3 boxShadow logisticsInfError f28 displayBox">
+            <span></span><p class="boxflex1">抱歉，暂时无法获取物流信息，请稍后再试。</p>
+        </div>
+        <!--物流信息获取失败 END-->
+    }
+}
+else
+{
+      <!--物流信息获取失败-->
+    <div class="bgColor3 boxShadow logisticsInfError f28 displayBox">
+        <span></span><p class="boxflex1">抱歉，暂时无法获取物流信息，请稍后再试。</p>
+    </div>
+	<!--物流信息获取失败 END-->
+}

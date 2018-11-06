@@ -1,0 +1,28 @@
+﻿@using SFO2O.M.ViewModel.Account
+@{
+    ViewBag.Title = "商品税说明";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ShowFastShoppingCart = false;
+    LoginUserModel user = ViewBag.LoginUser ?? null;
+    ViewBag.ShowFooter = true;
+}
+@section styles{
+    <link href="../Content/css/tariffDesc.css?v=201512150001" rel="stylesheet">
+}
+<header class="pageHeader w100 pr tc">
+        <a class="returnBtn" id="returnBtn"></a>
+        <b class="f36 FontColor1">商品税说明</b>
+    </header>
+    <!-- 页头 end -->
+    <div class="info w95p">
+        <!--
+    	<p>根据物流贸易规范总署公告2010年第43号《关于调整进出境个人邮递物品管理措施有关事宜》，规定个人邮寄进境物品，物流贸易规范依法征收进口税，但应征进口税税额在人民币50元（含50元）以下的，物流贸易规范予以免征。</p>
+    	<p>另外物流贸易规范规定：每人每个订单的限值为@{@ViewBag.OrderLimitValue}元人民币（不含进口税）。如订单内仅有一件物品且不可分割的，虽超出规定限值，经物流贸易规范审核确属个人自用的，可以按照个人物品规定办理通关手续。</p>
+        -->
+        <p>根据中国物流贸易规范自2016年4月8日起实施的电子商务零售进口税收政策：</p>
+        <p>电子商务零售进口税收政策适用于《电子商务零售进口商品清单》范围内的商品。</p>
+        <p>电子商务零售进口商品的单次交易限值为人民币2000元，个人年度交易限值为人民币20000元。</p>
+        <p>超过单次限值、累加后超过个人年度限值的单次交易，以及完税价格超过2000元限值的单个不可分割商品，均按照一般贸易方式全额征税。</p>
+        <p>详细内容，可查阅官方通知：</p>
+        <p><a href="http://gss.mof.gov.cn/zhengwuxinxi/zhengcefabu/201603/t20160324_1922968.html" target="_blank">关于电子商务零售进口税收政策的通知</a></p>
+    </div>

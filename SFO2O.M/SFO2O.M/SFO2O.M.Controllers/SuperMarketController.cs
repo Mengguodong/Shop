@@ -133,7 +133,7 @@ namespace SFO2O.M.Controllers
             }
         }
         /// <summary>
-        /// 爱玖网超市页面单banner图
+        /// 健康绿氧超市页面单banner图
         /// </summary>
         /// <param name="channelId"></param>
         /// <returns></returns>

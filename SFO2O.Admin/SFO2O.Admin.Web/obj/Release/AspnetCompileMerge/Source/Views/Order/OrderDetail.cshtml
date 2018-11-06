@@ -1,0 +1,404 @@
+﻿@model SFO2O.Admin.Models.Order.OrderModel
+@{
+    Layout = "~/Views/Shared/_Layout.Detail.cshtml";
+    ViewBag.Title = "訂單詳情";
+    var mainInfo = Model.MainOrder;
+    var details = Model.OrderDetails;
+    var orderLogistics = Model.OrderLogistics ?? new List<SFO2O.Admin.Models.Order.OrderLogisticsModel>();
+
+    var logistics = orderLogistics.GroupBy(p => p.LogisticsTime.ToString("yyyy-MM-dd")).ToList();
+}
+
+<div class="w1156 clearfix">
+    <p class="color_green f24 mg_t20 mg_b20">訂單詳情</p>
+    <div class="bor_bg pd_t20 pd_r20 pd_l20 f15">
+        <div class="clearfix mg_l30 f17" style="height:28px;">
+            <p class="f_l w300">
+                <label>訂單編號：</label>
+                <span>@mainInfo.OrderCode</span>
+            </p>
+            <p class="f_l">
+                <label>狀態：</label>
+                <span class="color_red">@(SFO2O.Admin.Common.EnumUtils.GetEnumDescriptionByText(typeof(SFO2O.Admin.Models.Enums.OrderStatus), mainInfo.OrderStatus.ToString()))</span>
+            </p>
+            @if (details.Sum(rq => rq.RefundQuantity) > 0)
+            {
+                <a href="../Refund/RefundIndex?OrderCode=@mainInfo.OrderCode" class="f_r f14 btn_daochu posR" style="bottom: 7px;">查看退款單</a>
+            }
+
+        </div>
+        <div class="fff_bor mg_b20">
+            <div class="mg_b10 pildaor dingd_detail" style="height: 121px;">
+                <div class="step_wrap clearfix">
+                    <div class="step @((mainInfo.CreateTime == null || mainInfo.CreateTime == DateTime.MinValue) ? "off" : "active") firststep">
+                        <div class="detail t_c">
+                            <div class="step_part">
+                                提交訂單<br />
+                                <span></span>
+                                <br>
+                                <div class="col_999 lineH22">
+                                    @if (mainInfo.CreateTime != null && mainInfo.CreateTime != DateTime.MinValue)
+                                    {
+                                        @mainInfo.CreateTime.ToString("yyyy-MM-dd")<br />
+                                        @mainInfo.CreateTime.ToString("HH:mm:ss")
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step @((mainInfo.PayTime == null || mainInfo.PayTime == DateTime.MinValue) ? "off" : "active")">
+                        <div class="detail">
+                            <div class="step_part">
+                                支付<br>
+                                <span></span>
+                                <br>
+                                <div class="col_999 lineH22">
+                                    @if (mainInfo.PayTime != null && mainInfo.PayTime != DateTime.MinValue)
+                                    {
+                                        @DateTime.Parse(mainInfo.PayTime.ToString()).ToString("yyyy-MM-dd")<br />
+                                        @DateTime.Parse(mainInfo.PayTime.ToString()).ToString("HH:mm:ss")
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step @((mainInfo.DeliveryTime == null || mainInfo.DeliveryTime == DateTime.MinValue )? "off" : "active")">
+                        <div class="detail">
+                            <div class="step_part">
+                                發貨<br>
+                                <span></span>
+                                <br>
+                                <div class="col_999 lineH22">
+                                    @if (mainInfo.DeliveryTime != null && mainInfo.DeliveryTime != DateTime.MinValue)
+                                    {
+                                        @DateTime.Parse(mainInfo.DeliveryTime.ToString()).ToString("yyyy-MM-dd")<br />
+                                        @DateTime.Parse(mainInfo.DeliveryTime.ToString()).ToString("HH:mm:ss")
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step @((mainInfo.OrderCompletionTime == null || mainInfo.OrderCompletionTime == DateTime.MinValue) ? "off" : "active")">
+                        <div class="detail">
+                            <div class="step_part">
+                                交易成功/交易關閉<br>
+                                <span></span>
+                                <br>
+                                <div class="col_999 lineH22">
+                                    @if (mainInfo.OrderCompletionTime != null && mainInfo.OrderCompletionTime != DateTime.MinValue)
+                                    {
+                                        @DateTime.Parse(mainInfo.OrderCompletionTime.ToString()).ToString("yyyy-MM-dd")<br />
+                                        @DateTime.Parse(mainInfo.OrderCompletionTime.ToString()).ToString("HH:mm:ss")
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fff_bor mg_b20">
+            <p class="f17 pd_t15 pd_b10 pd_l30"><span class="bor_b_2green lineH22">買家信息</span></p>
+            <table class="f15 lineH30 mg_l60 mg_b20" style="width:90%;">
+                <tr>
+                    <td class="vtop" width="370">
+                        <span class="f_l">買家賬戶：</span>
+                        <p class="f_l w250">@mainInfo.UserName</p>
+                    </td>
+                    <td class="vtop" width="370">
+                        <span class="f_l">電子郵件：</span>
+                        <p class="f_l w250">@mainInfo.Email</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="vtop" width="370">
+                        <span class="f_l">收貨人：</span>
+                        <p class="f_l w250">@mainInfo.Receiver</p>
+                    </td>
+                    <td class="vtop" width="370">
+                        <span class="f_l">電話：</span>
+                        <p class="f_l w250">@mainInfo.Phone</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="vtop" colspan="2">
+                        <span class="f_l">收貨人地址：</span>
+                        <p class="f_l" style="width:900px;">@mainInfo.ProvinceName @mainInfo.CityName @mainInfo.AreaName @mainInfo.ReceiptAddress</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="fff_bor mg_b20">
+            <p class="f17 pd_t15 pd_b10 pd_l30"><span class="bor_b_2green lineH22">支付信息</span></p>
+            <table class="f15 lineH30 mg_l60 mg_b20">
+                <tr>
+                    <td width="370">
+                        <span class="f_l">支付方式：</span>
+                        <p class="f_l">@mainInfo.PayType</p>
+                    </td>
+                    <td width="370">
+                        <span class="f_l">支付編號：</span>
+                        <p class="f_l">@mainInfo.PayCode</p>
+                    </td>
+                </tr>
+                @{
+                    if (mainInfo.ExchangeRate == 0)
+                    {
+                        mainInfo.ExchangeRate = 1;
+                    }
+
+                }
+                <tr>
+                    <td width="370">
+                        <span class="f_l">商品總金額：</span>
+                        <p class="f_l">￥@mainInfo.ProductTotalAmount.ToString("N2") 元<span class="color_838383">（$ @Math.Round((mainInfo.ProductTotalAmount / mainInfo.ExchangeRate), 2).ToString("f2")）</span></p>
+                    </td>
+                    <td width="370">
+                        <span class="f_l">商品關稅：</span>
+                        <p class="f_l">￥@mainInfo.CustomsDuties.ToString("N2") 元<span class="color_838383">（$ @Math.Round((mainInfo.CustomsDuties / mainInfo.ExchangeRate), 2).ToString("f2")）</span></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <span class="f_l">實付金額：</span>
+                        <p class="f_l">￥ @mainInfo.PaidAmount.ToString("N2") 元<span class="color_838383">（$  @Math.Round((mainInfo.PaidAmount / mainInfo.ExchangeRate), 2).ToString("f2")）</span></p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="fff_bor mg_b20">
+            <p class="f17 pd_t15 pd_b10 pd_l30"><span class="bor_b_2green lineH22">物流信息</span></p>
+            <table class="f15 lineH30 mg_l60 mg_b20">
+                <tr>
+                    <td width="370">
+                        <span class="f_l">配送方式：</span>
+                        <p class="f_l">@(SFO2O.Admin.Common.EnumUtils.GetEnumDescriptionByText(typeof(SFO2O.Admin.Models.Enums.ShippingMethod), mainInfo.ShippingMethod.ToString()))</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="370">
+                        @if (mainInfo.OrderStatus > 1)
+                        {
+                             <span class="f_l">物流单号：</span>
+                          
+                            if (!String.IsNullOrEmpty(mainInfo.ExpressCode))
+                            {
+                                 <span class="f_l">(@mainInfo.ExpressCode)<a href="javascript:void(0)" onclick="ShowLogistics()" id="showlogistics" class="col_link udline">查看物流信息</a></span> 
+                            }
+                        }
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="fff_bor mg_b20">
+            <div class="dingdglist">
+                <p class="f17 pd_t15 pd_b10 pd_l30"><span class="bor_b_2green lineH22">商品信息</span></p>
+                <table class="f15 t_c table_bor vtop fff_bor mg_t10 mg_b20 mg_l30 mg_r30" style="width:1160px;">
+                    <tbody>
+                        <tr class="t_c bg_ebebeb table_lineH43">
+                            <th width="150">條形碼</th>
+                            <th width="135">SKU</th>
+                            <th width="321">商品名稱</th>
+                            <th width="94">單價</th>
+                            <th width="60">數量</th>
+                            <th width="100">小計</th>
+                            <th width="94">關稅金額</th>
+                            <th width="94">商品優惠</th>
+                            <th width="94">賣家</th>
+                            <th width="114">訂單總金額</th>
+                        </tr>
+                        @{
+                            var groupSkus = details.GroupBy(x => x.CompanyName);
+                            var i = 0;
+                            foreach (var gSkus in groupSkus)
+                            {
+                                var first = gSkus.First();
+
+                                <tr class="lineH22">
+                                    <td class="bor_none_r bor_none_l">
+                                        <p class="pd10">@first.BarCode</p>
+                                    </td>
+                                    <td class="bor_none_r bor_none_l">
+                                        <p class="pd10">@first.Sku</p>
+                                    </td>
+                                    <td class="t_l bor_none_r bor_none_l">
+                                        <div class="clearfix">
+                                            <a href="javascript:void(0);">
+                                                <img src="@(SFO2O.Admin.Common.ConfigHelper.ImageServer + first.ImagePath.Replace(" \\"," />/"))" class="f_l mg10">
+                                            </a>
+                                            <div class="f_l w240">
+                                                <p class="pd_t10 mg_b5 substr"><a target="_blank" href="/Product/ProductInfoDetail?spu=@first.Spu" class="hover_color">@first.Name</a></p>
+
+                                                @if (!String.IsNullOrWhiteSpace(first.MainDicValue))
+                                                {
+                                                    <p class="f14 col_999">@first.MainDicValue：@first.MainValue</p>
+                                                }
+                                                @if (!String.IsNullOrWhiteSpace(first.SubDicValue))
+                                                {
+                                                    <p class="f14 col_999 mg_b10">@first.SubDicValue：@first.SubValue</p>
+                                                }
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td class="bor_none_r bor_none_l t_r">
+                                        <p class="pd10">￥@first.PayUnitPrice.ToString("f2")</p>
+                                    </td>
+                                    <td class="bor_none_r bor_none_l">
+                                        <p class="pd10">@first.Quantity</p>
+                                    </td>
+                                    <td class="bor_none_r bor_none_l t_r">
+                                        <p class="pd10">￥@(first.PayAmount.ToString("f2"))</p>
+                                    </td>
+                                    <td class="bor_none_r bor_none_l t_r">
+                                        <p class="pd10">￥@first.TaxAmount.ToString("f2")</p>
+                                    </td>
+                                    <td class="bor_none_r bor_none_l t_r">
+                                    @if (first.PromotionAmount > 0 && ((first.OriginalPrice - first.PromotionAmount) * first.ExchangeRate) != 0)
+                                    {
+                                        <p class="pd10">￥@(((first.OriginalPrice - first.PromotionAmount) * first.ExchangeRate).ToString("f2"))</p>
+                                    }
+                                    </td>
+                                    <td rowspan="@gSkus.Count()">
+                                        <p class="bor_none_r bor_none_l pd_l5 pd_r5 pd_t10 pd_b10">@first.CompanyName</p>
+                                    </td>
+                                    @if (i == 0)
+                                    {
+                                        <td class="t_r" rowspan="@details.Count()">
+                                            <p class="pd_l10 pd_r10 pd_t10 color_red">￥@mainInfo.TotalAmount.ToString("N2")</p>
+                                            <p class="pd_l10 pd_r10 pd_b10 col_999">（$ @Math.Round((mainInfo.TotalAmount / mainInfo.ExchangeRate), 2).ToString("f2")）</p>
+                                        </td>
+                                    }
+                                </tr>
+                                foreach (var sku in gSkus.Skip(1))
+                                {
+                                    <tr class="lineH22">
+                                        <td class="bor_none_r bor_none_l">
+                                            <p class="pd10">@sku.BarCode</p>
+                                        </td>
+                                        <td class="bor_none_r bor_none_l">
+                                            <p class="pd10">@sku.Sku</p>
+                                        </td>
+                                        <td class="t_l bor_none_r bor_none_l">
+                                            <div class="clearfix">
+                                                <a href="javascript:void(0);">
+                                                    <img src="@(SFO2O.Admin.Common.ConfigHelper.ImageServer + sku.ImagePath.Replace(" \\", " />/"))" class="f_l mg10">
+                                                </a>
+                                                <div class="f_l w240">
+                                                    <p class="pd_t10 mg_b5 substr"><a target="_blank" href="Product/ProductInfoDetail?spu=@sku.Spu" class="hover_color">@sku.Name</a></p>
+
+                                                    @if (!String.IsNullOrWhiteSpace(sku.MainDicValue))
+                                                    {
+                                                        <p class="f14 col_999">@sku.MainDicValue：@sku.MainValue</p>
+                                                    }
+
+                                                    @if (!String.IsNullOrWhiteSpace(sku.SubDicValue))
+                                                    {
+                                                        <p class="f14 col_999 mg_b10">@sku.SubDicValue：@sku.SubValue</p>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <td class="bor_none_r bor_none_l t_r">
+                                            <p class="pd10">￥@sku.PayAmount.ToString("f2")</p>
+                                        </td>
+                                        <td class="bor_none_r bor_none_l">
+                                            <p class="pd10">@sku.Quantity</p>
+                                        </td>
+                                        <td class="bor_none_r bor_none_l t_r">
+                                            <p class="pd10">￥@((sku.PayAmount * sku.Quantity).ToString("f2"))</p>
+                                        </td>
+                                        <td class="bor_none_r bor_none_l t_r">
+                                            <p class="pd10">￥@sku.TaxAmount.ToString("f2")</p>
+                                        </td>
+                                        <td class="bor_none_r bor_none_l t_r">  
+                                        @if (sku.PromotionAmount > 0 && ((sku.OriginalPrice - sku.PromotionAmount) * first.ExchangeRate) != 0)
+                                        {
+                                            <p class="pd10">￥@(((sku.OriginalPrice - sku.PromotionAmount) * first.ExchangeRate).ToString("f2"))</p>
+                                        }
+                                        </td>
+                                    </tr>
+                                }
+
+                                i++;
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="left: 50px; top: 50px; display: none; z-index: 9999; position: absolute" class="win_wrap f16" id="divLogistics">
+    <div class="win_top clearfix"> <span class="f_l mg_l20" id="title">查看物流信息</span><a class="win_close f_r" title="關閉" href="javascript:void(0);"></a></div>
+    <div>
+        <div class="win_wrap f16">
+            <div class="pd_t20">
+            @if (orderLogistics.Count() > 0)
+            {
+                <ul class="clearfix pd_b20">
+                    <li class="f_l w200"><span>快遞公司：</span><em>@orderLogistics[0].ExpressCompany</em></li>
+                    <li class="f_l"><span>運單號：</span><em>@orderLogistics[0].ExpressList</em></li>
+                </ul>
+                <div class="div_express">
+                    <ul class="sf_express mg_b40 mg_l20">
+                    @for (int j = 0; j < logistics.Count; j++)
+                    {
+                        var log = logistics[j];
+                        if (j == 0)
+                        {
+                            var first = log.First();
+                        <li>
+                            <dl>
+                                <dt class="current clearfix"><i class="f_l"></i><span class="f_l">@log.Key</span></dt>
+                                <dd class="current"><span class="pd_r20">@first.LogisticsTime.ToString("HH:mm:ss")</span><span>@first.Remark</span></dd>
+                                @foreach (var l in log.Skip(1))
+                                {
+                                    <dd><span class="pd_r20">@l.LogisticsTime.ToString("HH:mm:ss")</span><span>@l.Remark</span></dd>
+                                }
+                            </dl>
+                        </li>
+                        }
+                        else
+                        {
+                        <li>
+                            <dl>
+                                <dt class="clearfix"><i class="f_l"></i><span class="f_l">@log.Key</span></dt>
+                                @foreach (var l in log.Skip(1))
+                                {
+                                    <dd><span class="pd_r20">@l.LogisticsTime.ToString("HH:mm:ss")</span><span>@l.Remark</span></dd>
+                                }
+                            </dl>
+                        </li>
+                        }
+                    }
+                    </ul>
+                </div>
+            }
+            else
+            {
+                <div class="pd_b30">
+                    <span>抱歉，暂时无法获取物流信息，请稍后再试。</span>
+                </div>
+            }
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $(".win_close").click(function () {
+            hideOverlay();
+            $("#divLogistics").hide();
+        });
+    });
+
+    function ShowLogistics() {
+        showOverlay();
+        adjust("#divLogistics");
+        $("#divLogistics").show().css("top", $("#showlogistics").offset().top - 380 + 'px');
+    }
+
+</script>

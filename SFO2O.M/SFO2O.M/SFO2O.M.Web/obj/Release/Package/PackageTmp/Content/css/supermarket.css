@@ -1,0 +1,223 @@
+﻿/*.pageHeader{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1000;
+}
+.indexSlideWrap {
+	margin-top: 48px;
+}*/
+
+.cartPos{
+    position: absolute;
+    right: 12px;
+    top: 3px;
+}
+.cartPos a{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.banner{
+	margin:0 auto;
+	max-width:640px;
+	width:100%;
+	overflow:hidden;
+}
+.banner .focusBoxIn div{ 
+	text-align:center;
+}
+.banner .focusBoxIn a{
+	/*line-height: 0;*/
+}
+.banner .focusBoxIn div img{
+	max-width:100%;
+	display: block;
+}
+.bannerIndex{
+	height:8px;
+	position:absolute;
+	bottom:12px; 
+	right:6px;
+	text-align:center;
+	z-index:100;
+}
+.bannerIndex li{ 
+	float:left; 
+	margin-right:8px; 
+	width:8px; 
+	height:8px; 
+	background:#fff; 
+	border-radius: 4px;
+}
+.bannerIndex li.on{ 
+	background:#ffa200; 
+	opacity:1;
+}
+/* 轮播 */
+.swipe {
+    overflow: hidden;
+    position: relative;
+}
+.swipe-wrap {
+    overflow: hidden;
+    position: relative;
+}
+.swipe-wrap > li {
+  /*  float: left;
+    width: 100%;*/
+}
+.swipe-wrap > li img{
+	width: 100%;
+}
+.banner .hd{
+	height:8px;
+	position:absolute;
+	bottom:12px; 
+	right:6px;
+	text-align:center;
+	z-index:100; }
+.banner .hd ul{  }
+.banner .hd ul li{ 
+	float:left; 
+	margin-right:8px; 
+	width:8px; 
+	height:8px; 
+	background:#fff; 
+	border-radius: 4px;
+}
+.banner .hd ul .on{
+	background:#ffa200; 
+	opacity:1;
+ }
+/* 左右滑动 */
+.indexHotPro{
+	width: 97.5%;
+	padding-left: 2.5%;
+	overflow-x:hidden;
+}
+.indexHotPro .item:last-child{
+	margin-right: 0;
+}
+.indexSelectedPro .item .price span{
+	margin-left: 4px;
+}
+.indexHotPro .item .price,.indexHotPro .item .title{text-align: center;}
+.supermarketTitle{ padding:10px 0px; background:#f1f1f1; }
+.supermarketTitle img{ width:26%;}
+
+
+/* 导航区域 */
+.placeholder{
+	height:8px; 
+	width:100%;
+}
+.navContainer{
+	background: #f7f7f7;
+	border-bottom: 1px solid #eee;
+	position: relative;
+	width: 100%;
+	height: 44px;
+	overflow-y:hidden;
+	max-width: 640px;
+	min-width: 320px;
+}
+.navBox{
+	overflow: hidden;
+	width: auto;
+	height: 44px;
+}
+.cartBox{
+	border-left: 1px solid #eee;
+	padding: 0 5px;
+	float: right;
+	width: 10%;
+	height: 100%;
+}
+.cartBox .cartPos{
+	position: relative;
+	top: 5px;
+	right: 0;
+	width: 35px;
+	height: 35px;
+}
+.fixedTop{ position:fixed; top:0px; left:50%; z-index: 10000;}
+.nav .itemBox{
+	white-space: nowrap;
+	height: 44px;
+}
+.nav .itemBox>div{
+	display: inline-block;
+	margin-right: 5px;
+	text-align: center;
+	max-width: 98px;
+	border-bottom: 2px solid #f7f7f7;
+	height: 42px;
+}
+.nav a,.nav span{
+	display: inline-block;
+	padding: 0 12px;
+	height: 42px;
+	line-height: 42px;
+	color: #333;
+	font-size: 1.2rem;
+}
+.nav .itemBox>div.active{
+	color: #f75e26;
+	border-bottom:2px solid #f75e26;
+}
+.nav .itemBox>div.active span{
+	color: #f75e26;
+}
+.nav .itemBox>div:last-child{
+	margin-right: 0;
+}
+
+.navContent {
+	position: relative;
+}
+
+
+.tags a{
+	display: inline-block;
+	padding: 6px 10px;
+	border:1px solid #eee;
+	color: #696969;
+	font-size: 1.1rem;
+	margin: 10px 12px 10px 6px ;
+	border-radius:25px;
+}
+.tags>div{
+	display: none;
+}
+.productList{
+	min-height: 350px;
+}
+
+
+/* 热门市场 */
+.module_hot{
+	border-bottom: 1px solid #eee;
+}
+.module_hot>div{
+	-webkit-box-flex:1;
+}
+.module_hot img{
+	display: block;
+	width: 100%;
+}
+.module_hot>div:first-child{
+	border-right: 1px solid #eee;
+}
+.module_hot1>div{
+	border-right: 1px solid #eee;
+}
+.module_hot>div:last-child{
+	border-right: none;
+}
+
+.banner1>a>img{
+	width: 100%;
+	display: block;
+}

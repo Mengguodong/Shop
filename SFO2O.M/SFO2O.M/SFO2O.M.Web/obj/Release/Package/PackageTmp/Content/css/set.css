@@ -1,0 +1,13 @@
+﻿.item{
+	padding: 13px 2.5%;
+}
+
+.set{
+	width: 40px;
+	height: 21px;
+	background: url(../Images/set.png?v=20160413);
+	background-size: 40px;
+}
+.set.active{
+	background-position: left -29px;
+}

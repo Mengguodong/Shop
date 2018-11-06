@@ -1,0 +1,45 @@
+﻿@model SFO2O.Admin.Models.Admin.AdminUserInfo
+@{
+    Layout = null;
+    var roleIDList = Model.RoleIDList ?? new List<int>();
+    var roleList = ViewBag.RoleList as IList<SFO2O.Admin.Models.Admin.AdminRoleInfo>;
+}
+<div class="pd_t20">
+    <table class="f16 table_paswd">
+        <tr>
+            <td width="120" height="70" class="t_r vtop"><span class="mg_t10 inline"><em class="color_red vmiddle">*</em>賬號名稱：</span></td>
+            <td class="vtop">
+            @if (Model.id == 0)
+            {
+                <input name="username" type="text" class="username fff_bor mg_l10" />
+                <p class="wrong_tips mg_l10 color_red" style="display:none;">不能為空</p>
+            }
+            else
+            {
+                <p class="mg_l10" style="line-height:39px;">@Model.UserName</p>
+            }
+            </td>
+        </tr>
+        <tr>
+            <td width="120" height="70" class="t_r vtop"><span class="mg_t10 inline"><em class="color_red vmiddle">*</em>設置密碼：</span></td>
+            <td class="vtop">
+                <input name="password" type="password" class="password fff_bor mg_l10" />
+                <p class="wrong_tips mg_l10 color_red" style="">不能為空</p>
+            </td>
+        </tr>
+        <tr>
+            <td width="120" height="50" class="t_r vtop"><span class="mg_t10 inline">使用者姓名：</span></td>
+            <td class="vtop"><input type="text" class="truename fff_bor mg_l10" value="@Model.TrueName" /></td>
+        </tr>
+        <tr>
+            <td width="120" class="t_r vtop lineH36"><span class="inline"><em class="color_red vmiddle">*</em>選擇用戶分組：</span></td>
+            <td class="pd_l10">
+            @for (int i = 0; i < roleList.Count; i++)
+            {
+                var role = roleList[i];
+                <label data-id="@(role.id)" class="chbx_wrap mg_r30@(roleIDList.Contains(role.id) ? " active" : "")"><em></em><span>@role.RoleName</span></label>
+            }
+            </td>
+        </tr>
+    </table>
+</div>

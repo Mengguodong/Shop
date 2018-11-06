@@ -71,7 +71,7 @@ namespace SFO2O.BLL.Supermarket
         }
 
         /// <summary>
-        /// 爱玖网超市页面单banner图
+        /// 健康绿氧超市页面单banner图
         /// </summary>
         /// <param name="channelId"></param>
         /// <returns></returns>
