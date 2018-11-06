@@ -1,5 +1,6 @@
 F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.M.Controllers\obj\Release\SFO2O.M.Controllers.csprojAssemblyReference.cache
 F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.M.Controllers\obj\Release\SFO2O.M.Controllers.csproj.CoreCompileInputs.cache
+<<<<<<< HEAD
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.M.Controllers\bin\Release\SFO2O.M.Controllers.dll
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.M.Controllers\bin\Release\SFO2O.M.Controllers.pdb
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.M.Controllers\bin\Release\Antlr3.Runtime.dll
@@ -76,3 +77,5 @@ F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.M.Controllers\bin\Release\SFO2O.BLL.XmlSeriali
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.M.Controllers\obj\Release\SFO2O.M.Controllers.csprojResolveAssemblyReference.cache
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.M.Controllers\obj\Release\SFO2O.M.Controllers.dll
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.M.Controllers\obj\Release\SFO2O.M.Controllers.pdb
+=======
+>>>>>>> af8b14e4ac93f9b204a43034b1af3443a30a482a

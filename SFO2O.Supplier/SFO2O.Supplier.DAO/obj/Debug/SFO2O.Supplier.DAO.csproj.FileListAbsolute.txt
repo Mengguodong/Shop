@@ -102,6 +102,7 @@ C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Supplier\SFO2O.Supplier.DAO\bin\Debug\zh-H
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Supplier\SFO2O.Supplier.DAO\obj\Debug\SFO2O.Supplier.DAO.csprojResolveAssemblyReference.cache
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Supplier\SFO2O.Supplier.DAO\obj\Debug\SFO2O.Supplier.DAO.dll
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Supplier\SFO2O.Supplier.DAO\obj\Debug\SFO2O.Supplier.DAO.pdb
+<<<<<<< HEAD
 F:\git\shop\Shop\SFO2O.Supplier\SFO2O.Supplier.DAO\bin\Debug\SFO2O.Supplier.DAO.dll
 F:\git\shop\Shop\SFO2O.Supplier\SFO2O.Supplier.DAO\bin\Debug\SFO2O.Supplier.DAO.pdb
 F:\git\shop\Shop\SFO2O.Supplier\SFO2O.Supplier.DAO\bin\Debug\Common.EntLib.DataExtensions.dll
@@ -170,3 +171,5 @@ F:\git\shop\SFO2O.Supplier\SFO2O.Supplier.DAO\bin\Debug\zh-Hans\System.Web.Mvc.r
 F:\git\shop\SFO2O.Supplier\SFO2O.Supplier.DAO\obj\Debug\SFO2O.Supplier.DAO.csprojResolveAssemblyReference.cache
 F:\git\shop\SFO2O.Supplier\SFO2O.Supplier.DAO\obj\Debug\SFO2O.Supplier.DAO.dll
 F:\git\shop\SFO2O.Supplier\SFO2O.Supplier.DAO\obj\Debug\SFO2O.Supplier.DAO.pdb
+=======
+>>>>>>> af8b14e4ac93f9b204a43034b1af3443a30a482a

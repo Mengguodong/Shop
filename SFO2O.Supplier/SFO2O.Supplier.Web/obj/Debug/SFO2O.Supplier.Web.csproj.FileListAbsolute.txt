@@ -180,6 +180,7 @@ C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Supplier\SFO2O.Supplier.Web\bin\zh-Hans\Sy
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Supplier\SFO2O.Supplier.Web\obj\Debug\SFO2O.Supplier.Web.csprojResolveAssemblyReference.cache
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Supplier\SFO2O.Supplier.Web\obj\Debug\SFO2O.Supplier.Web.dll
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Supplier\SFO2O.Supplier.Web\obj\Debug\SFO2O.Supplier.Web.pdb
+<<<<<<< HEAD
 F:\git\shop\Shop\SFO2O.Supplier\SFO2O.Supplier.Web\bin\SFO2O.Supplier.Web.dll.config
 F:\git\shop\Shop\SFO2O.Supplier\SFO2O.Supplier.Web\bin\SFO2O.Supplier.Web.dll
 F:\git\shop\Shop\SFO2O.Supplier\SFO2O.Supplier.Web\bin\SFO2O.Supplier.Web.pdb
@@ -300,3 +301,5 @@ F:\git\shop\SFO2O.Supplier\SFO2O.Supplier.Web\bin\zh-Hans\System.Web.WebPages.Ra
 F:\git\shop\SFO2O.Supplier\SFO2O.Supplier.Web\obj\Debug\SFO2O.Supplier.Web.csprojResolveAssemblyReference.cache
 F:\git\shop\SFO2O.Supplier\SFO2O.Supplier.Web\obj\Debug\SFO2O.Supplier.Web.dll
 F:\git\shop\SFO2O.Supplier\SFO2O.Supplier.Web\obj\Debug\SFO2O.Supplier.Web.pdb
+=======
+>>>>>>> af8b14e4ac93f9b204a43034b1af3443a30a482a

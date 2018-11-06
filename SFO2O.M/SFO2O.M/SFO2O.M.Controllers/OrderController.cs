@@ -110,6 +110,7 @@ namespace SFO2O.M.Controllers
             listShoppingCart.Add(shoppingCart);
 
 
+<<<<<<< HEAD
             #region 孙健_礼包
 
 
@@ -122,6 +123,19 @@ namespace SFO2O.M.Controllers
                     string skuOne = ConfigHelper.GetAppSetting<string>("libao_sku1");
                     int qitOne = Convert.ToInt32(ConfigHelper.GetAppSetting<string>("libao_sku1_qit"));
 
+=======
+            switch (giftType)
+            {
+                case 1:
+
+
+                    //6250礼包   虫草6   封坛原浆 2
+                    ProductSkuEntity skuFirst1 = new ProductSkuEntity();
+
+                   string skuOne =  ConfigHelper.GetAppSetting<string>("libao_sku1");
+                    int qitOne=Convert.ToInt32( ConfigHelper.GetAppSetting<string>("libao_sku1_qit"));
+                 
+>>>>>>> af8b14e4ac93f9b204a43034b1af3443a30a482a
                     skuFirst1 = productBll.GetProductBySku(skuOne, this.language);
                     ProductItem proFirst1 = new ProductItem(this.ExchangeRate);
                     proFirst1.CartUnitPrice = skuFirst1.ProductPrice;
@@ -131,6 +145,7 @@ namespace SFO2O.M.Controllers
                     proFirst1.Spu = skuFirst1.Spu;
                     proFirst1.GatewayCodes = listShoppingCart;
                     proFirst1.ForOrderQty = 100;
+<<<<<<< HEAD
                     proFirst1.Price = 330;
                     list.Add(proFirst1);
 
@@ -150,19 +165,48 @@ namespace SFO2O.M.Controllers
                     //proFirst2.Price = 468;
 
                     //list.Add(proFirst2);
+=======
+                    proFirst1.Price = 898;
+                    list.Add(proFirst1);
+
+                    string skuTwo = ConfigHelper.GetAppSetting<string>("libao_sku2");
+                    int qitTwo = Convert.ToInt32(ConfigHelper.GetAppSetting<string>("libao_sku2_qit"));
+
+                    ProductSkuEntity skuFirst2 = new ProductSkuEntity();
+                    skuFirst2 = productBll.GetProductBySku(skuTwo, this.language);
+                    ProductItem proFirst2 = new ProductItem(this.ExchangeRate);
+                    proFirst2.CartUnitPrice = skuFirst2.ProductPrice;
+                    proFirst2.CartQuantity = qitTwo;
+                    proFirst2.Huoli = 0;
+                    proFirst2.Sku = skuFirst2.Sku;
+                    proFirst2.Spu = skuFirst2.Spu;
+                    proFirst2.GatewayCodes = listShoppingCart;
+                    proFirst2.ForOrderQty = 100;
+                    proFirst2.Price = 468;
+
+                    list.Add(proFirst2);
+>>>>>>> af8b14e4ac93f9b204a43034b1af3443a30a482a
 
 
                     break;
                 case 2:
+<<<<<<< HEAD
                   
 
                     //660大礼包  2盒 妙玉康
+=======
+                    //5000大礼包  4瓶虫草  2瓶国窖30年
+>>>>>>> af8b14e4ac93f9b204a43034b1af3443a30a482a
                     ProductSkuEntity skuSecond1 = new ProductSkuEntity();
                     string skuThree = ConfigHelper.GetAppSetting<string>("libao_sku3");
                     int qitThree = Convert.ToInt32(ConfigHelper.GetAppSetting<string>("libao_sku3_qit"));
                     skuSecond1 = productBll.GetProductBySku(skuThree, this.language);
 
+<<<<<<< HEAD
 
+=======
+                
+>>>>>>> af8b14e4ac93f9b204a43034b1af3443a30a482a
 
                     ProductItem proSecond1 = new ProductItem(this.ExchangeRate);
                     proSecond1.CartUnitPrice = skuSecond1.ProductPrice;
@@ -176,6 +220,7 @@ namespace SFO2O.M.Controllers
                     proSecond1.Price = 330;
                     list.Add(proSecond1);
 
+<<<<<<< HEAD
 
                  
 
@@ -184,6 +229,8 @@ namespace SFO2O.M.Controllers
                     break;
                 case 3:
                     //660大礼包  一瓶芙可清    一盒妙玉康
+=======
+>>>>>>> af8b14e4ac93f9b204a43034b1af3443a30a482a
                     string skuFour = ConfigHelper.GetAppSetting<string>("libao_sku4");
                     int qitFour = Convert.ToInt32(ConfigHelper.GetAppSetting<string>("libao_sku4_qit"));
 
@@ -210,6 +257,18 @@ namespace SFO2O.M.Controllers
                     ProductSkuEntity skuThird1 = new ProductSkuEntity();
                     skuThird1 = productBll.GetProductBySku(skuFive, this.language);
 
+<<<<<<< HEAD
+=======
+                    break;
+                case 3:
+
+                    string skuFive = ConfigHelper.GetAppSetting<string>("libao_sku5");
+                    int qitFive = Convert.ToInt32(ConfigHelper.GetAppSetting<string>("libao_sku5_qit"));
+
+                    //2000大礼包  1瓶虫草  1瓶封坛原浆 2瓶玛咖
+                    ProductSkuEntity skuThird1 = new ProductSkuEntity();
+                    skuThird1 = productBll.GetProductBySku(skuFive, this.language);
+>>>>>>> af8b14e4ac93f9b204a43034b1af3443a30a482a
                     ProductItem proThird1 = new ProductItem(this.ExchangeRate);
                     proThird1.CartUnitPrice = skuThird1.ProductPrice;
                     proThird1.CartQuantity = qitFive;
@@ -221,6 +280,7 @@ namespace SFO2O.M.Controllers
                     proThird1.Price = 330;
 
                     list.Add(proThird1);
+<<<<<<< HEAD
 
                     //string skuSix = ConfigHelper.GetAppSetting<string>("libao_sku6");
                     //int qitSix = Convert.ToInt32(ConfigHelper.GetAppSetting<string>("libao_sku6_qit"));
@@ -264,6 +324,51 @@ namespace SFO2O.M.Controllers
                     string skuEight = ConfigHelper.GetAppSetting<string>("libao_sku8");
                     int qitEight = Convert.ToInt32(ConfigHelper.GetAppSetting<string>("libao_sku8_qit"));
                    
+=======
+
+                    string skuSix = ConfigHelper.GetAppSetting<string>("libao_sku6");
+                    int qitSix = Convert.ToInt32(ConfigHelper.GetAppSetting<string>("libao_sku6_qit"));
+
+                    ProductSkuEntity skuThird2 = new ProductSkuEntity();
+                    skuThird2 = productBll.GetProductBySku(skuSix, this.language);
+                    ProductItem proThird2 = new ProductItem(this.ExchangeRate);
+                    proThird2.CartUnitPrice = skuThird2.ProductPrice;
+                    proThird2.CartQuantity = qitSix;
+                    proThird2.Huoli = 0;
+                    proThird2.Sku = skuThird2.Sku;
+                    proThird2.Spu = skuThird2.Spu;
+                    proThird2.GatewayCodes = listShoppingCart;
+                    proThird2.ForOrderQty = 100;
+
+                    proThird2.Price = 468;
+                    list.Add(proThird2);
+
+
+                    string skuSeven = ConfigHelper.GetAppSetting<string>("libao_sku7");
+                    int qitSeven = Convert.ToInt32(ConfigHelper.GetAppSetting<string>("libao_sku7_qit"));
+
+                    ProductSkuEntity skuThird3 = new ProductSkuEntity();
+                    skuThird3 = productBll.GetProductBySku(skuSeven, this.language);
+                    ProductItem proThird3 = new ProductItem(this.ExchangeRate);
+                    proThird3.CartUnitPrice = skuThird3.ProductPrice;
+                    proThird3.CartQuantity = qitSeven;
+                    proThird3.Huoli = 0;
+                    proThird3.Sku = skuThird3.Sku;
+                    proThird3.Spu = skuThird3.Spu;
+                    proThird3.GatewayCodes = listShoppingCart;
+                    proThird3.ForOrderQty = 100;
+
+                    proThird3.Price = 398;
+                    list.Add(proThird3);
+
+                   
+                    break;
+                case 4:
+
+                    string skuEight = ConfigHelper.GetAppSetting<string>("libao_sku8");
+                    int qitEight = Convert.ToInt32(ConfigHelper.GetAppSetting<string>("libao_sku8_qit"));
+                    //350大礼包   1瓶玛咖
+>>>>>>> af8b14e4ac93f9b204a43034b1af3443a30a482a
                     ProductSkuEntity skuFourth3 = new ProductSkuEntity();
                     skuFourth3 = productBll.GetProductBySku(skuEight, this.language);
                     ProductItem proFourth3 = new ProductItem(this.ExchangeRate);
@@ -301,6 +406,144 @@ namespace SFO2O.M.Controllers
             }
             
             #endregion
+            #region 酿造大礼包
+            //switch (giftType)
+            //{
+            //    case 1:
+
+
+            //        //6250礼包   虫草6   封坛原浆 2
+            //        ProductSkuEntity skuFirst1 = new ProductSkuEntity();
+            //        skuFirst1 = productBll.GetProductBySku("20170627618237", this.language);
+            //        ProductItem proFirst1 = new ProductItem(this.ExchangeRate);
+            //        proFirst1.CartUnitPrice = skuFirst1.ProductPrice;
+            //        proFirst1.CartQuantity = 6;
+            //        proFirst1.Huoli = 0;
+            //        proFirst1.Sku = skuFirst1.Sku;
+            //        proFirst1.Spu = skuFirst1.Spu;
+            //        proFirst1.GatewayCodes = listShoppingCart;
+            //        proFirst1.ForOrderQty = 100;
+            //        proFirst1.Price = 898;
+            //        list.Add(proFirst1);
+
+            //        ProductSkuEntity skuFirst2 = new ProductSkuEntity();
+            //        skuFirst2 = productBll.GetProductBySku("20170627618239", this.language);
+            //        ProductItem proFirst2 = new ProductItem(this.ExchangeRate);
+            //        proFirst2.CartUnitPrice = skuFirst2.ProductPrice;
+            //        proFirst2.CartQuantity = 2;
+            //        proFirst2.Huoli = 0;
+            //        proFirst2.Sku = skuFirst2.Sku;
+            //        proFirst2.Spu = skuFirst2.Spu;
+            //        proFirst2.GatewayCodes = listShoppingCart;
+            //        proFirst2.ForOrderQty = 100;
+            //        proFirst2.Price = 468;
+
+            //        list.Add(proFirst2);
+
+
+            //        break;
+            //    case 2:
+            //        //5000大礼包  4瓶虫草  2瓶国窖30年
+            //        ProductSkuEntity skuSecond1 = new ProductSkuEntity();
+            //        skuSecond1 = productBll.GetProductBySku("20170627618236", this.language);
+            //        ProductItem proSecond1 = new ProductItem(this.ExchangeRate);
+            //        proSecond1.CartUnitPrice = skuSecond1.ProductPrice;
+            //        proSecond1.CartQuantity = 4;
+            //        proSecond1.Huoli = 0;
+            //        proSecond1.Sku = skuSecond1.Sku;
+            //        proSecond1.Spu = skuSecond1.Spu;
+            //        proSecond1.GatewayCodes = listShoppingCart;
+            //        proSecond1.ForOrderQty = 100;
+
+            //        proSecond1.Price = 898;
+            //        list.Add(proSecond1);
+
+            //        ProductSkuEntity skuSecond2 = new ProductSkuEntity();
+            //        skuSecond2 = productBll.GetProductBySku("20170627618241", this.language);
+            //        ProductItem proSecond2 = new ProductItem(this.ExchangeRate);
+            //        proSecond2.CartUnitPrice = skuSecond2.ProductPrice;
+            //        proSecond2.CartQuantity = 2;
+            //        proSecond2.Huoli = 0;
+            //        proSecond2.Sku = skuSecond2.Sku;
+            //        proSecond2.Spu = skuSecond2.Spu;
+            //        proSecond2.GatewayCodes = listShoppingCart;
+            //        proSecond2.ForOrderQty = 100;
+            //        proSecond2.Price = 798;
+
+            //        list.Add(proSecond2);
+
+
+
+            //        break;
+            //    case 3:
+            //        //2000大礼包  1瓶虫草  1瓶封坛原浆 2瓶玛咖
+            //        ProductSkuEntity skuThird1 = new ProductSkuEntity();
+            //        skuThird1 = productBll.GetProductBySku("20170627618236", this.language);
+            //        ProductItem proThird1 = new ProductItem(this.ExchangeRate);
+            //        proThird1.CartUnitPrice = skuThird1.ProductPrice;
+            //        proThird1.CartQuantity = 1;
+            //        proThird1.Huoli = 0;
+            //        proThird1.Sku = skuThird1.Sku;
+            //        proThird1.Spu = skuThird1.Spu;
+            //        proThird1.GatewayCodes = listShoppingCart;
+            //        proThird1.ForOrderQty = 100;
+            //        proThird1.Price = 898;
+
+            //        list.Add(proThird1);
+
+            //        ProductSkuEntity skuThird2 = new ProductSkuEntity();
+            //        skuThird2 = productBll.GetProductBySku("20170627618239", this.language);
+            //        ProductItem proThird2 = new ProductItem(this.ExchangeRate);
+            //        proThird2.CartUnitPrice = skuThird2.ProductPrice;
+            //        proThird2.CartQuantity = 1;
+            //        proThird2.Huoli = 0;
+            //        proThird2.Sku = skuThird2.Sku;
+            //        proThird2.Spu = skuThird2.Spu;
+            //        proThird2.GatewayCodes = listShoppingCart;
+            //        proThird2.ForOrderQty = 100;
+
+            //        proThird2.Price = 468;
+            //        list.Add(proThird2);
+
+            //        ProductSkuEntity skuThird3 = new ProductSkuEntity();
+            //        skuThird3 = productBll.GetProductBySku("20170627618243", this.language);
+            //        ProductItem proThird3 = new ProductItem(this.ExchangeRate);
+            //        proThird3.CartUnitPrice = skuThird3.ProductPrice;
+            //        proThird3.CartQuantity = 2;
+            //        proThird3.Huoli = 0;
+            //        proThird3.Sku = skuThird3.Sku;
+            //        proThird3.Spu = skuThird3.Spu;
+            //        proThird3.GatewayCodes = listShoppingCart;
+            //        proThird3.ForOrderQty = 100;
+
+            //        proThird3.Price = 398;
+            //        list.Add(proThird3);
+
+
+
+            //        break;
+            //    case 4:
+            //        //350大礼包   1瓶玛咖
+            //        ProductSkuEntity skuFourth3 = new ProductSkuEntity();
+            //        skuFourth3 = productBll.GetProductBySku("20170627618243", this.language);
+            //        ProductItem proFourth3 = new ProductItem(this.ExchangeRate);
+            //        proFourth3.CartUnitPrice = skuFourth3.ProductPrice;
+            //        proFourth3.CartQuantity = 1;
+            //        proFourth3.Huoli = 0;
+            //        proFourth3.Sku = skuFourth3.Sku;
+            //        proFourth3.Spu = skuFourth3.Spu;
+            //        proFourth3.GatewayCodes = listShoppingCart;
+            //        proFourth3.ForOrderQty = 100;
+            //        proFourth3.Price = 398;
+            //        list.Add(proFourth3);
+            //        break;
+
+
+            //    default:
+            //        break;
+            //} 
+            #endregion
+
             #region 酿造大礼包
             //switch (giftType)
             //{

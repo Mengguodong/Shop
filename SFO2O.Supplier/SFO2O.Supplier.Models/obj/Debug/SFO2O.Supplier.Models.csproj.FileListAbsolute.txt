@@ -42,6 +42,7 @@ C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Supplier\SFO2O.Supplier.Models\bin\Debug\N
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Supplier\SFO2O.Supplier.Models\obj\Debug\SFO2O.Supplier.Models.csprojResolveAssemblyReference.cache
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Supplier\SFO2O.Supplier.Models\obj\Debug\SFO2O.Supplier.Models.dll
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Supplier\SFO2O.Supplier.Models\obj\Debug\SFO2O.Supplier.Models.pdb
+<<<<<<< HEAD
 F:\git\shop\Shop\SFO2O.Supplier\SFO2O.Supplier.Models\bin\Debug\SFO2O.Supplier.Models.dll
 F:\git\shop\Shop\SFO2O.Supplier\SFO2O.Supplier.Models\bin\Debug\SFO2O.Supplier.Models.pdb
 F:\git\shop\Shop\SFO2O.Supplier\SFO2O.Supplier.Models\bin\Debug\Common.EntLib.DataExtensions.dll
@@ -69,3 +70,5 @@ F:\git\shop\SFO2O.Supplier\SFO2O.Supplier.Models\bin\Debug\Newtonsoft.Json.xml
 F:\git\shop\SFO2O.Supplier\SFO2O.Supplier.Models\obj\Debug\SFO2O.Supplier.Models.csprojResolveAssemblyReference.cache
 F:\git\shop\SFO2O.Supplier\SFO2O.Supplier.Models\obj\Debug\SFO2O.Supplier.Models.dll
 F:\git\shop\SFO2O.Supplier\SFO2O.Supplier.Models\obj\Debug\SFO2O.Supplier.Models.pdb
+=======
+>>>>>>> af8b14e4ac93f9b204a43034b1af3443a30a482a

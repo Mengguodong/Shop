@@ -10,6 +10,7 @@ F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\obj\Release\
 F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\obj\Release\SFO2O.EntLib.DataExtensions.csproj.CopyComplete
 F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\obj\Release\SFO2O.EntLib.DataExtensions.dll
 F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\obj\Release\SFO2O.EntLib.DataExtensions.pdb
+<<<<<<< HEAD
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\bin\Release\SFO2O.EntLib.DataExtensions.dll
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\bin\Release\SFO2O.EntLib.DataExtensions.pdb
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
@@ -21,3 +22,5 @@ F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\bin\Release\Microsoft.Pr
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\obj\Release\SFO2O.EntLib.DataExtensions.csprojResolveAssemblyReference.cache
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\obj\Release\SFO2O.EntLib.DataExtensions.dll
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.EntLib.DataExtensions\obj\Release\SFO2O.EntLib.DataExtensions.pdb
+=======
+>>>>>>> af8b14e4ac93f9b204a43034b1af3443a30a482a

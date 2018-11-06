@@ -676,6 +676,7 @@ namespace SFO2O.BLL.Pay
 
                         #endregion
                       
+<<<<<<< HEAD
                         #region  孙健 调用健康绿氧活动接口
                         int count = 1;
                         if (model.successmoney > 330) 
@@ -689,6 +690,12 @@ namespace SFO2O.BLL.Pay
                        {
                            LogHelper.WriteInfo(typeof(PayBll), string.Format("OrderOverApi健康绿氧订单流程接口运行失败-----{0}", JsonHelper.ToJson(model)));
                        }
+=======
+                        #region 调用健康绿氧活动接口
+                        
+
+
+>>>>>>> af8b14e4ac93f9b204a43034b1af3443a30a482a
                         #endregion
                         
                     }

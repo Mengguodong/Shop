@@ -4,9 +4,12 @@ F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.References\bin\Release\SFO2O.Refer
 F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.References\obj\Release\SFO2O.References.csproj.CoreCompileInputs.cache
 F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.References\obj\Release\SFO2O.References.dll
 F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.References\obj\Release\SFO2O.References.pdb
+<<<<<<< HEAD
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.References\bin\Release\SFO2O.References.dll.config
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.References\bin\Release\SFO2O.References.dll
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.References\bin\Release\SFO2O.References.pdb
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.References\obj\Release\SFO2O.References.csprojResolveAssemblyReference.cache
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.References\obj\Release\SFO2O.References.dll
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.References\obj\Release\SFO2O.References.pdb
+=======
+>>>>>>> af8b14e4ac93f9b204a43034b1af3443a30a482a

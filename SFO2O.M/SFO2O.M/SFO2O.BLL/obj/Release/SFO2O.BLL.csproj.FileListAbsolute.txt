@@ -42,6 +42,7 @@ F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.BLL\obj\Release\SFO2O.BLL.csproj.C
 F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.BLL\obj\Release\SFO2O.BLL.dll
 F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.BLL\obj\Release\SFO2O.BLL.pdb
 F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.BLL\obj\Release\SFO2O.BLL.XmlSerializers.dll
+<<<<<<< HEAD
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.BLL\bin\Release\SFO2O.BLL.dll
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.BLL\bin\Release\SFO2O.BLL.XmlSerializers.dll
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.BLL\bin\Release\SFO2O.BLL.pdb
@@ -83,3 +84,5 @@ F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.BLL\obj\Release\SFO2O.BLL.csprojResolveAssembl
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.BLL\obj\Release\SFO2O.BLL.dll
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.BLL\obj\Release\SFO2O.BLL.pdb
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.BLL\obj\Release\SFO2O.BLL.XmlSerializers.dll
+=======
+>>>>>>> af8b14e4ac93f9b204a43034b1af3443a30a482a

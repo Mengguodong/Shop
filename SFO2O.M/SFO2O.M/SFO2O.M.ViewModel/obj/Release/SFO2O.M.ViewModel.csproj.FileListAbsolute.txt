@@ -33,6 +33,7 @@ F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.M.ViewModel\obj\Release\SFO2O.M.Vi
 F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.M.ViewModel\obj\Release\SFO2O.M.ViewModel.csproj.CopyComplete
 F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.M.ViewModel\obj\Release\SFO2O.M.ViewModel.dll
 F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.M.ViewModel\obj\Release\SFO2O.M.ViewModel.pdb
+<<<<<<< HEAD
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.M.ViewModel\bin\Release\SFO2O.M.ViewModel.dll
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.M.ViewModel\bin\Release\SFO2O.M.ViewModel.pdb
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.M.ViewModel\bin\Release\LowercaseRoutesMVC.dll
@@ -66,3 +67,5 @@ F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.M.ViewModel\bin\Release\NPOI.OpenXml4Net.xml
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.M.ViewModel\obj\Release\SFO2O.M.ViewModel.csprojResolveAssemblyReference.cache
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.M.ViewModel\obj\Release\SFO2O.M.ViewModel.dll
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.M.ViewModel\obj\Release\SFO2O.M.ViewModel.pdb
+=======
+>>>>>>> af8b14e4ac93f9b204a43034b1af3443a30a482a

@@ -77,6 +77,7 @@ C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Admin\SFO2O.Admin.Common\bin\Debug\System.
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Admin\SFO2O.Admin.Common\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Admin\SFO2O.Admin.Common\obj\Debug\SFO2O.Admin.Common.dll
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Admin\SFO2O.Admin.Common\obj\Debug\SFO2O.Admin.Common.pdb
+<<<<<<< HEAD
 F:\git\shop\SFO2O.Admin\SFO2O.Admin.Common\bin\Debug\SFO2O.Admin.Common.dll
 F:\git\shop\SFO2O.Admin\SFO2O.Admin.Common\bin\Debug\SFO2O.Admin.Common.pdb
 F:\git\shop\SFO2O.Admin\SFO2O.Admin.Common\bin\Debug\ICSharpCode.SharpZipLib.dll
@@ -103,3 +104,33 @@ F:\git\shop\SFO2O.Admin\SFO2O.Admin.Common\bin\Debug\zh-Hans\System.Web.Mvc.reso
 F:\git\shop\SFO2O.Admin\SFO2O.Admin.Common\obj\Debug\SFO2O.Admin.Common.dll
 F:\git\shop\SFO2O.Admin\SFO2O.Admin.Common\obj\Debug\SFO2O.Admin.Common.pdb
 F:\git\shop\SFO2O.Admin\SFO2O.Admin.Common\obj\Debug\SFO2O.Admin.Common.csprojResolveAssemblyReference.cache
+=======
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Common\bin\Debug\SFO2O.Admin.Common.dll
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Common\bin\Debug\SFO2O.Admin.Common.pdb
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Common\bin\Debug\ICSharpCode.SharpZipLib.dll
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Common\bin\Debug\log4net.dll
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Common\bin\Debug\Newtonsoft.Json.dll
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Common\bin\Debug\NPOI.DDF.dll
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Common\bin\Debug\NPOI.dll
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Common\bin\Debug\NPOI.OOXML.dll
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Common\bin\Debug\NPOI.OpenXml4Net.dll
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Common\bin\Debug\NPOI.OpenXmlFormats.dll
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Common\bin\Debug\NPOI.POIFS.dll
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Common\bin\Debug\NPOI.Util.dll
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Common\bin\Debug\ServiceStack.Common.dll
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Common\bin\Debug\ServiceStack.Interfaces.dll
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Common\bin\Debug\ServiceStack.Redis.dll
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Common\bin\Debug\ServiceStack.Text.dll
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Common\bin\Debug\System.Web.Mvc.dll
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Common\bin\Debug\Newtonsoft.Json.xml
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Common\bin\Debug\NPOI.xml
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Common\bin\Debug\NPOI.OOXML.xml
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Common\bin\Debug\NPOI.OpenXml4Net.xml
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Common\bin\Debug\System.Web.Mvc.xml
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Common\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Common\obj\Debug\SFO2O.Admin.Common.csprojAssemblyReference.cache
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Common\obj\Debug\SFO2O.Admin.Common.csproj.CoreCompileInputs.cache
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Common\obj\Debug\SFO2O.Admin.Common.csproj.CopyComplete
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Common\obj\Debug\SFO2O.Admin.Common.dll
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Common\obj\Debug\SFO2O.Admin.Common.pdb
+>>>>>>> af8b14e4ac93f9b204a43034b1af3443a30a482a

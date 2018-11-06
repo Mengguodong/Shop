@@ -16,8 +16,18 @@ C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Admin\SFO2O.Admin.Service\bin\Debug\SFO2O.
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Admin\SFO2O.Admin.Service\bin\Debug\SFO2O.Admin.Service.pdb
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Admin\SFO2O.Admin.Service\obj\Debug\SFO2O.Admin.Service.dll
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Admin\SFO2O.Admin.Service\obj\Debug\SFO2O.Admin.Service.pdb
+<<<<<<< HEAD
 F:\git\shop\SFO2O.Admin\SFO2O.Admin.Service\bin\Debug\SFO2O.Admin.Service.dll.config
 F:\git\shop\SFO2O.Admin\SFO2O.Admin.Service\bin\Debug\SFO2O.Admin.Service.dll
 F:\git\shop\SFO2O.Admin\SFO2O.Admin.Service\bin\Debug\SFO2O.Admin.Service.pdb
 F:\git\shop\SFO2O.Admin\SFO2O.Admin.Service\obj\Debug\SFO2O.Admin.Service.dll
 F:\git\shop\SFO2O.Admin\SFO2O.Admin.Service\obj\Debug\SFO2O.Admin.Service.pdb
+=======
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Service\bin\Debug\SFO2O.Admin.Service.dll.config
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Service\bin\Debug\SFO2O.Admin.Service.dll
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Service\bin\Debug\SFO2O.Admin.Service.pdb
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Service\obj\Debug\SFO2O.Admin.Service.csprojAssemblyReference.cache
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Service\obj\Debug\SFO2O.Admin.Service.csproj.CoreCompileInputs.cache
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Service\obj\Debug\SFO2O.Admin.Service.dll
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Service\obj\Debug\SFO2O.Admin.Service.pdb
+>>>>>>> af8b14e4ac93f9b204a43034b1af3443a30a482a

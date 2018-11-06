@@ -93,6 +93,7 @@ C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Supplier\SFO2O.Supplier.ViewModels\bin\Deb
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Supplier\SFO2O.Supplier.ViewModels\obj\Debug\SFO2O.Supplier.ViewModels.csprojResolveAssemblyReference.cache
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Supplier\SFO2O.Supplier.ViewModels\obj\Debug\SFO2O.Supplier.ViewModels.dll
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Supplier\SFO2O.Supplier.ViewModels\obj\Debug\SFO2O.Supplier.ViewModels.pdb
+<<<<<<< HEAD
 F:\git\shop\Shop\SFO2O.Supplier\SFO2O.Supplier.ViewModels\bin\Debug\SFO2O.Supplier.ViewModels.dll
 F:\git\shop\Shop\SFO2O.Supplier\SFO2O.Supplier.ViewModels\bin\Debug\SFO2O.Supplier.ViewModels.pdb
 F:\git\shop\Shop\SFO2O.Supplier\SFO2O.Supplier.ViewModels\bin\Debug\Newtonsoft.Json.dll
@@ -155,3 +156,5 @@ F:\git\shop\SFO2O.Supplier\SFO2O.Supplier.ViewModels\bin\Debug\zh-Hans\System.We
 F:\git\shop\SFO2O.Supplier\SFO2O.Supplier.ViewModels\obj\Debug\SFO2O.Supplier.ViewModels.csprojResolveAssemblyReference.cache
 F:\git\shop\SFO2O.Supplier\SFO2O.Supplier.ViewModels\obj\Debug\SFO2O.Supplier.ViewModels.dll
 F:\git\shop\SFO2O.Supplier\SFO2O.Supplier.ViewModels\obj\Debug\SFO2O.Supplier.ViewModels.pdb
+=======
+>>>>>>> af8b14e4ac93f9b204a43034b1af3443a30a482a

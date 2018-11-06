@@ -1,5 +1,6 @@
 F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.M.Web\obj\Release\SFO2O.M.Web.csprojAssemblyReference.cache
 F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.M.Web\obj\Release\SFO2O.M.Web.csproj.CoreCompileInputs.cache
+<<<<<<< HEAD
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.M.Web\bin\SFO2O.M.Web.dll.config
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.M.Web\bin\SFO2O.M.Web.dll
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.M.Web\bin\SFO2O.M.Web.pdb
@@ -87,3 +88,5 @@ F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.M.Web\bin\SFO2O.BLL.XmlSerializers.dll
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.M.Web\obj\Release\SFO2O.M.Web.csprojResolveAssemblyReference.cache
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.M.Web\obj\Release\SFO2O.M.Web.dll
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.M.Web\obj\Release\SFO2O.M.Web.pdb
+=======
+>>>>>>> af8b14e4ac93f9b204a43034b1af3443a30a482a

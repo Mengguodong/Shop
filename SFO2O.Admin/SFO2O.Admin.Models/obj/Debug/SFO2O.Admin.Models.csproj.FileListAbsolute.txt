@@ -36,6 +36,7 @@ C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Admin\SFO2O.Admin.Models\bin\Debug\Common.
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Admin\SFO2O.Admin.Models\obj\Debug\SFO2O.Admin.Models.csprojResolveAssemblyReference.cache
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Admin\SFO2O.Admin.Models\obj\Debug\SFO2O.Admin.Models.dll
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Admin\SFO2O.Admin.Models\obj\Debug\SFO2O.Admin.Models.pdb
+<<<<<<< HEAD
 F:\git\shop\SFO2O.Admin\SFO2O.Admin.Models\bin\Debug\SFO2O.Admin.Models.dll
 F:\git\shop\SFO2O.Admin\SFO2O.Admin.Models\bin\Debug\SFO2O.Admin.Models.pdb
 F:\git\shop\SFO2O.Admin\SFO2O.Admin.Models\bin\Debug\Common.EntLib.DataExtensions.dll
@@ -48,3 +49,19 @@ F:\git\shop\SFO2O.Admin\SFO2O.Admin.Models\bin\Debug\Common.EntLib.DataExtension
 F:\git\shop\SFO2O.Admin\SFO2O.Admin.Models\obj\Debug\SFO2O.Admin.Models.dll
 F:\git\shop\SFO2O.Admin\SFO2O.Admin.Models\obj\Debug\SFO2O.Admin.Models.pdb
 F:\git\shop\SFO2O.Admin\SFO2O.Admin.Models\obj\Debug\SFO2O.Admin.Models.csprojResolveAssemblyReference.cache
+=======
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Models\bin\Debug\SFO2O.Admin.Models.dll
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Models\bin\Debug\SFO2O.Admin.Models.pdb
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Models\bin\Debug\Common.EntLib.DataExtensions.dll
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Models\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Models\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Models\bin\Debug\Microsoft.Practices.Unity.dll
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Models\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Models\bin\Debug\Microsoft.Practices.Unity.Interception.dll
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Models\bin\Debug\Common.EntLib.DataExtensions.pdb
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Models\obj\Debug\SFO2O.Admin.Models.csprojAssemblyReference.cache
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Models\obj\Debug\SFO2O.Admin.Models.csproj.CoreCompileInputs.cache
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Models\obj\Debug\SFO2O.Admin.Models.csproj.CopyComplete
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Models\obj\Debug\SFO2O.Admin.Models.dll
+E:\MyProgram\ShoppingMall\SFO2O.Admin\SFO2O.Admin.Models\obj\Debug\SFO2O.Admin.Models.pdb
+>>>>>>> af8b14e4ac93f9b204a43034b1af3443a30a482a

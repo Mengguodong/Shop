@@ -14,6 +14,7 @@ C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Supplier\SFO2O.Supplier.Services\bin\Debug
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Supplier\SFO2O.Supplier.Services\obj\Debug\SFO2O.Supplier.Services.csprojResolveAssemblyReference.cache
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Supplier\SFO2O.Supplier.Services\obj\Debug\SFO2O.Supplier.Services.dll
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Supplier\SFO2O.Supplier.Services\obj\Debug\SFO2O.Supplier.Services.pdb
+<<<<<<< HEAD
 F:\git\shop\Shop\SFO2O.Supplier\SFO2O.Supplier.Services\bin\Debug\SFO2O.Supplier.Services.dll
 F:\git\shop\Shop\SFO2O.Supplier\SFO2O.Supplier.Services\bin\Debug\SFO2O.Supplier.Services.pdb
 F:\git\shop\Shop\SFO2O.Supplier\SFO2O.Supplier.Services\obj\Debug\SFO2O.Supplier.Services.dll
@@ -23,3 +24,5 @@ F:\git\shop\SFO2O.Supplier\SFO2O.Supplier.Services\bin\Debug\SFO2O.Supplier.Serv
 F:\git\shop\SFO2O.Supplier\SFO2O.Supplier.Services\obj\Debug\SFO2O.Supplier.Services.csprojResolveAssemblyReference.cache
 F:\git\shop\SFO2O.Supplier\SFO2O.Supplier.Services\obj\Debug\SFO2O.Supplier.Services.dll
 F:\git\shop\SFO2O.Supplier\SFO2O.Supplier.Services\obj\Debug\SFO2O.Supplier.Services.pdb
+=======
+>>>>>>> af8b14e4ac93f9b204a43034b1af3443a30a482a

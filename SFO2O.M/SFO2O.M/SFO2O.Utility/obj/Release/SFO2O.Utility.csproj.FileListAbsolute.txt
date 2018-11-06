@@ -20,6 +20,7 @@ F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.Utility\obj\Release\SFO2O.Utility.
 F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.Utility\obj\Release\SFO2O.Utility.csproj.CopyComplete
 F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.Utility\obj\Release\SFO2O.Utility.dll
 F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.Utility\obj\Release\SFO2O.Utility.pdb
+<<<<<<< HEAD
 F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.Utility\obj\Release\SFO2O.Utility.csprojAssemblyReference.cache
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.Utility\bin\Release\SFO2O.Utility.dll
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.Utility\bin\Release\SFO2O.Utility.pdb
@@ -42,3 +43,5 @@ F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.Utility\bin\Release\NPOI.OpenXml4Net.xml
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.Utility\obj\Release\SFO2O.Utility.csprojResolveAssemblyReference.cache
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.Utility\obj\Release\SFO2O.Utility.dll
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.Utility\obj\Release\SFO2O.Utility.pdb
+=======
+>>>>>>> af8b14e4ac93f9b204a43034b1af3443a30a482a

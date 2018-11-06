@@ -30,6 +30,7 @@ F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.DAL\obj\Release\SFO2O.DAL.csproj.C
 F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.DAL\obj\Release\SFO2O.DAL.csproj.CopyComplete
 F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.DAL\obj\Release\SFO2O.DAL.dll
 F:\工作\Git\Shop\Shop\SFO2O.M\SFO2O.M\SFO2O.DAL\obj\Release\SFO2O.DAL.pdb
+<<<<<<< HEAD
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.DAL\bin\Release\SFO2O.DAL.dll
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.DAL\bin\Release\SFO2O.DAL.pdb
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.DAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
@@ -60,3 +61,5 @@ F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.DAL\bin\Release\NPOI.OpenXml4Net.xml
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.DAL\obj\Release\SFO2O.DAL.csprojResolveAssemblyReference.cache
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.DAL\obj\Release\SFO2O.DAL.dll
 F:\git\shop\SFO2O.M\SFO2O.M\SFO2O.DAL\obj\Release\SFO2O.DAL.pdb
+=======
+>>>>>>> af8b14e4ac93f9b204a43034b1af3443a30a482a

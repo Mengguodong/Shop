@@ -744,6 +744,7 @@ namespace SFO2O.BLL.Order
             OrderInfoEntity orderInfoEntity = new OrderInfoEntity();
             switch (giftType)
             {
+<<<<<<< HEAD
                 case 1: orderInfoEntity.TotalAmount = totalAmountTwo;
                     orderInfoEntity.ProductTotalAmount = totalAmountTwo;
                     //orderInfoEntity.Huoli = totalAmountTwo;
@@ -764,6 +765,24 @@ namespace SFO2O.BLL.Order
                 case 5: orderInfoEntity.TotalAmount = totalAmountOne;
                     orderInfoEntity.ProductTotalAmount = totalAmountOne;
                     //orderInfoEntity.Huoli = totalAmountOne;
+=======
+                case 1: orderInfoEntity.TotalAmount = totalAmountOne;
+                    orderInfoEntity.ProductTotalAmount = totalAmountOne;
+                    orderInfoEntity.Huoli = totalAmountOne;
+                    break;
+
+                case 2: orderInfoEntity.TotalAmount = totalAmountOne;
+                    orderInfoEntity.ProductTotalAmount = totalAmountOne;
+                    orderInfoEntity.Huoli = totalAmountOne;
+                    break;
+                case 3: orderInfoEntity.TotalAmount = totalAmountTwo;
+                    orderInfoEntity.ProductTotalAmount = totalAmountTwo;
+                    orderInfoEntity.Huoli = totalAmountTwo;
+                    break;
+                case 4: orderInfoEntity.TotalAmount = totalAmountTwo;
+                    orderInfoEntity.ProductTotalAmount = totalAmountTwo;
+                    orderInfoEntity.Huoli = totalAmountTwo;
+>>>>>>> af8b14e4ac93f9b204a43034b1af3443a30a482a
                     break;
              
                 default:

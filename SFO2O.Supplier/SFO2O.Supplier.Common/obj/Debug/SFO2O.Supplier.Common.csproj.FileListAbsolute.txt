@@ -69,6 +69,7 @@ C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Supplier\SFO2O.Supplier.Common\bin\Debug\z
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Supplier\SFO2O.Supplier.Common\obj\Debug\SFO2O.Supplier.Common.csprojResolveAssemblyReference.cache
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Supplier\SFO2O.Supplier.Common\obj\Debug\SFO2O.Supplier.Common.dll
 C:\Users\sj\Desktop\1\Shop\Shop\SFO2O.Supplier\SFO2O.Supplier.Common\obj\Debug\SFO2O.Supplier.Common.pdb
+<<<<<<< HEAD
 F:\git\shop\Shop\SFO2O.Supplier\SFO2O.Supplier.Common\bin\Debug\SFO2O.Supplier.Common.dll
 F:\git\shop\Shop\SFO2O.Supplier\SFO2O.Supplier.Common\bin\Debug\SFO2O.Supplier.Common.pdb
 F:\git\shop\Shop\SFO2O.Supplier\SFO2O.Supplier.Common\bin\Debug\ICSharpCode.SharpZipLib.dll
@@ -114,3 +115,5 @@ F:\git\shop\SFO2O.Supplier\SFO2O.Supplier.Common\bin\Debug\zh-Hans\System.Web.Mv
 F:\git\shop\SFO2O.Supplier\SFO2O.Supplier.Common\obj\Debug\SFO2O.Supplier.Common.csprojResolveAssemblyReference.cache
 F:\git\shop\SFO2O.Supplier\SFO2O.Supplier.Common\obj\Debug\SFO2O.Supplier.Common.dll
 F:\git\shop\SFO2O.Supplier\SFO2O.Supplier.Common\obj\Debug\SFO2O.Supplier.Common.pdb
+=======
+>>>>>>> af8b14e4ac93f9b204a43034b1af3443a30a482a
